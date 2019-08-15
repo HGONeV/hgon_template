@@ -1,0 +1,29 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.randomAuthor.sheetTitle</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.randomAuthor.authorUidList>
+                        <TCEforms>
+                            <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.randomAuthor.authorUidList</label>
+                            <config>
+                                <size>5</size>
+                                <minitems>1</minitems>
+                                <maxitems>9999</maxitems>
+                                <type>select</type>
+                                <foreign_table>tx_rkwauthors_domain_model_authors</foreign_table>
+                                <foreign_table_where>
+                                    AND tx_rkwauthors_domain_model_authors.deleted = 0 AND tx_rkwauthors_domain_model_authors.hidden = 0 ORDER BY tx_rkwauthors_domain_model_authors.last_name
+                                </foreign_table_where>
+                            </config>
+                        </TCEforms>
+                    </settings.randomAuthor.authorUidList>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

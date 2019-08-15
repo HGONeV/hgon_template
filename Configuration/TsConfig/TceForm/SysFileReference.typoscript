@@ -1,0 +1,81 @@
+// Quelle: https://jweiland.net/typo3/beispiele-anleitungen-faq/tsconfig/seitenverhaeltnisse-im-bild-editor-anpassen-ab-typo3-7-lts.html
+TCEFORM.sys_file_reference.crop.config.cropVariants {
+    default {
+        title = Default
+        selectedRatio = NaN
+        allowedAspectRatios {
+            NaN {
+                title = Frei
+                value = 0.0
+            }
+            /*
+            1:1 {
+                title = 1:1
+                value = 1.0
+            }
+            3:2 {
+                title = 3:2
+                value = 1.5
+            }
+            2:3 {
+                title = 2:3
+                value = 0.6666666667
+            }
+            */
+            4:3 {
+                title = 4:3
+                value = 1.3333333333
+            }
+            3:4 {
+                title = 3:4
+                value = 0.75
+            }
+            16:9 {
+                title = 16:9
+                value = 1.7777777778
+            }
+        }
+    }
+    16to9 {
+        title = 16:9
+        selectedRatio = 16:9
+        allowedAspectRatios {
+            16:9 {
+                title = 16:9
+                value = 1.7777777778
+            }
+        }
+    }
+    4to3 {
+        title = 4:3
+        selectedRatio = 4:3
+        allowedAspectRatios {
+            4:3 {
+                title = 4:3
+                value = 1.3333333333
+            }
+        }
+    }
+    3to4 {
+        title = 3:4
+        selectedRatio = 3:4
+        allowedAspectRatios {
+            3:4 {
+                title = 3:4
+                value = 0.75
+            }
+        }
+    }
+    /*
+    specialMobile {
+        title = Our special mobile variant
+        selectedRatio = NaN
+        allowedAspectRatios {
+            4:3 {
+                title = 4:3
+                value = 1.3333333
+            }
+        }
+    }
+    */
+}

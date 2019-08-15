@@ -1,0 +1,77 @@
+//############################################################################
+// CSS and JS
+//############################################################################
+page {
+	//===============================================================
+	// CSS
+	//===============================================================
+	includeCSS {
+
+        file10 = {$globalWebsiteConfig.templatePaths.default.styles}/styles.css
+		file10.media = screen,print
+
+        file20 = {$globalWebsiteConfig.templatePaths.default.styles}/Main.css
+        file20.media = screen,print
+
+        file30 = https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css
+        file30.media = screen,print
+
+		#file20 = {$globalWebsiteConfig.templatePaths.default.styles}/ie9.css
+		#file20.media = screen,print
+		#file20.allWrap = <!--[if IE]>|<![endif]-->
+
+		// Nur auf den Druck-Seiten!
+		// file30 = {$globalWebsiteConfig.templatePaths.default.styles}/print.css
+		// file30.media = screen,print
+	}
+
+	//===============================================================
+	// Other CSS
+	//===============================================================
+
+	headerData {
+		20 = TEXT
+		20 {
+			value = <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+		}
+	}
+
+
+	//===============================================================
+	// JS
+	//===============================================================
+	// Remove JavaScripts from header
+	includeJS >
+
+	// Include JavaScripts in footer (loading time optimization)
+	includeJSFooter {
+
+	}
+
+	// Include as lib because it contains jQuery
+	includeJSFooterlibs {
+		// Important: Force on top is dependent on its call in script, so the latest call is the first script being loaded
+		// it is NOT dependent on the number given to that file
+        file5 = {$globalWebsiteConfig.templatePaths.default.scripts}/vendor.js
+
+		file10 = {$globalWebsiteConfig.templatePaths.default.scripts}/scripts.js
+		//file10.forceOnTop = 1
+
+        file15 = {$globalWebsiteConfig.templatePaths.default.scripts}/main.js
+
+        file25 = https://cdn.rawgit.com/noelboss/featherlight/1.3.4/release/featherlight.min.js
+
+        file30 = https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js
+
+       // file30 = {$globalWebsiteConfig.templatePaths.default.scripts}/loadcss.js
+
+		//file5 = {$globalWebsiteConfig.templatePaths.default.scripts}/libs/polyfills.js
+		//file5.forceOnTop = 1
+
+		//file15 = {$globalWebsiteConfig.templatePaths.default.scripts}/libs/jquery-ui.js
+
+		//file20 = {$globalWebsiteConfig.templatePaths.default.scripts}/libs/responsive-tables.js
+	}
+
+}
+

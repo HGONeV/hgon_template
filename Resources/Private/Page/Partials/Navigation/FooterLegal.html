@@ -1,0 +1,13 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <div class="flex-item flex-basis4 flex-item--smalldesk-full / align-right">
+        <f:if condition="{menuFooterLegal}">
+            <ul class="menu menu--meta">
+                <f:for each="{menuFooterLegal}" as="mainItem">
+                    <f:render partial="Navigation/Elements/Item" arguments="{item: mainItem}" />
+                </f:for>
+            </ul>
+        </f:if>
+    </div>
+
+</html>

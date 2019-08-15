@@ -1,0 +1,22 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+{namespace rkwGeo=RKW\RkwGeolocation\ViewHelpers}
+
+<f:if condition="{event.onlineEvent} == 0">
+    <f:then>
+        <f:if condition="<rkw:and and1='{event.longitude}' and2='{event.latitude}' />">
+
+            <!-- show Google-map if geo-data is set -->
+            <f:then>
+                <picture>
+                    <rkwGeo:maps longitude='{event.longitude}' latitude="{event.latitude}" />
+                </picture>
+            </f:then>
+            <f:else>
+                <rkwGeo:maps address="Germany" zoom="5" noMarker="true"/>
+            </f:else>
+        </f:if>
+    </f:then>
+    <f:else>
+        <rkwGeo:maps address="Germany" zoom="5" noMarker="true"/>
+    </f:else>
+</f:if>

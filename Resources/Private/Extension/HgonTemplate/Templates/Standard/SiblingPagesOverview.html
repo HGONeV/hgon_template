@@ -1,0 +1,120 @@
+<f:for each="{pagesList}" as="pages" iteration="iter">
+
+    <section class="section">
+
+        <f:comment><!-- header area --></f:comment>
+
+        <header class="section__header section__header--small">
+            <div class="wrap wrap--inner-text">
+                <h2>
+                    {pages.title}
+                </h2>
+                <p>
+                    {pages.txRkwbasicsTeaserText}
+                </p>
+            </div>
+        </header>
+
+
+
+        <f:comment><!-- content area --></f:comment>
+
+        <div class="section__content">
+            <div class="flex-container space-between gutter valign-stretch">
+
+                <f:if condition="{iter.isOdd}">
+                    <f:then>
+                        <f:render section="threeElements" arguments="{_all}"/>
+                    </f:then>
+                    <f:else>
+                        <f:render section="fourElements" arguments="{_all}"/>
+                    </f:else>
+                </f:if>
+            </div>
+        </div>
+
+        <footer class="section__footer / align-center">
+            <f:link.page pageUid="{pages.uid}" class="btn btn--primary btn--rounded">
+                <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.moreInformation" />
+            </f:link.page>
+        </footer>
+    </section>
+
+    <f:if condition="{iter.cycle} == 1">
+        <f:cObject typoscriptObjectPath="page.10.variables.showArticleFromPages" />
+    </f:if>
+
+
+</f:for>
+
+
+
+<f:comment>
+    <!-- SECTIONS -->
+</f:comment>
+
+<f:section name="threeElements">
+    <f:for each="{pages.subPages}" as="subPages">
+        <div class="flex-item c-4">
+            <div id="c54" class="frame frame-default frame-type-textpic frame-layout-14">
+                <article class="card card--shadow">
+                    <f:if condition="{subPages.txRkwbasicsTeaserImage}">
+                        <picture class="card__image">
+                            <figure class="image">
+                                <f:image class="image-embed-item" image="{subPages.txRkwbasicsTeaserImage}" alt="{subPages.txRkwbasicsTeaserImage.title}" width="395" height="300" />
+                            </figure>
+                        </picture>
+                    </f:if>
+                    <div class="card__inner">
+                        <header class="card__header">
+                            <h3 class="headline">{subPages.title}</h3>
+                        </header>
+                        <div class="card__content">
+                            <p>
+                                {subPages.txRkwbasicsTeaserText}
+                            </p>
+                        </div>
+                        <footer class="card__footer">
+                            <f:link.page pageUid="{subPages.uid}" class="btn btn--rounded btn--tertiary">
+                                <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" />
+                            </f:link.page>
+                        </footer>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </f:for>
+</f:section>
+
+
+<f:section name="fourElements">
+    <f:for each="{pages.subPages}" as="subPages">
+        <div class="flex-item c-6">
+            <article class="card card--shadow">
+                <f:if condition="{subPages.txRkwbasicsTeaserImage}">
+                    <picture class="card__image">
+                        <figure class="image">
+                            <f:image class="image-embed-item" image="{subPages.txRkwbasicsTeaserImage}" alt="{subPages.txRkwbasicsTeaserImage.title}" width="595" height="300" />
+                        </figure>
+                    </picture>
+                </f:if>
+                <div class="card__inner">
+                    <header class="card__header">
+                        <span class="tagline">Tagline</span>
+                        <h3 class="headline">{subPages.title}</h3>
+                    </header>
+                    <div class="card__content">
+                        <p>
+                            {subPages.txRkwbasicsTeaserText}
+                        </p>
+                    </div>
+                    <footer class="card__footer">
+                        <f:link.page pageUid="{subPages.uid}" class="btn btn--rounded btn--tertiary">
+                            <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" />
+                        </f:link.page>
+                    </footer>
+                </div>
+            </article>
+        </div>
+    </f:for>
+</f:section>

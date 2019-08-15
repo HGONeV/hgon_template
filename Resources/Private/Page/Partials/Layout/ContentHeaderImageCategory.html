@@ -1,0 +1,27 @@
+<header class="main__header main__header--image">
+    <picture class="picture">
+        <f:format.raw>
+            {pageArticleImage}
+        </f:format.raw>
+
+        <f:comment>
+            <!--
+                Verschiedene Bildgrößen ausgeben:
+                https://jweiland.net/typo3/codebeispiele/typoscript/bild-aus-den-seiteneigenschaften-auslesen.html
+            -->
+
+            <source media="(min-width: 64.063em)" srcset="https://dummyimage.com/1680x600/333333/fff.png">
+            <source media="(min-width: 48.063em) and (max-width: 64em)" srcset="https://dummyimage.com/1024x350/333333/fff.png">
+            <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="https://dummyimage.com/768x350/333333/fff.png">
+            <source media="(max-width: 37.5em)" srcset="https://dummyimage.com/600x350/333333/fff.png">
+            <img src="https://dummyimage.com/1680x600/333333/fff.png" alt="" width="1680" height="600">
+        </f:comment>
+
+    </picture>
+    <div class="wrap wrap--text / align-center">
+        <h1>
+            <span class="h1 headline">{parentPageTitle} > {pageTitle}</span>
+        </h1>
+        <p>{pageTeaserText}</p>
+    </div>
+</header>

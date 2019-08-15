@@ -1,0 +1,21 @@
+<div class="flex-item c-4">
+    <f:comment><!-- this span is just to handle a technical limitation. If we don't use it, the bankAccountSidebar plugin below won't show --></f:comment>
+    <span>
+        <f:cObject typoscriptObjectPath="page.10.variables.pbSocialTwitter" />
+    </span>
+    <f:cObject typoscriptObjectPath="page.10.variables.bankAccountSidebar" />
+</div>
+
+<f:if condition="{isJournalPage}">
+    <f:comment><!-- If there is no article for row2, make box smaller --></f:comment>
+    <f:if condition="{iter.isLast} && <f:count>{journalRowList}</f:count> == 3">
+        <f:then>
+            <div class="flex-item c-8">
+        </f:then>
+        <f:else>
+            <div class="flex-item c-12">
+        </f:else>
+    </f:if>
+    <f:cObject typoscriptObjectPath="page.10.variables.didYouKnow" />
+    </div>
+</f:if>

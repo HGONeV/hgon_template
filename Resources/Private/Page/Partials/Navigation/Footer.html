@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <f:if condition="{menuFooter}">
+        <f:for each="{menuFooter}" as="mainItem">
+            <div class="flex-item c-3 / pt-1 pr-1 pb-1">
+                <h6 class="text-uppercase">{mainItem.title}</h6>
+                <f:if condition="{mainItem.children}">
+                    <f:render section="submenu" arguments="{submenu: mainItem.children}"/>
+                </f:if>
+            </div>
+        </f:for>
+    </f:if>
+
+
+    <f:section name="submenu">
+        <ul class="menu menu--list">
+            <f:for each="{submenu}" as="subItem">
+                <f:render partial="Navigation/Elements/Item" arguments="{item: subItem}"/>
+                <f:if condition="{subItem.children}">
+                    <f:render section="submenu" arguments="{submenu: subItem.children}"/>
+                </f:if>
+                </li>
+            </f:for>
+        </ul>
+    </f:section>
+
+
+    <f:section name="additional">
+        <f:for each="{menuFooterAdditional}" as="item" iteration="iterator">
+            <a class="btn btn--cta btn--rounded" href="{item.link}" title="{item.data.title}">
+                {item.title}
+            </a>
+        </f:for>
+    </f:section>
+
+</html>

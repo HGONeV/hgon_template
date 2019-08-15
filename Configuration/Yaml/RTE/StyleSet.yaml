@@ -1,0 +1,9 @@
+editor:
+  config:
+    # can be "default", but a custom stylesSet can be defined here, which fits TYPO3 best
+    stylesSet:
+      - { name: "Button: Standard", element: "a", attributes: { class: "btn btn--primary btn--rounded"} }
+      - { name: "Button: Standard hell", element: "a", attributes: { class: "btn btn--primary-light btn--rounded"} }
+      - { name: "Button: Weiß", element: "a", attributes: { class: "btn btn--white btn--rounded"} }
+      - { name: "Button: Gelb", element: "a", attributes: { class: "btn btn--cta btn--rounded"} }
+      - { name: "Button: Tertiary", element: "a", attributes: { class: "btn btn--rounded btn--tertiary"} }

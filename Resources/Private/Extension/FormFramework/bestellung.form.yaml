@@ -1,0 +1,41 @@
+
+renderingOptions:
+  submitButtonLabel: Submit
+type: Form
+identifier: bestellung
+label: Bestellung
+prototypeName: standard
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Neue Seite'
+    type: Page
+    identifier: page-1
+    label: Step
+    renderables:
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-1
+        label: Text
+        properties:
+          elementDescription: Vorname
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-2
+        label: Text
+        properties:
+          elementDescription: Nachname
+      -
+        type: SingleSelectWithArticle
+        identifier: articleTitle
+        label: Article Title
+        properties:
+          prependOptionLabel: 'please choose'
+          fluidAdditionalAttributes:
+            required: required
+        validators:
+          -
+            identifier: NotEmpty

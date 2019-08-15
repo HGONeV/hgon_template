@@ -1,0 +1,15 @@
+<f:if condition="{author}">
+    <blockquote class="quote / align-center mt-4 mb-4">
+        <header>
+            <q><f:format.stripTags>{author.functionDescription}</f:format.stripTags></q>
+        </header>
+        <cite class="quote__cite">
+            <f:if condition="{author.imageBoxes}">
+                <f:image image="{author.imageBoxes}" alt="{author.imageBoxes.title}" width="100px" height="100px" />
+            </f:if>
+            <span>
+                {author.firstName} {author.lastName}, {author.functionTitle}
+            </span>
+        </cite>
+    </blockquote>
+</f:if>

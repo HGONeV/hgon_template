@@ -1,0 +1,32 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:if condition="{newsList}">
+    <aside class="aside aside--border aside--has-btn aside-timeline color-bg-white">
+        <header class="aside__header">
+            <h6>Meldungen</h6>
+        </header>
+        <div class="aside__content">
+
+            <f:for each="{newsList}" as="newsItem">
+                <div class="aside-timeline__item aside-timeline__item--first">
+                    <span class="aside-timeline__date">
+                        <time itemprop="datePublished" datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+                            <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+                        </time>
+                    </span>
+                    <p>
+                        <f:link.page pageUid="{settings.news.detailPid}" additionalParams="{tx_news_pi1:{news: newsItem, controller: 'News', action: 'detail'}}">
+                            {newsItem.title}
+                        </f:link.page>
+                    </p>
+                </div>
+            </f:for>
+
+        </div>
+        <f:link.page pageUid="{settingsHgonTemplate.journal.pageUid}" class="aside__btn" >
+            Weitere anzeigen
+        </f:link.page>
+    </aside>
+</f:if>

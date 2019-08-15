@@ -1,0 +1,40 @@
+
+<section class="section color-bg-light">
+    <header class="section__header">
+        <div class="wrap wrap--text / align-center">
+            <f:if condition="{settings.sixReasons.preHeader}">
+                <span class="badge badge--secondary">
+                {settings.sixReasons.preHeader}
+                <span class="is-hidden">: </span>
+            </span>
+            </f:if>
+            <f:if condition="{settings.sixReasons.header}">
+                <span class="h1 headline">
+                    {settings.sixReasons.header}
+                </span>
+            </f:if>
+            <f:if condition="{settings.sixReasons.text}">
+                <p>
+                    {settings.sixReasons.text}
+                </p>
+            </f:if>
+        </div>
+    </header>
+
+    <div class="section__content">
+        <div class="flex-container space-between gutter">
+            <f:for each="{0:1, 1:2, 2:3, 3:4, 4:5, 5:6}" as="number">
+                <f:if condition="{settings.sixReasons.reason{number}}">
+                    <div class="flex-item c-4 / align-center">
+                        <div class="badge badge--circle">
+                            <span class="is-centered">{number}.</span>
+                        </div>
+                        <h4 class="fontweight-medium / px-2">{settings.sixReasons.reason{number}}</h4>
+                    </div>
+                </f:if>
+            </f:for>
+        </div>
+    </div>
+
+
+</section>

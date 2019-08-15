@@ -1,0 +1,46 @@
+#############
+# Default
+#############
+
+mod {
+	web_layout {
+		BackendLayouts {
+			events {
+				title = Veranstaltungen (tp-events)
+				#icon = EXT:hgon_template/Resources/Public/Icons/BackendLayouts/default.svg
+				config {
+					backend_layout {
+						colCount = 1
+						rowCount = 4
+						rows {
+							1 {
+								columns {
+									1 {
+										name = LLL:EXT:hgon_template/Resources/Private/Language/BackendLayouts.xlf:content.teaser
+										colPos = 30
+									}
+								}
+							}
+							2 {
+								columns {
+									1 {
+										name = LLL:EXT:hgon_template/Resources/Private/Language/BackendLayouts.xlf:content.content
+										colPos = 0
+									}
+								}
+							}
+							3 {
+								columns {
+									1 {
+										name = LLL:EXT:hgon_template/Resources/Private/Language/BackendLayouts.xlf:content.footer
+										colPos = 90
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

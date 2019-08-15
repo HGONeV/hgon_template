@@ -1,0 +1,101 @@
+plugin.tx_rkwevents {
+    view {
+        # cat=plugin.tx_rkwevents/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:hgon_template/Resources/Private/Extension/RkwEvents/Templates/
+        # cat=plugin.tx_rkwevents/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:hgon_template/Resources/Private/Extension/RkwEvents/Partials/
+        # cat=plugin.tx_rkwevents/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:hgon_template/Resources/Private/Extension/RkwEvents/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_rkwevents; type=integer; label=Default storage PID (read/write)
+        storagePid = 42
+
+        # cat=plugin.tx_rkwevents; type=integer; label=Default storage PID for eventReservation (write only). PID set here has to be included in storagePid-List
+        eventReservation.newRecordStoragePid = 42
+
+        # cat=plugin.tx_rkwevents; type=integer; label=Default storage PID for eventReservationAddPerson (write only). PID set here has to be included in storagePid-List
+        eventReservationAddPerson.newRecordStoragePid = 42
+    }
+    settings {
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for list view
+        listPid = 3
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for detail view
+        showPid = 40
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for login
+        loginPid =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for create new reservation
+        reservationPid = 64
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for create new FeUser
+        storagePidFeUser =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for terms and conditions (AGB)
+        termsPid =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for terms and conditions (AGB)
+        terms2Pid =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for list of events the user has registered for
+        myEventsPid =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=Defines the parent category for the FE-filter in event listing
+        parentCategoryForFilter =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for sheets for event view
+        sheetsForEventPid =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for archive list
+        archivePid =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PID for survey
+        surveyPid =
+
+        # cat=plugin.tx_rkwevents; type=integer; label=Number of items in list view (default 10)
+        itemsPerPage = 6
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PageNum for AJAX-requests
+        ajaxTypeNum = 1472648979
+
+        # cat=plugin.tx_rkwevents; type=boolean; label=Include Gallery?
+        includeGallery = 0
+
+        # cat=plugin.tx_rkwevents; type=boolean; label=Include jQuery?
+        includeJQuery = 0
+
+        # cat=plugin.tx_rkwevents; type=boolean; label=Attaches a calendar event to the event confirmation email
+        attachCalendarEvent = 1
+
+        # cat=plugin.tx_rkwevents; type=string; label=Default language for subject of reminder-email
+        defaultLanguageKey = de
+
+        # cat=plugin.tx_rkwevents; type=boolean; label=Disable internal registration
+        disableInternalRegistration = 0
+
+        # cat=plugin.tx_rkwevents; type=integer; label=PageNum for AJAX-requests (reservation)
+        ajaxTypeNumReservation = 1565014148
+
+
+        mandatoryFields {
+
+            // cat=plugin.tx_rkwevents; type=string; label=Mandatory fields for registration of main person. Comma separated lists with property names (e.g. salutation, firstName, lastName, address, zip, city, email)
+            eventReservationMainPerson = salutation, firstName, lastName, email, address, zip, city
+
+            // cat=plugin.tx_rkwevents; type=string; label=Mandatory fields for registration of additional persons. Comma separated lists with property names (e.g. salutation, firstName, lastName, address, zip, city, email)
+            eventReservationAdditionalPersons = salutation, firstName, lastName,
+        }
+
+        mail {
+            # cat=plugin.tx_rkwevents; type=string; label=Uids of be_users for E-mail notification
+            backendUser =
+        }
+    }
+}
+
+
+
+

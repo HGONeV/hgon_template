@@ -1,0 +1,14 @@
+/*
+plugin.tx_form {
+
+    settings {
+        yamlConfigurations {
+            10 = EXT:hgon_template/Configuration/Yaml/Form/Configuration.yaml
+        }
+    }
+}
+
+*/
+
+plugin.tx_form.settings.yamlConfigurations.100 = EXT:hgon_template/Configuration/Yaml/FormFramework/Configuration.yaml
+module.tx_form.settings.yamlConfigurations.100 = EXT:hgon_template/Configuration/Yaml/FormFramework/Configuration.yaml

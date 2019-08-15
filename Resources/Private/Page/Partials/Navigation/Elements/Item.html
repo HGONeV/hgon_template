@@ -1,0 +1,29 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:if condition="{item.spacer} || {item.current}">
+	<f:then>
+		<li onclick="{f:if(condition:item.children, then:'return true')}" class="{f:if(condition:item.current, then:' is-active')} {f:if(condition:item.children, then:' nav__item has-dropdown')}" >
+            <f:render partial="Navigation/Elements/Link" arguments="{item: item}"/>
+	</f:then>
+	<f:else if="{item.active}">
+		<li onclick="{f:if(condition:item.children, then:'return true')}" class="{f:if(condition:item.children, then:' nav__item has-dropdown')}" >
+			<f:render partial="Navigation/Elements/Link" arguments="{item: item}"/>
+	</f:else>
+	<f:else>
+		<li class="{f:if(condition:item.children, then:' nav__item has-dropdown')}" onclick="{f:if(condition:item.children, then:'return true')}">
+			<f:render partial="Navigation/Elements/Link" arguments="{item: item}"/>
+	</f:else>
+</f:if>
+
+<f:section name="meta">
+    <li>
+        <f:render partial="Navigation/Elements/Link" arguments="{item: item, isLast: isLast}" section="meta"/>
+</f:section>
+
+<f:section name="sub">
+    <li>
+        <f:render partial="Navigation/Elements/Link" arguments="{item: item}" section="sub"/>
+</f:section>
+
+
+</html>

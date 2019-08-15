@@ -1,0 +1,11 @@
+<f:link.action action="list" controller="More" extensionName="RkwRelated" pluginName="Morecontent" id="more-link-{pageNumber}" class="box help ajax next-page small {f:if(condition: '{settingsArray.disabledAutoLoad} == 1', then: '', else: 'autoload')}" title="<f:translate key='partials_more_boxes_more.show_more' extensionName='RkwRelated' />" rel="nofollow" target="_blank" additionalParams="{tx_rkwrelated_morecontent: '{pageNumber: pageNumber, ttContentUid: ttContentUid, filter: filter}'}" additionalAttributes="{data-page-type: '{pageTypeAjax}'}" >
+    <header>
+        <p>
+            <f:translate key="partials_more_boxes_more.morebox1" extensionName="RkwRelated" />
+            <br>
+            <strong>
+                <f:translate key="partials_more_boxes_more.morebox2" extensionName="RkwRelated" />
+            </strong>
+        </p>
+    </header>
+</f:link.action>

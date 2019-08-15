@@ -1,0 +1,10 @@
+plugin.tx_rkwbasics {
+    settings {
+        pageNotFoundConfig {
+            _DEFAULT {
+                fallbackPid = 68
+                defaultDomain =
+            }
+        }
+    }
+}

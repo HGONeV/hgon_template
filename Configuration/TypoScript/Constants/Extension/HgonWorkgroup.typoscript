@@ -1,0 +1,12 @@
+plugin.tx_hgonworkgroup {
+    persistence {
+        storagePid = 42
+    }
+    settings {
+        listPid = 8
+        //showPid = 43
+        # currently showPid == listPid, because of Template trouble. So we want just use the standard template
+        # (showPid is still set for plugin handling, even if listPid and showPid the same at the moment)
+        showPid = 8
+    }
+}

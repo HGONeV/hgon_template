@@ -1,0 +1,53 @@
+
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+    <f:form class="form" id="rkwevents-reservation-form" action="create" enctype="multipart/form-data"  name="newEventReservation" object="{newEventReservation}">
+
+        <h2 id="tx-rkwevents-reservation" class="no-space"><f:translate key="tx_rkwevents_fluid.templates_eventReservation_new.headline" /></h2>
+
+        <f:render partial="FormErrors" arguments="{object:Event}" />
+
+        <f:flashMessages as="flashMessages">
+            <f:for each="{flashMessages}" as="flashMessage">
+                <div class="typo3-messages">
+                    <div class="alert alert-{flashMessage.class}">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="alert-message">
+                                    <f:format.raw>{flashMessage.message}</f:format.raw>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </f:for>
+        </f:flashMessages>
+
+        <!-- We need both versions here -->
+        <f:form.hidden name="event" value="{event.uid}" />
+        <f:form.hidden property="event" />
+
+        <f:render partial="EventReservation/FormFieldsMaster" arguments="{_all}"/>
+
+        <f:comment>
+        <f:render partial="EventReservation/FormFieldsSub" arguments="{_all}"/>
+        </f:comment>
+
+        <!-- Override typeNum for AJAX -->
+        <input type="hidden" name="type" value="{ajaxTypeNumReservation}">
+
+    </f:form>
+</f:section>

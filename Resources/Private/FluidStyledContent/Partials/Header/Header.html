@@ -1,0 +1,119 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:if condition="{header}">
+
+    <f:comment><!-- use elements layout, if no specific header layout is set--></f:comment>
+    <f:if condition="{layout} == 0">
+        <f:then>
+            <f:switch expression="{superiorLayout}">
+
+                <f:case value="0">
+                    <h2 class="{positionClass}">
+                        <f:link.typolink parameter="{link}">{header}</f:link.typolink>
+                    </h2>
+                </f:case>
+
+                <f:case value="11">
+                    <span class="h1 headline">{header}</span>
+                </f:case>
+
+                <f:case value="12">
+                    <span class="h1 headline">{header}</span>
+                </f:case>
+
+                <f:case value="14">
+                    <h3 class="headline">{header}</h3>
+                </f:case>
+
+                <f:case value="31">
+                    <span class="h1 headline">{header}</span>
+                </f:case>
+
+                <f:case value="40">
+                    <header class="aside__header">
+                        <h6>{header}</h6>
+                    </header>
+                </f:case>
+
+                <f:case value="41">
+                    <header class="aside__header">
+                        <h6>{header}</h6>
+                    </header>
+                </f:case>
+
+                <f:case value="42">
+                    <header class="aside__header">
+                        <h6>{header}</h6>
+                    </header>
+                </f:case>
+
+                <f:defaultCase>
+                    <f:render section="individualHeader" arguments="{_all}" />
+                </f:defaultCase>
+            </f:switch>
+        </f:then>
+        <f:else>
+            <f:render section="individualHeader" arguments="{_all}" />
+        </f:else>
+    </f:if>
+
+</f:if>
+
+<f:section name="individualHeader">
+
+    <f:switch expression="{layout}">
+        <f:case value="0">
+            <h2 class="headline {positionClass}">
+                {header}
+            </h2>
+        </f:case>
+        <f:case value="10">
+            <h1 class="headline {positionClass}">
+                <f:link.typolink parameter="{link}">{header}</f:link.typolink>
+            </h1>
+        </f:case>
+        <f:case value="20">
+            <h2 class="headline {positionClass}">
+                <f:link.typolink parameter="{link}">
+                    {header}
+                </f:link.typolink>
+            </h2>
+        </f:case>
+        <f:case value="30">
+            <h3 class="headline {positionClass}">
+                <f:link.typolink parameter="{link}">{header}</f:link.typolink>
+            </h3>
+        </f:case>
+        <f:case value="40">
+            <h4 class="headline {positionClass}">
+                <f:link.typolink parameter="{link}">{header}</f:link.typolink>
+            </h4>
+        </f:case>
+        <f:case value="50">
+            <h5 class="headline {positionClass}">
+                <f:link.typolink parameter="{link}">{header}</f:link.typolink>
+            </h5>
+        </f:case>
+        <f:case value="60">
+            <h6 class="headline {positionClass}">
+                <f:link.typolink parameter="{link}">{header}</f:link.typolink>
+            </h6>
+        </f:case>
+
+        <f:case value="100">
+            <f:comment> -- do not show header -- </f:comment>
+        </f:case>
+
+        <f:defaultCase>
+            <f:if condition="{default}">
+                <f:render partial="Header/Header" arguments="{
+                header: header,
+                layout: default,
+                positionClass: positionClass,
+                link: link}" />
+            </f:if>
+        </f:defaultCase>
+    </f:switch>
+
+</f:section>
+
+</html>

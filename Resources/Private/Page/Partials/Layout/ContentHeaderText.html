@@ -1,0 +1,89 @@
+
+<f:comment><!-- Standard --></f:comment>
+<f:render section="currentPageContent" />
+
+
+<f:section name="parentPageContent">
+    <header class="main__header">
+        <div class="wrap wrap--text / align-center">
+            <h1>
+                <f:if condition="{parentPageTitle}">
+                    <span class="badge badge--secondary">{parentPageTitle}<span class="is-hidden">: </span></span>
+                </f:if>
+                <f:if condition="{pageTitle}">
+                    <span class="h1 headline">{pageTitle}</span>
+                </f:if>
+            </h1>
+            <f:if condition="{pageTeaserText}">
+                <p>
+                    {pageTeaserText}
+                </p>
+            </f:if>
+        </div>
+    </header>
+</f:section>
+
+<f:section name="currentPageContent">
+    <header class="main__header">
+        <div class="wrap wrap--text / align-center">
+            <h1>
+                <f:comment><!-- Special thing for news detail page (if type is 0, 1 or 2)  --></f:comment>
+                <f:if condition="{pageTitleNews} >= '0'">
+                    <f:then>
+                        <span class="badge badge--secondary">
+                            <f:translate key="tx_hgontemplate_page_partials_layout.newstype.{pageTitleNews}" extensionName="HgonTemplate" />
+                        </span>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{pageTitle}">
+                            <span class="badge badge--secondary">{pageTitle}<span class="is-hidden">: </span></span>
+                        </f:if>
+                    </f:else>
+                </f:if>
+
+                <f:if condition="{pageSubtitle}">
+                    <span class="h1 headline">{pageSubtitle}</span>
+                </f:if>
+            </h1>
+            <f:if condition="{pageTeaserText}">
+                <p>
+                    {pageTeaserText}
+                </p>
+            </f:if>
+        </div>
+    </header>
+</f:section>
+
+
+<f:section name="infoCategory">
+    <header class="main__header main__header--image">
+        <picture class="picture">
+
+            <source media="(min-width: 64.063em)" srcset="{pageArticleImageDesktop}">
+            <source media="(min-width: 48.063em) and (max-width: 64em)" srcset="{pageArticleImageTablet}">
+            <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="{pageArticleImageMobile}">
+            <source media="(max-width: 37.5em)" srcset="{pageArticleImageSmall}">
+            <f:format.raw>
+                {pageArticleImage}
+            </f:format.raw>
+
+        </picture>
+        <div class="wrap wrap--text / align-center">
+            <h1>
+                <f:if condition="{parentPageTitle}">
+                    <span class="badge badge--dark">{parentPageTitle}<span class="is-hidden">: </span></span>
+                </f:if>
+                <f:if condition="{pageTitle}">
+                    <span class="h1 headline">{pageTitle}</span>
+                </f:if>
+            </h1>
+            <f:comment>
+                <f:if condition="{pageTeaserText}">
+                    <p>
+                        {pageTeaserText}
+                    </p>
+                </f:if>
+            </f:comment>
+        </div>
+    </header>
+</f:section>

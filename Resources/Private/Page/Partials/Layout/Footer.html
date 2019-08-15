@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:spaceless>
+
+    <!-- new stuff -->
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="flex-container space-between">
+
+                <f:render partial="Navigation/Footer" arguments="{_all}" />
+
+                <div class="flex-item c-3 / pt-1 pb-1">
+                    <h6>Unterstützen Sie uns jetzt</h6>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <p>
+                        <f:render partial="Navigation/Footer" arguments="{_all}" section="additional" />
+                    </p>
+                </div>
+            </div>
+            <form class="footer__form / form form-newsletter form--plain">
+                <div class="flex-container center-main">
+                    <div class="flex-item flex-item--medium-half / align-center">
+                        <input name="email" id="email" placeholder="Ihre E-Mail-Adresse" type="email">
+                    </div>
+                    <div class="flex-item flex-item--medium-half / align-center">
+                        <input value="Newsletter abonnieren" class="btn btn--primary-light btn--rounded" type="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="footer__bottom">
+            <div class="flex-container space-between">
+                <div class="flex-item flex-basis4 flex-item--smalldesk-full">
+                    <p>
+                        {settings.websiteDescription}
+                    </p>
+                </div>
+                <div class="flex-item flex-basis4 flex-item--smalldesk-full / align-center">
+                    <a class="footer__logo" href="/">
+                        <img src="{settings.websiteLogoFile}" alt="{settings.websiteName}" class="content-page__logo" title="{settings.websiteDescription}" width="60" height="60">
+                    </a>
+                </div>
+
+                <f:render partial="Navigation/FooterLegal" arguments="{_all}"  />
+
+            </div>
+        </div>
+    </footer>
+</f:spaceless>
+</html>

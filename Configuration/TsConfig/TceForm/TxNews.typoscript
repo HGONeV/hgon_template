@@ -1,0 +1,3 @@
+# remove types "internal link" and "external link"
+# does not work
+#TCEFORM.tx_news_domain_model_news.type.removeItems = 1,2

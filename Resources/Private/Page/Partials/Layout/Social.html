@@ -1,0 +1,31 @@
+<footer class="article__footer / align-center">
+    <a href="#" class="link link--icon js-open-mdl js-set-mdl" data-mdl="mdl-share-1"><svg class="icon icon--btn-left" width="18" height="18"><use xlink:href="#ui-share"></use></svg> Teilen</a>
+    <div id="mdl-share-1" class="mdl mdl-share js-mdl" style="left: 430.25px; top: 1878.35px; opacity: 0; visibility: hidden;">
+        <button class="btn btn--square btn--transparent mdl__close js-close-mdl"><svg class="is-centered" width="12" height="12"><use xlink:href="#ui-close"></use></svg></button>
+        <header class="mdl__header">
+            <h6 class="mdl__headline">Inhalt teilen</h6>
+        </header>
+        <div class="mdl__content">
+            <a target="_blank" class="btn btn--tertiary btn--square btn--tw" href="https://twitter.com/intent/tweet?button_hashtag=HGON_eV&ref_src=twsrc%5Etfw"><svg class="is-centered" width="16" height="16"><use xlink:href="#ui-twitter"></use></svg></a>
+            <a target="_blank" class="fb-share-button btn btn--tertiary btn--square btn--fb" href="https://www.facebook.com/hgon.de/"><svg class="is-centered" width="16" height="16"><use xlink:href="#ui-facebook"></use></svg></a>
+            <a class="btn btn--primary-light btn--square" href="mailto:?subject=HGON e.V. - {pageTitle}&body=Schau Dir das an: {currentUrl}"><svg class="is-centered" width="16" height="16"><use xlink:href="#ui-mail"></use></svg></a>
+            <input onclick="copyToClipboard(this);" type="text" name="url" id="hgon-url" value="{currentUrl}" readonly="">
+        </div>
+    </div>
+</footer>
+
+<div class="clipboard-container">
+    <div class="cb-success" role="alert">
+        <button type="button" aria-hidden="true" class="cb-close" style="">
+            ×
+        </button>
+        <strong class="cb-header">
+            <i class="copied"></i> In Zwischenablage kopiert
+        </strong>
+        <span class="cb-message">
+            Sie können den Link nun überall einfügen
+        </span>
+        <a href="#" target="_blank"></a>
+    </div>
+</div>
+

@@ -1,0 +1,147 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+    <f:flashMessages as="flashMessages">
+        <f:for each="{flashMessages}" as="flashMessage">
+            <div class="typo3-messages">
+                <div class="alert alert-{flashMessage.class}">
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="alert-message">
+                                <f:format.raw>{flashMessage.message}</f:format.raw>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:for>
+    </f:flashMessages>
+
+    <div class="section">
+        <div class="event-container">
+            <div class="flex-container center-cross valign-stretch">
+                <div class="flex-item c-6 / color-bg-light">
+                    <div class="flex-container center-cross  gutter">
+                        <div class="flex-item align-center c-2">
+                            <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg>
+                        </div>
+                        <div class="flex-item c-10">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Wann:</th>
+                                        <td>
+                                            <time datetime='<f:format.date format="d-m-d H:i">{event.start}</f:format.date>'><f:format.date format="d.m.Y H:i">{event.start}</f:format.date></time>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Wo:</th>
+                                        <td>{event.place.address}, {event.place.zip} {event.place.city}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Art:</th>
+                                        <td>{event.documentType.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kosten:</th>
+                                        <td>
+                                            <f:if condition="{event.costsReg}">
+                                                <f:then>
+                                                    <f:format.currency currencySign="€">
+                                                        {event.costsReg}
+                                                    </f:format.currency>
+                                                </f:then>
+                                                <f:else>
+                                                    Kostenlos
+                                                </f:else>
+                                            </f:if>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>
+                                <f:render partial="Event/Registration" arguments="{event:event, isReservationPage: isReservationPage, additionalButtonClass:'download-button'}" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-item c-6">
+                    <div class="map">
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2543.6731592269716!2d8.882871416325294!3d50.391291099506134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bce3232f625a8b%3A0x1a9c1e4f737f5981!2sHessische+Gesellschaft+f%C3%BCr+Ornithologie+und+Naturschutz+e.V.!5e0!3m2!1sde!2sde!4v1564653660804!5m2!1sde!2sde" style="border:0" allowfullscreen="" width="800" height="450" frameborder="0"></iframe>
+
+                        <f:comment>
+                            <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=&amp;language=de"></script> <script> var txRkwGeolocationGoogleMaps = { // Google map object map : null, // Google Geo-Coder geoCoder : null, //====================================================== // Initialize and display a google map init : function () { // Create a Google coordinate object for where to center the map var latlngDC = new google.maps.LatLng(50.1307615, 8.5709247); // Map options for how to display the Google map // Coordinates of Washington, DC (area centroid) var mapOptions = { zoom: 5, center: latlngDC }; // Show the Google map in the div with the attribute id map-canvas. this.map = new google.maps.Map(document.getElementById('tx-rkwgeolocation-map-canvas'), mapOptions); // Check address? if (true == true) { this.geoCoder = new google.maps.Geocoder(); this.geoCoder.geocode( { 'address': 'Germany'}, function(results, status) { if (status == google.maps.GeocoderStatus.OK) { this.map.setCenter(results[0].geometry.location); if (false == true) { var marker = new google.maps.Marker({ map: this.map, position: results[0].geometry.location }); } } }); } if (false == true) { // Place a standard Google Marker at the same location as the map center (Washington, DC) // When you hover over the marker, it will display the title var marker = new google.maps.Marker( { position: latlngDC, map: this.map }); } } } // Call the method init() to display the google map when the web page is displayed ( load event ) google.maps.event.addDomListener( window, 'load', txRkwGeolocationGoogleMaps.init ); </script> <style> /* style settings for Google map */ #tx-rkwgeolocation-map-canvas { width : 100%; /* map width */ height: 300px; /* map height */ } </style> <div id="tx-rkwgeolocation-map-canvas"></div>
+                            <f:format.raw>
+                                <f:cObject typoscriptObjectPath="page.10.variables.eventMaps" />
+                            </f:format.raw>
+                        </f:comment>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main__content">
+        <div class="content">
+            <article class="article">
+                <div class="article__content">
+                    <f:format.raw>{event.description}</f:format.raw>
+                </div>
+            </article>
+            <div class="sidebar">
+                <aside class="aside color-bg-light">
+                    <header class="aside__header">
+                        <h6>Kontakt</h6>
+                    </header>
+                    <div class="aside__content">
+                        <f:render partial="Event/Contact/Contact" arguments="{_all}" />
+                        <!--
+                        <p><strong>E-Mail-Adresse: </strong> <a href="mailto:user@example.com">info@hgon.de</a> </p>
+                        <p><strong>Telefon:</strong> <a href="http://hgon.helllicht.io/tel:+491234 56789">+49 1234 56789</a></p>
+                        -->
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <section class="section">
+            <header class="section__header">
+                <div class="wrap wrap--text / align-center">
+                    <h2>Weitere Veranstaltungen</h2>
+                </div>
+            </header>
+            <div class="section__content">
+                <div class="wrap">
+                    <f:render partial="Event/List/EventListing" arguments="{_all}" />
+
+                    <!-- lazy loading / load more box -->
+                    <f:render partial="Event/List/MoreLink" arguments="{_all}" />
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- featherlight reservation form -->
+    <span class="container" style="display: none;">
+        <span id="rkw-events-reservation-plugin" class="featherlight-form-container">
+            <f:cObject typoscriptObjectPath="page.10.variables.rkwEventsReservation" />
+        </span>
+    </span>
+
+</f:section>

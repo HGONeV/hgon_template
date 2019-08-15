@@ -1,0 +1,68 @@
+TCEFORM {
+    tt_content {
+
+        # adjustments for change to FCS (use "textmedia" instead of "text", "textpic", "image" etc)
+        # and remove anything, what  we don't needed (actually)
+        CType {
+            removeItems = header, text, textpic, image, bullets, table, multimedia, media, mailform, search, login, menu, shortcut, html, script, splash, div
+            #removeItems = text, textpic, image, media
+        }
+
+        imageorient {
+            removeItems = 1,2,9,10,17,18,25,26
+        }
+
+        # Layout
+        layout {
+            removeItems = 1,2,3
+            //altLabels {
+            addItems {
+                //0 = Normale Box
+                /*
+                1 = Eindeutiger Name 1
+                2 = Eindeutiger Name 2
+                3 = Eindeutiger Name 3
+                4 = Eindeutiger Name 4
+
+                */
+            #    11 = Highlight - nur Abstand oben
+            #    12 = Highlight - plus Abstand unten
+                //13 = Zitat
+            #    14 = Flex Container Element: Bild + Text
+            #    15 = Flex Container Element: Bild + Text (Vertikal)
+            #    20 = Slider Element: Bild + Text
+                //25 = Seiten Teaser mit Bild links + Verweise rechts
+                //26 = Seiten Teaser mit Bild rechts + Verweise im Fußbereich
+                30 = Startseite Header: Bilder (Zufallsauswahl) + Text (Home)
+            #    31 = Header: Bild + Text
+                40 = Sidebar: Gelber Hintergrund
+            #    41 = Sidebar: Gelb-grüner Hintergrund + Bild
+                42 = Sidebar: Blauer Hintergrund
+                #50 = Sitemap: Menü vertikal
+                #51 = Sitemap: Menü horizontal
+
+            #    50 = Layout: 3 Spalten
+                55 = Slider: Kleine Bilder & Text (Meinungen-Plugin)
+                60 = Slider: Große Bilder & Text
+                61 = Slider: Fotoshow
+                65 = Fotoshow (Lightbox Gallerie)
+                70 = Zitat (ohne Bild)
+
+            }
+
+        }
+        # Header layout
+        header_layout {
+            removeItems = 1,2,3,4,5
+            addItems {
+                10 = h1 - Hauptüberschrift
+                20 = h2 - Zwischenüberschrift
+                30 = h3 - Elementüberschrift
+                40 = h4 - Elementüberschrift
+                50 = h5 - Elementüberschrift
+                60 = h6 - Elementüberschrift
+            }
+        }
+
+    }
+}

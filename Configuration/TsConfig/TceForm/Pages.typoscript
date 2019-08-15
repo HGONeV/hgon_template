@@ -1,0 +1,24 @@
+// remove RkwBasics fields
+TCEFORM {
+    pages {
+        tx_rkwbasics_department.disabled = 1
+        tx_rkwbasics_document_type.disabled = 1
+    }
+
+    tx_rkwevents_domain_model_event {
+        # throws errors on reservation (because not used)
+        # newEventReservation.event.department.name Der angegebene Wert ist leer.
+        # newEventReservation.event.department.internalName Der angegebene Wert ist leer.
+        # newEventReservation.event.department.cssClass Der angegebene Wert ist leer.
+        # newEventReservation.event.department.mainPage Der angegebene Wert ist leer.
+        department.disabled = 1
+    }
+
+    # for secure: Disable possible problem fields
+    tx_rkwbasics_domain_model_department {
+        name.disabled = 1
+        internalName.disabled = 1
+        cssClass.disabled = 1
+        mainPage.disabled = 1
+    }
+}

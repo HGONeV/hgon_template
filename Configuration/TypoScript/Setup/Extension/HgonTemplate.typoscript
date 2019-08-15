@@ -1,0 +1,252 @@
+// #########################################################
+// Extbase Configuration
+// #########################################################
+
+config.tx_extbase {
+
+    objects {
+        RKW\RkwEvents\Controller\EventController {
+            className = HGON\HgonTemplate\Controller\EventController
+        }
+        RKW\RkwEvents\Controller\AjaxController {
+            className = HGON\HgonTemplate\Controller\EventAjaxController
+        }
+        RKW\RkwEvents\Controller\EventReservationController {
+            className = HGON\HgonTemplate\Controller\EventReservationController
+        }
+        GeorgRinger\News\Controller\NewsController {
+            className = HGON\HgonTemplate\Controller\NewsController
+        }
+    }
+
+    persistence {
+        classes {
+
+            HGON\HgonTemplate\Domain\Model\Pages {
+                mapping {
+                    tableName = pages
+
+                    # on pages tables it's the doktype
+                    # if we set an value, we filter by it
+                    # if we do not set anything, all pages are found
+                    recordType =
+
+                    # mapping to properties of class
+                    columns {
+                        uid.mapOnProperty = uid
+                        pid.mapOnProperty = pid
+                        sorting.mapOnProperty = sorting
+                        title.mapOnProperty = title
+                        subtitle.mapOnProperty = subtitle
+                        no_search.mapOnProperty = noSearch
+                        crdate.mapOnProperty = crdate
+                        tstamp.mapOnProperty = tstamp
+                        hidden.mapOnProperty = hidden
+                        deleted.mapOnProperty = deleted
+                        lastUpdated.mapOnProperty = lastUpdated
+                        //tx_rkwprojects_project_uid.mapOnProperty = txRkwprojectsProject
+                    }
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\SysCategory {
+                mapping {
+                    tableName = sys_category
+                    recordType =
+
+                    # mapping to properties of class
+                    columns {
+                        title.mapOnProperty = title
+                    }
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\Authors {
+                mapping {
+                    tableName = tx_rkwauthors_domain_model_authors
+                    recordType =
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\Projects {
+                mapping {
+                    tableName = tx_rkwprojects_domain_model_projects
+                    recordType =
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\Event {
+                mapping {
+                    tableName = tx_rkwevents_domain_model_event
+                    recordType =
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\DocumentType {
+                mapping {
+                    tableName = tx_rkwbasics_domain_model_documenttype
+                    recordType =
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\WorkGroup {
+                mapping {
+                    tableName = tx_hgonworkgroup_domain_model_workgroup
+                    recordType =
+                }
+            }
+
+            GeorgRinger\News\Domain\Model\News {
+                subclasses {
+                    # hier wichtig: index 0 überschreiben für die
+                    # normale News-Ansicht
+                    # 0 == Typ-Auswahl an News-Datensatz
+                    0 = HGON\HgonTemplate\Domain\Model\News
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\News {
+                mapping {
+                    recordType = 0
+                    tableName = tx_news_domain_model_news
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\News.newRecordStoragePid = {$plugin.tx_news.persistence.storagePid}
+        }
+    }
+}
+
+// #########################################################
+// Plugin Configuration
+// #########################################################
+
+plugin.tx_hgontemplate {
+
+    view {
+        layoutRootPaths {
+            0 = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/
+            1 = {$plugin.tx_hgontemplate.view.layoutRootPath}
+        }
+        templateRootPaths {
+            0 = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Templates/
+            1 = {$plugin.tx_hgontemplate.view.templateRootPath}
+        }
+        partialRootPaths {
+            0 = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/
+            1 = {$plugin.tx_hgontemplate.view.partialRootPath}
+        }
+    }
+    persistence {
+        storagePid = {$plugin.tx_hgontemplate.persistence.storagePid}
+    }
+    settings {
+        journal {
+            pageUid = {$plugin.tx_hgontemplate.settings.journal.pageUid}
+            parentCategoryUid = {$plugin.tx_hgontemplate.settings.journal.parentCategoryUid}
+            excludePidList = {$plugin.tx_hgontemplate.settings.journal.excludePidList}
+            ajaxTypeNum = {$plugin.tx_hgontemplate.settings.journal.ajaxTypeNum}
+            itemsPerPage = {$plugin.tx_hgontemplate.settings.journal.itemsPerPage}
+        }
+        formFramework {
+            ajaxTypeNum = {$plugin.tx_hgontemplate.settings.formFramework.ajaxTypeNum}
+        }
+        news {
+            detailPid = {$plugin.tx_hgontemplate.settings.news.detailPid}
+        }
+        showMapsPidList = {$plugin.tx_hgontemplate.settings.showMapsPidList}
+    }
+}
+
+
+#===============================================================
+# Ajax
+#===============================================================
+txHgontemplateJournalAjax = PAGE
+txHgontemplateJournalAjax {
+
+    # also written in partial Listing.html
+    typeNum = {$plugin.tx_hgontemplate.settings.journal.ajaxTypeNum}
+
+    config {
+        disableAllHeaderCode = 1
+        xhtml_cleaning = 0
+        admPanel = 0
+        additionalHeaders = Content-type: text/plain
+        no_cache = 0
+    }
+
+    10 = USER_INT
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = HgonTemplate
+        pluginName = Journal
+        vendorName = HGON
+        switchableControllerActions {
+
+            # Again: Controller-Name and Action
+            News {
+                10 = journal
+            }
+        }
+
+        view < plugin.tx_hgontemplate.view
+        persistence < plugin.tx_hgontemplate.persistence
+        settings < plugin.tx_hgontemplate.settings
+    }
+}
+
+
+/* FormExtension TS: Does not work. Problems with contentUid and pageUid.
+
+Possible with two additional extensions: https://www.comuno.net/blog/detail/formular-mit-typoscript-rendering-per-ajax-verschicken/
+I tried something like this: https://stackoverflow.com/questions/55276483/typo3-9-5-forms-framework-ajax
+(Problem: Fixed ID's and it's not working yet)
+
+
+txHgontemplateFormExtension = PAGE
+txHgontemplateFormExtension {
+
+    # also written in partial Listing.html
+    typeNum = {$plugin.tx_hgontemplate.settings.formFramework.ajaxTypeNum}
+
+    config {
+        disableAllHeaderCode = 1
+        xhtml_cleaning = 0
+        admPanel = 0
+        #additionalHeaders = Content-type: text/plain
+        no_cache = 0
+    }
+
+    10 = CONTENT
+    10 {
+        table = tt_content
+        select {
+            pidInList = 34
+            uidInList = 92
+        }
+    }
+
+    10 = USER_INT
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = Form
+        pluginName = Formframework
+        vendorName = TYPO3\CMS
+        switchableControllerActions {
+
+            # Again: Controller-Name and Action
+            FormFrontend {
+                10 = perform
+                20 = render
+            }
+        }
+
+        view < plugin.tx_form.view
+        persistence < plugin.tx_form.persistence
+        settings < plugin.tx_form.settings
+    }
+}
+*/
+
+

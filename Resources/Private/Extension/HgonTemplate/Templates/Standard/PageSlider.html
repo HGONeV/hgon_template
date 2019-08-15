@@ -1,0 +1,60 @@
+<section class="section">
+    <header class="section__header / pb-2">
+        <div class="wrap wrap--text / align-center">
+            <span class="badge badge--secondary">
+                {settings.pageSlider.preHeader}
+                <span class="is-hidden">: </span>
+            </span>
+            <span class="h1 headline">
+                {settings.pageSlider.header}
+            </span>
+            <p>
+                {settings.pageSlider.text}
+            </p>
+        </div>
+    </header>
+    <div class="section__content">
+        <div class="slider js-slider" data-slide="0">
+            <a class="slide__next js-slide-next" href=""></a>
+            <a class="slide__prev js-slide-prev is-disabled" href=""></a>
+
+            <f:for each="{pagesList}" as="pages">
+                <f:if condition="{pages.txRkwbasicsArticleImage}">
+                    <f:then>
+                        <article class="slider__item slider__bg-image / js-slider-item" style="background-image: url(<f:uri.image image='{pages.txRkwbasicsArticleImage}' absolute='true' />);">
+                    </f:then>
+                    <f:else>
+                        <article class="slider__item slider__bg-image / js-slider-item">
+                    </f:else>
+                </f:if>
+
+                <div class="slider__item__inner">
+                    <f:if condition="{pages.title}">
+                        <header class="mb-1">
+                            <f:if condition="{pages.subtitle}">
+                                <span class="tagline color-font-secondary">{pages.subtitle}</span>
+                            </f:if>
+                            <h3 class="headline">{pages.title}</h3>
+                        </header>
+                    </f:if>
+                    <f:if condition="{pages.txRkwbasicsTeaserText}">
+                        <div>
+                            <p>
+                                {pages.txRkwbasicsTeaserText}
+                            </p>
+                        </div>
+                    </f:if>
+                    <footer class="mt-1">
+                        <f:link.page class="btn btn--rounded btn--primary" pageUid="{pages.uid}" >
+                            <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.readMore" />
+                        </f:link.page>
+                    </footer>
+                </div>
+                </article>
+            </f:for>
+
+            <ul class="slider__pills js-slider-pills">
+            </ul>
+        </div>
+    </div>
+</section>

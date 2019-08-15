@@ -1,0 +1,39 @@
+#############
+# Default
+#############
+
+mod {
+	web_layout {
+		BackendLayouts {
+            SingleTextHeader {
+				title = Text-Header, Zweispaltig (ohne Vorlage / tp-single Alternative)
+                #title = LLL:EXT:hgon_template/Resources/Private/Language/BackendLayouts.xlf:layout.single
+				#icon = EXT:hgon_template/Resources/Public/Icons/BackendLayouts/default.svg
+				config {
+					backend_layout {
+						colCount = 3
+						rowCount = 1
+						rows {
+							1 {
+								columns {
+									1 {
+										name = LLL:EXT:hgon_template/Resources/Private/Language/BackendLayouts.xlf:content.content
+										colPos = 0
+									}
+                                    2 {
+                                        name = LLL:EXT:hgon_template/Resources/Private/Language/BackendLayouts.xlf:content.sidebar
+                                        colPos = 140
+                                    }
+                                    3 {
+                                        name = LLL:EXT:hgon_template/Resources/Private/Language/BackendLayouts.xlf:content.sidebarInherit
+                                        colPos = 150
+                                    }
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

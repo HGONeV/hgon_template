@@ -1,0 +1,209 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+{namespace rkwRegistration=RKW\RkwRegistration\ViewHelpers}
+
+
+<p class="form__field">
+    <f:if condition="<rkw:isMandatoryField fieldName='salutation' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_salutation">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_salutation">
+        </f:else>
+    </f:if>
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.salutation" />
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.salutation'}" />
+    <f:form.select property="salutation" id="tx_rkwevents_pi1_salutation" value="{f:if(condition:'<rkw:or firstIsSalutation=\'true\' or1=\'{newEventReservation.salutation}\' or2=\'{editMode}\' />',then:'{newEventReservation.salutation}',else:'{frontendUser.txRkwregistrationGender}')}" options="{99: '{f:translate(key: \'tx_rkwevents_domain_model_eventreservation.salutation.I.99\')}', 0: '{f:translate(key: \'tx_rkwevents_domain_model_eventreservation.salutation.I.0\')}', 1: '{f:translate(key: \'tx_rkwevents_domain_model_eventreservation.salutation.I.1\')}'}" />
+</p>
+
+<p class="form__field">
+    <f:if condition="<rkw:isMandatoryField fieldName='firstName' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_firstName">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_firstName">
+        </f:else>
+    </f:if>
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.firstName" />
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.firstName'}" />
+    <f:form.textfield property="firstName" id="tx_rkwevents_pi1_firstName" value="{f:if(condition:'<rkw:or or1=\'{newEventReservation.firstName}\' or2=\'{editMode}\' />',then:'{newEventReservation.firstName}',else:'{frontendUser.firstName}')}" additionalAttributes="{autocomplete:'fname'}" />
+</p>
+
+<p class="form__field">
+    <f:if condition="<rkw:isMandatoryField fieldName='lastName' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_lastName">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_lastName">
+        </f:else>
+    </f:if>
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.lastName" />
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.lastName'}" />
+    <f:form.textfield property="lastName" id="tx_rkwevents_pi1_lastName" value="{f:if(condition:'<rkw:or or1=\'{newEventReservation.lastName}\' or2=\'{editMode}\' />',then:'{newEventReservation.lastName}',else:'{frontendUser.lastName}')}" additionalAttributes="{autocomplete:'lname'}" />
+</p>
+
+<p class="form__field">
+
+    <f:if condition="<rkw:isMandatoryField fieldName='email' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_email">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_email">
+        </f:else>
+    </f:if>
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.email" />
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.email'}" />
+    <f:if condition="<rkw:or or1='{validFrontendUserEmail}' or2='{editMode}'/>">
+        <f:then>
+            <f:form.textfield property="email" type="email" id="tx_rkwevents_pi1_email" value="{frontendUser.email}" additionalAttributes="{autocomplete: 'email', readonly: 'readonly'}" class="readonly"/>
+        </f:then>
+        <f:else>
+            <f:form.textfield property="email" type="email" id="tx_rkwevents_pi1_email" value="{newEventReservation.email}" additionalAttributes="{autocomplete: 'email'}" />
+        </f:else>
+    </f:if>
+</p>
+
+<p class="form__field">
+    <f:if condition="<rkw:isMandatoryField fieldName='company' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_company">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_company">
+        </f:else>
+    </f:if>
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.company" />
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.company'}" />
+    <f:form.textfield  property="company" id="tx_rkwevents_pi1_company" value="{f:if(condition:'<rkw:or or1=\'{newEventReservation.company}\' or2=\'{editMode}\' />',then:'{newEventReservation.company}',else:'{frontendUser.company}')}" />
+</p>
+
+
+<p class="form__field">
+    <f:if condition="<rkw:isMandatoryField fieldName='address' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_address">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_address">
+        </f:else>
+    </f:if>
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.address" />
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.address'}" />
+    <f:form.textfield  property="address" id="tx_rkwevents_pi1_address" value="{f:if(condition:'<rkw:or or1=\'{newEventReservation.address}\' or2=\'{editMode}\' />',then:'{newEventReservation.address}',else:'{frontendUser.address}')}" additionalAttributes="{autocomplete:'address'}" />
+</p>
+
+
+<p class="form__field">
+    <f:if condition="<rkw:isMandatoryField fieldName='zip' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_zip">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_zip">
+        </f:else>
+    </f:if>
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.zip" />
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.zip'}" />
+    <f:form.textfield property="zip" id="tx_rkwevents_pi1_zip" value="{f:if(condition:'<rkw:or or1=\'{newEventReservation.zip}\' or2=\'{editMode}\' />',then:'{newEventReservation.zip}',else:'{frontendUser.zip}')}" additionalAttributes="{autocomplete:'zip'}" />
+</p>
+
+<p class="form__field">
+    <f:if condition="<rkw:isMandatoryField fieldName='city' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_city">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_city">
+        </f:else>
+    </f:if>
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.city" />
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.city'}" />
+    <f:form.textfield property="city" id="tx_rkwevents_pi1_city" value="{f:if(condition:'<rkw:or or1=\'{newEventReservation.city}\' or2=\'{editMode}\' />',then:'{newEventReservation.city}',else:'{frontendUser.city}')}" additionalAttributes="{autocomplete:'city'}" />
+</p>
+
+<!--
+<div class="v320-1">
+    <label class="form-label" for="tx_rkwevents_pi1_phone">
+        <f:translate key="tx_rkwevents_domain_model_eventreservation.telephone" />
+        <f:if condition="<rkw:isMandatoryField fieldName='phone' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+            <span class='optional'>&nbsp;<f:translate key="tx_rkwevents_fluid.label_optional" /></span>
+        </f:if>
+    </label>
+    <f:form.textfield property="phone" id="tx_rkwevents_pi1_phone" value="{f:if(condition:'<rkw:or or1=\'{newEventReservation.phone}\' or2=\'{editMode}\' />',then:'{newEventReservation.phone}',else:'{frontendUser.telephone}')}" additionalAttributes="{autocomplete:'tel'}" placeholder="<f:translate key='tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.placeholder.phone' />" />
+</div>
+-->
+
+
+<!-- remark and questions -->
+<p class="form__field">
+    <f:if condition="<rkw:isMandatoryField fieldName='remark' mandatoryFields='{settings.mandatoryFields.eventReservationMainPerson}' />">
+        <f:then>
+            <label class="label" for="tx_rkwevents_pi1_remark">
+        </f:then>
+        <f:else>
+            <label class="label is-required" for="tx_rkwevents_pi1_remark">
+        </f:else>
+    </f:if>
+        <f:format.raw>
+            <f:translate key="tx_rkwevents_domain_model_eventreservation.remark" />
+        </f:format.raw>
+    </label>
+    <f:render partial="formErrorShowText" arguments="{object: Event, fieldName: 'newEventReservation.remark'}" />
+	<f:form.textarea property="remark" id="tx_rkwevents_pi1_remark" rows="3" placeholder="<f:translate key='tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.placeholder.remark' />" />
+</p>
+
+<f:if condition="{editMode}">
+	<f:else>
+        <p class="form__field">
+            <span class="checkbox-group">
+
+                <label class="checkbox">
+                    <span class="checkbox__input">
+                        <f:form.checkbox id="terms-button" class="input input-radio" name="terms" value="1" />
+                        <label for="terms-button"></label>
+                    </span>
+                    <span class="checkbox__label">
+                        <f:translate key="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.termsIntro" /> <f:link.page pageUid="{settings.termsPid}" target="_blank"><f:translate key="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.terms" /></f:link.page>
+                        <f:if condition="{settings.terms2Pid}">
+                            <f:translate key="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.terms2Intro" /> <f:link.page pageUid="{settings.terms2Pid}" target="_blank"><f:translate key="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.terms2" /></f:link.page>
+                        </f:if>
+                        <f:translate key="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.terms3" extensionName="HgonTemplate" />
+                    </span>
+                </label>
+
+
+                <label class="checkbox">
+                    <span class="checkbox__input">
+                        <f:form.checkbox id="privacy-button" class="input input-radio" name="privacy" value="1" />
+                        <label for="privacy-button"></label>
+                    </span>
+                    <span class="checkbox__label">
+                        <f:format.raw>
+                            <rkwRegistration:privacyText />
+                        </f:format.raw>
+                    </span>
+                </label>
+
+            </span>
+        </p>
+	</f:else>
+</f:if>
+
+
+<!-- Button Set -->
+<f:render partial="EventReservation/ButtonSet" arguments="{_all}"/>
+
+
+
+

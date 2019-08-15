@@ -1,0 +1,24 @@
+
+<section class="article article--fullwidth">
+    <h2>Arbeitskreistreffen</h2>
+    <div class="flex-container space-between gutter / mt-1" id="tx-rkwevents-grid-section-workgroup">
+        <f:if condition="<f:count>{workGroupEventList}</f:count>">
+            <f:then>
+                <f:for each="{workGroupEventList}" as="event">
+                    <f:render partial="Event/List/Box" arguments="{_all}" section="list" />
+                </f:for>
+            </f:then>
+            <f:else>
+                <div class="no-search-results first-letter-normal content content-box">
+                    <div class="csc-default csc-element-n1">
+                        <h3><strong>Es wurde kein passendes Arbeitsgruppentreffen gefunden.</strong></h3>
+                    </div>
+                </div>
+            </f:else>
+        </f:if>
+    </div>
+</section>
+<!-- lazy loading / load more box -->
+<div class="grid / mt-2">
+    <f:render partial="Event/List/MoreLink" arguments="{isWorkGroupEvent: 1, showMoreLink: showMoreLink, filter: filter, pageMore: pageMore, archive: archive, ajaxTypeNum: ajaxTypeNum}" />
+</div>

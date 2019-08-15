@@ -1,0 +1,23 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+
+<p>
+	<button type="submit" class="btn btn--primary btn--rounded" id="submitEventReservation" >
+		<span>
+			<f:if condition="{editMode}">
+				<f:then>
+					<f:translate key="tx_rkwevents_fluid.partials_eventReservation_buttonSet.edit" />
+				</f:then>
+				<f:else>
+					<f:security.ifAuthenticated>
+						<f:then>
+							<f:translate key="tx_rkwevents_fluid.partials_eventReservation_buttonSet.registerLoggedIn" />
+						</f:then>
+						<f:else>
+							<f:translate key="tx_rkwevents_fluid.partials_eventReservation_buttonSet.register" />
+						</f:else>
+					</f:security.ifAuthenticated>
+				</f:else>
+			</f:if>
+		</span>
+	</button>
+</p>

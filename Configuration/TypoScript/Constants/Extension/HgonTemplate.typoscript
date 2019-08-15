@@ -1,0 +1,31 @@
+plugin.tx_hgontemplate {
+
+    persistence {
+        # cat=plugin.tx_hgontemplate//a; type=string; label=Default storage PID
+        storagePid = 37,41,57
+    }
+    settings {
+        journal {
+            # cat=plugin.tx_hgontemplate//a; type=int; label=journal pid
+            pageUid = 10
+            # cat=plugin.tx_hgontemplate//a; type=int; label=journal parent category uid
+            parentCategoryUid = 5
+            # cat=plugin.tx_hgontemplate//a; type=int; label=journal exclude list
+            excludePidList = 1
+            # cat=plugin.tx_hgontemplate//a; type=int; label=journal ajax type
+            ajaxTypeNum = 1558958414
+            # cat=plugin.tx_hgontemplate//a; type=int; label=items per page
+            itemsPerPage = 9
+        }
+        formFramework {
+            # cat=plugin.tx_hgontemplate//a; type=int; label=form framework ajax type
+            ajaxTypeNum = 1560849023
+        }
+        news {
+            # cat=plugin.tx_hgontemplate//a; type=int; label=news detail pid
+            detailPid = 62
+        }
+        # cat=plugin.tx_hgontemplate//a; type=int; label=pages which should shown google maps with hgon marker
+        showMapsPidList = 34
+    }
+}

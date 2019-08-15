@@ -1,0 +1,94 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:if condition="{subheader}">
+
+    <f:comment><!-- use elements layout, if no specific header layout is set--></f:comment>
+    <f:if condition="{layout} == 0">
+        <f:then>
+            <f:switch expression="{superiorLayout}">
+
+                <f:case value="11">
+                    <span class="badge badge--secondary">{subheader}<span class="is-hidden">: </span></span>
+                </f:case>
+
+                <f:case value="12">
+                    <span class="badge badge--secondary">{subheader}<span class="is-hidden">: </span></span>
+                </f:case>
+
+                <f:case value="14">
+                    <span class="tagline">{subheader}</span>
+                </f:case>
+
+                <f:case value="25">
+                    <span class="badge badge--secondary">{subheader}<span class="is-hidden">: </span></span>
+                </f:case>
+
+                <f:case value="26">
+                    <span class="badge badge--secondary">{subheader}<span class="is-hidden">: </span></span>
+                </f:case>
+
+                <f:case value="31">
+                    <span class="badge badge--dark">{subheader}</span>
+                </f:case>
+
+                <f:defaultCase>
+                    <f:render section="individualSubHeader" arguments="{_all}" />
+                </f:defaultCase>
+            </f:switch>
+        </f:then>
+        <f:else>
+            <f:render section="individualSubHeader" arguments="{_all}" />
+        </f:else>
+    </f:if>
+
+
+
+
+
+</f:if>
+
+<f:section name="individualSubHeader">
+    <f:switch expression="{layout}">
+
+        <f:case value="0">
+            <span class="tagline color-font-secondary {positionClass}">
+                {subheader}
+            </span>
+        </f:case>
+        <f:case value="1">
+            <h2 class="tagline {positionClass}">
+                {subheader}
+            </h2>
+        </f:case>
+        <f:case value="2">
+            <h3 class="tagline {positionClass}">
+                {subheader}
+            </h3>
+        </f:case>
+        <f:case value="3">
+            <h4 class="tagline {positionClass}">
+                {subheader}
+            </h4>
+        </f:case>
+        <f:case value="4">
+            <h5 class="tagline {positionClass}">
+                {subheader}
+            </h5>
+        </f:case>
+        <f:case value="5">
+            <h6 class="tagline {positionClass}">
+                {subheader}
+            </h6>
+        </f:case>
+
+        <f:defaultCase>
+            <f:if condition="{default}">
+                <f:render partial="Header/SubHeader" arguments="{
+					subheader: subheader,
+					positionClass: positionClass,
+					layout: default}" />
+            </f:if>
+        </f:defaultCase>
+    </f:switch>
+</f:section>
+
+</html>

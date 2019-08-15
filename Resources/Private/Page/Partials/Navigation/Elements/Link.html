@@ -1,0 +1,38 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <f:if condition="{item.data.target}">
+        <f:then>
+            <a class="dropdown-link" href="{item.link}" target="{item.data.target}" title="{item.data.title}" data-type="page-load">
+        </f:then>
+        <f:else if="{item.target}">
+            <a class="dropdown-link" href="{item.link}" target="{item.target}" title="{item.data.title}" data-type="page-load">
+        </f:else>
+        <f:else>
+            <a class="dropdown-link" href="{item.link}" title="{item.data.title}" data-type="page-load">
+        </f:else>
+    </f:if>
+    {item.title}
+    </a>
+
+    <f:section name="meta">
+        <f:if condition="{isLast}">
+            <f:then>
+                <a class="btn btn--cta btn--rounded ml-1" href="{item.link}" title="{item.data.title}">
+                    {item.title}
+                </a>
+            </f:then>
+            <f:else>
+                <a class="btn btn--primary btn--rounded" href="{item.link}" title="{item.data.title}">
+                    {item.title}
+                </a>
+            </f:else>
+        </f:if>
+    </f:section>
+
+    <f:section name="sub">
+        <a class="{f:if(condition:item.current, then:' is-active')}" href="{item.link}" title="{item.data.title}">
+            {item.title}
+        </a>
+    </f:section>
+
+</html>

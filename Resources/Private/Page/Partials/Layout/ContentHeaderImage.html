@@ -1,0 +1,19 @@
+<header class="main__header main__header--image">
+    <picture class="picture">
+
+        <source media="(min-width: 64.063em)" srcset="{pageArticleImageDesktop}">
+        <source media="(min-width: 48.063em) and (max-width: 64em)" srcset="{pageArticleImageTablet}">
+        <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="{pageArticleImageMobile}">
+        <source media="(max-width: 37.5em)" srcset="{pageArticleImageSmall}">
+        <f:format.raw>
+            {pageArticleImage}
+        </f:format.raw>
+
+    </picture>
+    <div class="wrap wrap--text / align-center">
+        <h1>
+            <span class="badge badge--dark">{pageTitle}<span class="is-hidden">: </span></span>
+            <span class="h1 headline">{pageSubtitle}</span>
+        </h1>
+    </div>
+</header>

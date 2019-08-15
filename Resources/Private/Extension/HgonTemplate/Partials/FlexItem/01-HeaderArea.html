@@ -1,0 +1,21 @@
+<f:if condition="{image} && {type} == 'c-4'">
+    <f:then>
+        <f:comment><!-- if c4: Always border --></f:comment>
+        <article class="card {f:if(condition: '{type} == \'c-4\'', then: 'card--border')} {f:if(condition: '{image}', else: 'card-plain')}">
+            <picture class="card__image">
+                <f:image src="{image.uid}" treatIdAsReference="1" title="{image.title}" alt="{image.alternative}" width="395" height="300" />
+            </picture>
+    </f:then>
+    <f:else>
+        <f:if condition="{image}">
+            <f:then>
+                <f:comment><!-- if image and greater than c4: No border & image as background --></f:comment>
+                <article class="card card-image" style="background-image: url(<f:uri.image image='{image}' absolute='true' />);">
+            </f:then>
+            <f:else>
+                <f:comment><!-- if plain: Always border --></f:comment>
+                <article class="card card-plain card--border">
+            </f:else>
+        </f:if>
+    </f:else>
+</f:if>

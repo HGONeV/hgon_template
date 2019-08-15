@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="HgonDefault" />
+
+<f:section name="Main">
+
+    <f:section name="Header">
+        <f:render partial="Layout/Header" arguments="{_all}" />
+    </f:section>
+
+    <f:render partial="Layout/ContentHeaderImage" arguments="{_all}" />
+
+    <div class="main__content">
+        <div class="content content--boxed">
+            <article class="article">
+                <div class="article__content">
+                    <f:cObject typoscriptObjectPath="lib.content.render" data="{colPos:0}" />
+                </div>
+                <f:comment><!-- social media share --></f:comment>
+                <f:render partial="Layout/Social" arguments="{_all}" />
+            </article>
+            <div class="sidebar">
+                <f:format.html parseFuncTSPath="">
+                    <f:render partial="Navigation/GoToOverview" arguments="{_all}" />
+                </f:format.html>
+
+                <f:render partial="Navigation/SubPageSingle" arguments="{_all}" />
+
+                <f:format.html parseFuncTSPath="">
+                    {relatedNews}
+                </f:format.html>
+
+                <f:render partial="Layout/Sidebar" arguments="{_all}" />
+
+                <f:format.html parseFuncTSPath="">
+                    {donationProject}
+                </f:format.html>
+            </div>
+        </div>
+        <f:comment><!-- read more nav --></f:comment>
+        <f:format.html parseFuncTSPath="">{readMoreNav}</f:format.html>
+    </div>
+
+    <f:render partial="Layout/MainFooter" arguments="{_all}" />
+
+</f:section>
+
+</html>

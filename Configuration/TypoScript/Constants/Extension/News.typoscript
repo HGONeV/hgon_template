@@ -1,0 +1,12 @@
+plugin.tx_news {
+
+    persistence {
+        # cat=plugin.tx_news//a; type=string; label=Default storage PID
+        # -> does not needed by extension itself. It's used by typoscript
+        storagePid = 60
+    }
+    settings {
+        # -> does not needed by extension itself. It's used by typoscript
+        detailPid = 62
+    }
+}

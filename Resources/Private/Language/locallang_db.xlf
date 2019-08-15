@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-04-25T13:49:26Z" product-name="hgon_template">
+		<header/>
+		<body>
+		    <!-- MODEL -->
+            <trans-unit id="tx_hgontemplate_domain_model_didyouknow">
+                <source>Did you know?</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_didyouknow.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_didyouknow.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_didyouknow.sys_category">
+                <source>SysCategory</source>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_article">
+                <source>Article</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_article.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_article.subtitle">
+                <source>Subtitle</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_article.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_article.price">
+                <source>Price</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_article.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_article.link">
+                <source>Link</source>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_pages.tabs.hgon">
+                <source>HGON</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_pages.palettes.extended">
+                <source>Extended</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_contactperson">
+                <source>Contact person (sidarbar)</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_article">
+                <source>Shown shop article</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_pages.pleaseChoose">
+                <source>--- Please choose ---</source>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_type.0">
+                <source>News</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_type.1">
+                <source>Press</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2">
+                <source>Project</source>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_news.tx_rkwproject_project">
+                <source>Project</source>
+            </trans-unit>
+
+
+            <!-- FLEXFORM -->
+            <trans-unit id="flexform.journalHighlight.sheetTitle">
+                <source>Journal Highlight</source>
+            </trans-unit>
+            <trans-unit id="flexform.journalHighlight.pid">
+                <source>Page ID</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.pageHighlight.sheetTitle">
+                <source>Page Highlight</source>
+            </trans-unit>
+            <trans-unit id="flexform.pageHighlight.pid">
+                <source>Page ID</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.pageHighlight.sheetTitle">
+                <source>Page Highlight</source>
+            </trans-unit>
+            <trans-unit id="flexform.pageHighlight.pid">
+                <source>Page ID</source>
+            </trans-unit>
+
+            <trans-unit id="flexform.projectTeaser.sheetTitle">
+                <source>Project Teaser</source>
+            </trans-unit>
+           <trans-unit id="flexform.projectTeaser.preHeader">
+               <source>Pre header</source>
+           </trans-unit>
+           <trans-unit id="flexform.projectTeaser.header">
+               <source>Header</source>
+           </trans-unit>
+           <trans-unit id="flexform.projectTeaser.text">
+               <source>Text</source>
+           </trans-unit>
+            <trans-unit id="flexform.projectTeaser.random">
+                <source>Random</source>
+            </trans-unit>
+            <trans-unit id="flexform.projectTeaser.projectUidList">
+                <source>Select three projects</source>
+            </trans-unit>
+            <trans-unit id="flexform.projectTeaser.pidOverview">
+                <source>PID overview</source>
+            </trans-unit>
+            <trans-unit id="flexform.pageSlider.sheetTitle">
+                <source>Page Slider</source>
+            </trans-unit>
+            <trans-unit id="flexform.pageSlider.pidList">
+                <source>Page IDs</source>
+            </trans-unit>
+            <trans-unit id="flexform.pageSlider.preHeader">
+                <source>Pre header</source>
+            </trans-unit>
+            <trans-unit id="flexform.pageSlider.header">
+                <source>Header</source>
+            </trans-unit>
+            <trans-unit id="flexform.pageSlider.text">
+                <source>Text</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.sheetTitle">
+                <source>Six reasons</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.sheetTitle2">
+                <source>Six reasons</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.preHeader">
+                <source>Pre header</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.header">
+                <source>Header</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.text">
+                <source>Text</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.reason1">
+                <source>Good reason 1</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.reason2">
+                <source>Good reason 2</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.reason3">
+               <source>Good reason 3</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.reason4">
+               <source>Good reason 4</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.reason5">
+               <source>Good reason 5</source>
+            </trans-unit>
+            <trans-unit id="flexform.sixReasons.reason6">
+               <source>Good reason 6</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

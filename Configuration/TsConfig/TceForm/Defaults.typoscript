@@ -1,0 +1,15 @@
+TCAdefaults {
+
+    tt_content {
+        //frame_class = none
+
+        // default: Show images with lightbox function
+        layout = 65
+    }
+
+    # @todo: Problem: Does not work
+    tx_rkwbasics_domain_model_documenttype {
+        sys_language_uid = 0
+    }
+}
+

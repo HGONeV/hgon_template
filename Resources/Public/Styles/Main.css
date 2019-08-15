@@ -1,0 +1,102 @@
+/* Clipboard add on (comes not from helllicht) */
+.clipboard-container {
+    background-color: #EDEFE0;
+    color: #6F7163;
+    display: none;
+    margin: 0 auto;
+    position: fixed;
+    z-index: 100;
+    width: 50%;
+    top: 20px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    border: 1px solid;
+}
+.clipboard-container .cb-success {
+    font-size: 1.2em;
+}
+.clipboard-container .cb-success .cb-header {
+    font-weight: bolder;
+
+}
+.clipboard-container .cb-close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    z-index: 101;
+    border: none;
+    background-color: #EDEFE0;
+    font-weight: bolder;
+}
+
+/* additional FCE styles */
+figure.video {
+    margin: 20px 0;
+}
+
+/* make helllicht form error styles compatible with typo3 */
+input.f3-form-error,
+select.f3-form-error,
+textarea.f3-form-error,
+.checkbox__input label.f3-form-error,
+.radio__input label.f3-form-error {
+    border-color: #FF5252;
+}
+input.f3-form-error,
+textarea.f3-form-error {
+    border-right: 3px solid #FF5252;
+}
+
+
+
+/* Pseudo-fix for header-images: Maybe the css is not the real problem */
+.main .main__header--image .picture img {
+    width: 100%;
+}
+
+/* Fix: For not using a class in img tag itself (would need some additional partials) */
+aside.color-bg-tertiary img {
+    float: left;
+    margin-right: .75em;
+    margin-bottom: .75em;
+}
+
+/* Fix: Do not change the color of ALL anchor (children -> submenu elements) of active item */
+.menu.menu-main > li.is-active a {
+    color: #666666;
+}
+.menu.menu-main > li.is-active > a {
+    color: #869733;
+}
+
+/* Fix for RkwEvents */
+#tx-rkwevents-grid-section a.disabled {
+    display: none;
+}
+
+/* Fix for html limitations of "MenuSitemapPages.html" */
+ul.menu.menu--list header h6 {
+    margin-bottom: 1.5em;
+}
+ul.menu.menu--inline header h6 {
+    margin: 1.5em;
+}
+
+/* adjustments for different form html */
+form.form fieldset {
+    border: 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: .875rem;
+    margin-bottom: 1.5em;
+}
+form.form fieldset p {
+    margin: 0;
+}
+form.form fieldset p:not(:first-of-type) {
+    margin: .5em 0 0;
+}
+form.form fieldset p label {
+    font-weight: 400;
+}

@@ -1,0 +1,29 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.journalHighlight.sheetTitle</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.journalHighlight.newsUid>
+                        <TCEforms>
+                            <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.journalHighlight.newsUidList</label>
+                            <config>
+                                <size>5</size>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <type>select</type>
+                                <foreign_table>tx_news_domain_model_news</foreign_table>
+                                <foreign_table_where>
+                                    AND tx_news_domain_model_news.deleted = 0 AND tx_news_domain_model_news.hidden = 0 ORDER BY tx_news_domain_model_news.datetime
+                                </foreign_table_where>
+                            </config>
+                        </TCEforms>
+                    </settings.journalHighlight.newsUid>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

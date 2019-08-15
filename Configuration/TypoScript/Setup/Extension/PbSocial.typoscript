@@ -1,0 +1,11 @@
+plugin.tx_pbsocial {
+    settings {
+        # refresh all 12 hours
+        refreshTimeInMin = 720
+        feedRequestLimit = 1
+        twitterEnabled = 1
+        twitterHideRetweets = 1
+        twitterProfilePosts = HGON_eV
+        twitterLanguage = de
+    }
+}

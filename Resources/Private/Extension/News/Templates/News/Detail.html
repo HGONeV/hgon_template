@@ -1,0 +1,246 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper"
+	  data-namespace-typo3-fluid="true">
+
+<f:layout name="Detail" />
+
+<!--
+	=====================
+		News/Detail.html
+-->
+
+<f:section name="content">
+	<f:if condition="{newsItem}">
+		<f:then>
+            <div class="article">
+                <div class="article__content">
+                    <h2>{newsItem.title}</h2>
+
+                    <div class="news-footer">
+                        <p>
+                            <!-- date -->
+                            <span class="news-list-date">
+                            <time itemprop="datePublished" datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+                                <f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date>
+                            </time>
+                        </span>
+
+                            <f:comment>
+                                <f:if condition="{newsItem.categories}">
+                                    <f:render partial="Category/Items" arguments="{categories:newsItem.categories, settings:settings}" />
+                                </f:if>
+
+                                <f:if condition="{newsItem.tags}">
+                                    <!-- Tags -->
+                                    <span class="news-list-tags" itemprop="keywords">
+                                <f:for each="{newsItem.tags}" as="tag">
+                                    {tag.title}
+                                </f:for>
+                                </span>
+                                </f:if>
+
+                                <f:if condition="{newsItem.author}">
+                                    <!-- author -->
+                                    <span class="news-list-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                                    <f:translate key="author_simple" /> <span itemprop="name">{newsItem.author}</span>
+                                </span>
+                                </f:if>
+                            </f:comment>
+                        </p>
+                    </div>
+                    <n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
+
+                        <f:if condition="{newsItem.teaser}">
+                            <!-- teaser -->
+                            <p>
+                                <strong>
+                                    <f:format.html>{newsItem.teaser}</f:format.html>
+                                </strong>
+                            </p>
+                        </f:if>
+
+                        <f:if condition="{newsItem.contentElements}">
+                            <!-- content elements -->
+                            <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
+                        </f:if>
+
+                        <f:comment>
+                            <f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
+                        </f:comment>
+                        <!-- main text -->
+                        <p>
+                            <f:format.html>{newsItem.bodytext}</f:format.html>
+                        </p>
+
+                        <f:comment>
+                        <div class="slider slider--small js-slider" data-slide="0">
+                            <f:if condition="{newsItem.mediaNonPreviews}">
+                                <f:for each="{newsItem.mediaNonPreviews}" as="media">
+                                    <f:if condition="{media}">
+                                        <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{media}' absolute='true' />);" ></article>
+                                    </f:if>
+                                </f:for>
+                                <div class="bar bar--bottom bar--border">
+                                    <div class="bar__icons bar__icons--right">
+                                        <a class="bar__icon js-slide-prev is-disabled" href=""><svg class="icon"><use xlink:href="#ui-prev"></use></svg></a>
+                                        <a class="bar__icon js-slide-next" href=""><svg class="icon"><use xlink:href="#ui-next"></use></svg></a>
+                                    </div>
+                                    <div class="bar__icons bar__icons--left">
+                                        <div class="bar__text align-center">
+                                      <span class="js-slider-counter">
+                                        <span class="current__slide">1</span> / <span class="max__slides">3</span>
+                                      </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </f:if>
+                        </div>
+                        </f:comment>
+
+                        <f:if condition="{newsItem.mediaNonPreviews}">
+                            <section class="js-lightbox">
+                                <div class="gallery">
+                                    <f:for each="{newsItem.mediaNonPreviews}" as="media">
+                                        <div class="gallery__image">
+                                            <a class="js-open-lightbox" href="#" data-lightbox="lightbox-gallery" data-index="0">
+                                                <svg class="gallery__image-icon icon icon--24"><use xlink:href="#ui-fullscreen"></use></svg>
+                                                <figure>
+                                                    <f:image image="{media}" alt="{media.name}" width="300px" />
+                                                </figure>
+                                            </a>
+                                        </div>
+                                    </f:for>
+                                </div>
+                                <div id="lightbox-gallery" class="lightbox" style="opacity: 0; visibility: hidden;">
+                                    <f:for each="{newsItem.mediaNonPreviews}" as="media">
+                                        <picture class="picture / lightbox__img" style="visibility: hidden; opacity: 0;">
+                                            <f:image image="{media}" alt="{media.name}" />
+                                        </picture>
+                                    </f:for>
+
+                                    <div class="bar bar--bottom bar--fixed">
+                                        <div class="bar__icons bar__icons--right">
+                                            <a class="bar__icon js-close-lightbox" href=""><svg class="icon"><use xlink:href="#ui-close"></use></svg></a>
+                                            <a class="bar__icon js-lightbox-prev" href=""><svg class="icon"><use xlink:href="#ui-prev"></use></svg></a>
+                                            <a class="bar__icon js-lightbox-next" href=""><svg class="icon"><use xlink:href="#ui-next"></use></svg></a>
+                                        </div>
+                                        <div class="bar__icons bar__icons--left">
+                                            <div class="bar__text align-center">
+                                                <span class="js-lightbox-counter">
+                                                  <span class="current__img">1</span> / <span class="max__img">2</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </f:if>
+
+                    </n:renderMedia>
+
+                    <f:if condition="{settings.backPid}">
+                        <!-- Link Back -->
+                        <div class="news-backlink-wrap">
+                            <f:link.page pageUid="{settings.backPid}">
+                                <f:translate key="back-link" />
+                            </f:link.page>
+                        </div>
+                    </f:if>
+
+                    <f:comment>
+                        <f:if condition="{newsItem.relatedFiles}">
+                            <!-- related files -->
+                            <div class="news-related news-related-files">
+                                <h4>
+                                    <f:translate key="related-files" />
+                                </h4>
+                                <ul>
+                                    <f:for each="{newsItem.relatedFiles}" as="relatedFile">
+                                        <li>
+                                        <span class="news-related-files-link">
+                                            <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+                                                {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+                                            </a>
+                                        </span>
+                                            <span class="news-related-files-size">
+                                            {relatedFile.originalResource.size -> f:format.bytes()}
+                                        </span>
+                                        </li>
+                                    </f:for>
+                                </ul>
+                            </div>
+                        </f:if>
+                    </f:comment>
+
+
+                </div>
+            </div>
+
+            <f:comment><!-- SIDEBAR --></f:comment>
+            <div class="sidebar color-bg-light">
+
+                <f:if condition="{newsItem.txRkwprojectProject.projectPid}">
+                    <aside class="aside">
+                        <div class="aside__content">
+                            <!-- Related links -->
+                            <f:link.typolink class="btn btn--cta btn--rounded" parameter="{newsItem.txRkwprojectProject.projectPid}">Zum Projekt</f:link.typolink>
+                        </div>
+                    </aside>
+                </f:if>
+
+                <f:if condition="{newsItem.relatedLinks}">
+                    <aside class="aside aside--border aside-helpactivities color-bg-white">
+                        <header class="aside__header">
+                            <h6>Weiterführende Links</h6>
+                        </header>
+                        <div class="aside__content">
+                            <ul>
+                                <f:for each="{newsItem.relatedLinks}" as="relatedLink">
+                                    <li>
+                                        <span class="news-related-files-link">
+                                            <f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}" />
+                                            <f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span></f:if>
+                                        </span>
+                                    </li>
+                                </f:for>
+                            </ul>
+                        </div>
+                    </aside>
+                </f:if>
+
+                <f:if condition="{newsItem.relatedFiles}">
+                    <aside class="aside aside--border aside-helpactivities color-bg-white">
+                        <header class="aside__header">
+                            <h6>Downloads</h6>
+                        </header>
+                        <div class="aside__content">
+                            <ul>
+                                <f:for each="{newsItem.relatedFiles}" as="relatedFile">
+                                    <li>
+                                        <span class="news-related-files-link">
+                                            <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+                                                {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+                                            </a>
+                                        </span>
+                                        <span class="news-related-files-size">
+                                            {relatedFile.originalResource.size -> f:format.bytes()}
+                                        </span>
+                                    </li>
+                                </f:for>
+                            </ul>
+                        </div>
+                    </aside>
+                </f:if>
+
+                <f:cObject typoscriptObjectPath="page.10.variables.relatedNews" />
+
+
+            </div>
+		</f:then>
+		<f:else>
+
+		</f:else>
+	</f:if>
+</f:section>
+</html>

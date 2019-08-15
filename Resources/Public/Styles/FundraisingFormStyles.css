@@ -1,0 +1,475 @@
+/* IS NOT USED IN TYPO3! Just to write and copy to fundraisingbox.com */
+
+
+h3 {
+    margin: 15px 0;
+    border-bottom: 1px solid black;
+}
+
+#securityBox {
+    margin: 15px 0;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.text-muted {
+    display: none;
+}
+
+.form-group {
+    clear: both;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    color: #333333;
+}
+#payment_amount {
+    float: left;
+}
+
+#fbPaymentForm {
+    font-family: 'Source Sans Pro',Helvetica,Arial,sans-serif;
+
+    background-color: #EDEFE0;
+    padding: 3em;
+    color: #333333;
+    margin-bottom: 3em;
+}
+
+#payment_amount + .input-group-addon {
+    display: none;
+}
+
+#amountChoice {
+    margin-bottom: 3em;
+}
+
+@media only screen and (max-width:37.5em) {
+    #fbPaymentForm {
+        padding: 1.5em;
+    }
+}
+
+label {
+    display: inline-block;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5em;
+}
+input[type="text"],
+textarea
+{
+    width: 99%;
+    vertical-align: middle;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    color: #666666;
+    line-height: 1.5em;
+    padding: 0.5%;
+: inherit;
+    -moz-transition: 300ms ease-in-out;
+    transition: 300ms ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #666666;
+    outline: 0;
+}
+textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 9em;
+}
+
+
+
+.form__field {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    color: #333333;
+}
+.form__field input,
+.form__field textarea {
+    margin-bottom: 0;
+}
+.is-required:after {
+    content: '*';
+    margin-left: 2px;
+    color: #666666;
+    font-size: .8em;
+}
+
+.form__error {
+    display: none;
+    font-size: 12px;
+    font-size: 0.75rem;
+    color: #FF5252;
+    text-indent: 0;
+    font-weight: 600;
+    float: right;
+}
+.form__error--show {
+    display: inline;
+}
+.input.error,
+.select__box.error,
+.textarea.error,
+.radio__input label.error {
+    border-color: #FF5252;
+}
+.input.error,
+.textarea.error {
+    border-right: 3px solid #FF5252;
+}
+.form__success {
+    background-color: #4CAF50;
+    padding: 0.75em;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 1.5em;
+}
+
+
+/********************/
+/* SELECT */
+/********************/
+
+
+select {
+    width: 100%;
+    border: none;
+    background-color: #ffffff;
+    color: #666666;
+    line-height: 1.5em;
+    padding: 0.5em;
+: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.form-group {
+    position: relative;
+    border: 1px solid #cccccc;
+    display: block;
+}
+.form-group:before {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 42px;
+    height: 100%;
+    background-color: #f2f2f2;
+    content: "";
+    pointer-events: none;
+}
+.form-group:after {
+    position: absolute;
+    top: 100%;
+    right: 15px;
+    width: 0;
+    height: 0;
+    margin-top: -27px;
+    padding: 4px;
+    content: "";
+    border: solid #999999;
+    border-width: 0 2px 2px 0;
+    pointer-events: none;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.select-box.btn__select-box {
+    height: 42px;
+    width: 75px;
+    border: none;
+    color: white;
+}
+.select-box.btn__select-box:before {
+    width: 24px;
+    background-color: transparent;
+}
+.select-box.btn__select-box:after {
+    right: 14px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+}
+.select-box.btn__select-box select {
+    height: 42px;
+    padding: 0.25em 0.5em;
+    background-color: rgba(134, 151, 51, 0.5);
+    color: white;
+    font-size: 14px;
+    font-size: 0.875rem;
+    border-radius: 0;
+}
+
+
+/********************/
+/* RADIO */
+/********************/
+
+/* class "well" is a kind of radio container */
+.well, .radio {
+    position: relative;
+    margin: 10px 0;
+}
+
+/* fix */
+.radio_list .radio label {
+    margin-left: 5px;
+}
+
+input[type="radio"] {
+    visibility: hidden;
+}
+
+input[type="radio"] label::before {
+    padding-left: 25px;
+    text-indent: -25px;
+    cursor: pointer;
+    margin: 0;
+}
+
+input[type="radio"]::before {
+    font-weight: normal;
+    margin-right: 1.5em;
+}
+input[type="radio"]:last-child{
+    margin-right: 0;
+}
+input[type="radio"]::before {
+    /*
+    width: 18px;
+    height: 18px;
+    position: relative;
+    margin: 0 0.25em 0 0;
+    display: inline-block;
+    background-color: #ffffff;
+    line-height: 1;
+    */
+}
+/*input[type="radio"] + label:before {*/
+input[type="radio"] + label:before {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+input[type="radio"] + label:before,
+.radio label:before {
+    content: '';
+    position: absolute;
+    /*background: #869733;*/
+    opacity: 1;
+}
+
+input[type="radio"] + label:hover::after,
+.radio:hover::after {
+    opacity: 0.3;
+
+    width: 9px;
+    height: 5px;
+    top: 4px;
+    left: 4px;
+    border: 3px solid #869733;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+
+/*
+input[type="radio"]::after:checked {
+    width: 9px;
+    height: 5px;
+    top: 4px;
+    left: 4px;
+    border: 3px solid #869733;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}*/
+
+/*
+input[type="radio"]:checked + label:after,
+.radio input[type="radio"]:after {
+    border: 1px solid #000000;
+}*/
+
+input[type="radio"]:checked + label:before,
+.radio input[type="radio"]:before {
+    width: 9px;
+    height: 5px;
+    top: 4px;
+    left: 4px;
+    border: 3px solid #869733;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+/*
+input[type="radio"] + input[type="radio"]:checked:before,
+.radio input[type="radio"]:checked:before {
+    opacity: 1;
+}
+*/
+input[type="radio"] + label,
+.radio label {
+    font-weight: 400;
+}
+input[type="radio"] + label,
+.radio label {
+    border-radius: 50%;
+}
+/*
+input[type="radio"] + label span {
+    padding-left: 30px;
+    white-space: nowrap;
+}
+*/
+/*
+input[type="radio"] + label:after {
+    width: 10px;
+    height: 10px;
+    top: 3px;
+    left: 3px;
+    border-radius: 50%;
+}
+*/
+
+
+/********************/
+/* input toggle functions */
+/********************/
+
+.input__switch-toggle {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    width: 26px;
+    height: 14px;
+}
+label + .input__switch-toggle {
+    margin-left: 0.75em;
+}
+.input__switch-toggle label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    cursor: pointer;
+    border-radius: 25px;
+    -moz-transition: 300ms ease-in-out;
+    transition: 300ms ease-in-out;
+}
+.input__switch-toggle .switcher {
+    display: block;
+    position: relative;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    -moz-transition: 300ms ease-in-out;
+    transition: 300ms ease-in-out;
+}
+.input__switch-toggle input {
+    display: none;
+}
+.input__switch-toggle input:checked + label {
+    background-color: #869733;
+}
+.input__switch-toggle input:checked + label .switcher {
+    -webkit-transform: translateX(12px);
+    -moz-transform: translateX(12px);
+    -ms-transform: translateX(12px);
+    transform: translateX(12px);
+}
+.input-group,
+.radio-group {
+    display: block;
+    position: relative;
+}
+.input-group--flex,
+.radio-group--flex {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.input-group__addon {
+    display: inline-block;
+    background-color: #6AA4C3;
+    color: #ffffff;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 10px 2.25em;
+}
+
+
+/********************/
+/* SUBMIT BUTTON */
+/********************/
+
+
+input[type="submit"] {
+    border-radius: 3em;
+    background-color: #869733;
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
+    padding: 0.9em 2.25em;
+    border: 2px solid transparent;
+    color: white;
+    line-height: 1.5;
+    font-size: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    vertical-align: middle;
+    -moz-transition: 300ms ease-in-out;
+    transition: 300ms ease-in-out;
+}
+
+
+/********************/
+/* SPECIAL: Company field */
+/********************/
+
+#showCompanyNameRow a, #hideCompanyNameRow a {
+    color: #333333;
+    font-size: 14px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}

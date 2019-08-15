@@ -1,0 +1,174 @@
+
+renderingOptions:
+  submitButtonLabel: Senden
+identifier: fJ
+label: FÖJ
+type: Form
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: 'Deine Anfrage zum FÖJ'
+      recipientAddress: your.company@example.com
+      recipientName: 'Your Company name'
+      senderAddress: '{email}'
+      senderName: '{name}'
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      translation:
+        language: ''
+    identifier: EmailToReceiver
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Neue Seite'
+    identifier: page-1
+    label: 'Contact Form'
+    type: Page
+    renderables:
+      -
+        properties:
+          options:
+            Herr: Herr
+            Frau: Frau
+            Familie: Familie
+        type: SingleSelect
+        identifier: singleselect-1
+        label: Anrede
+      -
+        defaultValue: ''
+        identifier: name
+        label: Vorname
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Vorname
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-1
+        label: Nachname
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Nachname
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-4
+        label: 'Firma / Institution'
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: 'Firma / Institution'
+      -
+        type: GridRow
+        identifier: gridrow-1
+        label: 'Grid: Row'
+        renderables:
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-2
+            label: Straße
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: Straße
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-3
+            label: Nr.
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: Nr.
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+      -
+        type: GridRow
+        identifier: gridrow-2
+        label: 'Grid: Row'
+        renderables:
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-5
+            label: PLZ
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: PLZ
+                required: required
+              gridColumnClassAutoConfiguration:
+                viewPorts:
+                  sm:
+                    numbersOfColumnsToUse: ''
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-6
+            label: Ort
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+                placeholder: Ort
+            validators:
+              -
+                identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-7
+        label: Telefon
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Telefon
+      -
+        defaultValue: ''
+        identifier: email
+        label: Email
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: 'Email address'
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+      -
+        defaultValue: ''
+        identifier: message
+        label: Message
+        type: Textarea
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: ''
+        validators:
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Senden'
+    identifier: summarypage
+    label: 'Summary page'
+    type: SummaryPage

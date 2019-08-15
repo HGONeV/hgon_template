@@ -1,0 +1,15 @@
+tt_content.custom_content_element = COA_INT
+tt_content.custom_content_element {
+    10 = < lib.stdheader
+    20 = FLUIDTEMPLATE
+    20 {
+        file = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Templates/Standard/SupportOptions.html
+        settings {
+            persistenceIdentifier = EXT:hgon_template/Resources/Private/Extension/FormFramework/mitgliedsformular.form.yaml
+        }
+        extbase.pluginName = Form
+        extbase.controllerExtensionName = Formframework
+        extbase.controllerName = FormFrontend
+        extbase.controllerActionName = perform
+    }
+}

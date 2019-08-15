@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-08-23T12:30:00Z" product-name="hgon">
+		<header/>
+		<body>
+			<trans-unit id="hgon_textPicImageLeft.wizard.title">
+				<source>TextPicImageLeft</source>
+			</trans-unit>
+			<trans-unit id="hgon_textPicImageLeft.wizard.description">
+				<source>Text with picture left</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

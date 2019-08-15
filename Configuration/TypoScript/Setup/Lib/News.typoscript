@@ -1,0 +1,89 @@
+// tx_news: Override variables on detail view
+[globalVar = TSFE:id = {$plugin.tx_news.settings.detailPid}]
+
+    config.noPageTitle = 2
+
+    # override page title
+    lib.pageTitle = RECORDS
+    lib.pageTitle {
+        tables = tx_news_domain_model_news
+        source.data = GP:tx_news_pi1|news
+        source.intval = 1
+        conf.tx_news_domain_model_news = TEXT
+        conf.tx_news_domain_model_news {
+            field = title
+            htmlSpecialChars = 1
+        }
+        wrap = <title>|</title>
+    }
+    page.headerData.1 >
+    page.headerData.1 < lib.pageTitle
+
+    # override template subtitle marker
+    lib.pageSubtitle = RECORDS
+    lib.pageSubtitle {
+        tables = tx_news_domain_model_news
+        source.data = GP:tx_news_pi1|news
+        source.intval = 1
+        conf.tx_news_domain_model_news = TEXT
+        conf.tx_news_domain_model_news {
+            field = title
+            htmlSpecialChars = 1
+        }
+    }
+    page.10.variables.pageSubtitle = TEXT
+    page.10.variables.pageSubtitle < lib.pageSubtitle
+
+    # override template teasertext marker
+    lib.pageTeaserText = RECORDS
+    lib.pageTeaserText {
+        tables = tx_news_domain_model_news
+        source.data = GP:tx_news_pi1|news
+        source.intval = 1
+        conf.tx_news_domain_model_news = TEXT
+        conf.tx_news_domain_model_news {
+            # @toDo: Add description / text of news with crop as fallback?
+            field = teaser
+            htmlSpecialChars = 1
+        }
+    }
+    page.10.variables.pageTeaserText = TEXT
+    page.10.variables.pageTeaserText < lib.pageTeaserText
+
+    # override template title marker (blue tag-line) with news tags
+    # (logical part in fluid template with "dataPocessorNews")
+    /*
+    page.10 {
+        # Main
+        dataProcessing {
+            100 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+            100 {
+                table = tx_news_domain_model_tag
+                where.data = GP:tx_news_pi1|news
+                where.wrap = tx_news_domain_model_news_tag_mm.uid_local=|
+                join (
+                     tx_news_domain_model_news_tag_mm on tx_news_domain_model_news_tag_mm.uid_foreign=tx_news_domain_model_tag.uid
+                )
+                as = dataPocessorNewsTags
+                pidInList = {$plugin.tx_news.persistence.storagePid}
+            }
+        }
+    }
+    */
+
+    # instead of tags, use item type!
+    lib.pageTitleAlt = RECORDS
+    lib.pageTitleAlt {
+        tables = tx_news_domain_model_news
+        source.data = GP:tx_news_pi1|news
+        source.intval = 1
+        conf.tx_news_domain_model_news = TEXT
+        conf.tx_news_domain_model_news {
+            field = type
+        }
+    }
+    page.10.variables.pageTitleNews = TEXT
+    page.10.variables.pageTitleNews < lib.pageTitleAlt
+
+
+[global]

@@ -1,0 +1,5 @@
+// TsConfig
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TsConfig/BackendLayouts" extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TsConfig/GridElements" extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TsConfig/RTE" extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TsConfig/TceForm" extensions="typoscript">

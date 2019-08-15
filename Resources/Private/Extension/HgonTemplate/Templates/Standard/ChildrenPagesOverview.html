@@ -1,0 +1,30 @@
+<f:for each="{pagesList}" as="pages" iteration="iter">
+
+    <article class="card card--fullwidth card--border card--has-image mt-2">
+        <div class="flex-container no-padding">
+            <div class="flex-item c-4 flex-item--medium-half is-image-container">
+                <div class="card__bgimage" style="background-image:url(<f:uri.image image='{pages.txRkwbasicsTeaserImage}' absolute='true' />)"></div>
+            </div>
+            <div class="flex-item c-8 flex-item--medium-half">
+                <div class="card__inner">
+                    <header class="card__header">
+                        <span class="tagline">{pages.title}<span class="is-hidden">: </span></span>
+                        <span class="h3 headline">{pages.subtitle}</span>
+                    </header>
+                    <div class="card__content">
+                        <p>
+                            {pages.txRkwbasicsTeaserText}
+                        </p>
+                    </div>
+                    <footer class="card__footer">
+                        <f:link.page pageUid="{pages.uid}" class="btn btn--rounded btn--tertiary">
+                            <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" />
+                        </f:link.page>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </article>
+</f:for>
+
+

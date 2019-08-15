@@ -1,0 +1,92 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+
+
+<f:if condition="{isReservationPage}">
+    <f:else>
+        <f:if condition="<rkw:regTimeEndEvents event='{event}' />">
+            <f:then>
+                <f:if condition="{event.regRequired}">
+                    <f:then>
+                        <f:if condition="{event.extRegLink}">
+                            <f:then>
+                                <f:link.external uri="{event.extRegLink}" class="btn btn--primary btn--rounded" target="_blank" rel="nofollow">
+                                    <span><f:translate key="tx_rkwevents_fluid.partials_event_registration.externalLink" /></span>
+                                </f:link.external>
+                            </f:then>
+                            <f:else>
+                                <f:if condition="{settings.disableInternalRegistration}">
+                                    <f:then>
+                                        <f:if condition="{additionalButtonClass}">
+                                            <div class="button {additionalButtonClass} disabled">
+                                                <f:translate key="tx_rkwevents_fluid.partials_event_registration.noInternalRegistration" />
+                                            </div>
+                                        </f:if>
+                                    </f:then>
+                                    <f:else>
+                                        <f:if condition="<rkw:extensionIsLoaded extensionName='rkw_registration' />">
+                                            <f:then>
+                                                <f:if condition="<rkw:freePlacesAvailable event='{event}' />">
+                                                    <f:then>
+                                                        <a href="#" data-featherlight="#rkw-events-reservation-plugin" class="btn btn--primary btn--rounded" >
+                                                        <span>
+                                                            <f:security.ifAuthenticated>
+                                                                <f:then>
+                                                                    <f:translate key="tx_rkwevents_fluid.partials_event_registration.internalLinkLoggedIn" />
+                                                                </f:then>
+                                                                <f:else>
+                                                                    <f:translate key="tx_rkwevents_fluid.partials_event_registration.internalLink" />
+                                                                </f:else>
+                                                            </f:security.ifAuthenticated>
+                                                        </span>
+                                                        </a>
+                                                    </f:then>
+                                                    <f:else>
+                                                        <f:if condition="{additionalButtonClass}">
+                                                            <div class="button {additionalButtonClass} disabled">
+                                                                <f:translate key="tx_rkwevents_fluid.partials_event_registration.noSeats" />
+                                                            </div>
+                                                        </f:if>
+                                                    </f:else>
+                                                </f:if>
+                                            </f:then>
+                                            <f:else>
+                                                <f:if condition="{additionalButtonClass}">
+                                                    <div class="button {additionalButtonClass} disabled">
+                                                        <f:translate key="tx_rkwevents_fluid.partials_event_registration.noInternalRegistration" />
+                                                    </div>
+                                                </f:if>
+                                            </f:else>
+                                        </f:if>
+                                    </f:else>
+                                </f:if>
+                            </f:else>
+                        </f:if>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{additionalButtonClass}">
+                            <div class="btn btn--primary btn--rounded disabled">
+                                <f:translate key="tx_rkwevents_fluid.partials_event_registration.noRegistrationRequired" />
+                            </div>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <f:if condition="{additionalButtonClass}">
+                    <f:if condition="{event.regRequired}">
+                        <f:then>
+                            <div class="btn btn--primary btn--rounded disabled">
+                                <f:translate key="tx_rkwevents_fluid.partials_event_registration.registrationExpired" />
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <div class="btn btn--primary btn--rounded disabled">
+                                <f:translate key="tx_rkwevents_fluid.partials_event_registration.eventExpired" />
+                            </div>
+                        </f:else>
+                    </f:if>
+                </f:if>
+            </f:else>
+        </f:if>
+    </f:else>
+</f:if>

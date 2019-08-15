@@ -1,0 +1,10 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+<section class="article article--fullwidth">
+    <h2>Veranstaltungen</h2>
+
+    <f:render partial="Event/List/EventListing" arguments="{_all}" />
+
+</section>
+
+<!-- lazy loading / load more box -->
+<f:render partial="Event/List/MoreLink" arguments="{_all}" />

@@ -1,0 +1,116 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+
+<article class="item item-event">
+    <header class="item__header">
+        <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg>
+        <time datetime="{event.start -> f:format.date(format:'d.m.Y')}">{event.start -> f:format.date(format:"d.m.Y")}</time>
+        <span class="">{event.place.city}</span>
+    </header>
+
+    <div class="item__content">
+        <h3>
+            {event.title}
+        </h3>
+    </div>
+
+    <footer class="item__footer">
+        <f:link.action action="show" controller="Event" pluginName="Pi1" extensionName="RkwEvents" pageUid="{showPid}" arguments="{event : event}" class="link link--goto" title="{event.title}">
+            Details
+        </f:link.action>
+    </footer>
+</article>
+
+<f:section name="list">
+
+        <f:if condition="{event.txHgonWorkgroup}">
+            <f:then>
+                <f:comment><!-- Workgroup events --></f:comment>
+                <article class="textbox / flex-item c-6 no-padding">
+                    <div class="flex-container gutter">
+                        <div class="flex-item align-center align-item-center c-2">
+                            <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg><br>
+                            <strong>
+                                <f:format.date format="d.m.">{event.start}</f:format.date>
+                            </strong>
+                        </div>
+                        <div class="flex-item c-10">
+                            <header class="textbox__header">
+                                <h5 class="textbox__headline">{event.title}</h5>
+                                <span class="textbox__subline">
+                                    <strong>
+                                        <time datetime='<f:format.date format="d-m-d H:i">{event.start}</f:format.date>'><f:format.date format="d.m.Y H:i">{event.start}</f:format.date></time>
+                                    </strong> · {event.place.city}
+                                </span>
+                            </header>
+                            <div class="textbox__content">
+                                <f:format.crop maxCharacters="250">
+                                    <f:format.stripTags>
+                                        {event.description}
+                                    </f:format.stripTags>
+                                </f:format.crop>
+                            </div>
+                            <footer class="textbox__footer">
+                                <f:link.action action="show" controller="Event" pluginName="Pi1" extensionName="RkwEvents" pageUid="{showPid}" arguments="{event : event}" class="btn btn--primary-outline btn--rounded" title="{event.title}">
+                                    Mehr erfahren
+                                </f:link.action>
+                            </footer>
+                        </div>
+                    </div>
+                </article>
+
+            </f:then>
+            <f:else>
+                <f:comment><!-- Standard events --></f:comment>
+                <article class="textbox textbox--toggle / mb-1 / color-bg-light">
+                    <div class="flex-container gutter">
+                        <div class="flex-item align-center align-item-center c-2">
+                            <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg><br>
+                            <strong>
+                                <f:format.date format="d.m.">{event.start}</f:format.date>
+                            </strong>
+                        </div>
+                        <div class="flex-item c-10">
+                            <header class="textbox__header">
+                                <h5 class="textbox__headline">{event.title}</h5>
+                                <span class="textbox__subline">
+                                    <strong>
+                                        <time datetime='<f:format.date format="d-m-d H:i">{event.start}</f:format.date>'><f:format.date format="d.m.Y H:i">{event.start}</f:format.date></time>
+                                    </strong> · {event.place.city}
+                                </span>
+                            </header>
+                            <div class="textbox__content">
+                            </div>
+                            <footer class="textbox__footer">
+                                <f:link.action action="show" controller="Event" pluginName="Pi1" extensionName="RkwEvents" pageUid="{showPid}" arguments="{event : event}" class="btn btn--primary-outline btn--rounded" title="{event.title}">
+                                    Mehr erfahren
+                                </f:link.action>
+                            </footer>
+                        </div>
+                    </div>
+                </article>
+
+
+                <f:comment>
+                    <article class="textbox textbox--toggle / mb-1 / color-bg-light">
+                        <f:link.action action="show" controller="Event" pluginName="Pi1" extensionName="RkwEvents" pageUid="{showPid}" arguments="{event : event}" class="box {event.department.cssClass} event big" title="{event.title}">
+                            <div class="flex-container gutter">
+                                <div class="flex-item align-center align-item-center c-2">
+                                    <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg>
+                                </div>
+                                <div class="flex-item c-10">
+                                    <header class="textbox__header">
+                                        <span><time datetime='<f:format.date format="d-m-d H:i">{event.start}</f:format.date>'><f:format.date format="d.m.Y H:i">{event.start}</f:format.date></time></span>
+                                        <h5 class="textbox__headline">{event.title}</h5>
+                                    </header>
+                                    <div class="textbox__content">
+                                        <f:format.raw>{event.subtitle}</f:format.raw>
+                                    </div>
+                                </div>
+                            </div>
+                        </f:link.action>
+                    </article>
+                </f:comment>
+            </f:else>
+        </f:if>
+
+</f:section>

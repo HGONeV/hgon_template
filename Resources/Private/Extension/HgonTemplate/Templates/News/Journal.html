@@ -1,0 +1,43 @@
+
+<f:comment><!-- Filter options --></f:comment>
+<f:if condition="{sysCategoryList}">
+    <nav class="main__nav">
+        <ul class="menu menu-sub menu--filter" id="journal-list-anchor">
+            <f:for each="{sysCategoryList}" as="sysCategory">
+                <li>
+                    <f:comment><!-- compare with uid: because we have different sysCategory models --></f:comment>
+                    <f:if condition="{selectedSysCategory.uid} == {sysCategory.uid}">
+                        <f:then>
+                            <f:link.action section="journal-list-anchor" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" >
+                                {sysCategory.title} <svg class="icon icon--btn-right" width="12" height="12"><use xlink:href="#ui-close"></use></svg>
+                            </f:link.action>
+                        </f:then>
+                        <f:else>
+                            <f:link.action section="journal-list-anchor" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" additionalParams="{tx_hgontemplate_journal: '{sysCategory: sysCategory}'}" >
+                                {sysCategory.title}
+                            </f:link.action>
+                        </f:else>
+                    </f:if>
+                </li>
+            </f:for>
+        </ul>
+    </nav>
+</f:if>
+
+<f:comment><!-- Listing --></f:comment>
+<div class="main__content">
+    <section class="section">
+        <div class="section__content">
+            <div class="flex-container space-between gutter valign-stretch" id="journal-flex-container">
+                <f:render partial="Journal/List" arguments="{_all}" />
+            </div>
+        </div>
+        <footer class="section__footer">
+            <div class="wrap wrap--text / align-center" id="journal-more-link-container">
+                <f:if condition="{showMoreLink}">
+                    <f:render partial="Journal/MoreLink" arguments="{_all}" />
+                </f:if>
+            </div>
+        </footer>
+    </section>
+</div>

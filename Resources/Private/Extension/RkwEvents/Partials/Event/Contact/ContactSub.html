@@ -1,0 +1,48 @@
+{namespace rkwEvents=RKW\RkwEvents\ViewHelpers}
+
+<f:section name="Internal">
+
+    <f:if condition="{contact.email}">
+        <strong>E-Mail-Adresse:</strong> <f:link.email email="{contact.email}" /><br>
+    </f:if>
+
+    <f:if condition="{contact.phone}">
+        <strong>Telefon:</strong>
+        <f:if condition="{contact.phone2}">
+            <f:then>
+                <a href="tel:<rkwEvents:getFormattedPhoneNumber author='{contact}' />">
+                    <rkwEvents:getFormattedPhoneNumber author="{contact}" />
+                </a>
+            </f:then>
+            <f:else>
+                <a href="tel:{contact.phone}">
+                    {contact.phone}
+                </a>
+            </f:else>
+        </f:if><br>
+    </f:if>
+
+</f:section>
+
+<!-- ====================================================================== -->
+
+<f:section name="External">
+    <f:if condition="{contact.email}">
+        <strong>E-Mail-Adresse:</strong> <f:link.email email="{contact.email}" /><br>
+    </f:if>
+
+    <f:if condition="{contact.phone}">
+        <strong>Telefon:</strong>
+        <f:if condition="{contact.phone2}">
+            <f:then>
+                <a href="tel:{contact.phone2}">{contact.phone2}</a> / <a href="tel:{contact.phone}">{contact.phone}</a>
+            </f:then>
+            <f:else>
+                <a href="tel:{contact.phone}">
+                    {contact.phone}
+                </a>
+            </f:else>
+        </f:if><br>
+    </f:if>
+</f:section>
+

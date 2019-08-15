@@ -1,0 +1,114 @@
+ <f:comment><!-- Prepare several elements. For content html show below area "inner" --></f:comment>
+<f:section name="Pages">
+    <f:render partial="FlexItem/CardInner" arguments="{type: type, image: pages.txRkwbasicsTeaserImage, date: pages.crdate, title: pages.title, text: pages.txRkwbasicsTeaserText}" />
+    <footer class="card__footer">
+        <f:if condition="{type} == 'c-4'">
+            <f:then>
+                <f:link.page pageUid="{pages.uid}" class="btn btn--rounded btn--tertiary">
+                    <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" extensionName="HgonTemplate" />
+                </f:link.page>
+            </f:then>
+            <f:else>
+                <f:if condition="{image}">
+                    <f:then>
+                        <f:link.page pageUid="{pages.uid}" class="btn btn--rounded btn--white">
+                            <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" extensionName="HgonTemplate" />
+                        </f:link.page>
+                    </f:then>
+                    <f:else>
+                        <f:link.page pageUid="{pages.uid}" class="btn btn--rounded btn--tertiary">
+                            <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" extensionName="HgonTemplate" />
+                        </f:link.page>
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+    </footer>
+    </div>
+    </article>
+    </div>
+</f:section>
+
+<f:section name="News">
+    <f:if condition="<f:count>{news.falMedia}</f:count>">
+        <f:then>
+            <f:comment><!-- iterate and set first image of news --></f:comment>
+            <f:for each="{news.falMedia}" as="newsImage" iteration="iter">
+                <f:if condition="{iter.isFirst}">
+                    <f:render partial="FlexItem/CardInner" arguments="{type: type, image: newsImage, date: news.datetime, title: news.title, teaserText: news.teaser, text: news.bodytext}" />
+                </f:if>
+            </f:for>
+        </f:then>
+        <f:else>
+            <f:render partial="FlexItem/CardInner" arguments="{type: type, date: news.datetime, title: news.title, teaserText: news.teaser, text: news.bodytext}" />
+        </f:else>
+    </f:if>
+    <footer class="card__footer">
+
+        <f:if condition="{type} == 'c-4'">
+            <f:then>
+                <f:link.page class="btn btn--rounded btn--tertiary" pageUid="{settings.news.detailPid}" additionalParams="{tx_news_pi1:{news:news,controller:'News',action:'detail'}}">
+                    <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" extensionName="HgonTemplate" />
+                </f:link.page>
+            </f:then>
+            <f:else>
+                <f:if condition="{image}">
+                    <f:then>
+                        <f:link.page class="btn btn--rounded btn--white" pageUid="{settings.news.detailPid}" additionalParams="{tx_news_pi1:{news:news,controller:'News',action:'detail'}}">
+                            <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" extensionName="HgonTemplate" />
+                        </f:link.page>
+                    </f:then>
+                    <f:else>
+                        <f:link.page class="btn btn--rounded btn--tertiary" pageUid="{settings.news.detailPid}" additionalParams="{tx_news_pi1:{news:news,controller:'News',action:'detail'}}">
+                            <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" extensionName="HgonTemplate" />
+                        </f:link.page>
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+    </footer>
+    </div>
+    </article>
+    </div>
+</f:section>
+
+<f:comment><!-- Real content area --></f:comment>
+<f:section name="inner">
+    <div class="flex-item {type}">
+        <f:comment><!-- if c6 or greater, place image as background --></f:comment>
+        <f:if condition="{image} && {type} == 'c-4'">
+            <f:then>
+                <f:comment><!-- if c4: Always border --></f:comment>
+                <article class="card {f:if(condition: '{type} == \'c-4\'', then: 'card--border')} {f:if(condition: '{image}', else: 'card-plain')}">
+            </f:then>
+            <f:else>
+                <f:if condition="{image}">
+                    <f:then>
+                        <f:comment><!-- if image and greater than c4: No border & image as background --></f:comment>
+                        <article class="card card-image" style="background-image: url(<f:uri.image image='{image}' absolute='true' />);">
+                    </f:then>
+                    <f:else>
+                        <f:comment><!-- if plain: Always border --></f:comment>
+                        <article class="card card-plain card--border">
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+        <f:comment><!-- if c4 the box has an image tag --></f:comment>
+        <f:if condition="{image} && {type} == 'c-4'">
+            <picture class="card__image">
+                <f:image src="{image.uid}" treatIdAsReference="1" title="{image.title}" alt="{image.alternative}" width="395" height="300" />
+            </picture>
+        </f:if>
+        <div class="card__inner">
+            <header class="card__header">
+                <time class="tagline" datetime="{f:format.date(format: 'Y.m.d', date: date)} "><f:format.date format="d.m.Y">{date}</f:format.date></time>
+                <h3 class="headline">{title}</h3>
+            </header>
+            <div class="card__content">
+                <f:format.html>{text}</f:format.html>
+            </div>
+
+
+
+</f:section>

@@ -1,0 +1,3 @@
+plugin.tx_rkwbasics.settings {
+    includeAjaxApiJs = 1
+}

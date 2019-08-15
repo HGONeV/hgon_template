@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-04-25T13:49:26Z" product-name="hgon_template">
+		<header/>
+		<body>
+
+
+		    <trans-unit id="LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.0">
+                <source>News</source>
+            </trans-unit>
+            <trans-unit id="LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.1">
+                <source>Press</source>
+            </trans-unit>
+            <trans-unit id="LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2">
+                <source>Project</source>
+            </trans-unit>
+
+		    <!-- ############################## -->
+            <!-- TEMPLATES -->
+            <!-- ############################## -->
+
+            <trans-unit id="tx_hgontemplate_templates_standard_journalHighlight.furtherContent">
+                <source>Further content</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_templates_standard_journalHighlight.readMore">
+                <source>Read more</source>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_templates_standard_projectTeaser.readMore">
+                <source>Read more</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_templates_standard_projectTeaser.moreInformation">
+                <source>More information</source>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_templates_standard_supportOptions_button.becomeMember">
+                <source>Become member</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_templates_standard_supportOptions_button.donateMoney">
+                <source>Donate money</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_templates_standard_supportOptions_button.donateTime">
+                <source>Donate time</source>
+            </trans-unit>
+
+
+            <!-- ############################## -->
+            <!-- PARTIALS -->
+            <!-- ############################## -->
+            <trans-unit id="tx_hgontemplate_page_partials_layout.newstype.0">
+                <source>News</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_page_partials_layout.newstype.1">
+                <source>Press</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_page_partials_layout.newstype.2">
+                <source>Project</source>
+            </trans-unit>
+
+
+             <trans-unit id="tx_hgontemplate_extension_rkwevents_partials_filter.pleaseChoose">
+                <source>--- Please choose ---</source>
+            </trans-unit>
+
+
+             <trans-unit id="templates_registration_privacy_default.firstPart">
+                <source>Yes, I agree that HGON will use my personal data for the above purpose and to create a free user account.  Furthermore, I have read and agree to the extended notes in the</source>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.terms3">
+                <source>In particular, I agree that HGON may publish photographs and videos taken during the event in various media for the purposes of event reporting and general public relations work.</source>
+            </trans-unit>
+
+        </body>
+	</file>
+</xliff>

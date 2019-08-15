@@ -1,0 +1,258 @@
+
+renderingOptions:
+  submitButtonLabel: Submit
+identifier: mitgliedsformular
+label: Mitgliedsformular
+type: Form
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: 'Your message: {subject}'
+      recipientAddress: your.company@example.com
+      recipientName: 'Your Company name'
+      senderAddress: '{email}'
+      senderName: '{name}'
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      translation:
+        language: ''
+    identifier: EmailToReceiver
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Nochmal zurück!'
+      nextButtonLabel: 'Daten prüfen'
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        properties:
+          elementDescription: ''
+          options:
+            Ordentliches: '...ordentliches Mitglied (Schnuppermitgliedschaft erster Jahresbeitrag 40 EUR, dann: 65 EUR)'
+            Familie: '...Familie (Jahresbeitrag 80 EUR)'
+            Ermäßigt: '...Mitglied zum ermäßigten Beitrag (Schüler, Studenten, Azubis etc. gegen Nachweis, Jahresbeitrag 20 EUR)'
+          fluidAdditionalAttributes: {  }
+        type: RadioButton
+        identifier: radiobutton-1
+        label: 'Ja, ich will mehr Natur für Hessen und trete der HGON bei als...'
+      -
+        properties:
+          options:
+            Apfelbrand: 'Eine Flasche edler Apfelbrand aus einem HGON-Obstwiesenprojekt'
+            T-Shirt: 'Ein HGON-T-Shirt, Größe:'
+            Kappe: 'Eine HGON-Kappe'
+            Spende: 'Ich spende mein Begrüßungsgeschenk'
+          fluidAdditionalAttributes: {  }
+        type: RadioButton
+        identifier: radiobutton-2
+        label: 'Mein Begrüßungsgeschenk:'
+      -
+        properties:
+          options:
+            M: M
+            L: L
+            XL: XL
+        type: RadioButton
+        identifier: radiobutton-3
+        label: 'T-Shirt Größe'
+      -
+        type: Fieldset
+        identifier: fieldset-1
+        label: 'Weniger Verwaltungskosten, mehr Mittel für den Naturschutz durch Bankeinzug. Ich ermächtige die HGON den Jahresbeitrag von meinem Konto abzubuchen:'
+        renderables:
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-1
+            label: IBAN
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: IBAN
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-2
+            label: BIC
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: BIC
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-3
+            label: Bankinstitut
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: Bankinstitut
+      -
+        type: Fieldset
+        identifier: fieldset-2
+        label: 'Meine persönlichen Daten:'
+        renderables:
+          -
+            properties:
+              options:
+                Herr: Herr
+                Frau: Frau
+                Familie: Familie
+              fluidAdditionalAttributes:
+                required: required
+            type: SingleSelect
+            identifier: singleselect-1
+            label: Anrede
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-4
+            label: Titel
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: Titel
+          -
+            defaultValue: ''
+            identifier: name
+            label: Vorname
+            type: Text
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: Vorname
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            defaultValue: ''
+            identifier: subject
+            label: Nachname
+            type: Text
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: Nachname
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            type: GridRow
+            identifier: gridrow-1
+            label: 'Grid: Row'
+            renderables:
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-5
+                label: Straße
+                properties:
+                  fluidAdditionalAttributes:
+                    placeholder: Straße
+                    required: required
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      lg:
+                        numbersOfColumnsToUse: '0'
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-6
+                label: Hausnummer
+                properties:
+                  fluidAdditionalAttributes:
+                    placeholder: Nr
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+          -
+            type: GridRow
+            identifier: gridrow-2
+            label: 'Grid: Row'
+            renderables:
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-7
+                label: PLZ
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+                  -
+                    identifier: Integer
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-8
+                label: Ort
+                properties:
+                  fluidAdditionalAttributes:
+                    placeholder: Ort
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-9
+            label: Telefon
+          -
+            defaultValue: ''
+            identifier: email
+            label: Email
+            type: Text
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: 'Email Adresse'
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+              -
+                identifier: EmailAddress
+          -
+            properties:
+              dateFormat: d.m.Y
+              enableDatePicker: false
+              displayTimeSelector: false
+              fluidAdditionalAttributes:
+                required: required
+            type: DatePicker
+            identifier: datepicker-1
+            label: Geburtsdatum
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-10
+            label: 'Geworben durch'
+          -
+            defaultValue: ''
+            identifier: message
+            label: Anmerkung
+            type: Textarea
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: 'Ihr Nachricht an uns'
+  -
+    renderingOptions:
+      previousButtonLabel: 'Nochmal zurück!'
+      nextButtonLabel: Abschicken!
+    identifier: summarypage
+    label: 'Prüfen Sie Ihre Angaben'
+    type: SummaryPage

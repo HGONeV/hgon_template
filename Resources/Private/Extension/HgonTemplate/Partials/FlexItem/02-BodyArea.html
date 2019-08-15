@@ -1,0 +1,9 @@
+<header class="card__header">
+    <f:if condition="{date}">
+        <time class="tagline" datetime="{f:format.date(format: 'Y.m.d', date: date)} "><f:format.date format="d.m.Y">{date}</f:format.date></time>
+    </f:if>
+    <h3 class="headline">{title}</h3>
+</header>
+<div class="card__content">
+    <f:format.html>{text}</f:format.html>
+</div>

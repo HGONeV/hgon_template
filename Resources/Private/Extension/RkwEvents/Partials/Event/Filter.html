@@ -1,0 +1,42 @@
+
+<f:if condition="{settings.noFilters}">
+    <f:else>
+        <section class="article article--fullwidth / form">
+            <f:form action="filter" controller="Ajax" extensionName="RkwEvents" pluginName="Pi1" class="ajax" name="filter" additionalAttributes="{data-page-type: '{ajaxTypeNum}'}">
+                <div class="flex-container space-between center-cross gutter">
+                    <div class="flex-item c-3">
+                        <p class="form__field">
+                            <label for="time-select">Zeitraum ab</label>
+                            <span class="select-box">
+                            <f:form.select id="time-select" name="filter[time]" options="{timeArrayList}" optionValueField="uid" optionLabelField="title" class="ajax" />
+                          </span>
+                        </p>
+                    </div>
+                    <div class="flex-item c-3">
+                        <p class="form__field">
+                            <label for="document-type-select">Kategorie</label>
+                            <span class="select-box">
+                                <f:form.select id="document-type-select" name="filter[documentType]" options="{documentTypeList}" optionValueField="uid" optionLabelField="name" prependOptionLabel="<f:translate key='tx_hgontemplate_extension_rkwevents_partials_filter.pleaseChoose' extensionName='HgonTemplate' />" prependOptionValue="0" class="ajax" />
+                            </span>
+                        </p>
+                    </div>
+                    <div class="flex-item c-3">
+                        <p class="form__field">
+                            <label for="work-group-select">Kreis</label>
+                            <span class="select-box">
+                            <f:form.select id="work-group-select" name="filter[workGroup]" options="{workGroupList}" optionValueField="uid" optionLabelField="title" prependOptionLabel="<f:translate key='tx_hgontemplate_extension_rkwevents_partials_filter.pleaseChoose' extensionName='HgonTemplate' />" prependOptionValue="0" class="ajax" />
+                          </span>
+                        </p>
+                    </div>
+                    <div class="flex-item flex-item--align-end c-3">
+                        <button class="btn btn--primary btn--rounded" type="submit">Termin suchen</button>
+                    </div>
+                </div>
+
+                <!-- Override typeNum for AJAX -->
+                <input type="hidden" name="type" value="{ajaxTypeNum}">
+
+            </f:form>
+        </section>
+    </f:else>
+</f:if>

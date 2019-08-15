@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-08-23T12:30:00Z" product-name="hgon">
+		<header/>
+		<body>
+			<trans-unit id="layout.home">
+				<source>Home (tp-home)</source>
+			</trans-unit>
+			<trans-unit id="layout.single">
+                <source>Single view</source>
+            </trans-unit>
+			<trans-unit id="content.teaser">
+				<source>Header</source>
+			</trans-unit>
+			<trans-unit id="content.header">
+				<source>Header (is inherited)</source>
+			</trans-unit>
+			<trans-unit id="content.content">
+				<source>Content</source>
+			</trans-unit>
+			<trans-unit id="content.contentPlugin1">
+                <source>Content - Plugins above</source>
+            </trans-unit>
+            <trans-unit id="content.contentPlugin2">
+                <source>Content - Plugins below</source>
+            </trans-unit>
+			<trans-unit id="content.sidebar">
+                <source>Sidebar</source>
+            </trans-unit>
+            <trans-unit id="content.sidebarInherit">
+                <source>Sidebar (inherited)</source>
+            </trans-unit>
+			<trans-unit id="content.footer">
+				<source>Footer (is inherited)</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,57 @@
+<f:if condition="<f:count>{sortedEventList}</f:count>">
+    <f:then>
+        <f:for each="{sortedEventList}" as="eventsInYear" iteration="year">
+            <f:for each="{eventsInYear}" as="eventsInMonth" iteration="month">
+                <f:if condition="{noGrouping}">
+                    <f:then>
+                        <div id="tx-rkwevents-grid-section-workgroup">
+                            <!-- further boxes with events -->
+                            <f:for each="{eventsInMonth}" as="event">
+                                <f:if condition="{eventToExclude}">
+                                    <f:then>
+                                        <f:if condition="{eventToExclude.uid} != {event.uid}">
+                                            <f:render partial="Event/List/Box" arguments="{_all}" section="list" />
+                                        </f:if>
+                                    </f:then>
+                                    <f:else>
+                                        <f:render partial="Event/List/Box" arguments="{_all}" section="list" />
+                                    </f:else>
+                                </f:if>
+                            </f:for>
+                        </div>
+                    </f:then>
+
+                    <f:else>
+                        <div class="mb-1">
+                            <h5><f:translate key="tx_rkwevents_fluid.partials_event_list.month<rkw:printArrayKey array='{eventsInYear}' index='{month.index}' />" extensionName="RkwEvents" /> <rkw:printArrayKey array="{sortedEventList}" index="{year.index}" /></h5>
+                        </div>
+
+                        <div id="tx-rkwevents-results-<rkw:printArrayKey array='{sortedEventList}' index='{year.index}' />-<rkw:printArrayKey array='{eventsInYear}' index='{month.index}' />">
+                            <!-- further boxes with events -->
+                            <f:for each="{eventsInMonth}" as="event">
+                                <f:render partial="Event/List/Box" arguments="{_all}" section="list" />
+                            </f:for>
+                        </div>
+
+                    </f:else>
+                </f:if>
+            </f:for>
+        </f:for>
+    </f:then>
+    <f:else>
+
+        <div class="no-search-results first-letter-normal content content-box">
+            <div class="csc-default csc-element-n1">
+                <h3><strong><f:translate key="tx_rkwevents_fluid.templates_event_list.noEvent" extensionName="RkwEvents" /></strong></h3>
+            </div>
+        </div>
+
+        <f:if condition="{noGrouping}">
+            <f:else>
+                <div><!-- empty DIV to hide more link via AJAX --></div>
+            </f:else>
+        </f:if>
+
+    </f:else>
+
+</f:if>

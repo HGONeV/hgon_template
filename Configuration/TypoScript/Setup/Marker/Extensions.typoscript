@@ -1,0 +1,379 @@
+//############################################################################
+// Extensions
+//############################################################################
+page {
+    10 {
+        variables {
+
+            //=================================================================
+            // Template breaker shows workgroup-search-form
+            //=================================================================
+            breakerWorkgroupSearch = USER
+            breakerWorkgroupSearch {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonWorkgroup
+                pluginName = Search
+                vendorName = HGON
+                controller = WorkGroup
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    WorkGroup {
+                        1 = search
+                    }
+                }
+
+                view =< plugin.tx_hgonworkgroup.view
+                persistence =< plugin.tx_hgonworkgroup.persistence
+                settings =< plugin.tx_hgonworkgroup.settings
+            }
+
+
+
+            //=================================================================
+            // Sidebar: Show overview (sub-pages) of sibling pages
+            //=================================================================
+            siblingPagesOverview = USER
+            siblingPagesOverview {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = SiblingPagesOverview
+                vendorName = HGON
+                controller = Standard
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Standard {
+                        1 = siblingPagesOverview
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+
+
+            //=================================================================
+            // Sidebar: Show contactPerson of project
+            //=================================================================
+            sidebarContactPerson = USER
+            sidebarContactPerson {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = SidebarContactPerson
+                vendorName = HGON
+                controller = Standard
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Standard {
+                        1 = sidebarContactPerson
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+
+            //=================================================================
+            // Journal Overview
+            //=================================================================
+            journal = USER
+            journal {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = Journal
+                vendorName = HGON
+                controller = News
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    News {
+                        1 = journal
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+
+
+            //=================================================================
+            // Show upcoming events
+            //=================================================================
+            rkwEventsUpcomingEvents = USER
+            rkwEventsUpcomingEvents {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = RkwEvents
+                pluginName = Upcoming
+                vendorName = RKW
+                controller = Event
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Event {
+                        1 = upcoming
+                    }
+                }
+
+                view =< plugin.tx_rkwevents.view
+                persistence =< plugin.tx_rkwevents.persistence
+                settings =< plugin.tx_rkwevents.settings
+            }
+
+
+
+            //=================================================================
+            // Event reservation form
+            // We can't use RkwEvents for it (multiple plugin on one page problems)
+            //=================================================================
+            rkwEventsReservation = USER
+            rkwEventsReservation {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = RkwEvents
+                pluginName = RkwEventsReservation
+                vendorName = RKW
+                controller = EventReservation
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    EventReservation {
+                        1 = new
+                        2 = create
+                        3 = update
+                        4 = delete
+                        5 = remove
+                        6 = optIn
+                        7 = edit
+                        8 = end
+                    }
+                }
+
+                view =< plugin.tx_rkwevents.view
+                persistence =< plugin.tx_rkwevents.persistence
+                settings =< plugin.tx_rkwevents.settings
+            }
+
+
+
+            //=================================================================
+            // Donate time form
+            //=================================================================
+            hgonDonateTime = USER
+            hgonDonateTime {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonDonation
+                pluginName = Donate
+                vendorName = HGON
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Standard {
+                        #10 = newDonationTime
+                        20 = listDonationTime
+                        30 = createDonationTime
+                    }
+                }
+
+                view =< plugin.tx_hgondonation_donate.view
+                persistence =< plugin.tx_hgondonation_donate.persistence
+                settings =< plugin.tx_hgondonation_donate.settings
+            }
+
+
+
+            //=================================================================
+            // Show related sidebar (news)
+            //=================================================================
+            relatedNews = USER
+            relatedNews {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = ShowRelatedSidebar
+                vendorName = HGON
+                controller = News
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    News {
+                        1 = showRelatedSidebar
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+
+
+            //=================================================================
+            // didYouKnow
+            //=================================================================
+            didYouKnow = USER
+            didYouKnow {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = DidYouKnow
+                vendorName = HGON
+                controller = Standard
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Standard {
+                        1 = didYouKnow
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+
+
+            //=================================================================
+            // maps (shows hgon headquarter place on googleMaps - nothing else)
+            //=================================================================
+            maps = USER
+            maps {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = Maps
+                vendorName = HGON
+                controller = Standard
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Standard {
+                        1 = maps
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+
+
+            //=================================================================
+            // Bank account sidebar plugin
+            //=================================================================
+            bankAccountSidebar = USER
+            bankAccountSidebar {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonDonation
+                pluginName = BankAccountSidebar
+                vendorName = HGON
+                controller = Donation
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Donation {
+                        1 = bankAccountSidebar
+                    }
+                }
+
+                view =< plugin.tx_hgondonation.view
+                persistence =< plugin.tx_hgondonation.persistence
+                settings =< plugin.tx_hgondonation.settings
+            }
+
+
+
+            //=================================================================
+            // Project donation options
+            //=================================================================
+            donationProject = USER
+            donationProject {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonDonation
+                pluginName = DonationProject
+                vendorName = HGON
+                controller = Donation
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Donation {
+                        1 = donationProject
+                    }
+                }
+
+                view =< plugin.tx_hgondonation.view
+                persistence =< plugin.tx_hgondonation.persistence
+                settings =< plugin.tx_hgondonation.settings
+            }
+
+
+
+            //=================================================================
+            // PbSocialTwitter
+            //=================================================================
+            pbSocialTwitter = USER
+            pbSocialTwitter {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = PbSocial
+                pluginName = Socialfeed
+                vendorName = PlusB
+                controller = Item
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Item {
+                        1 = showSocialFeed
+                    }
+                }
+
+                view =< plugin.tx_pbsocial.view
+                persistence =< plugin.tx_pbsocial.persistence
+                settings =< plugin.tx_pbsocial.settings
+            }
+
+
+
+            //=================================================================
+            // add googleMaps to event view
+            //=================================================================
+            eventMaps = USER
+            eventMaps {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = RkwEvents
+                pluginName = Eventmaps
+                vendorName = RKW
+                controller = Event
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Event {
+                        1 = maps
+                    }
+                }
+
+                view =< plugin.tx_rkwevents.view
+                persistence =< plugin.tx_rkwevents.persistence
+                settings =< plugin.tx_rkwevents.settings
+
+                stdWrap.wrap = <picture class="article-picture">|</picture>
+
+            }
+
+
+
+            //=================================================================
+            // Show Article (tp-info feature)
+            //=================================================================
+            showArticleFromPages = USER
+            showArticleFromPages {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = ShowArticleFromPages
+                vendorName = HGON
+                controller = Article
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Article {
+                        1 = showArticleFromPages
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+        }
+    }
+}

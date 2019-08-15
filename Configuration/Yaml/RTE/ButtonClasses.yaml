@@ -1,0 +1,20 @@
+# for link wizard
+buttons:
+  link:
+    url:
+      properties:
+        class:
+          default: 'external-link'
+    properties:
+      class:
+        allowedClasses: 'external-link'
+
+classes:
+  external-link:
+    name: 'Lalala: External Link'
+
+classesAnchor:
+  externalLink:
+    class: 'external-link'
+    type: 'url'
+    target: '_blank'

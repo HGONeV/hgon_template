@@ -1,0 +1,13 @@
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:if condition="{settings.searchbox.targetPid}">
+	<f:form class="form-inline" extensionName="indexedsearch" pluginName="pi2" controller="Search" action="search" id="searchbox" method="post" name="searchbox" pageUid="{settings.searchbox.targetPid}">
+		<f:form.textfield name="search[sword]" value="" placeholder="{f:translate(key: 'searchbox.placeholder')}" class="form-control" />
+		<f:form.button class="btn btn-outline-success my-2 my-sm-0">
+			<f:if condition="{settings.submitIcon}">
+				<i class="searchbtn-icon icon-magnifier"></i>
+			</f:if>
+			Search
+		</f:form.button>
+	</f:form>
+</f:if>
+</html>

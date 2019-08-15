@@ -1,0 +1,42 @@
+{namespace dv=RKW\RkwEvents\ViewHelpers}
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+    <f:flashMessages as="flashMessages">
+        <f:for each="{flashMessages}" as="flashMessage">
+            <div class="typo3-messages">
+                <div class="alert alert-{flashMessage.class}">
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="alert-message">
+                                <f:format.raw>{flashMessage.message}</f:format.raw>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:for>
+    </f:flashMessages>
+
+    <f:render partial="Event/Filter" arguments="{_all}" />
+
+    <div id="tx-rkwevents-result-section" style="width: 100%;">
+
+        <f:render partial="Event/ListWorkGroup" arguments="{_all}" />
+
+        <f:render partial="Event/List" arguments="{_all}" />
+    </div>
+
+</f:section>

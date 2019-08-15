@@ -1,0 +1,45 @@
+# Add types "Pressemitteilung" and "Projektvorstellung" to tx_news
+# (and overwrite types "internal link" and "external link"
+/*
+config.tx_extbase.persistence.classes {
+    GeorgRinger\News\Domain\Model\News {
+        subclasses {
+            1 = HGON\HgonTemplate\Domain\Model\NewsTypePressRelease
+            2 = HGON\HgonTemplate\Domain\Model\NewsTypeProjectPresentation
+        }
+    }
+
+    HGON\HgonTemplate\Domain\Model\NewsTypePressRelease {
+        mapping {
+            recordType = 1
+            tableName = tx_news_domain_model_news
+        }
+    }
+
+    HGON\HgonTemplate\Domain\Model\NewsTypeProjectPresentation {
+        mapping {
+            recordType = 2
+            tableName = tx_news_domain_model_news
+        }
+    }
+}
+*/
+plugin.tx_news {
+    view {
+        templateRootPaths >
+        templateRootPaths {
+            0 = EXT:news/Resources/Private/Templates/
+            1 = EXT:hgon_template/Resources/Private/Extension/News/Templates/
+        }
+        partialRootPaths >
+        partialRootPaths {
+            0 = EXT:news/Resources/Private/Partials/
+            1 = EXT:hgon_template/Resources/Private/Extension/News/Partials/
+        }
+        layoutRootPaths >
+        layoutRootPaths {
+            0 = EXT:news/Resources/Private/Layouts/
+            1 = EXT:hgon_template/Resources/Private/Extension/News/Layouts/
+        }
+    }
+}

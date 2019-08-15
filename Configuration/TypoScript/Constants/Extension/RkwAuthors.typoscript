@@ -1,0 +1,8 @@
+plugin.tx_rkwauthors {
+
+    persistence {
+        # cat=plugin.tx_rkwauthors//a; type=string; label=Default storage PID
+        storagePid = 41
+
+    }
+}

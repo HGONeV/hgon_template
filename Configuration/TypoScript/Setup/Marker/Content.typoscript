@@ -1,0 +1,91 @@
+//############################################################################
+// Content
+//############################################################################
+page {
+    10 {
+        variables {
+
+            # further like PID, pagetitle, -subtitle etc
+            rootPid = TEXT
+            rootPid.data = leveluid:0
+
+            parentPageTitle = TEXT
+            parentPageTitle.data = leveltitle: -2
+
+            parentPageSubtitle = TEXT
+            parentPageSubtitle.data = levelfield: -2, subtitle, slide
+
+            parentPageTeaserText = TEXT
+            parentPageTeaserText.data = levelfield: -2, tx_rkwbasics_teaser_text
+
+            pageTitle = TEXT
+            pageTitle.data = levelfield : -1, title, slide
+
+            pageSubtitle = TEXT
+            pageSubtitle.data = levelfield : -1, subtitle, slide
+
+            pageTeaserText = TEXT
+            pageTeaserText.data = levelfield : -1, tx_rkwbasics_teaser_text, slide
+
+            pageArticleImage = IMAGE
+            pageArticleImage {
+                file {
+                    import.data = levelfield:-1, tx_rkwbasics_article_image, slide
+                    treatIdAsReference = 1
+                    // Either: Use first image
+                    import.listNum = 0
+                    // Or: Random image
+                    #import.listNum = rand
+                    width = 1680
+                }
+            }
+
+            pageArticleImageResource = IMG_RESOURCE
+            pageArticleImageResource {
+                file {
+                    import.data = levelfield:-1, tx_rkwbasics_article_image, slide
+                    treatIdAsReference = 1
+                    // Either: Use first image
+                    import.listNum = 0
+                    // Or: Random image
+                    #import.listNum = rand
+                }
+            }
+
+            pageArticleImageDesktop < page.10.variables.pageArticleImageResource
+            pageArticleImageDesktop {
+                file {
+                    width = 1680
+                    height = 600
+                }
+            }
+
+            pageArticleImageTablet < page.10.variables.pageArticleImageResource
+            pageArticleImageTablet {
+                file {
+                    width = 1024c
+                    height = 350c
+                }
+            }
+
+            pageArticleImageMobile < page.10.variables.pageArticleImageResource
+            pageArticleImageMobile {
+                file {
+                    width = 768
+                    height = 350
+                }
+            }
+
+            pageArticleImageSmall < page.10.variables.pageArticleImageResource
+            pageArticleImageSmall {
+                file {
+                    width = 600
+                    height = 350
+                }
+            }
+
+            currentUrl = TEXT
+            currentUrl.data = getIndpEnv:TYPO3_REQUEST_URL
+        }
+    }
+}
