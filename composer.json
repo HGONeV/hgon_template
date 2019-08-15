@@ -1,0 +1,28 @@
+{
+    "name": "hgon/hgon-template",
+    "type": "typo3-cms-extension",
+    "description": "",
+    "authors": [
+        {
+            "name": "Maximilian Fäßler",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^8.7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "HGON\\HgonTemplate\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HGON\\HgonTemplate\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "hgon_template": "self.version",
+        "typo3-ter/hgon-template": "self.version"
+    }
+}
