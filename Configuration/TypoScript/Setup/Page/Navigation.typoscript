@@ -63,7 +63,17 @@ page.10 {
             special = list
             special.value.data = leveluid : -2
             levels = 0
+            excludeDoktypes = 4
             as = menuGoToOverview
+        }
+        // this is a fallback (if first parent is not part of menu)
+        61 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        61 {
+            special = list
+            special.value.data = leveluid : -3
+            levels = 6
+            excludeDoktypes = 4
+            as = menuGoToOverview2
         }
 
         // 100 is used by tx_news special: /hgon_template/Configuration/TypoScript/Setup/Lib/Content.typoscript

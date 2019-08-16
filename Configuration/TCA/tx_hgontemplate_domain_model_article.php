@@ -97,7 +97,7 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_article'] = [
             ],
         ],
         'description' => [
-            'exclude' => true,
+            'exclude' => 0,
             'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_article.description',
             'config' => [
                 'type' => 'text',
@@ -123,7 +123,7 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_article'] = [
             ],
         ],
         'image' => [
-            'exclude' => true,
+            'exclude' => 0,
             'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_article.image',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'image',
@@ -135,7 +135,7 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_article'] = [
             ),
         ],
         'link' => [
-            'exclude' => true,
+            'exclude' => 0,
             'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_article.link',
             'config' => [
                 'type' => 'input',

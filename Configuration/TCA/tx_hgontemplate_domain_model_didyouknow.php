@@ -88,7 +88,7 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_didyouknow'] = [
             ],
         ],
         'description' => [
-            'exclude' => true,
+            'exclude' => 0,
             'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_didyouknow.description',
             'config' => [
                 'type' => 'text',
