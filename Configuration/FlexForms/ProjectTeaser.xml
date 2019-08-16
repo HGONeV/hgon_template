@@ -9,7 +9,7 @@
                 <el>
                     <settings.projectTeaser.preHeader>
                         <TCEforms>
-                            <exclude>1</exclude>
+                            <exclude>0</exclude>
                             <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.projectTeaser.preHeader</label>
                             <config>
                                 <type>input</type>
@@ -21,7 +21,7 @@
                     </settings.projectTeaser.preHeader>
                     <settings.projectTeaser.header>
                         <TCEforms>
-                            <exclude>1</exclude>
+                            <exclude>0</exclude>
                             <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.projectTeaser.header</label>
                             <config>
                                 <type>input</type>
@@ -33,7 +33,7 @@
                     </settings.projectTeaser.header>
                     <settings.projectTeaser.text>
                         <TCEforms>
-                            <exclude>1</exclude>
+                            <exclude>0</exclude>
                             <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.projectTeaser.text</label>
                             <config>
                                 <type>text</type>
@@ -44,7 +44,7 @@
                     </settings.projectTeaser.text>
                     <settings.projectTeaser.random>
                         <TCEforms>
-                            <exclude>1</exclude>
+                            <exclude>0</exclude>
                             <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.projectTeaser.random</label>
                             <onChange>reload</onChange>
                             <config>
@@ -71,7 +71,7 @@
                     </settings.projectTeaser.projectUidList>
                     <settings.projectTeaser.pidOverview>
                         <TCEforms>
-                            <exclude>1</exclude>
+                            <exclude>0</exclude>
                             <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.projectTeaser.pidOverview</label>
                             <config>
                                 <type>group</type>
