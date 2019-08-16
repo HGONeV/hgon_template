@@ -9,7 +9,7 @@
                 <el>
                     <settings.pageHighlight.pid>
                         <TCEforms>
-                            <exclude>1</exclude>
+                            <exclude>0</exclude>
                             <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.pageHighlight.pid</label>
                             <config>
                                 <type>group</type>
