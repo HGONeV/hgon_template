@@ -230,6 +230,7 @@ call_user_func(
         // for content slide
         $GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ',subtitle,tx_rkwbasics_article_image,tx_hgontemplate_contactperson,';
 
+        /*
         // add to InstallTool options (otherwise the RkwEvents ajax calls will not work)
         $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[action]';
         $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[controller]';
@@ -272,6 +273,7 @@ call_user_func(
         $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][remark]';
         $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[terms]';
         $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[privacy]';
+        */
 
         /*
         // caching

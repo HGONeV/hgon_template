@@ -1,3 +1,8 @@
+/* iframe custimization (lightboxes) */
+.featherlight-iframe .featherlight-content {
+    overflow-y: hidden !important;
+}
+
 /* Clipboard add on (comes not from helllicht) */
 .clipboard-container {
     background-color: #EDEFE0;

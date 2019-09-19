@@ -55,14 +55,16 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         // Get category of news, if news detail
         $request = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_news_pi1');
-        if (array_key_exists('news', $request)) {
-            $newsUid = intval($request['news']);
-            $news = $this->newsRepository->findByIdentifier($newsUid);
-            if (count($news->getCategories())) {
-                $categories = $news->getCategories();
+        if (!empty($request)) {
+            if (array_key_exists('news', $request)) {
+                $newsUid = intval($request['news']);
+                $news = $this->newsRepository->findByIdentifier($newsUid);
+                if (count($news->getCategories())) {
+                    $categories = $news->getCategories();
+                }
+                // except current news
+                $newsToExclude[] = $news;
             }
-            // except current news
-            $newsToExclude[] = $news;
         }
 
         // Else: Get categories of pages

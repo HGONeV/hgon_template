@@ -1,40 +1,9 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
-    xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
-    xmlns:t="http://typo3.org/ns/Helhum/TyposcriptRendering/ViewHelpers"
-    data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers" data-namespace-typo3-fluid="true">
 
-    <div class="ext_form">
-        <v:variable.set name="objData" value="{v:content.info()}"/>
-        <v:variable.set name="pageData" value="{v:page.info()}"/>
-        <formvh:renderRenderable renderable="{form}">
-            <formvh:form
-                class="form form-framework featherlight-inner"
-                object="{form}"
-                action="{form.renderingOptions.controllerAction}"
-                method="{form.renderingOptions.httpMethod}"
-                id="{form.identifier}"
-                section="{form.identifier}"
-                enctype="{form.renderingOptions.httpEnctype}"
-                addQueryString="{form.renderingOptions.addQueryString}"
-                argumentsToBeExcludedFromQueryString="{form.renderingOptions.argumentsToBeExcludedFromQueryString}"
-                additionalParams="{form.renderingOptions.additionalParams}"
-                additionalAttributes="{novalidate: '', data-ajaxuri: '{t:uri.ajaxAction(additionalParams:\'{no_cache:1}\',contextRecord: \'tt_content:{objData.uid}\',pageUid: \'{pageData.uid}\')}'}"
-            >
-                <f:render partial="{form.currentPage.templateName}" arguments="{page: form.currentPage}"/>
-                <div class="actions">
-                    <f:render partial="Form/Navigation" arguments="{form: form}"/>
-                </div>
-            </formvh:form>
-        </formvh:renderRenderable>
-    </div>
-</html>
-
-<f:comment>
     <formvh:renderRenderable renderable="{form}">
         <f:comment><!-- Just for HTML / CSS cases: Disable HTML5 validation below with novalidate --></f:comment>
         <formvh:form
-            class="form form-framework"
+            class="form form-framework featherlight-inner"
             object="{form}"
             action="{form.renderingOptions.controllerAction}"
             method="{form.renderingOptions.httpMethod}"
@@ -52,5 +21,5 @@
             </div>
         </formvh:form>
     </formvh:renderRenderable>
-    </html>
-</f:comment>
+</html>
+
