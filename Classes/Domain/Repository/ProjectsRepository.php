@@ -27,7 +27,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class ProjectsRepository // extends \RKW\RkwProjects\Domain\Repository\ProjectsRepository
+class ProjectsRepository extends \RKW\RkwProjects\Domain\Repository\ProjectsRepository
 {
     /**
      * Find by multiple uids
@@ -53,4 +53,35 @@ class ProjectsRepository // extends \RKW\RkwProjects\Domain\Repository\ProjectsR
         return $resultList;
         //===
     }
+
+
+
+    /**
+     * Find projects for donation proposals
+     *
+     * @param integer $pageNumber
+     * @param integer $limit
+     * @return array
+     */
+    public function findByFilter($pageNumber = 1, $limit = 5)
+    {
+        $query = $this->createQuery();
+
+        // Offset
+        $offset = ((intval($pageNumber) - 1) * $limit);
+        if ($pageNumber <= 1) {
+            $offset = 0;
+        }
+        // For offset issue on limit 1
+        if ($pageNumber > 1 && $limit == 1) {
+            $offset -= 1;
+        }
+
+        $query->setLimit($limit);
+        $query->setOffset($offset);
+
+        return $query->execute();
+        //===
+    }
+
 }
