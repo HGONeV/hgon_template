@@ -17,18 +17,6 @@
                 <source>SysCategory</source>
             </trans-unit>
 
-            <trans-unit id="tx_hgontemplate_domain_model_paymentprofile">
-                <source>Did you know?</source>
-            </trans-unit>
-            <trans-unit id="tx_hgontemplate_domain_model_paymentprofile.title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="tx_hgontemplate_domain_model_paymentprofile.description">
-                <source>Description</source>
-            </trans-unit>
-            <trans-unit id="tx_hgontemplate_domain_model_paymentprofile.profile_id">
-                <source>ProfileId</source>
-            </trans-unit>
 
             <trans-unit id="tx_hgontemplate_domain_model_article">
                 <source>Article</source>
