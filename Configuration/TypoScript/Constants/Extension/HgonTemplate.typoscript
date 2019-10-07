@@ -5,6 +5,14 @@ plugin.tx_hgontemplate {
         storagePid = 37,41,57
     }
     settings {
+        api {
+            paypal {
+                # cat=plugin.tx_hgontemplate//a; type=string; label=client id
+                clientId =
+                # cat=plugin.tx_hgontemplate//a; type=string; label=client secret
+                clientSecret =
+            }
+        }
         journal {
             # cat=plugin.tx_hgontemplate//a; type=int; label=journal pid
             pageUid = 10
