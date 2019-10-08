@@ -63,7 +63,7 @@ page {
 
         file30 = https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js
 
-        #file35 = https://www.paypalobjects.com/webstatic/ppplus/ppplus.min.js
+        file35 = https://www.paypalobjects.com/webstatic/ppplus/ppplus.min.js
 
        // file30 = {$globalWebsiteConfig.templatePaths.default.scripts}/loadcss.js
 

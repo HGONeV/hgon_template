@@ -1,0 +1,13 @@
+plugin.tx_hgonpayment {
+    settings {
+        api {
+            paypal {
+                # cat=plugin.tx_hgontemplate//a; type=string; label=client id
+                clientId =
+                # cat=plugin.tx_hgontemplate//a; type=string; label=client secret
+                clientSecret =
+            }
+        }
+        orderPid = 81
+    }
+}

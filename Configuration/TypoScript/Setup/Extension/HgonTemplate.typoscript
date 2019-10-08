@@ -141,12 +141,6 @@ plugin.tx_hgontemplate {
         storagePid = {$plugin.tx_hgontemplate.persistence.storagePid}
     }
     settings {
-        api {
-            paypal {
-                clientId = {$plugin.tx_hgontemplate.settings.api.paypal.clientId}
-                clientSecret = {$plugin.tx_hgontemplate.settings.api.paypal.clientSecret}
-            }
-        }
         journal {
             pageUid = {$plugin.tx_hgontemplate.settings.journal.pageUid}
             parentCategoryUid = {$plugin.tx_hgontemplate.settings.journal.parentCategoryUid}
