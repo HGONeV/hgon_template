@@ -17,6 +17,7 @@
                 <source>SysCategory</source>
             </trans-unit>
 
+
             <trans-unit id="tx_hgontemplate_domain_model_article">
                 <source>Article</source>
             </trans-unit>

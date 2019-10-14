@@ -59,7 +59,6 @@ CREATE TABLE tx_hgontemplate_domain_model_article (
 
 );
 
-
 #
 # Table structure for table 'pages'
 #

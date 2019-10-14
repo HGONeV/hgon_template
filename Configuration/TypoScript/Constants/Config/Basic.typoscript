@@ -26,11 +26,13 @@ globalWebsiteConfig {
             templates = EXT:hgon_template/Resources/Private/FluidStyledContent/Templates/
         }
 
+        /*
         gridelements {
             layouts = EXT:hgon_template/Resources/Private/Gridelements/Layouts/
             partials = EXT:hgon_template/Resources/Private/Gridelements/Partials/
             templates = EXT:hgon_template/Resources/Private/Gridelements/Templates/
         }
+        */
 
 	}
 

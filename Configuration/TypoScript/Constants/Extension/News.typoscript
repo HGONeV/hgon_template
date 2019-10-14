@@ -8,5 +8,7 @@ plugin.tx_news {
     settings {
         # -> does not needed by extension itself. It's used by typoscript
         detailPid = 62
+        # -> does not needed by extension itself. It's used by typoscript
+        listPid = 10
     }
 }
