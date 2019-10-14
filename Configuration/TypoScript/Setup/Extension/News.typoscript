@@ -42,4 +42,7 @@ plugin.tx_news {
             1 = EXT:hgon_template/Resources/Private/Extension/News/Layouts/
         }
     }
+    settings {
+        listPid = {$plugin.tx_news.settings.listPid}
+    }
 }

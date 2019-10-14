@@ -7,6 +7,7 @@ plugin.tx_hgondonation {
 		storagePid = 59
 	}
     settings {
+        listPid = 11
         showPid = 65
 
         bankAccount {
