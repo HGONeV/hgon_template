@@ -1,3 +1,7 @@
+/* Overwrite helllicht maps padding (we're not using an iframe) */
+.map {padding-top: 0;}
+
+
 /* iframe custimization (lightboxes) */
 .featherlight-iframe .featherlight-content {
     overflow-y: hidden !important;

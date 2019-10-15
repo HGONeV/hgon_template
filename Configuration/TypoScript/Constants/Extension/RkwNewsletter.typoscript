@@ -1,0 +1,13 @@
+
+plugin.tx_rkwnewsletter {
+    view {
+        # cat=plugin.tx_rkwnewsletter/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:hgon_template/Resources/Private/Extension/RkwNewsletter/Templates/
+
+        # cat=plugin.tx_rkwnewsletter/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:hgon_template/Resources/Private/Extension/RkwNewsletter/Partials/
+
+        # cat=plugin.tx_rkwnewsletter/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:hgon_template/Resources/Private/Extension/RkwNewsletter/Layouts/
+    }
+}

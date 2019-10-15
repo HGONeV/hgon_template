@@ -1,0 +1,88 @@
+{namespace rkwNewsletter=RKW\RkwNewsletter\ViewHelpers}
+{namespace rkwRegistration=RKW\RkwRegistration\ViewHelpers}
+
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+    <f:form class="form" enctype="multipart/form-data" action="create" name="frontendUser" object="{frontendUser}">
+
+        <f:flashMessages as="flashMessages">
+            <f:for each="{flashMessages}" as="flashMessage">
+                <div class="typo3-messages">
+                    <div class="alert alert-{flashMessage.class}">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="alert-message">
+                                    <f:format.raw>{flashMessage.message}</f:format.raw>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </f:for>
+        </f:flashMessages>
+
+        <f:render partial="FormErrors" arguments="{for:frontendUser}" />
+
+        <h2>Newsletter Anmeldung</h2>
+
+        <f:comment>
+            <!-- Newsletter topics -->
+            <p class="v320-1"><strong><f:translate key="templates_subscription_new.topics" /></strong></p>
+            <f:render partial="Subscription/Topics" arguments="{_all}" />
+
+            <p class="v320-1">&nbsp;</p>
+        </f:comment>
+
+        <!-- User data -->
+        <f:comment>
+            <p class="v320-1"><strong><f:translate key="templates_subscription_new.userData" /></strong></p>
+        </f:comment>
+        <f:render partial="Subscription/User" arguments="{_all}" />
+
+        <p class="form__field">
+            <span class="checkbox-group">
+
+                <label class="checkbox">
+                    <span class="checkbox__input">
+                         <f:form.checkbox id="terms-button" name="terms" value="1" checked="{terms}"/>
+                        <label for="terms-button"></label>
+                    </span>
+                    <span class="checkbox__label">
+                       <f:translate key="templates_subscription_new.terms" />
+                    </span>
+                </label>
+
+
+                <label class="checkbox">
+                    <span class="checkbox__input">
+                        <f:form.checkbox id="privacy-button" class="input input-radio" name="privacy" value="1" />
+                        <label for="privacy-button"></label>
+                    </span>
+                    <span class="checkbox__label">
+                        <f:format.raw>
+                            <rkwRegistration:privacyText textVersion="newsletter" />
+                        </f:format.raw>
+                    </span>
+                </label>
+            </span>
+        </p>
+        <p>
+            <f:form.submit class="btn btn--primary btn--rounded" value='<f:translate key="templates_subscription_new.subscribe" />' />
+        </p>
+
+    </f:form>
+
+</f:section>
