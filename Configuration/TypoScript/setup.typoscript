@@ -11,6 +11,7 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_mailer/Configuration/TypoScript/setup.txt">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_projects/Configuration/TypoScript/setup.txt">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_registration/Configuration/TypoScript/setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_newsletter/Configuration/TypoScript/setup.txt">
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_donation/Configuration/TypoScript/setup.typoscript">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_workgroup/Configuration/TypoScript/setup.typoscript">

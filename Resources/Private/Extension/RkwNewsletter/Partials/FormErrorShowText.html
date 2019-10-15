@@ -1,0 +1,10 @@
+<f:comment><!-- second formError helper to show additional "Fehler!" string above a field --></f:comment>
+<f:form.validationResults for="{object}">
+	<f:if condition="{validationResults.flattenedErrors}">
+        <f:for each="{validationResults.flattenedErrors}" key="propertyName" as="errors">
+            <f:if condition="{propertyName} == {fieldName}">
+                <span class="form__error form__error--show">Fehler!</span>
+            </f:if>
+        </f:for>
+	</f:if>
+</f:form.validationResults>

@@ -14,6 +14,9 @@ config.tx_extbase {
         RKW\RkwEvents\Controller\EventReservationController {
             className = HGON\HgonTemplate\Controller\EventReservationController
         }
+        RKW\RkwNewsletter\Controller\SubscriptionController {
+            className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
+        }
         GeorgRinger\News\Controller\NewsController {
             className = HGON\HgonTemplate\Controller\NewsController
         }
