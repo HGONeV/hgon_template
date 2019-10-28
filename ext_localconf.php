@@ -218,11 +218,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'ShowArticleFromPages',
             [
-                'Article' => 'showArticleFromPages'
+                'Article' => 'showArticleFromPages, newOrder, createOrder'
             ],
             // non-cacheable actions
             [
-                'Article' => 'showArticleFromPages'
+                'Article' => 'showArticleFromPages, newOrder, createOrder'
             ]
         );
 
