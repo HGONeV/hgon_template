@@ -3,9 +3,9 @@
         <div class="flex-container">
             <div class="flex-item c-6">
                 <header class="breaker__header">
-                    <h2>{article.title}</h2>
-                    <f:if condition="{article.subtitle}">
-                        <p>{article.subtitle}</p>
+                    <h2>{article.name}</h2>
+                    <f:if condition="{article.txHgontemplateSubtitle}">
+                        <p>{article.txHgontemplateSubtitle}</p>
                     </f:if>
 
                 </header>
@@ -15,20 +15,20 @@
                     </f:format.raw>
                 </div>
                 <footer class="breaker__footer">
-                    <a href="" class="btn btn--primary btn--rounded">
+                    <f:link.action pageUid="82" class="btn btn--primary btn--rounded" action="newOrder" arguments="{article: article}" additionalAttributes="{data-featherlight: ''}">
                         Bestellen
-                    </a>
-                    <f:if condition="{article.link}">
-                        <f:link.typolink target="_blank" parameter="{article.link}" class="btn btn--white btn--rounded">
+                    </f:link.action>
+                    <f:if condition="{article.txHgontemplateLink}">
+                        <f:link.typolink target="_blank" parameter="{article.txHgontemplateLink}" class="btn btn--white btn--rounded">
                             Leseprobe
                         </f:link.typolink>
                     </f:if>
                 </footer>
             </div>
-            <f:if condition="{article.image}">
+            <f:if condition="{article.txHgontemplateImage}">
                 <div class="flex-item c-6 / align-center">
                     <picture class="breaker__image / has-shadow">
-                        <f:image src="{article.image.uid}" treatIdAsReference="1" title="{article.image.title}" alt="{article.image.alternative}" width="395"/>
+                        <f:image src="{article.txHgontemplateImage.uid}" treatIdAsReference="1" title="{article.txHgontemplateImage.title}" alt="{article.txHgontemplateImage.alternative}" width="395"/>
                     </picture>
                 </div>
             </f:if>

@@ -112,6 +112,18 @@ call_user_func(
             'HGON: Journal'
         );
 
+
+
+        // ***************
+        // Article
+        // ***************
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'HGON.HgonTemplate',
+            'ShowArticleFromPages',
+            'HGON: Bestellung (Artikel)'
+        );
+
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'HGON Template');
 
     },

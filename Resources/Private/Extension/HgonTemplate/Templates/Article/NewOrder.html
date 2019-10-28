@@ -1,0 +1,19 @@
+<div>
+    <p>Bestellen Sie jetzt <strong>{article.name}</strong>!</p>
+    <div id="payment-container" class="flex-container space-between gutter">
+        <f:format.raw>{article.description}</f:format.raw>
+        <p>Einfach unkompliziert mit <strong>PayPal</strong> bestellen. Lastschrift ist hier ebenfalls möglich.</p>
+        <br/>
+
+        <f:form class="ajax" action="createOrder" enctype="multipart/form-data" id="moneyAmount" name="moneyAmount" object="{moneyAmount}" arguments="{article: article}">
+            <!-- Override typeNum for AJAX -->
+            <input type="hidden" name="type" value="{typeNumClearPage}">
+            <p>Jetzt bestellen für <strong><f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€">{article.price}</f:format.currency></strong></p>
+            <f:form.submit class="btn btn--primary-outline btn--rounded" value="Bestellen" />
+        </f:form>
+    </div>
+</div>
+
+
+
+
