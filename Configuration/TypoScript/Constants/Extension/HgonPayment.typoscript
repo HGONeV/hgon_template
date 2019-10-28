@@ -9,5 +9,6 @@ plugin.tx_hgonpayment {
             }
         }
         orderPid = 81
+        subscriptionPid = 81
     }
 }
