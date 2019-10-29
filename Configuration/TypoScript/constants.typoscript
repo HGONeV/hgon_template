@@ -17,3 +17,12 @@
 
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Constants/Config" extensions="typoscript">
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Constants/Extension" extensions="typoscript">
+
+# Environments
+[applicationContext = Development*]
+    <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/Constants.ts">
+[global]
+
+[applicationContext = Production/Staging]
+    <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Constants.ts">
+[global]

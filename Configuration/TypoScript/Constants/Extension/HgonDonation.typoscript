@@ -9,7 +9,7 @@ plugin.tx_hgondonation {
     settings {
         listPid = 11
         showPid = 65
-
+        donationFormPid = 80
         bankAccount {
             iban = DE07 5185 0079 0085 0026 94
             bic = HELADEF1FRI

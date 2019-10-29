@@ -157,6 +157,9 @@ plugin.tx_hgontemplate {
         news {
             detailPid = {$plugin.tx_hgontemplate.settings.news.detailPid}
         }
+        article {
+            orderFormPid = {$plugin.tx_hgontemplate.settings.article.orderFormPid}
+        }
         showMapsPidList = {$plugin.tx_hgontemplate.settings.showMapsPidList}
     }
 }
