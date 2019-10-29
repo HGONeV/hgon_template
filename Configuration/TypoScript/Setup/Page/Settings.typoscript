@@ -18,6 +18,11 @@ page {
             #websiteLogoBrokenLinkFile = {$globalWebsiteConfig.website.logoBrokenLinkFile}
 
             #socialMedia = {$globalWebsiteConfig.socialMedia}
+
+            # social media marker
+            twitter = https://twitter.com/HGON_eV/
+            youtube = https://youtube.com/channel/UCPDDmNoVRKYFUXYEsITpYiw
+            facebook = https://facebook.com/hgon.de/
         }
     }
 }

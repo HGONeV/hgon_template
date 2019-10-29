@@ -1,0 +1,7 @@
+plugin.tx_hgonpayment {
+    settings {
+        api {
+            cancelUrl = staging.hgon.de/mitmachen
+        }
+    }
+}

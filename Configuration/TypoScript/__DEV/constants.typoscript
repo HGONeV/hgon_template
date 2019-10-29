@@ -1,0 +1,7 @@
+plugin.tx_hgonpayment {
+    settings {
+        api {
+            cancelUrl = hgon.rkw.local/mitmachen
+        }
+    }
+}
