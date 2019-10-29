@@ -15,7 +15,7 @@
                     </f:format.raw>
                 </div>
                 <footer class="breaker__footer">
-                    <f:link.action pageUid="82" class="btn btn--primary btn--rounded" action="newOrder" arguments="{article: article}" additionalAttributes="{data-featherlight: ''}">
+                    <f:link.action pageUid="{settings.article.orderFormPid}" class="btn btn--primary btn--rounded" action="newOrder" arguments="{article: article}" additionalAttributes="{data-featherlight: ''}">
                         Bestellen
                     </f:link.action>
                     <f:if condition="{article.txHgontemplateLink}">

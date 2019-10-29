@@ -3,7 +3,7 @@ plugin.tx_rkwbasics {
         pageNotFoundConfig {
             _DEFAULT {
                 fallbackPid = 68
-                defaultDomain = hgon.de
+                defaultDomain = staging.hgon.de
             }
         }
     }
