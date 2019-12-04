@@ -46,6 +46,7 @@ txRkweventsReservationAjax {
                 1 = create
                 2 = new
                 3 = end
+                4 = createAlternative
             }
         }
 

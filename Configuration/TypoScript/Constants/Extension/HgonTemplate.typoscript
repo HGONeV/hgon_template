@@ -2,7 +2,7 @@ plugin.tx_hgontemplate {
 
     persistence {
         # cat=plugin.tx_hgontemplate//a; type=string; label=Default storage PID
-        storagePid = 37,41,57
+        storagePid = 37,41,42,57
     }
     settings {
         journal {

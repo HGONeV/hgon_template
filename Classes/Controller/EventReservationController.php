@@ -30,6 +30,22 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 class EventReservationController extends \RKW\RkwEvents\Controller\EventReservationController
 {
     /**
+     * eventRepository
+     *
+     * @var \HGON\HgonTemplate\Domain\Repository\EventRepository
+     * @inject
+     */
+    protected $eventRepository = null;
+
+    /**
+     * eventCulinaryRepository
+     *
+     * @var \HGON\HgonTemplate\Domain\Repository\EventCulinaryRepository
+     * @inject
+     */
+    protected $eventCulinaryRepository = null;
+
+    /**
      * action new
      *
      * @param \RKW\RkwEvents\Domain\Model\Event $event
@@ -65,9 +81,9 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
 
     /**
-     * action create
+     * action createAlternative
      *
-     * @param \RKW\RkwEvents\Domain\Model\EventReservation $newEventReservation
+     * @param \HGON\HgonTemplate\Domain\Model\EventReservation $newEventReservation
      * @param integer $terms
      * @param integer $privacy
      * @validate $newEventReservation \RKW\RkwEvents\Validation\Validator\EventReservationValidator
@@ -80,8 +96,11 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
-    public function createAction(\RKW\RkwEvents\Domain\Model\EventReservation $newEventReservation, $terms = null, $privacy = null)
+    public function createAlternativeAction(\HGON\HgonTemplate\Domain\Model\EventReservation $newEventReservation, $terms = null, $privacy = null)
     {
+
+        DebuggerUtility::var_dump($newEventReservation); exit;
+
         // 1. Check for existing reservations based on email.
         $frontendUser = $this->frontendUserRepository->findByUsername($newEventReservation->getEmail());
         if (count($frontendUser)) {

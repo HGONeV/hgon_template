@@ -14,7 +14,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 
-    <f:form class="form" id="rkwevents-reservation-form" action="create" enctype="multipart/form-data"  name="newEventReservation" object="{newEventReservation}">
+    <f:form class="form" id="rkwevents-reservation-form" action="createAlternative" enctype="multipart/form-data"  name="newEventReservation" object="{newEventReservation}">
 
         <h2 id="tx-rkwevents-reservation" class="no-space"><f:translate key="tx_rkwevents_fluid.templates_eventReservation_new.headline" /></h2>
 
@@ -46,8 +46,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
         <f:render partial="EventReservation/FormFieldsSub" arguments="{_all}"/>
         </f:comment>
 
+        <f:render partial="EventReservation/SpecialCosts" arguments="{_all}"/>
+
         <!-- Override typeNum for AJAX -->
         <input type="hidden" name="type" value="{ajaxTypeNumReservation}">
+
+        <!-- Button Set -->
+        <f:render partial="EventReservation/ButtonSet" arguments="{_all}"/>
 
     </f:form>
 </f:section>

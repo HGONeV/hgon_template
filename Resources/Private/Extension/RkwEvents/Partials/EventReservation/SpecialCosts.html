@@ -1,0 +1,27 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+{namespace rkwRegistration=RKW\RkwRegistration\ViewHelpers}
+
+
+<!-- culinary options -->
+<f:if condition="<f:count>{event.txHgontemplateEventCulinary}</f:count>">
+    <p class="form__field">
+        <span class="checkbox-group">
+            <f:for each="{event.txHgontemplateEventCulinary}" as="culinary" iteration="iter">
+                 <label class="checkbox">
+                <span class="checkbox__input">
+                    <f:form.checkbox class="input input-radio" checked="TRUE" id="{culinary.uid}" property="txHgontemplateEventculinary.{iter.index}" value="{culinary.uid}" name="txHgontemplateEventculinary.{iter.index}" />
+                    <label for="{culinary.uid}"></label>
+                </span>
+                <span class="checkbox__label" title="<f:format.stripTags>{culinary.description}</f:format.stripTags>">
+                    {culinary.title}: <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{culinary.price}</f:format.currency>
+                </span>
+            </label>
+            </f:for>
+        </span>
+    </p>
+</f:if>
+
+
+
+
+

@@ -15,14 +15,14 @@ namespace HGON\HgonTemplate\Domain\Model;
  */
 
 /**
- * Class Event
+ * Class EventReservation
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright HGON
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Event extends \HGON\HgonWorkgroup\Domain\Model\Event
+class EventReservation extends \RKW\RkwEvents\Domain\Model\EventReservation
 {
     /**
      * txHgontemplateEventculinary

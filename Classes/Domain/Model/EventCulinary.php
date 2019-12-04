@@ -16,14 +16,14 @@ namespace HGON\HgonTemplate\Domain\Model;
  */
 
 /**
- * Class Article
+ * Class EventCulinary
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright HGON
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Article extends \HGON\HgonPayment\Domain\Model\Article
+class EventCulinary extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
     /**
@@ -32,13 +32,6 @@ class Article extends \HGON\HgonPayment\Domain\Model\Article
      * @var string
      */
     protected $title = '';
-
-    /**
-     * subtitle
-     *
-     * @var string
-     */
-    protected $subtitle = '';
 
     /**
      * description
@@ -55,19 +48,11 @@ class Article extends \HGON\HgonPayment\Domain\Model\Article
     protected $price = '';
 
     /**
-     * image
+     * date
      *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @cascade remove
+     * @var integer
      */
-    protected $image = null;
-
-    /**
-     * link
-     *
-     * @var string
-     */
-    protected $link = '';
+    protected $date = 0;
 
 
     /**
@@ -92,27 +77,6 @@ class Article extends \HGON\HgonPayment\Domain\Model\Article
     }
 
     /**
-     * Returns the subtitle
-     *
-     * @return string $subtitle
-     */
-    public function getSubtitle()
-    {
-        return $this->subtitle;
-    }
-
-    /**
-     * Sets the subtitle
-     *
-     * @param string $subtitle
-     * @return void
-     */
-    public function setSubtitle($subtitle)
-    {
-        $this->subtitle = $subtitle;
-    }
-
-    /**
      * Returns the description
      *
      * @return string $description
@@ -134,68 +98,35 @@ class Article extends \HGON\HgonPayment\Domain\Model\Article
     }
 
     /**
-     * Returns the price
-     *
-     * @return string $price
+     * @return string
      */
     public function getPrice()
     {
-        // american price format
         return str_replace(',', '.', $this->price);
     }
 
     /**
-     * Sets the price
-     *
      * @param string $price
-     * @return void
      */
     public function setPrice($price)
     {
         $this->price = $price;
     }
 
-
     /**
-     * Returns the image
-     *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @return int
      */
-    public function getImage()
+    public function getDate()
     {
-        return $this->image;
+        return $this->date;
     }
 
     /**
-     * Sets the image
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-     * @return void
+     * @param int $date
      */
-    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
+    public function setDate($date)
     {
-        $this->image = $image;
-    }
-
-    /**
-     * Returns the link
-     *
-     * @return string $link
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
-     * Sets the link
-     *
-     * @param string $link
-     * @return void
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
+        $this->date = $date;
     }
 
 
