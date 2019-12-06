@@ -41,6 +41,28 @@
             </trans-unit>
 
 
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary">
+                <source>Events culinary</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary.price">
+                <source>Price</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary.date">
+                <source>Date</source>
+            </trans-unit>
+
+
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary">
+                <source>Events Culinary</source>
+            </trans-unit>
+
+
             <trans-unit id="tx_hgontemplate_domain_model_pages.tabs.hgon">
                 <source>HGON</source>
             </trans-unit>
@@ -100,15 +122,15 @@
             <trans-unit id="flexform.projectTeaser.sheetTitle">
                 <source>Project Teaser</source>
             </trans-unit>
-           <trans-unit id="flexform.projectTeaser.preHeader">
+            <trans-unit id="flexform.projectTeaser.preHeader">
                <source>Pre header</source>
-           </trans-unit>
-           <trans-unit id="flexform.projectTeaser.header">
+            </trans-unit>
+            <trans-unit id="flexform.projectTeaser.header">
                <source>Header</source>
-           </trans-unit>
-           <trans-unit id="flexform.projectTeaser.text">
+            </trans-unit>
+            <trans-unit id="flexform.projectTeaser.text">
                <source>Text</source>
-           </trans-unit>
+            </trans-unit>
             <trans-unit id="flexform.projectTeaser.random">
                 <source>Random</source>
             </trans-unit>

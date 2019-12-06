@@ -23,6 +23,9 @@ page {
             twitter = https://twitter.com/HGON_eV/
             youtube = https://youtube.com/channel/UCPDDmNoVRKYFUXYEsITpYiw
             facebook = https://facebook.com/hgon.de/
+
+            # pid of newsletter registration
+            newsletterRegPid = 31
         }
     }
 }

@@ -10,5 +10,8 @@ plugin.tx_form {
 
 */
 
+# Frontend
 plugin.tx_form.settings.yamlConfigurations.100 = EXT:hgon_template/Configuration/Yaml/FormFramework/Configuration.yaml
+
+# Backend
 module.tx_form.settings.yamlConfigurations.100 = EXT:hgon_template/Configuration/Yaml/FormFramework/Configuration.yaml

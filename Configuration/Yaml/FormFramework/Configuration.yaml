@@ -3,7 +3,6 @@ TYPO3:
     Form:
       persistenceManager:
         allowedExtensionPaths:
-          #10: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/'
           10: 'EXT:hgon_template/Configuration/Yaml/FormFramework/Forms/'
         allowSaveToExtensionPaths: true
         allowDeleteFromExtensionPaths: true
@@ -17,6 +16,7 @@ TYPO3:
                   100: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/'
                 partialRootPaths:
                   100: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Partials/'
+                  110: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Custom/Partials/'
                 layoutRootPaths:
                   100: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Layouts/'
                 translation:
@@ -31,6 +31,12 @@ TYPO3:
             Textarea:
               properties:
                 elementClassAttribute: 'textarea'
+            DonationElement:
+              __inheritances:
+                10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Fieldset'
+              implementationClassName: 'HGON\HgonTemplate\FormElements\DonationElement'
+              properties:
+                elementClassAttribute: 'donation-value-container'
           finishersDefinition:
             Confirmation:
               options:

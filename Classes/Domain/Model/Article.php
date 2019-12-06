@@ -23,7 +23,7 @@ namespace HGON\HgonTemplate\Domain\Model;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Article extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Article extends \HGON\HgonPayment\Domain\Model\Article
 {
 
     /**
@@ -140,7 +140,8 @@ class Article extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getPrice()
     {
-        return $this->price;
+        // american price format
+        return str_replace(',', '.', $this->price);
     }
 
     /**

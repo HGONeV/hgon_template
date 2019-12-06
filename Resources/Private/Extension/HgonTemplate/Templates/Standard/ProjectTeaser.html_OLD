@@ -78,10 +78,10 @@
         <div class="flex-item c-4">
             <div id="c54" class="frame frame-default frame-type-textpic frame-layout-14">
                 <article class="card card--shadow">
-                    <f:if condition="{project.pages.txRkwbasicsTeaserImage}">
+                    <f:if condition="{project.pages.txRkwbasicsArticleImage}">
                         <picture class="card__image">
                             <figure class="image">
-                                <f:image class="image-embed-item" image="{project.pages.txRkwbasicsTeaserImage}" alt="{project.pages.txRkwbasicsTeaserImage.title}" width="395" height="300" />
+                                <f:image class="image-embed-item" image="{project.pages.txRkwbasicsArticleImage}" alt="{project.pages.txRkwbasicsArticleImage.title}" width="395" height="300" />
                             </figure>
                         </picture>
                     </f:if>
@@ -111,10 +111,10 @@
     <f:for each="{projectList}" as="project">
         <div class="flex-item c-6">
             <article class="card card--shadow">
-                <f:if condition="{project.pages.txRkwbasicsTeaserImage}">
+                <f:if condition="{project.pages.txRkwbasicsArticleImage}">
                     <picture class="card__image">
                         <figure class="image">
-                            <f:image class="image-embed-item" image="{project.pages.txRkwbasicsTeaserImage}" alt="{project.pages.txRkwbasicsTeaserImage.title}" width="595" height="300" />
+                            <f:image class="image-embed-item" image="{project.pages.txRkwbasicsArticleImage}" alt="{project.pages.txRkwbasicsArticleImage.title}" width="595" height="300" />
                         </figure>
                     </picture>
                 </f:if>
