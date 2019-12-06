@@ -1,15 +1,35 @@
-<f:flashMessages as="flashMessages">
-    <f:for each="{flashMessages}" as="flashMessage">
-        <div class="typo3-messages">
-            <div class="alert alert-{flashMessage.class}">
-                <div class="media">
-                    <div class="media-body">
-                        <div class="alert-message">
-                            <f:format.raw>{flashMessage.message}</f:format.raw>
+<f:if condition="{approvalUrl}">
+    <f:then>
+        <div id="ppplus">
+        </div>
+        <script type="application/javascript">
+            var ppp = PAYPAL.apps.PPP({
+              "approvalUrl": "<f:format.raw>{approvalUrl}</f:format.raw>",
+              "placeholder": "ppplus",
+              "mode": "sandbox",
+              "country": "DE",
+              "language": "DE",
+              "useraction": "commit"
+          });
+        </script>
+    </f:then>
+    <f:else>
+        <f:flashMessages as="flashMessages">
+            <f:for each="{flashMessages}" as="flashMessage">
+                <div class="typo3-messages">
+                    <div class="alert alert-{flashMessage.class}">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="alert-message">
+                                    <f:format.raw>{flashMessage.message}</f:format.raw>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </f:for>
-</f:flashMessages>
+            </f:for>
+        </f:flashMessages>
+    </f:else>
+</f:if>
+
+

@@ -31,6 +31,14 @@ lib.pageNext {
 }
 
 // ============================================
+// get the title of current page's next sibling
+// ============================================
+lib.pageNextTitle = TEXT
+lib.pageNextTitle {
+    data = DB:pages:lib.pageNext:title
+}
+
+// ============================================
 // get the uid of the parents page's next sibling
 // ============================================
 lib.pageNextParent < lib.pageNext
@@ -78,6 +86,14 @@ lib.pagePrev {
 	}
 	renderObj = TEXT
 	renderObj.field = uid
+}
+
+// ============================================
+// get the title of current page's prev sibling
+// ============================================
+lib.pagePrevTitle = TEXT
+lib.pagePrevTitle {
+    data = DB:pages:lib.pagePrev:title
 }
 
 
@@ -163,7 +179,7 @@ page {
                     10 = TEXT
                     10 {
 
-                        value = Vorherige Seite
+                        value < lib.pagePrevTitle
                         insertData = 1
                         wrap = <li>|</li>
                         stdWrap {
@@ -202,7 +218,7 @@ page {
 
                     20 = TEXT
                     20 {
-                        value = Nächste Seite
+                        value < lib.pageNextTitle
                         insertData = 1
                         wrap = <li>|</li>
                         stdWrap {
