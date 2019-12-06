@@ -1,0 +1,55 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
+{namespace rkwRegistration=RKW\RkwRegistration\ViewHelpers}
+
+<f:comment><!-- Nicht gebraucht. Enthält zudem den logisches Fehler, dass die Kosten-Arten als entweder oder eingebaut sind. Radio-Buttons mit mehrfachauswahl wäre natürlich korrekt --></f:comment>
+<f:comment>
+    <f:if condition="{event.costsReg} || {event.costsRed}">
+        <label class="checkbox">
+                        <span class="checkbox__input">
+                            <f:form.checkbox class="input input-radio" checked="TRUE" id="event-costs" name="costs" disabled="true" value="1" />
+                            <label for="event-costs"></label>
+                        </span>
+            <span class="checkbox__label">
+                            Teilnahmegebühr:
+                            <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
+                                <f:if condition="{event.costsReg}">
+                                    <f:then>
+                                        {event.costsReg}
+                                    </f:then>
+                                    <f:else>
+                                        <f:if condition="{event.costsRed}">
+                                            {event.costsRed}
+                                        </f:if>
+                                    </f:else>
+                                </f:if>
+                            </f:format.currency>
+                        </span>
+        </label>
+    </f:if>
+</f:comment>
+
+<!-- culinary options -->
+<f:if condition="<f:count>{event.txHgontemplateEventCulinary}</f:count>">
+    <p>Mahlzeiten mitbuchen und anschließend direkt mit PayPal bezahlen</p>
+    <p class="form__field">
+        <span class="checkbox-group">
+            <f:for each="{event.txHgontemplateEventCulinary}" as="culinary" iteration="iter">
+                <label class="checkbox">
+                    <span class="checkbox__input">
+                        <f:form.checkbox class="input input-radio" id="culinary{culinary.uid}" property="txHgontemplateEventculinary.{iter.index}" value="{culinary.uid}" name="txHgontemplateEventculinary.{iter.index}" />
+                        <label for="culinary{culinary.uid}"></label>
+                    </span>
+                    <span class="checkbox__label" title="<f:format.stripTags>{culinary.description}</f:format.stripTags>">
+                        {culinary.title}: <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{culinary.price}</f:format.currency>
+                        (<f:format.date format="d.m.Y">{culinary.date}</f:format.date>)
+                    </span>
+                </label>
+            </f:for>
+        </span>
+    </p>
+</f:if>
+
+
+
+
+

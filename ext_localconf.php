@@ -318,10 +318,13 @@ call_user_func(
         }
         */
 
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['encodeSpURL_postProc'][] =
-            'EXT:extkey/Classes/Hooks/RealurlEncoding.php:In2code\Extkey\Hooks\RealurlEncoding->convert';
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['decodeSpURL_preProc'][] =
-            'EXT:extkey/Classes/Hooks/RealurlDecoding.php:In2code\Extkey\Hooks\RealurlDecoding->convert';
+        /*
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['encodeSpURL_postProc'][] = 'EXT:extkey/Classes/Hooks/RealurlEncoding.php:In2code\Extkey\Hooks\RealurlEncoding->convert';
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['decodeSpURL_preProc'][] = 'EXT:extkey/Classes/Hooks/RealurlDecoding.php:In2code\Extkey\Hooks\RealurlDecoding->convert';
+        */
+
+        // FormFramework Hooks
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterBuildingFinished']['1575298962'] = HGON\HgonTemplate\Hooks\FormFramework\AfterBuildingFinishedHook::class;
 
     },
     $_EXTKEY

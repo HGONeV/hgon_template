@@ -14,27 +14,29 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 
-    <f:form class="form" id="rkwevents-reservation-form" action="create" enctype="multipart/form-data"  name="newEventReservation" object="{newEventReservation}">
+    <f:form class="form" id="rkwevents-reservation-form" action="createAlternative" enctype="multipart/form-data"  name="newEventReservation" object="{newEventReservation}">
 
         <h2 id="tx-rkwevents-reservation" class="no-space"><f:translate key="tx_rkwevents_fluid.templates_eventReservation_new.headline" /></h2>
 
         <f:render partial="FormErrors" arguments="{object:Event}" />
 
-        <f:flashMessages as="flashMessages">
-            <f:for each="{flashMessages}" as="flashMessage">
-                <div class="typo3-messages">
-                    <div class="alert alert-{flashMessage.class}">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="alert-message">
-                                    <f:format.raw>{flashMessage.message}</f:format.raw>
+        <f:comment>
+            <f:flashMessages as="flashMessages">
+                <f:for each="{flashMessages}" as="flashMessage">
+                    <div class="typo3-messages">
+                        <div class="alert alert-{flashMessage.class}">
+                            <div class="media">
+                                <div class="media-body">
+                                    <div class="alert-message">
+                                        <f:format.raw>{flashMessage.message}</f:format.raw>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </f:for>
-        </f:flashMessages>
+                </f:for>
+            </f:flashMessages>
+        </f:comment>
 
         <!-- We need both versions here -->
         <f:form.hidden name="event" value="{event.uid}" />
@@ -46,8 +48,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
         <f:render partial="EventReservation/FormFieldsSub" arguments="{_all}"/>
         </f:comment>
 
+        <f:render partial="EventReservation/SpecialCosts" arguments="{_all}"/>
+
         <!-- Override typeNum for AJAX -->
         <input type="hidden" name="type" value="{ajaxTypeNumReservation}">
+
+        <!-- Button Set -->
+        <f:render partial="EventReservation/ButtonSet" arguments="{_all}"/>
 
     </f:form>
 </f:section>

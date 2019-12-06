@@ -52,6 +52,34 @@
             </trans-unit>
 
 
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary">
+                <source>Events culinary</source>
+                <target>Speisen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary.title">
+                <source>Title</source>
+                <target>Titel</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary.price">
+                <source>Price</source>
+                <target>Preis</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_eventculinary.date">
+                <source>Date</source>
+                <target>Datum und Uhrzeit</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary">
+                <source>Events Culinary</source>
+                <target>Veranstaltungs-Speisen</target>
+            </trans-unit>
+
+
             <trans-unit id="tx_hgontemplate_domain_model_pages.tabs.hgon">
                 <source>HGON</source>
                 <target>HGON</target>
