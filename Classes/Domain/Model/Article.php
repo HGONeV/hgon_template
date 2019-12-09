@@ -27,175 +27,89 @@ class Article extends \HGON\HgonPayment\Domain\Model\Article
 {
 
     /**
-     * title
+     * txHgontemplateSubtitle
      *
      * @var string
      */
-    protected $title = '';
+    protected $txHgontemplateSubtitle = '';
 
     /**
-     * subtitle
-     *
-     * @var string
-     */
-    protected $subtitle = '';
-
-    /**
-     * description
-     *
-     * @var string
-     */
-    protected $description = '';
-
-    /**
-     * price
-     *
-     * @var string
-     */
-    protected $price = '';
-
-    /**
-     * image
+     * txHgontemplateImage
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * @cascade remove
      */
-    protected $image = null;
+    protected $txHgontemplateImage = null;
 
     /**
-     * link
+     * txHgontemplateLink
      *
      * @var string
      */
-    protected $link = '';
+    protected $txHgontemplateLink = '';
 
 
     /**
-     * Returns the title
+     * Returns the txHgontemplateSubtitle
      *
-     * @return string $title
+     * @return string $txHgontemplateSubtitle
      */
-    public function getTitle()
+    public function getTxHgontemplateSubtitle()
     {
-        return $this->title;
+        return $this->txHgontemplateSubtitle;
     }
 
     /**
-     * Sets the title
+     * Sets the txHgontemplateSubtitle
      *
-     * @param string $title
+     * @param string $txHgontemplateSubtitle
      * @return void
      */
-    public function setTitle($title)
+    public function setTxHgontemplateSubtitle($txHgontemplateSubtitle)
     {
-        $this->title = $title;
+        $this->txHgontemplateSubtitle = $txHgontemplateSubtitle;
     }
 
     /**
-     * Returns the subtitle
+     * Returns the txHgontemplateImage
      *
-     * @return string $subtitle
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $txHgontemplateImage
      */
-    public function getSubtitle()
+    public function getTxHgontemplateImage()
     {
-        return $this->subtitle;
+        return $this->txHgontemplateImage;
     }
 
     /**
-     * Sets the subtitle
+     * Sets the txHgontemplateImage
      *
-     * @param string $subtitle
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $txHgontemplateImage
      * @return void
      */
-    public function setSubtitle($subtitle)
+    public function setTxHgontemplateImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $txHgontemplateImage)
     {
-        $this->subtitle = $subtitle;
+        $this->txHgontemplateImage = $txHgontemplateImage;
     }
 
     /**
-     * Returns the description
+     * Returns the txHgontemplateLink
      *
-     * @return string $description
+     * @return string $txHgontemplateLink
      */
-    public function getDescription()
+    public function getTxHgontemplateLink()
     {
-        return $this->description;
+        return $this->txHgontemplateLink;
     }
 
     /**
-     * Sets the description
+     * Sets the txHgontemplateLink
      *
-     * @param string $description
+     * @param string $txHgontemplateLink
      * @return void
      */
-    public function setDescription($description)
+    public function setTxHgontemplateLink($txHgontemplateLink)
     {
-        $this->description = $description;
-    }
-
-    /**
-     * Returns the price
-     *
-     * @return string $price
-     */
-    public function getPrice()
-    {
-        // american price format
-        return str_replace(',', '.', $this->price);
-    }
-
-    /**
-     * Sets the price
-     *
-     * @param string $price
-     * @return void
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-
-    /**
-     * Returns the image
-     *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Sets the image
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-     * @return void
-     */
-    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * Returns the link
-     *
-     * @return string $link
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
-     * Sets the link
-     *
-     * @param string $link
-     * @return void
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
+        $this->txHgontemplateLink = $txHgontemplateLink;
     }
 
 

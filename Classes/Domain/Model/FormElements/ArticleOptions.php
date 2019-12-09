@@ -55,14 +55,14 @@ class ArticleOptions extends GenericFormElement
     protected function getArticle() : array
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_hgontemplate_domain_model_article');
+            ->getQueryBuilderForTable('tx_hgonpayment_domain_model_article');
         $queryBuilder->setRestrictions(
             GeneralUtility::makeInstance(FrontendRestrictionContainer::class)
         );
 
         return $queryBuilder
             ->select('uid', 'title')
-            ->from('tx_hgontemplate_domain_model_article')
+            ->from('tx_hgonpayment_domain_model_article')
             ->execute()
             ->fetchAll();
     }

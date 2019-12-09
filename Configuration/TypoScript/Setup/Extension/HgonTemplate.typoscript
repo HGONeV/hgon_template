@@ -99,6 +99,13 @@ config.tx_extbase {
                 }
             }
 
+            HGON\HgonTemplate\Domain\Model\Article {
+                mapping {
+                    tableName = tx_hgonpayment_domain_model_article
+                    recordType =
+                }
+            }
+
             GeorgRinger\News\Domain\Model\News {
                 subclasses {
                     # hier wichtig: index 0 überschreiben für die
