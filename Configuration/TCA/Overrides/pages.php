@@ -29,8 +29,8 @@ $tempPagesColumns = array(
             ),
             'type' => 'select',
             'renderType' => 'selectSingle',
-            'foreign_table' => 'tx_hgontemplate_domain_model_article',
-            'foreign_table_where' => 'ANd tx_hgontemplate_domain_model_article.hidden = 0 AND tx_hgontemplate_domain_model_article.deleted = 0 ORDER BY tx_hgontemplate_domain_model_article.title ASC',
+            'foreign_table' => 'tx_hgonpayment_domain_model_article',
+            'foreign_table_where' => 'ANd tx_hgonpayment_domain_model_article.hidden = 0 AND tx_hgonpayment_domain_model_article.deleted = 0 ORDER BY tx_hgonpayment_domain_model_article.name ASC',
         ),
     ),
 );
