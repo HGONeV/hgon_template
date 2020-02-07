@@ -20,10 +20,20 @@ $tempPagesColumns = [
             'image',
             array(
                 'minitems' => 1,
-                'maxitems' => 1
+                'maxitems' => 1,
+                'overrideChildTca' => [
+                    'types' => [
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                            'showitem' => '
+                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                    --palette--;;filePalette'
+                        ],
+                    ],
+                ],
             ),
             'jpg, png, gif'
         ),
+
     ],
     'tx_hgontemplate_link' => [
         'exclude' => 0,

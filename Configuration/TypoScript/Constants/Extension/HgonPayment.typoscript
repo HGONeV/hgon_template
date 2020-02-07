@@ -7,7 +7,7 @@ plugin.tx_hgonpayment {
                 # cat=plugin.tx_hgontemplate//a; type=string; label=client secret
                 clientSecret =
             }
-            cancelUrl = hgon.de/mitmachen/
+            cancelUrl = https://www.hgon.de/mitmachen/
         }
         orderPid = 81
         subscriptionPid = 81

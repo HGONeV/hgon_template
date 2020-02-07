@@ -220,9 +220,9 @@
                             <h6>Downloads</h6>
                         </header>
                         <div class="aside__content">
-                            <ul>
+                            <ul class="news-downloads">
                                 <f:for each="{newsItem.relatedFiles}" as="relatedFile">
-                                    <li>
+                                    <li><i class="fa fa-download"></i>
                                         <span class="news-related-files-link">
                                             <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
                                                 {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
