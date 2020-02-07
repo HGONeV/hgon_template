@@ -16,6 +16,8 @@ page {
         file30 = https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css
         file30.media = screen,print
 
+        file40 = https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+
 		#file20 = {$globalWebsiteConfig.templatePaths.default.styles}/ie9.css
 		#file20.media = screen,print
 		#file20.allWrap = <!--[if IE]>|<![endif]-->

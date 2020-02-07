@@ -1,7 +1,15 @@
 plugin.tx_hgonpayment {
     settings {
         api {
-            cancelUrl = staging.hgon.de/mitmachen
+            #cancelUrl = staging.hgon.de/mitmachen
+            cancelUrl = http://staging.hgon.de/
         }
+    }
+}
+
+plugin.tx_hgontemplate {
+    article {
+        # cat=plugin.tx_hgontemplate//a; type=int; label=PID of order plugin (shows content for lightbox)
+        orderFormPid = 89
     }
 }

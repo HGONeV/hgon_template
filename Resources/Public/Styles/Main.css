@@ -109,3 +109,8 @@ form.form fieldset p:not(:first-of-type) {
 form.form fieldset p label {
     font-weight: 400;
 }
+
+ul.news-downloads {
+    list-style: none;
+    padding-left: 0;
+}
