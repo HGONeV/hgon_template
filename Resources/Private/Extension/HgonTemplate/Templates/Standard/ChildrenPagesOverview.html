@@ -1,17 +1,15 @@
 <f:for each="{pagesList}" as="pages" iteration="iter">
 
-    <article class="card card--fullwidth card--border card--has-image mt-2">
+    <article class="card card--fullwidth card--border mt-2 {f:if(condition: '{pages.txRkwbasicsArticleImage}', then: 'card--has-image')}">
         <div class="flex-container no-padding">
-            <div class="flex-item c-4 flex-item--medium-half is-image-container">
-                <f:if condition="{pages.txRkwbasicsArticleImage}">
+
+            <f:if condition="{pages.txRkwbasicsArticleImage}">
+                <div class="flex-item c-4 flex-item--medium-half {f:if(condition: '{pages.txRkwbasicsArticleImage}', then: 'is-image-container')}">
                     <f:then>
-                        <div class="card__bgimage" style="background-image:url(<f:uri.image image='{pages.txRkwbasicsArticleImage}' absolute='true' />)"></div>
+                        <div class="card__bgimage" style="background-image:url(<f:uri.image image='{pages.txRkwbasicsArticleImage}' absolute='true' cropVariant='16to9'  />)"></div>
                     </f:then>
-                    <f:else>
-                        <div class="card__bgimage" style="background-image:url(<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Placeholder/hgon_article.jpg' absolute='true' />)"></div>
-                    </f:else>
-                </f:if>
-            </div>
+                </div>
+            </f:if>
             <div class="flex-item c-8 flex-item--medium-half">
                 <div class="card__inner">
                     <header class="card__header">

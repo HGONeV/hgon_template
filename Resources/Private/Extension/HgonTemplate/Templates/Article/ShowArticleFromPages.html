@@ -28,7 +28,10 @@
             <f:if condition="{article.txHgontemplateImage}">
                 <div class="flex-item c-6 / align-center">
                     <picture class="breaker__image / has-shadow">
-                        <f:image src="{article.txHgontemplateImage.uid}" treatIdAsReference="1" title="{article.txHgontemplateImage.title}" alt="{article.txHgontemplateImage.alternative}" width="395"/>
+                        <f:comment>
+                            <f:image src="{article.txHgontemplateImage.uid}" treatIdAsReference="1" title="{article.txHgontemplateImage.title}" alt="{article.txHgontemplateImage.alternative}" width="395"/>
+                        </f:comment>
+                        <f:image src="{article.txHgontemplateImage.uid}" treatIdAsReference="1" title="{article.txHgontemplateImage.title}" alt="{article.txHgontemplateImage.alternative}" cropVariant='4to3' width="395" />
                     </picture>
                 </div>
             </f:if>

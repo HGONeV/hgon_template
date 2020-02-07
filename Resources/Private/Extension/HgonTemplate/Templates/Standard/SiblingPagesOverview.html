@@ -60,9 +60,11 @@
                 <article class="card card--shadow">
                     <f:if condition="{subPages.txRkwbasicsArticleImage}">
                         <picture class="card__image">
-                            <figure class="image">
+                            <f:comment>
                                 <f:image class="image-embed-item" image="{subPages.txRkwbasicsArticleImage}" alt="{subPages.txRkwbasicsArticleImage.title}" width="395" height="300" />
-                            </figure>
+                            </f:comment>
+                            <source media="(min-width: 64.063em)" srcset="<f:uri.image image='{subPages.txRkwbasicsArticleImage}' treatIdAsReference='1' absolute='true' cropVariant='4to3' width='300' />">
+                            <f:image class="image-embed-item" image="{subPages.txRkwbasicsArticleImage}" treatIdAsReference="1" title="{subPages.txRkwbasicsArticleImage.title}" alt="{subPages.txRkwbasicsArticleImage.title}" cropVariant='4to3' width="395" height="300" />
                         </picture>
                     </f:if>
                     <div class="card__inner">
@@ -93,14 +95,18 @@
             <article class="card card--shadow">
                 <f:if condition="{subPages.txRkwbasicsArticleImage}">
                     <picture class="card__image">
-                        <figure class="image">
+                        <f:comment>
                             <f:image class="image-embed-item" image="{subPages.txRkwbasicsArticleImage}" alt="{subPages.txRkwbasicsArticleImage.title}" width="595" height="300" />
-                        </figure>
+                        </f:comment>
+                        <source media="(min-width: 64.063em)" srcset="<f:uri.image image='{subPages.txRkwbasicsArticleImage}' treatIdAsReference='1' absolute='true' cropVariant='16to9' width='595' />">
+                        <f:image class="image-embed-item" image="{subPages.txRkwbasicsArticleImage}" treatIdAsReference="1" title="{subPages.txRkwbasicsArticleImage.title}" alt="{subPages.txRkwbasicsArticleImage.title}" cropVariant='16to9' width="595" height="300" />
                     </picture>
                 </f:if>
                 <div class="card__inner">
                     <header class="card__header">
-                        <span class="tagline">Tagline</span>
+                        <f:comment>
+                            <span class="tagline">Tagline</span>
+                        </f:comment>
                         <h3 class="headline">{subPages.title}</h3>
                     </header>
                     <div class="card__content">
