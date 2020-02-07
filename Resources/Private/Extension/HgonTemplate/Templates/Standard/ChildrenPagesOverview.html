@@ -4,11 +4,11 @@
         <div class="flex-container no-padding">
 
             <f:if condition="{pages.txRkwbasicsArticleImage}">
-                <div class="flex-item c-4 flex-item--medium-half {f:if(condition: '{pages.txRkwbasicsArticleImage}', then: 'is-image-container')}">
-                    <f:then>
+                <f:then>
+                    <div class="flex-item c-4 flex-item--medium-half {f:if(condition: '{pages.txRkwbasicsArticleImage}', then: 'is-image-container')}">
                         <div class="card__bgimage" style="background-image:url(<f:uri.image image='{pages.txRkwbasicsArticleImage}' absolute='true' cropVariant='16to9'  />)"></div>
-                    </f:then>
-                </div>
+                    </div>
+                </f:then>
             </f:if>
             <div class="flex-item c-8 flex-item--medium-half">
                 <div class="card__inner">
