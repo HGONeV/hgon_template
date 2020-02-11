@@ -2,13 +2,13 @@
 
     <f:if condition="{item.data.target}">
         <f:then>
-            <a class="dropdown-link" href="{item.link}" target="{item.data.target}" title="{item.data.title}" data-type="page-load">
+            <a class="{f:if(condition:item.children, then:' dropdown-link')}" href="{item.link}" target="{item.data.target}" title="{item.data.title}" data-type="page-load">
         </f:then>
         <f:else if="{item.target}">
-            <a class="dropdown-link" href="{item.link}" target="{item.target}" title="{item.data.title}" data-type="page-load">
+            <a class="{f:if(condition:item.children, then:' dropdown-link')}" href="{item.link}" target="{item.target}" title="{item.data.title}" data-type="page-load">
         </f:else>
         <f:else>
-            <a class="dropdown-link" href="{item.link}" title="{item.data.title}" data-type="page-load">
+            <a class="{f:if(condition:item.children, then:' dropdown-link')}" href="{item.link}" title="{item.data.title}" data-type="page-load">
         </f:else>
     </f:if>
     {item.title}

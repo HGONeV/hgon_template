@@ -1,6 +1,12 @@
 # https://usetypo3.com/backend-layouts.html
+
 page = PAGE
 page {
+
+    shortcutIcon = EXT:hgon_template/Resources/Public/Images/favicon.ico
+
+    meta.viewport = width=device-width, initial-scale=1, user-scalable=no
+
 	typeNum = 0
 
 	10 = FLUIDTEMPLATE
