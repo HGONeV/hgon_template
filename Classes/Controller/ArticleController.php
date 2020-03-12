@@ -85,6 +85,7 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
         // one time payment mit PayPalPlus
         $result = $payPalApi->createPayment($basket);
 
+
         // extract approval_url
         $approvalUrl = $result->links;
         //$this->view->assign('approvalUrl', $approvalUrl[1]->href);
