@@ -1,18 +1,7 @@
 
 <f:if condition="{isPayPalPlus}">
     <f:then>
-        <div id="ppplus">
-        </div>
-        <script type="application/javascript">
-            var ppp = PAYPAL.apps.PPP({
-                  "approvalUrl": "<f:format.raw>{approvalUrl}</f:format.raw>",
-                  "placeholder": "ppplus",
-                  "mode": "sandbox",
-                  "country": "DE",
-                  "language": "DE",
-                  "useraction": "commit"
-              });
-        </script>
+        <f:render partial="PayPal/PaymentWall" arguments="{_all}" />
     </f:then>
     <f:else>
         <a href="<f:format.raw>{approvalUrl}</f:format.raw>">Jetzt weiter zu PayPal!</a>
