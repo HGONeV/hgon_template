@@ -145,6 +145,7 @@ plugin.tx_hgontemplate {
         partialRootPaths {
             0 = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/
             1 = {$plugin.tx_hgontemplate.view.partialRootPath}
+            2 = EXT:hgon_payment/Resources/Private/Partials/
         }
     }
     persistence {
