@@ -8,8 +8,12 @@
             <f:render partial="Default/Items/Default/TopicBadge" section="Plaintext" arguments="{_all}" />
         </f:then>
     </f:if>
-    <f:render partial="Default/Items/Default/Content" section="Plaintext" arguments="{_all}" />\n
-    <f:render partial="Default/Items/Default/Contact" section="Plaintext" arguments="{_all}" />
+    <f:comment>
+        <!-- zunächst einmal auskommentiert. Kommt aus RkwNewsletter und dieser nutzt alten ViewHelper -->
+        <f:render partial="Default/Items/Default/Content" section="Plaintext" arguments="{_all}" />\n
+        <f:render partial="Default/Items/Default/Contact" section="Plaintext" arguments="{_all}" />
+    </f:comment>
+
 </f:section>
 
 
@@ -22,7 +26,7 @@
     <li style="line-height: 24px; margin-bottom: 10px;">
         <f:if condition="{content.headerLink}">
             <f:then>
-                <a href="<rkwMailer:frontend.typolink parameter='{content.headerLink}' />" target="_blank" id="item-{page.uid}-{itemIterator.cycle}" name="item-{page.uid}-{itemIterator.cycle}" style="color: #869733; text-decoration: none;">
+                <a href="<rkwMailer:frontend.typolink87 parameter='{content.headerLink}' />" target="_blank" id="item-{page.uid}-{itemIterator.cycle}" name="item-{page.uid}-{itemIterator.cycle}" style="color: #869733; text-decoration: none;">
                     {content.header}
                 </a>
             </f:then>
