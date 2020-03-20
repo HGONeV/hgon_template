@@ -87,7 +87,12 @@
                                                                                             <f:then>
 
                                                                                                 <!-- editorial -->
-                                                                                                <f:render partial="Default/Items/Editorial" section="Html" arguments="{_all}" />
+                                                                                                <f:comment>
+
+                                                                                                    <!-- erstmal auskommentiert, weil die RkwNewsletter original files den alten typolink viewhelper nutzen-->
+                                                                                                    <f:render partial="Default/Items/Editorial" section="Html" arguments="{_all}" />
+
+                                                                                                </f:comment>
 
                                                                                             </f:then>
                                                                                         </f:comment>
