@@ -3,8 +3,18 @@ plugin.tx_rkwbasics {
         pageNotFoundConfig {
             _DEFAULT {
                 fallbackPid = 68
-                defaultDomain = staging.hgon.de
+                defaultDomain = stage.hgon.de
             }
         }
+    }
+}
+
+# Module configuration
+module.tx_rkwmailer {
+
+    settings {
+
+        # URL for hard-links in templates
+        baseUrl = http://stage.hgon.de
     }
 }

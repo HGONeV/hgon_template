@@ -8,3 +8,13 @@ plugin.tx_rkwbasics {
         }
     }
 }
+
+# Module configuration
+module.tx_rkwmailer {
+
+    settings {
+
+        # URL for hard-links in templates
+        baseUrl = http://hgon.rkw.local
+    }
+}

@@ -1,0 +1,14 @@
+
+module.tx_rkwmailer {
+
+    settings {
+
+        # cat=module.tx_rkwmailer; type=integer; label=URL for images in templates
+        basePathImages = EXT:hgon_template/Resources/Public/Images
+
+        # cat=module.tx_rkwmailer; type=integer; label=URL for logo in templates
+        basePathLogo = EXT:hgon_template/Resources/Public/Images/logo.png
+    }
+}
+
+plugin.tx_rkwmailer < module.tx_rkwmailer
