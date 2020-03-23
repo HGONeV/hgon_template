@@ -1,3 +1,5 @@
+config.baseURL = http://stage.hgon.de
+
 plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {

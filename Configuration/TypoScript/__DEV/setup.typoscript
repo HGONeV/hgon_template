@@ -1,3 +1,5 @@
+config.baseURL = http://hgon.rkw.local
+
 plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {

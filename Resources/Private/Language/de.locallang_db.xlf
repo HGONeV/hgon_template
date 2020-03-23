@@ -131,9 +131,13 @@
                 <source>Journal Highlight</source>
                 <target>Journal Highlight</target>
             </trans-unit>
-            <trans-unit id="flexform.journalHighlight.pid">
-                <source>Page ID</source>
-                <target>Seite auswählen</target>
+            <trans-unit id="flexform.journalHighlight.newsUid">
+                <source>News UID</source>
+                <target>News auswählen</target>
+            </trans-unit>
+            <trans-unit id="flexform.journalHighlight.imageLeft">
+                 <source>Left justified</source>
+                 <target>Bild linksbündig (ansonsten rechtsbündig, wenn nicht selektiert)</target>
             </trans-unit>
 
             <trans-unit id="flexform.pageHighlight.sheetTitle">
@@ -143,6 +147,10 @@
             <trans-unit id="flexform.pageHighlight.pid">
                 <source>Page ID</source>
                 <target>Seite auswählen</target>
+            </trans-unit>
+            <trans-unit id="flexform.pageHighlight.imageLeft">
+                <source>Left justified</source>
+                <target>Bild linksbündig (ansonsten rechtsbündig, wenn nicht selektiert)</target>
             </trans-unit>
 
              <trans-unit id="flexform.randomAuthor.sheetTitle">

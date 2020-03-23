@@ -2,7 +2,7 @@ plugin.tx_hgonpayment {
     settings {
         api {
             #cancelUrl = staging.hgon.de/mitmachen
-            cancelUrl = http://staging.hgon.de/
+            cancelUrl = http://stage.hgon.de/
         }
     }
 }
