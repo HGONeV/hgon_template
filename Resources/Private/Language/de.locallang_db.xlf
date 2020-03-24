@@ -5,8 +5,8 @@
 		<body>
 		    <!-- MODEL -->
 		    <trans-unit id="tx_hgontemplate_domain_model_didyouknow">
-                <source>Did you know?</source>
-                <target>Wussen Sie schon?</target>
+                <source>HGON Template: Did you know?</source>
+                <target>HGON Template: Wussen Sie schon?</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_didyouknow.title">
                 <source>Title</source>
@@ -23,8 +23,8 @@
 
 
             <trans-unit id="tx_hgontemplate_domain_model_article">
-                <source>Article</source>
-                <target>Artikel</target>
+                <source>HGON Template: Article</source>
+                <target>HGON Template: Artikel</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_article.title">
                 <source>Title</source>
@@ -53,8 +53,8 @@
 
 
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary">
-                <source>Events culinary</source>
-                <target>Speisen</target>
+                <source>RKW Events: Events culinary</source>
+                <target>RKW Events: Speisen</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary.title">
                 <source>Title</source>

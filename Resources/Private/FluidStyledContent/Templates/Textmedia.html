@@ -27,7 +27,7 @@
                         <f:comment><!-- Random image --></f:comment>
                         <f:for each="<hgon:arrayReadByKey array='{row.columns}' key='<hgon:iterateKeyWithSession total=\'<f:count>{row.columns}</f:count>\' uniqueName=\'headerImageIteration\' />'  />" as="column">
                             <f:if condition="{column.media}">
-                                <f:image image="{column.media}" alt="{column.media.name}" width="1440" height="800" />
+                                <f:image image="{column.media}" alt="{column.media.name}" width="1440" height="800" cropVariant="16to9" />
                             </f:if>
                         </f:for>
                     </f:for>

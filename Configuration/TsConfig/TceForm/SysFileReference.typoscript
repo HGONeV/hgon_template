@@ -30,6 +30,17 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
                 title = 3:4
                 value = 0.75
             }
+            /*
+            9:5 {
+                title = 9:5
+                value = 1.8
+            }
+
+            14:5 {
+                title = 14:5
+                value = 2.8
+            }
+            */
             16:9 {
                 title = 16:9
                 value = 1.7777777778
@@ -46,6 +57,29 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
             }
         }
     }
+    /*
+    14to5 {
+        title = 14:5
+        selectedRatio = 14:5
+        allowedAspectRatios {
+            14:5 {
+                title = 14:5
+                value = 2.8
+            }
+        }
+    }
+
+    9to5 {
+        title = 9:5
+        selectedRatio = 9:5
+        allowedAspectRatios {
+            9:5 {
+                title = 9:5
+                value = 1.8
+            }
+        }
+    }
+    */
     4to3 {
         title = 4:3
         selectedRatio = 4:3
