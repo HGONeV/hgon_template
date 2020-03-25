@@ -49,7 +49,7 @@ page {
                     import.listNum = 0
                     // Or: Random image
                     #import.listNum = rand
-                    cropVariant = 16to9
+                    cropVariant = 14to5
                 }
             }
 

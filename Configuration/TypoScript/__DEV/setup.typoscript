@@ -20,3 +20,9 @@ module.tx_rkwmailer {
         baseUrl = http://hgon.rkw.local
     }
 }
+
+plugin.tx_hgonworkgroup_list {
+    settings {
+        showPid = 43
+    }
+}
