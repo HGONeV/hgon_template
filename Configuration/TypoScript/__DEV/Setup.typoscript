@@ -21,6 +21,7 @@ module.tx_rkwmailer {
     }
 }
 
+
 plugin.tx_hgonworkgroup_list {
     settings {
         showPid = 43

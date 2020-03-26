@@ -27,9 +27,9 @@
 
 # Environments
 [applicationContext = Development*]
-    <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/setup.typoscript">
+    <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/Setup.typoscript">
 [global]
 
 [applicationContext = Production/Staging]
-    <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/setup.typoscript">
+    <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Setup.typoscript">
 [global]

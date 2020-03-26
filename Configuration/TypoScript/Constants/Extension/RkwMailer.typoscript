@@ -1,20 +1,20 @@
 module.tx_rkwmailer {
 
-settings {
+    settings {
 
-// Page for redirect plugin
-# redirectPid = 905
+        // Page for redirect plugin
+        # redirectPid = 905
 
-// Delay for redirect
-# redirectDelay = 0
+        // Delay for redirect
+        # redirectDelay = 0
 
-// Link plugin for pixel counter (HTML-mails only)
-# counterPixelPid = 905
+        // Link plugin for pixel counter (HTML-mails only)
+        # counterPixelPid = 905
 
-// URL for hard-links in templates
-baseUrl = https://www.hgon.de
+        // URL for hard-links in templates
+        baseUrl = https://www.hgon.de
 
-}
+    }
 }
 
 plugin.tx_rkwmailer < module.tx_rkwmailer

@@ -13,3 +13,11 @@ plugin.tx_hgontemplate {
         orderFormPid = 89
     }
 }
+
+
+module.tx_rkwmailer {
+    settings {
+        // URL for hard-links in templates
+        baseUrl = http://stage.hgon.de
+    }
+}
