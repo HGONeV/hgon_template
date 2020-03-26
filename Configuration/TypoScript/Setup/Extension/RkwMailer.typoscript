@@ -7,7 +7,7 @@ module.tx_rkwmailer {
         basePathImages = EXT:hgon_template/Resources/Public/Images
 
         # cat=module.tx_rkwmailer; type=integer; label=URL for logo in templates
-        basePathLogo = EXT:hgon_template/Resources/Public/Images/logo.png
+        basePathLogo = EXT:hgon_template/Resources/Public/Images/Newsletter/logo.png
     }
 }
 

@@ -1,6 +1,6 @@
 {namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="background: #ffffff;">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
         <title> HGON Newsletter </title>
         <!--[if !mso]><!-- -->
@@ -14,24 +14,17 @@
 	</head>
     <body style="background-color:#EDF0E1;">
         <div style="background-color:#EDF0E1;">
-            <f:render partial="Newsletter/Default/SpecialHtmlParts" section="part1" />
             <div style="Margin:0px auto;max-width:700px;">
                 <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
                     <tbody>
                         <tr>
                             <td style="direction:ltr;font-size:0px;padding:15px;text-align:center;vertical-align:top;">
 
-                                <f:render partial="Default/Head" section="Html" />
-
-                                <f:render partial="Default/SpecialHtmlParts" section="part3" />
+                                <f:render partial="Default/Head" />
 
                                 <f:render partial="Default/Header" section="Html" />
 
-                                <f:render partial="Default/SpecialHtmlParts" section="part4" />
-
                                 <f:render section="Html" />
-
-                                <f:render partial="Default/SpecialHtmlParts" section="part6" />
 
                                 <f:render partial="Default/News" section="Html" arguments="{_all}" />
 
