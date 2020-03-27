@@ -20,13 +20,25 @@
                         <tr>
                             <td style="direction:ltr;font-size:0px;padding:15px;text-align:center;vertical-align:top;">
 
-                                <f:render partial="Default/Head" />
+                                <f:comment><!-- Headline with subject and webview link --></f:comment>
+                                <f:render partial="Default/Head" section="Html" arguments="{_all}" />
 
+                                <f:comment><!-- Header Image with date --></f:comment>
                                 <f:render partial="Default/Header" section="Html" />
+
+                                <f:comment><!-- Editorial --></f:comment>
+                                <f:render partial="Default/FilterEditorial" section="Html" arguments="{_all}" />
+
+                                <f:comment><!-- contents overview --></f:comment>
+                                <f:render partial="Default/TopNews" section="Html" arguments="{_all}" />
+
+                                <f:render partial="Default/Space" section="Html" />
 
                                 <f:render section="Html" />
 
-                                <f:render partial="Default/News" section="Html" arguments="{_all}" />
+                                <f:comment>
+                                    <f:render partial="Default/News" section="Html" arguments="{_all}" />
+                                </f:comment>
 
                                 <f:render partial="Default/Footer" section="Html" arguments="{_all}" />
                             </td>
