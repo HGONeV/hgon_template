@@ -8,11 +8,16 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
                 title = Frei
                 value = 0.0
             }
-            /*
+
             1:1 {
                 title = 1:1
                 value = 1.0
             }
+            2:1 {
+                title = 2:1
+                value = 2
+            }
+            /*
             3:2 {
                 title = 3:2
                 value = 1.5
@@ -30,29 +35,39 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
                 title = 3:4
                 value = 0.75
             }
+            9:5 {
+                title = 9:5
+                value = 1.8
+            }
+            14:5 {
+                title = 14:5
+                value = 2.8
+            }
+
             16:9 {
                 title = 16:9
                 value = 1.7777777778
             }
         }
     }
-    16to9 {
-        title = 16:9
-        selectedRatio = 16:9
+
+    1to1 {
+        title = 1:1
+        selectedRatio = 1:1
         allowedAspectRatios {
-            16:9 {
-                title = 16:9
-                value = 1.7777777778
+            1:1 {
+                title = 1:1
+                value = 1.0
             }
         }
     }
-    4to3 {
-        title = 4:3
-        selectedRatio = 4:3
+    2to1 {
+        title = 2:1
+        selectedRatio = 2:1
         allowedAspectRatios {
-            4:3 {
-                title = 4:3
-                value = 1.3333333333
+            2:1 {
+                title = 2:1
+                value = 2
             }
         }
     }
@@ -66,17 +81,50 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
             }
         }
     }
-    /*
-    specialMobile {
-        title = Our special mobile variant
-        selectedRatio = NaN
+    4to3 {
+        title = 4:3
+        selectedRatio = 4:3
         allowedAspectRatios {
             4:3 {
                 title = 4:3
-                value = 1.3333333
+                value = 1.3333333333
             }
         }
     }
-    */
+
+    16to9 {
+        title = 16:9
+        selectedRatio = 16:9
+        allowedAspectRatios {
+            16:9 {
+                title = 16:9
+                value = 1.7777777778
+            }
+        }
+    }
+    9to5 {
+        title = 9:5
+            selectedRatio = 9:5
+            allowedAspectRatios {
+            9:5 {
+                title = 9:5
+                value = 1.8
+            }
+        }
+    }
+    14to5 {
+        title = 14:5
+        selectedRatio = 14:5
+        allowedAspectRatios {
+            14:5 {
+                title = 14:5
+                value = 2.8
+            }
+        }
+    }
+
+
+
+
 }
 

@@ -101,8 +101,11 @@
             <trans-unit id="flexform.journalHighlight.sheetTitle">
                 <source>Journal Highlight</source>
             </trans-unit>
-            <trans-unit id="flexform.journalHighlight.pid">
-                <source>Page ID</source>
+            <trans-unit id="flexform.journalHighlight.newsUid">
+                <source>News UID</source>
+            </trans-unit>
+            <trans-unit id="flexform.journalHighlight.imageLeft">
+                 <source>Left justified</source>
             </trans-unit>
 
             <trans-unit id="flexform.pageHighlight.sheetTitle">
@@ -111,12 +114,8 @@
             <trans-unit id="flexform.pageHighlight.pid">
                 <source>Page ID</source>
             </trans-unit>
-
-            <trans-unit id="flexform.pageHighlight.sheetTitle">
-                <source>Page Highlight</source>
-            </trans-unit>
-            <trans-unit id="flexform.pageHighlight.pid">
-                <source>Page ID</source>
+            <trans-unit id="flexform.pageHighlight.imageLeft">
+                <source>Left justified</source>
             </trans-unit>
 
             <trans-unit id="flexform.projectTeaser.sheetTitle">

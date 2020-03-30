@@ -3,13 +3,13 @@
     <aside class="aside color-bg-tertiary">
         <header class="aside__header">
             <h6>
-                Ansprechpartner
+                Ansprechpartner*In
             </h6>
         </header>
         <div class="aside__content">
             <p class="cf">
                 <f:if condition="{author.imageBoxes}" >
-                    <f:image class="img-left" image="{author.imageBoxes}" alt="{author.imageBoxes.title}" width="100" height="100" />
+                    <f:image class="img-left" image="{author.imageBoxes}" alt="{author.imageBoxes.title}" cropVariant="1to1" width="100" height="100" />
                 </f:if>
             </p>
             <p>
@@ -19,15 +19,19 @@
                 <br/>
             </p>
             <p>
-                <a href="tel:<hgon:php.pregReplace pattern='[^+0-9]' replacement='' subject='{author.phone} {author.phone2}' />">
-                    <svg class="icon icon--btn-left color-font-primary" width="16" height="16"><use xlink:href="#ui-phone"></use></svg>
-                    <f:format.stripTags>{author.phone} {author.phone2}</f:format.stripTags>
-                </a>
-                <br>
-                <a href="mailto:<f:format.stripTags><f:format.html>{author.email}</f:format.html></f:format.stripTags>">
-                    <svg class="icon icon--btn-left color-font-primary" width="16" height="16"><use xlink:href="#ui-mail"></use></svg>
-                    {author.email}
-                </a>
+                <f:if condition="{author.phone} || {author.phone2}">
+                    <a href="tel:<hgon:php.pregReplace pattern='[^+0-9]' replacement='' subject='{author.phone} {author.phone2}' />">
+                        <svg class="icon icon--btn-left color-font-primary" width="16" height="16"><use xlink:href="#ui-phone"></use></svg>
+                        <f:format.stripTags>{author.phone} {author.phone2}</f:format.stripTags>
+                    </a>
+                    <br>
+                </f:if>
+                <f:if condition="{author.email}">
+                    <a href="mailto:<f:format.stripTags><f:format.html>{author.email}</f:format.html></f:format.stripTags>">
+                        <svg class="icon icon--btn-left color-font-primary" width="16" height="16"><use xlink:href="#ui-mail"></use></svg>
+                        {author.email}
+                    </a>
+                </f:if>
             </p>
         </div>
     </aside>

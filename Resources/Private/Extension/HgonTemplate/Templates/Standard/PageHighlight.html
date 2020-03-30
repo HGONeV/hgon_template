@@ -1,40 +1,101 @@
-<article class="box box--floated box--floated-left / mb-5">
-    <div class="box__inner pr-5">
-        <picture class="box__image">
-            <f:if condition="{pages.txRkwbasicsArticleImage}" >
-                <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="<f:uri.image src='{pages.txRkwbasicsArticleImage.uid}' treatIdAsReference='1' absolute='true' cropVariant='4to3' />">
-                <source media="(max-width: 37.5em)" srcset="<f:uri.image src='{pages.txRkwbasicsArticleImage.uid}' treatIdAsReference='1' absolute='true' cropVariant='4to3' />">
-                <f:image src="{pages.txRkwbasicsArticleImage.uid}" treatIdAsReference="1" title="{pages.txRkwbasicsArticleImage.title}" alt="{pages.txRkwbasicsArticleImage.alternative}" width="500" height="400" cropVariant='4to3' />
-            </f:if>
-        </picture>
-        <header class="box__header">
-            <h2>
-                <span class="badge badge--secondary">
-                     {pages.subtitle}
-                     <span class="is-hidden">: </span>
-                </span>
-                <span class="h2 headline">{pages.title}</span>
-            </h2>
-        </header>
-        <div class="box__content">
-            <p>{pages.txRkwbasicsTeaserText}</p>
-            <p>
-                <f:link.page pageUid="{pages.uid}" class="btn btn--primary btn--rounded">
-                    <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.readMore" />
-                </f:link.page>
-            </p>
-        </div>
-        <footer class="box__footer mt-2">
-            <h6>
-                <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.furtherContent" />
-            </h6>
-            <ul class="menu menu--inline">
-                <f:for each="{subPagesList}" as="subPages">
-                    <li>
-                        <f:link.page class="link link--goto" pageUid="{subPages.uid}">{subPages.title}</f:link.page>
-                    </li>
-                </f:for>
-            </ul>
-        </footer>
-    </div>
-</article>
+<f:if condition="{settings.pageHighlight.imageLeft}">
+    <f:then>
+        <article class="box box--floated box--floated-right / mb-8">
+            <div class="box__inner">
+                <div class="flex-container space-between no-padding">
+
+                    <div class="flex-item c-8">
+                        <picture class="box__image">
+
+                            <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="<f:uri.image src='{pages.txRkwbasicsArticleImage.uid}' treatIdAsReference='1' absolute='true' cropVariant='3to4' width='300' />">
+                            <source media="(max-width: 37.5em)" srcset="<f:uri.image src='{pages.txRkwbasicsArticleImage.uid}' treatIdAsReference='1' absolute='true' cropVariant='3to4' width='300' />">
+                            <f:image src="{pages.txRkwbasicsArticleImage.uid}" treatIdAsReference="1" title="{pages.txRkwbasicsArticleImage.title}" alt="{pages.txRkwbasicsArticleImage.alternative}" cropVariant='3to4' width="300" height="400" />
+
+                        </picture>
+                        <header class="box__header">
+                            <h2>
+                                <f:if condition="{pages.subtitle}">
+                                    <span class="badge badge--secondary">
+                                         {pages.subtitle}
+                                         <span class="is-hidden">: </span>
+                                    </span>
+                                </f:if>
+                                <span class="h2 headline">{pages.title}</span>
+                            </h2>
+                        </header>
+                        <div class="box__content">
+                            <p>{pages.txRkwbasicsTeaserText}</p>
+                            <p>
+                                <f:link.page pageUid="{pages.uid}" class="btn btn--primary btn--rounded">
+                                    <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.readMore" />
+                                </f:link.page>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex-item c-4 pl-2">
+                        <footer class="box__footer mt-2">
+                            <f:if condition="{subPagesList}">
+                                <h6><f:translate key="tx_hgontemplate_templates_standard_journalHighlight.furtherContent" /></h6>
+                                <ul class="menu menu--list">
+                                    <f:for each="{subPagesList}" as="subPages">
+                                        <li>
+                                            <f:link.page class="link link--goto" pageUid="{subPages.uid}">{subPages.title}</f:link.page>
+                                        </li>
+                                    </f:for>
+                                </ul>
+                            </f:if>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </f:then>
+    <f:else>
+        <article class="box box--floated box--floated-left / mb-5">
+            <div class="box__inner pr-5">
+                <picture class="box__image">
+                    <f:if condition="{pages.txRkwbasicsArticleImage}" >
+                        <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="<f:uri.image src='{pages.txRkwbasicsArticleImage.uid}' treatIdAsReference='1' absolute='true' cropVariant='4to3' />">
+                        <source media="(max-width: 37.5em)" srcset="<f:uri.image src='{pages.txRkwbasicsArticleImage.uid}' treatIdAsReference='1' absolute='true' cropVariant='4to3' />">
+                        <f:image src="{pages.txRkwbasicsArticleImage.uid}" treatIdAsReference="1" title="{pages.txRkwbasicsArticleImage.title}" alt="{pages.txRkwbasicsArticleImage.alternative}" width="500" height="400" cropVariant='4to3' />
+                    </f:if>
+                </picture>
+                <header class="box__header">
+                    <h2>
+                        <f:if condition="{pages.subtitle}">
+                            <span class="badge badge--secondary">
+                                 {pages.subtitle}
+                                 <span class="is-hidden">: </span>
+                            </span>
+                        </f:if>
+                        <span class="h2 headline">{pages.title}</span>
+                    </h2>
+                </header>
+                <div class="box__content">
+                    <p>{pages.txRkwbasicsTeaserText}</p>
+                    <p>
+                        <f:link.page pageUid="{pages.uid}" class="btn btn--primary btn--rounded">
+                            <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.readMore" />
+                        </f:link.page>
+                    </p>
+                </div>
+                <f:if condition="{subPagesList}">
+                    <footer class="box__footer mt-2">
+                        <h6>
+                            <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.furtherContent" />
+                        </h6>
+                        <ul class="menu menu--inline">
+                            <f:for each="{subPagesList}" as="subPages">
+                                <li>
+                                    <f:link.page class="link link--goto" pageUid="{subPages.uid}">{subPages.title}</f:link.page>
+                                </li>
+                            </f:for>
+                        </ul>
+                    </footer>
+                </f:if>
+            </div>
+        </article>
+    </f:else>
+</f:if>
+

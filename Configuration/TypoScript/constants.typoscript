@@ -19,9 +19,9 @@
 
 # Environments
 [applicationContext = Development*]
-    <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/Constants.ts">
+    <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/Constants.typoscript">
 [global]
 
 [applicationContext = Production/Staging]
-    <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Constants.ts">
+    <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Constants.typoscript">
 [global]
