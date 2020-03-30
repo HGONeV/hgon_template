@@ -49,14 +49,15 @@ page {
                     import.listNum = 0
                     // Or: Random image
                     #import.listNum = rand
+                    cropVariant = 14to5
                 }
             }
 
             pageArticleImageDesktop < page.10.variables.pageArticleImageResource
             pageArticleImageDesktop {
                 file {
-                    width = 1680
-                    height = 600
+                    width = 1680c
+                    height = 600c
                 }
             }
 
@@ -71,16 +72,16 @@ page {
             pageArticleImageMobile < page.10.variables.pageArticleImageResource
             pageArticleImageMobile {
                 file {
-                    width = 768
-                    height = 350
+                    width = 768c
+                    height = 350c
                 }
             }
 
             pageArticleImageSmall < page.10.variables.pageArticleImageResource
             pageArticleImageSmall {
                 file {
-                    width = 600
-                    height = 350
+                    width = 600c
+                    height = 350c
                 }
             }
 

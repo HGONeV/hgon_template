@@ -2,7 +2,7 @@ plugin.tx_hgonpayment {
     settings {
         api {
             #cancelUrl = staging.hgon.de/mitmachen
-            cancelUrl = http://staging.hgon.de/
+            cancelUrl = http://stage.hgon.de/
         }
     }
 }
@@ -11,5 +11,13 @@ plugin.tx_hgontemplate {
     article {
         # cat=plugin.tx_hgontemplate//a; type=int; label=PID of order plugin (shows content for lightbox)
         orderFormPid = 89
+    }
+}
+
+
+module.tx_rkwmailer {
+    settings {
+        // URL for hard-links in templates
+        baseUrl = http://stage.hgon.de
     }
 }

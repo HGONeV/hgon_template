@@ -1,13 +1,19 @@
-
 module.tx_rkwmailer {
 
     settings {
 
-        # cat=module.tx_rkwmailer; type=integer; label=URL for images in templates
-        basePathImages =  EXT:hgon_template/Resources/Public/Images
+        // Page for redirect plugin
+        # redirectPid = 905
 
-        # cat=module.tx_rkwmailer; type=integer; label=URL for logo in templates
-        basePathLogo = EXT:hgon_template/Resources/Public/Images/logo.png
+        // Delay for redirect
+        # redirectDelay = 0
+
+        // Link plugin for pixel counter (HTML-mails only)
+        # counterPixelPid = 905
+
+        // URL for hard-links in templates
+        baseUrl = https://www.hgon.de
+
     }
 }
 

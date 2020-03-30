@@ -1,0 +1,29 @@
+config.baseURL = http://hgon.rkw.local
+
+plugin.tx_rkwbasics {
+    settings {
+        pageNotFoundConfig {
+            _DEFAULT {
+                fallbackPid = 68
+                defaultDomain = hgon.rkw.local
+            }
+        }
+    }
+}
+
+# Module configuration
+module.tx_rkwmailer {
+
+    settings {
+
+        # URL for hard-links in templates
+        baseUrl = http://hgon.rkw.local
+    }
+}
+
+
+plugin.tx_hgonworkgroup_list {
+    settings {
+        showPid = 43
+    }
+}
