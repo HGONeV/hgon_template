@@ -82,6 +82,49 @@ page {
                 languageField = sys_language_uid
             }
 
+            //=================================================================
+            // add workgroup header to workgroup view
+            //=================================================================
+            workGroupHeader = USER
+            workGroupHeader {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonWorkgroup
+                pluginName = Header
+                vendorName = HGON
+                controller = WorkGroup
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    WorkGroup {
+                        1 = header
+                    }
+                }
+
+                view =< plugin.tx_hgonworkgroup.view
+                persistence =< plugin.tx_hgonworkgroup.persistence
+                settings =< plugin.tx_hgonworkgroup.settings
+            }
+
+            //=================================================================
+            // add workgroup sidebar to workgroup view
+            //=================================================================
+            workGroupSidebar = USER
+            workGroupSidebar {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonWorkgroup
+                pluginName = Sidebar
+                vendorName = HGON
+                controller = WorkGroup
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    WorkGroup {
+                        1 = sidebar
+                    }
+                }
+
+                view =< plugin.tx_hgonworkgroup.view
+                persistence =< plugin.tx_hgonworkgroup.persistence
+                settings =< plugin.tx_hgonworkgroup.settings
+            }
 
 		}
 	}

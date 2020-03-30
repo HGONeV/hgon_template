@@ -36,7 +36,14 @@ class AuthorsRepository extends \RKW\RkwAuthors\Domain\Repository\AuthorsReposit
     {
         $query = $this->createQuery();
         $query->matching(
-            $query->in('uid', GeneralUtility::trimExplode(',', $uidList))
+            $query->logicalAnd(
+                $query->in('uid', GeneralUtility::trimExplode(',', $uidList)),
+                $query->logicalNot(
+                    $query->equals('functionDescription', '')
+                )
+            )
+
+
         );
 
         return $query->execute()->toArray();

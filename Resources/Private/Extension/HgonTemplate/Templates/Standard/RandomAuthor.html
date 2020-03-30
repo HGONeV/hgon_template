@@ -5,7 +5,7 @@
         </header>
         <cite class="quote__cite">
             <f:if condition="{author.imageBoxes}">
-                <f:image image="{author.imageBoxes}" alt="{author.imageBoxes.title}" width="100px" height="100px" />
+                <f:image image="{author.imageBoxes}" alt="{author.imageBoxes.title}" width="100px" height="100px" cropVariant="1to1" />
             </f:if>
             <span>
                 {author.firstName} {author.lastName}, {author.functionTitle}

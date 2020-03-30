@@ -5,8 +5,8 @@
 		<body>
 		    <!-- MODEL -->
 		    <trans-unit id="tx_hgontemplate_domain_model_didyouknow">
-                <source>Did you know?</source>
-                <target>Wussen Sie schon?</target>
+                <source>HGON Template: Did you know?</source>
+                <target>HGON Template: Wussen Sie schon?</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_didyouknow.title">
                 <source>Title</source>
@@ -23,8 +23,8 @@
 
 
             <trans-unit id="tx_hgontemplate_domain_model_article">
-                <source>Article</source>
-                <target>Artikel</target>
+                <source>HGON Template: Article</source>
+                <target>HGON Template: Artikel</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_article.title">
                 <source>Title</source>
@@ -53,8 +53,8 @@
 
 
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary">
-                <source>Events culinary</source>
-                <target>Speisen</target>
+                <source>RKW Events: Events culinary</source>
+                <target>RKW Events: Speisen</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary.title">
                 <source>Title</source>
@@ -131,9 +131,13 @@
                 <source>Journal Highlight</source>
                 <target>Journal Highlight</target>
             </trans-unit>
-            <trans-unit id="flexform.journalHighlight.pid">
-                <source>Page ID</source>
-                <target>Seite auswählen</target>
+            <trans-unit id="flexform.journalHighlight.newsUid">
+                <source>News UID</source>
+                <target>News auswählen</target>
+            </trans-unit>
+            <trans-unit id="flexform.journalHighlight.imageLeft">
+                 <source>Left justified</source>
+                 <target>Bild linksbündig (ansonsten rechtsbündig, wenn nicht selektiert)</target>
             </trans-unit>
 
             <trans-unit id="flexform.pageHighlight.sheetTitle">
@@ -143,6 +147,10 @@
             <trans-unit id="flexform.pageHighlight.pid">
                 <source>Page ID</source>
                 <target>Seite auswählen</target>
+            </trans-unit>
+            <trans-unit id="flexform.pageHighlight.imageLeft">
+                <source>Left justified</source>
+                <target>Bild linksbündig (ansonsten rechtsbündig, wenn nicht selektiert)</target>
             </trans-unit>
 
              <trans-unit id="flexform.randomAuthor.sheetTitle">

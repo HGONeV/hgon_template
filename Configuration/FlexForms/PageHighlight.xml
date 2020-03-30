@@ -22,6 +22,16 @@
                             </config>
                         </TCEforms>
                     </settings.pageHighlight.pid>
+                    <settings.pageHighlight.imageLeft>
+                        <TCEforms>
+                            <exclude>0</exclude>
+                            <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.pageHighlight.imageLeft</label>
+                            <config>
+                                <type>check</type>
+                                <default>0</default>
+                            </config>
+                        </TCEforms>
+                    </settings.pageHighlight.imageLeft>
                 </el>
             </ROOT>
         </sDEF>

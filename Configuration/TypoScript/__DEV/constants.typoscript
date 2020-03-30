@@ -1,8 +1,0 @@
-plugin.tx_hgonpayment {
-    settings {
-        api {
-            # Muss leider sein: Unkorrekte URL, weil PayPal hier ein .local nicht akzeptiert und Fehler wirft
-            cancelUrl = http://staging.hgon.de/mitmachen
-        }
-    }
-}

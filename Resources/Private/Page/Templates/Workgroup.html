@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="HgonDefault" />
+
+<f:section name="Main">
+
+    <f:section name="Header">
+        <f:render partial="Layout/Header" arguments="{_all}" />
+    </f:section>
+
+    <header class="main__header main__header--image">
+
+        <f:format.html parseFuncTSPath="">{workGroupHeader}</f:format.html>
+
+    </header>
+
+    <div class="main__content">
+        <div class="content content--boxed">
+            <article class="article">
+                <f:cObject typoscriptObjectPath="lib.content.render" data="{colPos:0}" />
+            </article>
+            <div class="sidebar sidebar--boxed">
+                <f:format.html parseFuncTSPath="">{workGroupSidebar}</f:format.html>
+                <f:comment>
+                    <!-- Plugin -->
+                    <f:render partial="Layout/Sidebar" arguments="{_all}" />
+                </f:comment>
+            </div>
+        </div>
+
+    </div>
+
+    <f:render partial="Layout/MainFooter" arguments="{_all}" />
+
+</f:section>
+
+</html>
