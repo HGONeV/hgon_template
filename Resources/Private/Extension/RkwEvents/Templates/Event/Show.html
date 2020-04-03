@@ -120,22 +120,23 @@ Otherwise your changes will be overwritten the next time you save the extension 
             </div>
         </div>
 
-        <section class="section">
-            <header class="section__header">
-                <div class="wrap wrap--text / align-center">
-                    <h2>Weitere Veranstaltungen</h2>
-                </div>
-            </header>
-            <div class="section__content">
-                <div class="wrap">
-                    <f:render partial="Event/List/EventListing" arguments="{_all}" />
+        <f:if condition="{sortedEventList}">
+            <section class="section">
+                <header class="section__header">
+                    <div class="wrap wrap--text / align-center">
+                        <h2>Weitere Veranstaltungen</h2>
+                    </div>
+                </header>
+                <div class="section__content">
+                    <div class="wrap">
+                        <f:render partial="Event/List/EventListing" arguments="{_all}" />
 
-                    <!-- lazy loading / load more box -->
-                    <f:render partial="Event/List/MoreLink" arguments="{_all}" />
+                        <!-- lazy loading / load more box -->
+                        <f:render partial="Event/List/MoreLink" arguments="{_all}" />
+                    </div>
                 </div>
-            </div>
-
-        </section>
+            </section>
+        </f:if>
 
     </div>
 

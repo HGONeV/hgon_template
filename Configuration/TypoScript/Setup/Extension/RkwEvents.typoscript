@@ -7,6 +7,7 @@ plugin.tx_rkwevents {
 
     settings {
         ajaxTypeNumReservation = {$plugin.tx_rkwevents.settings.ajaxTypeNumReservation}
+        showWorkGroupPagination = {$plugin.tx_rkwevents.settings.showWorkGroupPagination}
     }
 }
 

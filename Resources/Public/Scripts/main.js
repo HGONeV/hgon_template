@@ -44,4 +44,10 @@ jQuery(document).ready(function(){
         event.preventDefault();
     });
 
+
+    // hide events more button after click. If there are further entries, a new button is created by the ajax loaded template
+    jQuery(document).on('click', 'a.next-page.autoload', function (event) {
+       jQuery(this).remove();
+    });
+
 });

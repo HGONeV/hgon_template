@@ -113,7 +113,20 @@ class EventAjaxController extends \RKW\RkwEvents\Controller\AjaxController
             $querySettings->setStoragePageIds([$hgonWorkgroupSettings['persistence']['storagePid']]);
             $this->eventRepository->setDefaultQuerySettings($querySettings);
             $listItemsPerView = intval($this->settings['itemsPerPage']) ? intval($this->settings['itemsPerPage']) : 10;
-            $workGroupEventList = $this->eventRepository->findByFilterOptions($filter, $listItemsPerView, intval($page), false, true);
+
+            $workGroupEventList = $this->eventRepository->findByFilterOptions($filter, $listItemsPerView, intval($page), false, true)->toArray();
+
+            $showMoreLink = false;
+            if ($listItemsPerView < count($workGroupEventList)) {
+                $showMoreLink = true;
+                // kill additional counter-item
+                array_pop($workGroupEventList);
+
+                // if pagination for work groups is disabled - don't show more link
+                if (!$this->settings['showWorkGroupPagination']) {
+                    $showMoreLink = false;
+                }
+            }
 
             // if $isWorkGroupEvent is set: This is the "show more"-Button for workGroupEvents. Just replace workgroupEvent and go out
             // (otherwise, if filter request: The script also uses the part below and sets the workGroupEventList to the view)
@@ -125,10 +138,14 @@ class EventAjaxController extends \RKW\RkwEvents\Controller\AjaxController
                 /** @var \RKW\RkwBasics\Helper\Json $jsonHelper */
                 $jsonHelper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwBasics\\Helper\\Json');
                 $replacements['workGroupEventList'] = $workGroupEventList;
+                $replacements['showMoreLink'] = $showMoreLink;
+                $replacements['ajaxTypeNum']  = intval($this->settings['ajaxTypeNum']);
+                $replacements['pageMore'] = $page + 1;
+                $replacements['isWorkGroup'] = true;
                 $jsonHelper->setHtml(
                     'tx-rkwevents-grid-section-workgroup',
                     $replacements,
-                    'replace',
+                    'append',
                     'Ajax/List/More.html'
                 );
                 print (string)$jsonHelper;
@@ -170,7 +187,6 @@ class EventAjaxController extends \RKW\RkwEvents\Controller\AjaxController
         if ($page > 0) {
             $showMoreLink = count($eventList) < (count($queryResult) - 1) ? true : false;
         }
-
 
         // 5. sort event list (group by month) - only if no distance search is performed
         $sortedEventList = array();

@@ -73,6 +73,11 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
             $showMoreLink = true;
             // kill additional counter-item
             array_pop($workGroupEventList);
+
+            // if pagination for work groups is disabled - don't show more link
+            if (!$this->settings['showWorkGroupPagination']) {
+                $showMoreLink = false;
+            }
         }
         $this->view->assign('workGroupEventList', $workGroupEventList);
         // filter options

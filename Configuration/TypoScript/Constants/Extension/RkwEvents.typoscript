@@ -79,6 +79,8 @@ plugin.tx_rkwevents {
         # cat=plugin.tx_rkwevents; type=integer; label=PageNum for AJAX-requests (reservation)
         ajaxTypeNumReservation = 1565014148
 
+        # cat=plugin.tx_rkwevents; type=integer; label=show pagination for work group
+        showWorkGroupPagination = 1
 
         mandatoryFields {
 
