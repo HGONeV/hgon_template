@@ -15,7 +15,5 @@
     </f:if>
 
     <!-- lazy loading / load more box -->
-    <div class="grid / mt-2">
-        <f:render partial="Event/List/MoreLink" arguments="{isWorkGroupEvent: 1, showMoreLink: showMoreLink, filter: filter, pageMore: pageMore, archive: archive, ajaxTypeNum: ajaxTypeNum}" />
-    </div>
+    <f:render partial="Event/List/MoreLink" arguments="{isWorkGroupEvent: 1, showMoreLink: showMoreLink, filter: filter, pageMore: pageMore, archive: archive, ajaxTypeNum: ajaxTypeNum}" />
 </div>

@@ -137,7 +137,6 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
      */
     public function findByFilterOptions($filter, $limit, $page, $archive = false, $isWorkGroupEvent = false)
     {
-
         // results between 'from' and 'till' (with additional proof item to check, if there are more results -> +1)
         $offset = $page * $limit;
         $limit = $limit + 1;
@@ -148,8 +147,9 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
             // workgroup list is counting another way
             if (!$isWorkGroupEvent) {
                 $offset--;
+                $limit++;
             }
-            $limit++;
+
         }
 
         $query = $this->createQuery();
