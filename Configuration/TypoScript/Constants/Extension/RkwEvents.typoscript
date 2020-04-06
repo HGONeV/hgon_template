@@ -56,7 +56,7 @@ plugin.tx_rkwevents {
         surveyPid =
 
         # cat=plugin.tx_rkwevents; type=integer; label=Number of items in list view (default 10)
-        itemsPerPage = 2
+        itemsPerPage = 6
 
         # cat=plugin.tx_rkwevents; type=integer; label=PageNum for AJAX-requests
         ajaxTypeNum = 1472648979
