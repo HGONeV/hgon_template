@@ -39,11 +39,14 @@
 <f:section name="Html">
     <f:if condition="{pages}">
 
+        <f:render partial="Default/Items/Headline" section="Html" arguments="{headline: 'Aus der Redaktion'}" />
+
         <f:for each="{pages}" as="page" iteration="pageIterator">
             <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='{page.uid}-{webView}-{includeEditorials}1' />">
                 <f:then>
-                    Cache!
-                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
+                    <f:format.raw>
+                        <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
+                    </f:format.raw>
                 </f:then>
                 <f:else>
                     <f:format.raw>
