@@ -33,3 +33,10 @@ module.tx_rkwnewsletter {
     }
 }
 
+module.tx_rkwnewsletter {
+
+    settings < plugin.tx_rkwnewsletter.settings
+    persistence < plugin.tx_rkwnewsletter.persistence
+
+}
+

@@ -21,6 +21,11 @@
 <!-- HTML for all other items -->
 <f:section name="Html">
 
+    <f:if condition="{itemIterator.isFirst}">
+        <f:render partial="Default/Items/Headline" section="Html" arguments="{headline: '{page.txRkwnewsletterTopic.name}'}" />
+    </f:if>
+
+
     <div style="Margin:0px auto;max-width:670px;">
         <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
             <tbody>
