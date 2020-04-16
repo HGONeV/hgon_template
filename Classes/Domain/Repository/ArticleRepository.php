@@ -25,5 +25,27 @@ namespace HGON\HgonTemplate\Domain\Repository;
  */
 class ArticleRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
+    protected $defaultOrderings = array(
+        'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
+    );
 
+    /**
+     * Find a count of articles until a set max date
+     *
+     * @param integer
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     */
+    public function findByMaxDate($maxTimestamp, $count = 1)
+    {
+        $query = $this->createQuery();
+
+        $query->matching(
+            $query->lessThanOrEqual('crdate', $maxTimestamp)
+        );
+
+        $query->setLimit($count);
+
+        return $query->execute();
+        //===
+    }
 }

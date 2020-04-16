@@ -158,4 +158,26 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
         //===
     }
 
+
+
+    /**
+     * Find a count of news until a set max date
+     *
+     * @param integer
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     */
+    public function findByMaxDate($maxTimestamp, $count = 3)
+    {
+        $query = $this->createQuery();
+
+        $query->matching(
+            $query->lessThanOrEqual('datetime', $maxTimestamp)
+        );
+
+        $query->setLimit($count);
+
+        return $query->execute();
+        //===
+    }
+
 }

@@ -109,3 +109,20 @@ CREATE TABLE tx_rkwevents_domain_model_event (
 CREATE TABLE tx_rkwevents_domain_model_eventreservation (
 	tx_hgontemplate_eventculinary int(11) unsigned DEFAULT '0' NOT NULL,
 );
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter (
+	tx_hgontemplate_news_select int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_news_count int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_news_list varchar(255) DEFAULT '' NOT NULL,
+
+	tx_hgontemplate_article_select int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_article_count int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_article_list varchar(255) DEFAULT '' NOT NULL,
+
+	tx_hgontemplate_event_select int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_event_count int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_event_list varchar(255) DEFAULT '' NOT NULL,
+);

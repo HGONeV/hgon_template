@@ -202,4 +202,26 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
         return $result;
         //===
     }
+
+
+
+    /**
+     * Find a count of articles until a set max date
+     *
+     * @param integer
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     */
+    public function findByMaxDate($maxTimestamp, $count = 1)
+    {
+        $query = $this->createQuery();
+
+        $query->matching(
+            $query->lessThanOrEqual('crdate', $maxTimestamp)
+        );
+
+        $query->setLimit($count);
+
+        return $query->execute();
+        //===
+    }
 }

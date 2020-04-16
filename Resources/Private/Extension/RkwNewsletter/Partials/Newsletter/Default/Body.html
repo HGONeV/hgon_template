@@ -28,6 +28,12 @@ xxx FREIER TEXT AUS NEWSLETTER xxx
     <!-- Normal Contents -->
     <f:render partial="Default/Items" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />
 
+    <!-- News -->
+    <f:render partial="Default/News" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />
+
+    <!-- Article -->
+    <f:render partial="Default/Article" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />
+
 
     <f:comment>
         <!-- Special Contents -->

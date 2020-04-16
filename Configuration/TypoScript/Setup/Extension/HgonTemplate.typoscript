@@ -92,6 +92,13 @@ config.tx_extbase {
                 }
             }
 
+            HGON\HgonTemplate\Domain\Model\Newsletter {
+                mapping {
+                    tableName = tx_rkwnewsletter_domain_model_newsletter
+                    recordType =
+                }
+            }
+
             HGON\HgonTemplate\Domain\Model\WorkGroup {
                 mapping {
                     tableName = tx_hgonworkgroup_domain_model_workgroup

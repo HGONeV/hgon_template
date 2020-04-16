@@ -125,6 +125,97 @@
             </trans-unit>
 
 
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.news">
+                <source>News</source>
+                <target>Neuigkeiten</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.article">
+                <source>Article</source>
+                <target>Artikel</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.events">
+                <source>Events</source>
+                <target>Veranstaltungen</target>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select">
+                <source>News select</source>
+                <target>Art der Newsausgabe</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.none">
+                <source>Don't show anything</source>
+                <target>Keine Neuigkeiten anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.automatic">
+                <source>Automatic</source>
+                <target>Zeige aktuellste News automatisch an</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.manualSelect">
+                <source>Manual select</source>
+                <target>Manuelle Auswahl</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_count">
+                <source>Count</source>
+                <target>Anzahl angezeigter Newsmeldungen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_list">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select">
+                <source>Article select</source>
+                <target>Art der Artikelausgabe</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.none">
+                <source>Don't show anything</source>
+                <target>Keine Artikel anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.automatic">
+                <source>Automatic</source>
+                <target>Zeige aktuellste Artikel automatisch an</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.manualSelect">
+                <source>Manual select</source>
+                <target>Manuelle Auswahl</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_count">
+                <source>Count</source>
+                <target>Anzahl angezeigter Artikel</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_list">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select">
+                <source>Article select</source>
+                <target>Art der Veranstaltungsausgabe</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.none">
+                <source>Don't show anything</source>
+                <target>Keine Veranstaltungen anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.automatic">
+                <source>Automatic</source>
+                <target>Zeige aktuellste Veranstaltungen automatisch an</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.manualSelect">
+                <source>Manual select</source>
+                <target>Manuelle Auswahl</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_count">
+                <source>Count</source>
+                <target>Anzahl angezeigter Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_list">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+
 
             <!-- FLEXFORM -->
             <trans-unit id="flexform.journalHighlight.sheetTitle">
