@@ -23,7 +23,7 @@ namespace HGON\HgonTemplate\Domain\Repository;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class ArticleRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class ArticleRepository extends \HGON\HgonPayment\Domain\Repository\ArticleRepository
 {
     protected $defaultOrderings = array(
         'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
@@ -38,6 +38,8 @@ class ArticleRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function findByMaxDate($maxTimestamp, $count = 1)
     {
         $query = $this->createQuery();
+
+        $query->getQuerySettings()->setRespectStoragePage(false);
 
         $query->matching(
             $query->lessThanOrEqual('crdate', $maxTimestamp)

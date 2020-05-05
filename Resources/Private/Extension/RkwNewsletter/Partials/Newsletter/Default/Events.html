@@ -1,0 +1,212 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+{namespace rkwBasics=RKW\RkwBasics\ViewHelpers}
+{namespace rkwNewsletter=RKW\RkwNewsletter\ViewHelpers}
+{namespace hgonTemplate=HGON\HgonTemplate\ViewHelpers}
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+    <f:if condition="{pages}">
+        <f:for each="{pages}" as="page">
+            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='{page.uid}-{webView}-{includeEditorials}' />">
+                <f:then>
+                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
+                </f:then>
+                <f:else>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}">
+                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" isPlaintext="true">
+                            <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='{includeEditorials}' />" as="content" iteration="itemIterator">
+                                <f:if condition="{iterator.cycle} < {maxItemsPerTopic}">
+                                    <f:then>
+                                        <f:render partial="Default/Items/Default" section="Plaintext" arguments="{_all}" />\n\n
+                                    </f:then>
+                                    <f:else>
+                                        <f:if condition="{itemIterator.isLast}">
+                                            <f:render partial="Default/Items/More" section="Plaintext" arguments="{_all}" />\n\n
+                                        </f:if>
+                                    </f:else>
+                                </f:if>
+                            </f:for>
+                        </rkwMailer:frontend.replaceLinksRedirect>
+                    </rkwMailer:cache.setRenderCache>
+                </f:else>
+            </f:if>
+        </f:for>
+    </f:if>
+</f:section>
+
+
+<!-- HTML -->
+<f:section name="Html">
+
+    <f:if condition="<f:count><hgonTemplate:newsletter.getEventRecords issue='{issue}' /></f:count>">
+
+            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='events-{queueMail.uid}' />">
+                <f:then>
+                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="events-{queueMail.uid}" />
+                </f:then>
+                <f:else>
+                    <f:format.raw>
+                        <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="events-{queueMail.uid}">
+                            <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" isPlaintext="true">
+
+                                <f:render section="htmlHeadline" />
+
+                                <f:for each="<hgonTemplate:newsletter.getEventRecords issue='{issue}' />" as="event" iteration="iter">
+
+                                    <f:render section="htmlEvent" arguments="{_all}" />
+
+                                    <f:comment><!-- space below --></f:comment>
+                                    <f:render section="spaceHorizontal" />
+
+                                </f:for>
+                            </rkwMailer:frontend.replaceLinksRedirect>
+                        </rkwMailer:cache.setRenderCache>
+                    </f:format.raw>
+                </f:else>
+            </f:if>
+
+    </f:if>
+
+</f:section>
+
+
+<f:section name="htmlHeadline">
+    <div style="Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+                <tr>
+                    <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
+                        <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td class="headline" style="font-size:0px;padding:0;word-break:break-word;" align="left">
+                                            <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                                <h2 style="margin: 48px 0 0 0; color: #869733; font-size: 18px; letter-spacing: .4px; text-transform: uppercase; font-weight: 600;">Bevorstehende Termine<a id="event-anchor" name="topic-{itemId}"></a></h2>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</f:section>
+
+<f:section name="htmlEvent">
+    <div class="event" style="font-size: 16px; line-height: 24px; background: white; background-color: white; Margin: 0px auto; max-width: 670px;">
+        <table role="presentation" style="background:white;background-color:white;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="border:3px solid #CFD5B7;direction:ltr;font-size:0px;padding:40px 0;text-align:center;vertical-align:top;">
+
+                    <div class="mj-column-px-80 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0 15px 15px;">
+                                    <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="time" style="font-size:0px;padding:0;word-break:break-word;" align="left">
+                                                    <div style="font-weight: 300; letter-spacing: 1px; margin: 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1; text-align: left; color: #212121;">
+                                                        <div class="day" style="font-size: 26px; line-height: 24px; color: #869733; text-align: center; font-weight: 300; letter-spacing: 1px; margin: 0;"><strong style="font-weight: 600;"><f:format.date format="d">{event.start}</f:format.date></strong></div>
+                                                        <div class="month" style="font-size: 26px; line-height: 24px; color: #869733; text-align: center; font-weight: 300; letter-spacing: 1px; margin: 0;"><f:format.date format="m">{event.start}</f:format.date></div>
+                                                        <div class="year" style="line-height: 24px; text-align: center; font-weight: 300; margin: 0; font-size: 14px; color: #949885; letter-spacing: 0;"><f:format.date format="Y">{event.start}</f:format.date></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mj-column-px-500 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:0 15px;">
+                                    <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="font-size:0px;padding:0;word-break:break-word;" align="left">
+                                                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                                        <h3 style="font-size: 20px; line-height: 28px; margin: 0; font-weight: 600;">{event.title}</h3>
+                                                        <p style="font-size: 16px; line-height: 24px;"><f:format.crop maxCharacters="150"><f:format.stripTags>{event.description}</f:format.stripTags></f:format.crop></p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size:0px;padding:0;word-break:break-word;" align="left">
+                                                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                                        <p style="font-size: 16px; line-height: 24px;"><a href="#" class="link" style="color: #869733; text-decoration: underline;">Details »</a></p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</f:section>
+
+<f:section name="spaceHorizontal">
+    <div style="Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0;text-align:center;vertical-align:top;">
+                    <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+
+                        <tr>
+
+                            <td
+                                class="" style="vertical-align:top;width:670px;"
+                            >
+                    <![endif]-->
+                    <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody><tr>
+                                <td style="font-size:0px;word-break:break-word;">
+                                    <!--[if mso | IE]>
+
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td height="24" style="vertical-align:top;height:24px;">
+
+                                    <![endif]-->
+                                    <div style="height:24px;"> &nbsp; </div>
+                                    <!--[if mso | IE]>
+
+                                    </td></tr></table>
+
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+
+                    </tr>
+
+                    </table>
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</f:section>

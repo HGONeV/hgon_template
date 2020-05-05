@@ -22,7 +22,7 @@
 <f:section name="Html">
 
     <f:if condition="{itemIterator.isFirst}">
-        <f:render partial="Default/Items/Headline" section="Html" arguments="{headline: '{page.txRkwnewsletterTopic.name}'}" />
+        <f:render partial="Default/Items/Headline" section="Html" arguments="{headline: '{page.txRkwnewsletterTopic.name}', itemId: '{page.txRkwnewsletterTopic.uid}'}" />
     </f:if>
 
 
@@ -82,19 +82,21 @@
                                             </div>
                                         </td>
                                     </tr>
-                                <tr>
-                                    <td vertical-align="middle" style="font-size:0px;padding:0;padding-top:20px;word-break:break-word;" align="left">
-                                        <table role="presentation" style="border-collapse:separate;line-height:100%;" cellspacing="0" cellpadding="0" border="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td role="presentation" style="border:none;border-radius:30px;cursor:auto;padding:15px 30px;background:#EDF0E1;" valign="middle" bgcolor="#EDF0E1" align="center">
-                                                        <a href="#" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank"> Mehr Informationen </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
+                                    <f:if condition="{content.headerLink}">
+                                        <tr>
+                                            <td vertical-align="middle" style="font-size:0px;padding:0;padding-top:20px;word-break:break-word;" align="left">
+                                                <table role="presentation" style="border-collapse:separate;line-height:100%;" cellspacing="0" cellpadding="0" border="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td role="presentation" style="border:none;border-radius:30px;cursor:auto;padding:15px 30px;background:#EDF0E1;" valign="middle" bgcolor="#EDF0E1" align="center">
+                                                                <a href="<rkwMailer:frontend.typolink parameter='{content.headerLink}' />" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank"> Mehr Informationen </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </f:if>
                                 </tbody>
                             </table>
                         </div>

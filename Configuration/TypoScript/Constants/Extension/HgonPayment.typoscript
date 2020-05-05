@@ -1,10 +1,14 @@
 plugin.tx_hgonpayment {
+    persistence {
+        # cat=plugin.tx_hgonpayment//a; type=string; label=Default storage PID
+        storagePid = 69
+    }
     settings {
         api {
             paypal {
-                # cat=plugin.tx_hgontemplate//a; type=string; label=client id
+                # cat=plugin.tx_hgonpayment//a; type=string; label=client id
                 clientId =
-                # cat=plugin.tx_hgontemplate//a; type=string; label=client secret
+                # cat=plugin.tx_hgonpayment//a; type=string; label=client secret
                 clientSecret =
             }
             cancelUrl = https://www.hgon.de/mitmachen/
@@ -13,3 +17,5 @@ plugin.tx_hgonpayment {
         subscriptionPid = 81
     }
 }
+
+module.tx_hgonpayment < plugin.tx_hgonpayment

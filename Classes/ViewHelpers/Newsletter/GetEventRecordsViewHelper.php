@@ -68,12 +68,12 @@ class GetEventRecordsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
         $hgonNewsletter = $newsletterRepository->findByUid($issue->getNewsletter()->getUid());
 
         // 1 = show automatically selected items by given count
-        if ($hgonNewsletter->getTxHgontemplateNewsSelect() == 1) {
+        if ($hgonNewsletter->getTxHgontemplateEventSelect() == 1) {
             return $eventRepository->findByMaxDate($hgonNewsletter->getLastIssueTstamp(), $hgonNewsletter->getTxHgontemplateEventCount());
         }
 
         // 2 = show manual selected items
-        if ($hgonNewsletter->getTxHgontemplateNewsSelect() == 2) {
+        if ($hgonNewsletter->getTxHgontemplateEventSelect() == 2) {
             return $hgonNewsletter->getTxHgontemplateEventList();
             //===
         }

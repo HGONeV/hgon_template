@@ -54,7 +54,7 @@
 
             <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='tx_news-{queueMail.uid}' />">
                 <f:then>
-                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="tx_news-{news.uid}" />
+                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="tx_news-{queueMail.uid}" />
                 </f:then>
                 <f:else>
                     <f:format.raw>
@@ -138,7 +138,7 @@
                                         <tr>
                                             <td class="headline" style="font-size:0px;padding:0;word-break:break-word;" align="left">
                                                 <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
-                                                    <h2 style="margin: 48px 0 0 0; color: #869733; font-size: 18px; letter-spacing: .4px; text-transform: uppercase; font-weight: 600;">Aktuelle Meldungen</h2>
+                                                    <h2 style="margin: 48px 0 0 0; color: #869733; font-size: 18px; letter-spacing: .4px; text-transform: uppercase; font-weight: 600;">Aktuelle Meldungen<a id="news-anchor" name="topic-{itemId}"></a></h2>
                                                 </div>
                                             </td>
                                         </tr>
@@ -203,38 +203,39 @@
 
                     <div class="mj-column-px-550 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                         <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
-                            <tbody><tr>
-                                <td class="text" style="line-height: 26px; font-size: 0px; padding: 0; word-break: break-word;" align="left">
-                                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
-                                        <h3 style="line-height: 30px; font-size: 24px; margin: 0; padding: 0; font-weight: 600;">{news.title}</h3>
-                                        <p style="line-height: 26px; font-size: 16px;"><f:format.crop maxCharacters="500"><f:format.stripTags><f:if condition="{news.teaser}"><f:then>{news.teaser}</f:then><f:else>{news.bodytext}</f:else></f:if></f:format.stripTags></f:format.crop></p>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td vertical-align="middle" style="font-size:0px;padding:0;padding-top:20px;word-break:break-word;" align="left">
-                                    <table role="presentation" style="border-collapse:separate;line-height:100%;" cellspacing="0" cellpadding="0" border="0">
-                                        <tbody>
-                                            <tr>
-                                                <td role="presentation" style="border:none;border-radius:30px;cursor:auto;padding:15px 30px;background:#EDF0E1;" valign="middle" bgcolor="#EDF0E1" align="center">
-                                                    <a href="#" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank"> Mehr Informationen </a>
+                            <tbody>
+                                <tr>
+                                    <td class="text" style="line-height: 26px; font-size: 0px; padding: 0; word-break: break-word;" align="left">
+                                        <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                            <h3 style="line-height: 30px; font-size: 24px; margin: 0; padding: 0; font-weight: 600;">{news.title}</h3>
+                                            <p style="line-height: 26px; font-size: 16px;"><f:format.crop maxCharacters="500"><f:format.stripTags><f:if condition="{news.teaser}"><f:then>{news.teaser}</f:then><f:else>{news.bodytext}</f:else></f:if></f:format.stripTags></f:format.crop></p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td vertical-align="middle" style="font-size:0px;padding:0;padding-top:20px;word-break:break-word;" align="left">
+                                        <table role="presentation" style="border-collapse:separate;line-height:100%;" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td role="presentation" style="border:none;border-radius:30px;cursor:auto;padding:15px 30px;background:#EDF0E1;" valign="middle" bgcolor="#EDF0E1" align="center">
 
-                                                    <f:link.page pageUid="62" additionalParams="{tx_news_pi1:{news:news,controller:'News',action:'detail'}}"  style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank">
-                                                        Test
-                                                    </f:link.page>
+                                                        <rkwMailer:frontend.link action='detail' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' />
 
-                                                    <a href="<rkwMailer:frontend.link action='show' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' arguments='{hash: hash}' noCacheHash='true' />" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank"> Mehr Informationen </a>
+                                                        <f:comment>
 
-                                                    <f:comment>
-                                                    <a href="<rkwMailer:frontend.link action='show' controller='WebView' extensionName='rkwNewsletter' pluginName='Webview' absolute='true' arguments='{issue: issue, pagesOrder: \'---pagesOrder---\'}' section='item-{page.uid}-{maxItemsPerTopic}' noCacheHash='true' pageType='{pageTypeMore}'/>" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank">Mehr Informationen</a>
-                                                    </f:comment>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            </tbody></table>
+                                                            <a href="<rkwMailer:frontend.link action='detail' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' />" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank"> Mehr Informationen </a>
+
+
+                                                            <a href="<rkwMailer:frontend.link action='detail' controller='WebView' extensionName='rkwNewsletter' pluginName='Webview' absolute='true' arguments='{issue: issue, pagesOrder: \'---pagesOrder---\'}' section='item-{page.uid}-{maxItemsPerTopic}' noCacheHash='true' pageType='{pageTypeMore}'/>" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank">Mehr Informationen</a>
+                                                        </f:comment>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                 </td>

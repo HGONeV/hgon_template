@@ -2,7 +2,6 @@ plugin.tx_rkwgeolocation {
 
     settings {
         # cat=plugin.tx_rkwgeolocation//a; type=string; label=Google API Key
-        # @toDo: Change to HGON own api-key
         googleApiKey =
 
         # cat=plugin.tx_rkwgeolocation//a; type=string; label=Google API Key for JS

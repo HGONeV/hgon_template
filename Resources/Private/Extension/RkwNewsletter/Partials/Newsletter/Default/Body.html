@@ -29,11 +29,13 @@ xxx FREIER TEXT AUS NEWSLETTER xxx
     <f:render partial="Default/Items" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />
 
     <!-- News -->
-    <f:render partial="Default/News" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />
+    <f:render partial="Default/News" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
 
     <!-- Article -->
-    <f:render partial="Default/Article" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />
+    <f:render partial="Default/Article" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
 
+    <!-- Events -->
+    <f:render partial="Default/Events" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
 
     <f:comment>
         <!-- Special Contents -->

@@ -30,17 +30,28 @@
 
                                             <f:for each="{pages}" as="page">
                                                 <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' limit='10' />" as="content" iteration="contentIterator">
-                                                    <a href="#topic-{page.txRkwnewsletterTopic.uid}" style="color: #333; line-height: 22px; font-weight: 400; text-decoration: none;">
-                                                        <li style="line-height: 24px; margin-bottom: 10px;"><a href="#" style="color: #869733; text-decoration: none;"># {content.header}</a></li>
-                                                    </a>
+                                                    <li style="line-height: 24px; margin-bottom: 10px;"><a href="#topic-{page.txRkwnewsletterTopic.uid}" style="color: #869733; text-decoration: none;"># {content.header}</a></li>
                                                 </f:for>
                                             </f:for>
+
+                                            <f:if condition="<f:count><hgonTemplate:newsletter.getNewsRecords issue='{issue}' /></f:count>">
+                                                <li style="line-height: 24px; margin-bottom: 10px;"><a href="#news-anchor" style="color: #869733; text-decoration: none;"># Aktuelle Meldungen</a></li>
+                                            </f:if>
+
+                                            <f:if condition="<f:count><hgonTemplate:newsletter.getArticleRecords issue='{issue}' /></f:count>">
+                                                <li style="line-height: 24px; margin-bottom: 10px;"><a href="#article-anchor" style="color: #869733; text-decoration: none;"># Empfehlungen</a></li>
+                                            </f:if>
+
+                                            <f:if condition="<f:count><hgonTemplate:newsletter.getEventRecords issue='{issue}' /></f:count>">
+                                                <li style="line-height: 24px; margin-bottom: 10px;"><a href="#event-anchor" style="color: #869733; text-decoration: none;"># Bevorstehende Termine</a></li>
+                                            </f:if>
 
                                         </ul>
                                     </div>
                                 </td>
                             </tr>
-                            </tbody></table>
+                            </tbody>
+                        </table>
                     </div>
 
                 </td>
@@ -90,7 +101,6 @@
                                                                 </tr>
                                                             </f:then>
                                                             <f:else>
-
                                                                 <tr>
                                                                     <td style="padding: 0 0 13px 0;">
                                                                         <a href="#topic-{page.txRkwnewsletterTopic.uid}" style="color: #333; line-height: 22px; font-weight: 400; text-decoration: none;">

@@ -215,6 +215,8 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
     {
         $query = $this->createQuery();
 
+        $query->getQuerySettings()->setRespectStoragePage(false);
+
         $query->matching(
             $query->lessThanOrEqual('crdate', $maxTimestamp)
         );

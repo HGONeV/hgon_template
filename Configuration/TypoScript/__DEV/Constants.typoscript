@@ -12,6 +12,12 @@ module.tx_rkwmailer {
 
     settings {
 
+        // Page for redirect plugin
+        redirectPid = 97
+
+        // Link plugin for pixel counter (HTML-mails only)
+        counterPixelPid = 97
+
         # URL for hard-links in templates
         baseUrl = http://hgon.rkw.local
     }
