@@ -82,7 +82,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
         }
 
         if ($workgroupList) {
-            $constraints[] = $query->in('tx_hgon_workgroup', $workgroupList);
+            $constraints[] = $query->contains('txHgonWorkgroup', $workgroupList);
         }
 
         if ($excludedNews) {
