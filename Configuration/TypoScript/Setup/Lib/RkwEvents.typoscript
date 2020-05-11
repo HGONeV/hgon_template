@@ -1,0 +1,54 @@
+// tx_rkwevents: Override variables on detail view
+[globalVar = TSFE:id = {$plugin.tx_rkwevents.settings.showPid}]
+
+    config.noPageTitle = 2
+
+    # override page title
+    lib.pageTitle = RECORDS
+    lib.pageTitle {
+        tables = tx_rkwevents_domain_model_event
+        source.data = GP:tx_rkwevents_pi1|event
+        source.intval = 1
+        conf.tx_rkwevents_domain_model_event = TEXT
+        conf.tx_rkwevents_domain_model_event {
+            field = title
+            htmlSpecialChars = 1
+        }
+        wrap = <title>|</title>
+    }
+    page.headerData.1 >
+    page.headerData.1 < lib.pageTitle
+
+    # override template subtitle marker
+    lib.pageSubtitle = RECORDS
+    lib.pageSubtitle {
+        tables = tx_rkwevents_domain_model_event
+        source.data = GP:tx_rkwevents_pi1|event
+        source.intval = 1
+        conf.tx_rkwevents_domain_model_event = TEXT
+        conf.tx_rkwevents_domain_model_event {
+            field = title
+            htmlSpecialChars = 1
+        }
+    }
+    page.10.variables.pageSubtitle = TEXT
+    page.10.variables.pageSubtitle < lib.pageSubtitle
+
+    # override template teasertext marker
+    lib.pageTeaserText = RECORDS
+    lib.pageTeaserText {
+        tables = tx_rkwevents_domain_model_event
+        source.data = GP:tx_rkwevents_pi1|event
+        source.intval = 1
+        conf.tx_rkwevents_domain_model_event = TEXT
+        conf.tx_rkwevents_domain_model_event {
+            # @toDo: Add description / text of news with crop as fallback?
+            field = subtitle
+            htmlSpecialChars = 1
+        }
+    }
+    page.10.variables.pageTeaserText = TEXT
+    page.10.variables.pageTeaserText < lib.pageTeaserText
+
+
+[global]

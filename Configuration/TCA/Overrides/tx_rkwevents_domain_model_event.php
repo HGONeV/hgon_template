@@ -3,7 +3,7 @@ if (!defined ('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-
+/*
 $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['columns']['internal_contact'] = [
     'exclude' => 0,
     'label' => 'LLL:EXT:rkw_events/Resources/Private/Language/locallang_db.xlf:tx_rkwevents_domain_model_event.internal_contact',
@@ -18,6 +18,7 @@ $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['columns']['internal_contact'
     ],
 ];
 $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = str_replace(', external_contact,', ', internal_contact, external_contact,', $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem']);
+*/
 
 $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['columns']['tx_hgontemplate_eventculinary'] = [
     'exclude' => 0,
@@ -35,6 +36,9 @@ $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['columns']['tx_hgontemplate_e
     ],
 ];
 $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = str_replace(', currency,', ', tx_hgontemplate_eventculinary, currency,', $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem']);
+
+// re-add existing gallery back to events
+$GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = str_replace(', presentations,', ', gallery1, presentations,', $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem']);
 
 
 // ***************

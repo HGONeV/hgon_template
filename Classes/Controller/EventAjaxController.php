@@ -141,6 +141,7 @@ class EventAjaxController extends \RKW\RkwEvents\Controller\AjaxController
                 $replacements['showMoreLink'] = $showMoreLink;
                 $replacements['ajaxTypeNum']  = intval($this->settings['ajaxTypeNum']);
                 $replacements['pageMore'] = $page + 1;
+                $replacements['page'] = $page;
                 $replacements['isWorkGroup'] = true;
                 $jsonHelper->setHtml(
                     'tx-rkwevents-grid-section-workgroup',
@@ -207,6 +208,7 @@ class EventAjaxController extends \RKW\RkwEvents\Controller\AjaxController
             'ajaxTypeNum'  => intval($this->settings['ajaxTypeNum']),
             'showPid'      => intval($this->settings['showPid']),
             'pageMore'     => $page + 1,
+            'page'          => $page,
             'showMoreLink' => $showMoreLink,
             'filter'       => $filter,
             'noGrouping'   => ($filter['address'] ? true : false),

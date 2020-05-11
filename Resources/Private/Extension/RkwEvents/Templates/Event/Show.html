@@ -103,6 +103,49 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 <div class="article__content">
                     <f:format.raw>{event.description}</f:format.raw>
                 </div>
+
+                <br/><br/>
+
+                <f:comment><!-- gallery --></f:comment>
+                <f:if condition="{event.gallery1}">
+                    <section class="js-lightbox">
+                        <div class="gallery">
+                            <f:for each="{event.gallery1}" as="media">
+                                <div class="gallery__image">
+                                    <a class="js-open-lightbox" href="#" data-lightbox="lightbox-gallery" data-index="0">
+                                        <svg class="gallery__image-icon icon icon--24"><use xlink:href="#ui-fullscreen"></use></svg>
+                                        <figure>
+                                            <f:image image="{media}" alt="{media.name}" width="300px" />
+                                        </figure>
+                                    </a>
+                                </div>
+                            </f:for>
+                        </div>
+                        <div id="lightbox-gallery" class="lightbox" style="opacity: 0; visibility: hidden;">
+                            <f:for each="{event.gallery1}" as="media">
+                                <picture class="picture / lightbox__img" style="visibility: hidden; opacity: 0;">
+                                    <f:image image="{media}" alt="{media.name}" />
+                                </picture>
+                            </f:for>
+
+                            <div class="bar bar--bottom bar--fixed">
+                                <div class="bar__icons bar__icons--right">
+                                    <a class="bar__icon js-close-lightbox" href=""><svg class="icon"><use xlink:href="#ui-close"></use></svg></a>
+                                    <a class="bar__icon js-lightbox-prev" href=""><svg class="icon"><use xlink:href="#ui-prev"></use></svg></a>
+                                    <a class="bar__icon js-lightbox-next" href=""><svg class="icon"><use xlink:href="#ui-next"></use></svg></a>
+                                </div>
+                                <div class="bar__icons bar__icons--left">
+                                    <div class="bar__text align-center">
+                                        <span class="js-lightbox-counter">
+                                            <span class="current__img">1</span> / <span class="max__img">2</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </f:if>
+
             </article>
             <div class="sidebar">
                 <aside class="aside color-bg-light">
@@ -116,6 +159,27 @@ Otherwise your changes will be overwritten the next time you save the extension 
                         <p><strong>Telefon:</strong> <a href="http://hgon.helllicht.io/tel:+491234 56789">+49 1234 56789</a></p>
                         -->
                     </div>
+
+                    <f:if condition="{events.presentations}">
+                        <br>
+                        <header class="aside__header">
+                            <h6>Downloads</h6>
+                        </header>
+                        <div class="aside__content">
+                            <ul class="news-downloads">
+                                <li><i class="fa fa-download"></i>
+                                    <span class="news-related-files-link">
+                                    <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+                                        {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+                                    </a>
+                                </span>
+                                    <span class="news-related-files-size">
+                                    {relatedFile.originalResource.size -> f:format.bytes()}
+                                </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </f:if>
                 </aside>
             </div>
         </div>
