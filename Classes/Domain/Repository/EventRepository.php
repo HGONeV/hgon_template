@@ -226,4 +226,40 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
         return $query->execute();
         //===
     }
+
+
+
+    /**
+     * Returns upcoming events
+     *
+     * @param int $limit
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     */
+    public function findUpcoming($limit = 3)
+    {
+        $query = $this->createQuery();
+
+        return $query->matching(
+            $query->logicalAnd(
+                $query->logicalAnd(
+                    $query->logicalAnd(
+                        $query->logicalAnd(
+                            $query->greaterThanOrEqual('start', time())
+                        ),
+                        $query->greaterThan('end', time())
+                    ),
+                    $query->logicalOr(
+                        $query->equals('onlineEvent', 0),
+                        $query->logicalAnd(
+                            $query->equals('onlineEvent', 1),
+                            $query->greaterThan('onlineEventAccessLink', 0)
+                        )
+                    )
+                )
+            ),
+            $query->setLimit(intval($limit))
+        )->execute();
+        //===
+    }
 }

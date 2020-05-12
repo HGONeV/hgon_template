@@ -124,6 +124,17 @@ call_user_func(
             'HGON: Bestellung (Artikel)'
         );
 
+
+        // ***************
+        // RKW Events
+        // ***************
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'RKW.RkwEvents',
+            'Upcoming',
+            'RKW Events: Zeigt bevorstehende Veranstaltungen'
+        );
+
+
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'HGON Template');
 
     },

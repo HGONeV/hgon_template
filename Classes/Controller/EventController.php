@@ -113,6 +113,22 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
 
 
     /**
+     * action upcoming
+     * returns upcoming events
+     *
+     * @return void
+     */
+    public function upcomingAction()
+    {
+        $this->view->assignMultiple(array(
+            'sortedEventList' => $this->eventRepository->findUpcoming(),
+            'showPid' => $this->settings['showPid']
+        ));
+    }
+
+
+
+    /**
      * Returns TYPO3 settings
      *
      * @param string $extension extension name
