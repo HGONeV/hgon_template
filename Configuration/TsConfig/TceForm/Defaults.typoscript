@@ -16,5 +16,10 @@ TCAdefaults {
     tx_rkwauthors_domain_model_authors {
         internal = 1
     }
+
+    tx_rkwevents_domain_model_event {
+        costs_reg = 0
+        seats = 20
+    }
 }
 

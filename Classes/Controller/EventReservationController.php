@@ -96,11 +96,15 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
             $request = $this->request->getArguments();
             // always: Filter empty elements
-            $request['newEventReservation']['txHgontemplateEventculinary'] = array_filter($request['newEventReservation']['txHgontemplateEventculinary']);
-            // do only ignore, if no content is set. Otherwise we got no objects
-            if (!array_sum($request['newEventReservation']['txHgontemplateEventculinary'])) {
-                $this->arguments->getArgument('newEventReservation')->getPropertyMappingConfiguration()->skipProperties('txHgontemplateEventculinary');
+            if (key_exists('txHgontemplateEventculinary', $request['newEventReservation'])) {
+                $request['newEventReservation']['txHgontemplateEventculinary'] = array_filter($request['newEventReservation']['txHgontemplateEventculinary']);
+
+                // do only ignore, if no content is set. Otherwise we got no objects
+                if (!array_sum($request['newEventReservation']['txHgontemplateEventculinary'])) {
+                    $this->arguments->getArgument('newEventReservation')->getPropertyMappingConfiguration()->skipProperties('txHgontemplateEventculinary');
+                }
             }
+
             // reset filtered content with no empty array entries
             $this->request->setArgument('newEventReservation', $request['newEventReservation']);
         }
