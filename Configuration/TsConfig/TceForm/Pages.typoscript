@@ -27,12 +27,14 @@ TCEFORM {
         costs_red_condition.disabled = 1
         costs_tax.disabled = 1
         online_event.disabled = 1
-
-        #gallery2.disabled = 1
-
-        #presentations.disabled = 1
         sheet.disabled = 1
         sheet_records.disabled = 1
+
+        // quick-change for labels
+        gallery1.label = Galerie
+        presentations.label = Downloads
+
+        internal_contact.config.foreign_table_where = ORDER BY tx_rkwauthors_domain_model_authors.last_name ASC
     }
 
     # for secure: Disable possible problem fields
@@ -45,6 +47,7 @@ TCEFORM {
 
     tx_rkwauthors_domain_model_authors {
         department_name.disabled = 1
+        // show option to use it (if authors not internal, they not shown in events e.g.)
         #internal.disabled = 1
         show_work.disabled = 1
         image_boxes_is_logo.disabled = 1

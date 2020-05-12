@@ -12,5 +12,9 @@ TCAdefaults {
     tx_rkwprojects_domain_model_projects {
         sys_language_uid = 0
     }
+
+    tx_rkwauthors_domain_model_authors {
+        internal = 1
+    }
 }
 
