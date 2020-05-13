@@ -18,10 +18,10 @@ $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['columns']['tx_hgontemplate_e
         ],
     ],
 ];
-$GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = str_replace(', currency,', ', tx_hgontemplate_eventculinary, currency,', $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem']);
+$GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = str_replace(', ext_reg_link,', ', ext_reg_link, tx_hgontemplate_eventculinary,', $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem']);
 
 // re-add existing gallery back to events
-$GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = str_replace(', presentations,', ', gallery1, presentations,', $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem']);
+$GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = str_replace('presentations,', 'gallery1, presentations,', $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem']);
 
 
 // ***************

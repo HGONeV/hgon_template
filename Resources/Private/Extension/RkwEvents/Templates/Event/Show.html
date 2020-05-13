@@ -154,29 +154,28 @@ Otherwise your changes will be overwritten the next time you save the extension 
                     </header>
                     <div class="aside__content">
                         <f:render partial="Event/Contact/Contact" arguments="{_all}" />
-                        <!--
-                        <p><strong>E-Mail-Adresse: </strong> <a href="mailto:user@example.com">info@hgon.de</a> </p>
-                        <p><strong>Telefon:</strong> <a href="http://hgon.helllicht.io/tel:+491234 56789">+49 1234 56789</a></p>
-                        -->
                     </div>
 
-                    <f:if condition="{events.presentations}">
+                    <f:if condition="{event.presentations}">
                         <br>
                         <header class="aside__header">
                             <h6>Downloads</h6>
                         </header>
                         <div class="aside__content">
                             <ul class="news-downloads">
-                                <li><i class="fa fa-download"></i>
-                                    <span class="news-related-files-link">
-                                    <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
-                                        {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
-                                    </a>
-                                </span>
-                                    <span class="news-related-files-size">
-                                    {relatedFile.originalResource.size -> f:format.bytes()}
-                                </span>
-                                </li>
+                                <f:for each="{event.presentations}" as="relatedFile">
+                                    <li>
+                                        <i class="fa fa-download"></i>
+                                        <span class="news-related-files-link">
+                                            <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+                                                {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+                                            </a>
+                                        </span>
+                                        <span class="news-related-files-size">
+                                            {relatedFile.originalResource.size -> f:format.bytes()}
+                                        </span>
+                                    </li>
+                                </f:for>
                             </ul>
                         </div>
                     </f:if>
