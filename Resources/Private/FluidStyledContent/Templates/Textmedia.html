@@ -125,32 +125,32 @@
 
         <!-- Slider: Supporters Opinion -->
         <f:case value="55">
+
             <aside class="breaker">
-                <div class="slider-caroussel js-caroussel" data-interval="4000">
-                    <header class="slider-caroussel__header">
+                <div class="flex-container">
+                    <header class="breaker__header">
                         <h2 class="tagline color-font-secondary">{data.header}</h2>
                     </header>
-                    <div class="slider-caroussel__slides js-caroussel-slides" style="width: 2192px;">
+                    <div class="breaker__content">
+                        <div class="carousel carousel-testimonials js-carousel" id="carousel-testimonials">
 
-                        <f:if condition="{gallery.rows}">
-                            <f:for each="{gallery.rows}" as="row">
-                                <f:for each="{row.columns}" as="column">
-                                    <f:if condition="{column.media}">
-                                        <f:if condition="
-                                            {column.media.alternative}
-                                            || {column.media.alternative}
-                                            || {column.media.description}
-                                            || {column.media.link}">
-                                            <div class="slider-caroussel__item js-caroussel-item">
-                                                <article class="card card--shadow">
-                                                    <div class="card__inner">
-                                                        <div class="card__content clearfix">
-                                                            <div class="slider-caroussel__image">
+                            <f:if condition="{gallery.rows}">
+                                <f:for each="{gallery.rows}" as="row">
+                                    <f:for each="{row.columns}" as="column">
+                                        <f:if condition="{column.media}">
+                                            <f:if condition="
+                                                {column.media.alternative}
+                                                || {column.media.alternative}
+                                                || {column.media.description}
+                                                || {column.media.link}">
+
+                                                <div class="carousel__item">
+                                                    <article class="card card--shadow">
+                                                        <div class="card__inner">
+                                                            <div class="card__content clearfix">
                                                                 <picture class="card__image-aside">
                                                                     <f:image image="{column.media}" alt="{column.media.name}" width="70" height="70" />
                                                                 </picture>
-                                                            </div>
-                                                            <div class="slider-caroussel__text">
                                                                 <blockquote>
                                                                     <p>
                                                                         {column.media.description}
@@ -159,17 +159,66 @@
                                                                 </blockquote>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </article>
-                                            </div>
+                                                    </article>
+                                                </div>
+                                            </f:if>
                                         </f:if>
-                                    </f:if>
+                                    </f:for>
                                 </f:for>
-                            </f:for>
-                        </f:if>
+                            </f:if>
+
+                        </div>
                     </div>
                 </div>
             </aside>
+
+            <f:comment>
+                <aside class="breaker">
+                    <div class="slider-caroussel js-caroussel" data-interval="4000">
+                        <header class="slider-caroussel__header">
+                            <h2 class="tagline color-font-secondary">{data.header}</h2>
+                        </header>
+                        <div class="slider-caroussel__slides js-caroussel-slides" style="width: 2192px;">
+
+                            <f:if condition="{gallery.rows}">
+                                <f:for each="{gallery.rows}" as="row">
+                                    <f:for each="{row.columns}" as="column">
+                                        <f:if condition="{column.media}">
+                                            <f:if condition="
+                                                {column.media.alternative}
+                                                || {column.media.alternative}
+                                                || {column.media.description}
+                                                || {column.media.link}">
+                                                <div class="slider-caroussel__item js-caroussel-item">
+                                                    <article class="card card--shadow">
+                                                        <div class="card__inner">
+                                                            <div class="card__content clearfix">
+                                                                <div class="slider-caroussel__image">
+                                                                    <picture class="card__image-aside">
+                                                                        <f:image image="{column.media}" alt="{column.media.name}" width="70" height="70" />
+                                                                    </picture>
+                                                                </div>
+                                                                <div class="slider-caroussel__text">
+                                                                    <blockquote>
+                                                                        <p>
+                                                                            {column.media.description}
+                                                                            <cite>– {column.media.title}</cite>
+                                                                        </p>
+                                                                    </blockquote>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </f:if>
+                                        </f:if>
+                                    </f:for>
+                                </f:for>
+                            </f:if>
+                        </div>
+                    </div>
+                </aside>
+            </f:comment>
         </f:case>
 
         <f:comment><!-- Slider Small "Fotoshow"--></f:comment>

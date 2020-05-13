@@ -1246,6 +1246,21 @@ $(window).on("resize", function() {
     };
 })(jQuery, window, document);
 
+$(window).on("scroll load", function() {
+    scrollPos = $(window).scrollTop();
+    offset = $(window).height() / 1.125;
+    $(".lazy-load").each(function() {
+        var imgPos = $(this).offset().top - offset, imgSrc = $(this).find("img").attr("data-src");
+        if (scrollPos >= imgPos) {
+            $(this).find("img").attr("src", imgSrc);
+            $(this).find("source").each(function() {
+                $(this).attr("srcset", $(this).attr("data-srcset"));
+            });
+            $(this).addClass("is-loaded");
+        }
+    });
+});
+
 $(function() {
     var Message = {
         $open: $(".js-open-msg"),

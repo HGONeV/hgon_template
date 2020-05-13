@@ -58,7 +58,7 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
     {
         $listItemsPerView = intval($this->settings['itemsPerPage']) ? intval($this->settings['itemsPerPage']) : 10;
 
-        // first: Show standard evens
+        // first: Show standard events
         parent::listAction();
 
         // Fix: The parent listAction pre-fills the filter with a "project" entry. This is disturbing the ajax call

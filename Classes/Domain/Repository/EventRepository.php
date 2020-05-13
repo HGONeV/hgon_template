@@ -65,7 +65,16 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
             $constraints[] = $query->greaterThan('txHgonWorkgroupWgevent', 0);
         } else {
             // is standard-event
-            $constraints[] = $query->greaterThan('txHgonWorkgroupStdevent', 0);
+            // Fix for problem: Events without no workGroup does not show. Issue: They either no wgevent nor stdevent
+            // Solution: Show also if either stdEvent, or either no stdevent AND no wgevent
+            $constraints[] =
+                $query->logicalOr(
+                    $query->greaterThan('txHgonWorkgroupStdevent', 0),
+                    $query->logicalAnd(
+                        $query->equals('txHgonWorkgroupStdevent', 0),
+                        $query->equals('txHgonWorkgroupWgevent', 0)
+                    )
+                );
         }
 
         return $query->matching(
@@ -108,7 +117,13 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
         }
 
         // is standard-event
-        $constraints[] = $query->greaterThan('txHgonWorkgroupStdevent', 0);
+        $constraints[] = $query->logicalOr(
+            $query->greaterThan('txHgonWorkgroupStdevent', 0),
+            $query->logicalAnd(
+                $query->equals('txHgonWorkgroupStdevent', 0),
+                $query->equals('txHgonWorkgroupWgevent', 0)
+            )
+        );
 
         return $query->matching(
             $query->logicalAnd($constraints)
@@ -175,7 +190,13 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
             }
         } else {
             // is standard-event
-            $constraints[] = $query->greaterThan('txHgonWorkgroupStdevent', 0);
+            $constraints[] = $query->logicalOr(
+                $query->greaterThan('txHgonWorkgroupStdevent', 0),
+                $query->logicalAnd(
+                    $query->equals('txHgonWorkgroupStdevent', 0),
+                    $query->equals('txHgonWorkgroupWgevent', 0)
+                )
+            );
             if ($filter['workGroup']) {
                 $constraints[] = $query->contains('txHgonWorkgroupStdevent', intval($filter['workGroup']));
             }
