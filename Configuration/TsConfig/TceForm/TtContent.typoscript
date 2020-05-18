@@ -4,8 +4,8 @@ TCEFORM {
         # adjustments for change to FCS (use "textmedia" instead of "text", "textpic", "image" etc)
         # and remove anything, what  we don't needed (actually)
         CType {
-            removeItems = header, text, textpic, image, bullets, table, multimedia, media, mailform, search, login, menu, shortcut, html, script, splash, div
-            #removeItems = text, textpic, image, media
+            removeItems = header, text, textpic, image, bullets, table, multimedia, media, mailform, search, login, menu, shortcut, script, splash, div
+            #removeItems = text, textpic, image, media, html
         }
 
         imageorient {
