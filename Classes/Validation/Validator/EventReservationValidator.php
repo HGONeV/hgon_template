@@ -2,7 +2,6 @@
 
 namespace HGON\HgonTemplate\Validation\Validator;
 
-use RKW\RkwEvents\Helper\DivUtility;
 use \RKW\RkwBasics\Helper\Common;
 
 /*
@@ -21,11 +20,9 @@ use \RKW\RkwBasics\Helper\Common;
 /**
  * Class EventReservationValidator
  *
- * @author Carlos Meyer <cm@davitec.de>
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Rkw Kompetenzzentrum
- * @package RKW_RkwEvents
+ * @copyright HGON
+ * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class EventReservationValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator

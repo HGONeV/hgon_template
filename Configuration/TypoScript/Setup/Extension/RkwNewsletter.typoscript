@@ -5,8 +5,6 @@ plugin.tx_rkwnewsletter {
             0 = EXT:rkw_newsletter/Resources/Private/Layouts/
             1 = {$plugin.tx_rkwnewsletter.view.layoutRootPath}
         }
-
-
         templateRootPaths {
             0 = EXT:rkw_newsletter/Resources/Private/Templates/
             1 = {$plugin.tx_rkwnewsletter.view.templateRootPath}

@@ -41,7 +41,7 @@
                     </span>
                     <span class="checkbox__label" title="<f:format.stripTags>{culinary.description}</f:format.stripTags>">
                         {culinary.title}: <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{culinary.price}</f:format.currency>
-                        (<f:format.date format="d.m.Y">{culinary.date}</f:format.date>)
+                        <f:if condition="{culinary.date}">(<f:format.date format="d.m.Y">{culinary.date}</f:format.date>)</f:if>
                     </span>
                 </label>
             </f:for>

@@ -1,0 +1,63 @@
+{namespace vh=RKW\RkwMailer\ViewHelpers}
+<f:layout name="Email/{mailType}" />
+
+
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+<vh:frontend.translate key="templates_email_informUpcomingEventUser.headline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" arguments="{0 : frontendUser.firstName, 1: frontendUser.lastName}" />
+
+<vh:frontend.translate key="templates_email_informUpcomingEventUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+<f:if condition="{reservation.event.onlineEvent}"><f:then><f:if condition="{reservation.event.onlineEventAccessLink}">
+<vh:frontend.translate key="templates_email_informUpcomingEventUser.eventAccessLink" languageKey="{language}" extensionName="rkwEvents" />
+<vh:frontend.typolink parameter="{reservation.event.onlineEventAccessLink}" />
+</f:if></f:then><f:else><vh:frontend.translate key="templates_email_informUpcomingEventUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+
+<vh:frontend.translate key="templates_email_informUpcomingEventUser.direction" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />:
+{googleMapsLink}
+</f:else></f:if>
+<vh:frontend.translate key="templates_email_informUpcomingEventUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+
+<f:render partial="Email/Details" section="Plaintext" arguments="{reservation: reservation, frontendUser: frontendUser, language:frontendUser.txRkwregistrationLanguageKey, showPid: showPid}"/>
+
+=============================================================
+<vh:frontend.translate key="templates_email_informUpcomingEventUser.changeDeleteHeadline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+=============================================================
+<vh:frontend.translate key="templates_email_informUpcomingEventUser.text4" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+<vh:frontend.link absolute="TRUE" pageUid="{loginPid}" />
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+	<h1><vh:frontend.translate key="templates_email_informUpcomingEventUser.headline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" arguments="{0 : frontendUser.firstName, 1: frontendUser.lastName}" /></h1>
+	<p>
+		<vh:frontend.translate key="templates_email_informUpcomingEventUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" /><br>
+        <f:if condition="{reservation.event.onlineEvent}">
+            <f:then>
+                <br/><strong><vh:frontend.translate key="templates_email_informUpcomingEventUser.eventAccessLink" languageKey="{language}" extensionName="rkwEvents" /></strong>
+                <br/><a href='<vh:frontend.typolink parameter="{reservation.event.onlineEventAccessLink}"/>' target="_blank"><vh:frontend.typolink parameter="{reservation.event.onlineEventAccessLink}" /></a>
+            </f:then>
+            <f:else>
+                <br/><vh:frontend.translate key="templates_email_informUpcomingEventUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+            </f:else>
+        </f:if>
+	</p>
+    <f:if condition="{reservation.event.onlineEvent}">
+        <f:else>
+            <p>
+                <strong><vh:frontend.translate key="templates_email_informUpcomingEventUser.direction" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />:</strong><br/>
+                <a href="{googleMapsLink}" target="_blank">
+                    <img src="###baseUrl###/{extRelPath}Resources/Public/Images/MapSmall.png" alt="<vh:frontend.translate key='templates_email_informUpcomingEventUser.googleLink' languageKey='{frontendUser.txRkwregistrationLanguageKey}' extensionName='rkwEvents' />" title="<vh:frontend.translate key='templates_email_informUpcomingEventUser.googleLink' languageKey='{frontendUser.txRkwregistrationLanguageKey}' extensionName='rkwEvents' />" />
+                </a>
+            </p>
+        </f:else>
+    </f:if>
+	<p>
+		<vh:frontend.translate key="templates_email_informUpcomingEventUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+	</p>
+	<f:render partial="Email/Details" section="Html" arguments="{reservation:reservation, frontendUser: frontendUser, language:frontendUser.txRkwregistrationLanguageKey, showPid: showPid}"/>
+	<h2><vh:frontend.translate key="templates_email_informUpcomingEventUser.changeDeleteHeadline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" /></h2>
+	<p>
+		<a href="<vh:frontend.link absolute='TRUE' pageUid='{loginPid}' />" target="_blank"><vh:frontend.translate key="templates_email_informUpcomingEventUser.text4" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" /></a>
+	</p>
+</f:section>

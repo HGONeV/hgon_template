@@ -17,6 +17,9 @@ config.tx_extbase {
         RKW\RkwEvents\Validation\Validator\EventReservationValidator {
             className = HGON\HgonTemplate\Validation\Validator\EventReservationValidator
         }
+        RKW\RkwEvents\Helper\DivUtility {
+            className = HGON\HgonTemplate\Helper\DivUtility
+        }
         RKW\RkwNewsletter\Controller\SubscriptionController {
             className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
         }
@@ -84,6 +87,13 @@ config.tx_extbase {
             HGON\HgonTemplate\Domain\Model\Event {
                 mapping {
                     tableName = tx_rkwevents_domain_model_event
+                    recordType =
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\EventReservation {
+                mapping {
+                    tableName = tx_rkwevents_domain_model_eventreservation
                     recordType =
                 }
             }

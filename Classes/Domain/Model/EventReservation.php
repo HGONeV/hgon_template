@@ -51,6 +51,8 @@ class EventReservation extends \RKW\RkwEvents\Domain\Model\EventReservation
      */
     protected function initStorageObjects()
     {
+        parent::initStorageObjects();
+        $this->addPerson = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateEventculinary = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 

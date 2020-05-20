@@ -4,18 +4,18 @@
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
 
-----------------------------------------------------------------------------------------------------------------------------------
-<f:if condition="{hash}">
-<rkwMailer:frontend.translate key="partials_newsletter_footer.subscriptionText" languageKey="{queueRecipient.languageCode}" extensionName="rkwNewsletter" />
-<rkwMailer:frontend.translate key="partials_newsletter_footer.subscriptionLink" languageKey="{queueRecipient.languageCode}" extensionName="rkwNewsletter" />: <rkwMailer:frontend.link action="edit" controller="Subscription" extensionName="rkwNewsletter" pluginName="Subscription" pageUid="{subscriptionPid}" absolute="true" queueMail="{queueMail}" arguments="{hash: hash}" noCacheHash="true" />
+    ----------------------------------------------------------------------------------------------------------------------------------
+    <f:if condition="{hash}">
+        <rkwMailer:frontend.translate key="partials_newsletter_footer.subscriptionText" languageKey="{queueRecipient.languageCode}" extensionName="rkwNewsletter" />
+        <rkwMailer:frontend.translate key="partials_newsletter_footer.subscriptionLink" languageKey="{queueRecipient.languageCode}" extensionName="rkwNewsletter" />: <rkwMailer:frontend.link action="edit" controller="Subscription" extensionName="rkwNewsletter" pluginName="Subscription" pageUid="{subscriptionPid}" absolute="true" queueMail="{queueMail}" arguments="{hash: hash}" noCacheHash="true" />
 
-</f:if>
-HGON - Hessische Gesellschaft für Ornithologie und Naturschutz e.V.
-Lindenstraße 5
-61209 Echzell
-Tel.:+49 6008/1803
-Fax:+49 6008/7578
-info(at)hgon.de
+    </f:if>
+    HGON - Hessische Gesellschaft für Ornithologie und Naturschutz e.V.
+    Lindenstraße 5
+    61209 Echzell
+    Tel.:+49 6008/1803
+    Fax:+49 6008/7578
+    info(at)hgon.de
 </f:section>
 
 

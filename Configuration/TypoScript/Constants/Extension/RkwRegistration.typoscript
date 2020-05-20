@@ -10,4 +10,10 @@ plugin.tx_rkwregistration {
         # cat=plugin.tx_rkwregistration/file; type=string; label=Path to template layouts (FE)
         layoutRootPath = EXT:hgon_template/Resources/Private/Extension/RkwRegistration/Layouts/
     }
+    settings {
+        users {
+            // cat=plugin.tx_rkwregistration//a; type=string; label=Language-key on registering (default:default)
+            languageKeyOnRegister = de
+        }
+    }
 }

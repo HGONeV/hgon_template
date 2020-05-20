@@ -2,6 +2,7 @@
 namespace HGON\HgonTemplate\Controller;
 
 use RKW\RkwEvents\Helper\DivUtility;
+//use HGON\HgonTemplate\Helper\DivUtility;
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -117,7 +118,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      * @param \HGON\HgonTemplate\Domain\Model\EventReservation $newEventReservation
      * @param integer $terms
      * @param integer $privacy
-     * @validate $newEventReservation \RKW\RkwEvents\Validation\Validator\EventReservationValidator
+     * @validate $newEventReservation \HGON\HgonTemplate\Validation\Validator\EventReservationValidator
      * @return void
      * @throws \RKW\RkwRegistration\Exception
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
@@ -129,6 +130,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      */
     public function createAlternativeAction(\HGON\HgonTemplate\Domain\Model\EventReservation $newEventReservation, $terms = null, $privacy = null)
     {
+
         // 1. Check for existing reservations based on email.
         $frontendUser = $this->frontendUserRepository->findByUsername($newEventReservation->getEmail());
         if (count($frontendUser)) {
@@ -204,7 +206,6 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
             //===
         }
 
-
         // 5. check if email is valid
         if (!\RKW\RkwRegistration\Tools\Registration::validEmail($newEventReservation->getEmail())) {
             $this->addFlashMessage(
@@ -236,48 +237,51 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
         // HGON EDIT START: Culinary and PayPal-Handling
         if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('hgon_payment')) {
-            //    DebuggerUtility::var_dump($newEventReservation); exit;
+            //DebuggerUtility::var_dump($newEventReservation->getTxHgontemplateEventculinary());
+            //exit;
 
-            /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */
-            $basket = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Basket');
+            if ($newEventReservation->getTxHgontemplateEventculinary()->count()) /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */ {
+                $basket = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Basket');
 
-            // add culinary
-            /** @var \HGON\HgonTemplate\Domain\Model\EventCulinary $eventCulinary */
-            foreach ($newEventReservation->getTxHgontemplateEventculinary() as $eventCulinary) {
-                /** @var \HGON\HgonPayment\Domain\Model\Article $article */
-                $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
-                $article->setDescription($eventCulinary->getDescription());
-                $article->setName($eventCulinary->getTitle());
-                $article->setPrice(floatval($eventCulinary->getPrice()));
-                $article->setSku('culinary' . $eventCulinary->getUid());
-                $basket->addArticle($article);
+
+                // add culinary
+                /** @var \HGON\HgonTemplate\Domain\Model\EventCulinary $eventCulinary */
+                foreach ($newEventReservation->getTxHgontemplateEventculinary() as $eventCulinary) {
+                    /** @var \HGON\HgonPayment\Domain\Model\Article $article */
+                    $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
+                    $article->setDescription($eventCulinary->getDescription());
+                    $article->setName($eventCulinary->getTitle());
+                    $article->setPrice(floatval($eventCulinary->getPrice()));
+                    $article->setSku('culinary' . $eventCulinary->getUid());
+                    $basket->addArticle($article);
+                }
+
+                /*
+                // add possible event costs
+                if (
+                    $newEventReservation->getEvent()->getCostsReg()
+                    || $newEventReservation->getEvent()->getCostsRed()
+                ) {
+                    $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
+                   // $article->setDescription('');
+                    $article->setName('Kosten Teilnahme');
+                    $article->setPrice(floatval($eventCulinary->getPrice()));
+                    $article->setSku('eventprice' . $newEventReservation->getEvent()->getUid());
+                    $basket->addArticle($article);
+                }
+                */
+
+
+                $GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_payment_basket', $basket);
+                $GLOBALS['TSFE']->storeSessionData();
+
+                /** @var \HGON\HgonPayment\Api\PayPalApi $payPalApi */
+                $payPalApi = $this->objectManager->get('HGON\\HgonPayment\\Api\\PayPalApi');
+                $result = $payPalApi->createPayment($basket);
+                // extract approval_url
+                $approvalUrlArray = $result->links;
+                $approvalUrl = $approvalUrlArray[1]->href;
             }
-
-            /*
-            // add possible event costs
-            if (
-                $newEventReservation->getEvent()->getCostsReg()
-                || $newEventReservation->getEvent()->getCostsRed()
-            ) {
-                $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
-               // $article->setDescription('');
-                $article->setName('Kosten Teilnahme');
-                $article->setPrice(floatval($eventCulinary->getPrice()));
-                $article->setSku('eventprice' . $newEventReservation->getEvent()->getUid());
-                $basket->addArticle($article);
-            }
-            */
-
-
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_payment_basket', $basket);
-            $GLOBALS['TSFE']->storeSessionData();
-
-            /** @var \HGON\HgonPayment\Api\PayPalApi $payPalApi */
-            $payPalApi = $this->objectManager->get('HGON\\HgonPayment\\Api\\PayPalApi');
-            $result = $payPalApi->createPayment($basket);
-            // extract approval_url
-            $approvalUrlArray = $result->links;
-            $approvalUrl = $approvalUrlArray[1]->href;
         }
         // HGON EDIT END
 
@@ -336,4 +340,5 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
         // just show messages
     }
+
 }
