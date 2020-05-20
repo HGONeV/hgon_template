@@ -25,6 +25,13 @@ namespace HGON\HgonTemplate\Domain\Model;
 class EventReservation extends \RKW\RkwEvents\Domain\Model\EventReservation
 {
     /**
+     * txHgontemplateEventcosts
+     *
+     * @var string
+     */
+    protected $txHgontemplateEventcosts = null;
+
+    /**
      * txHgontemplateEventculinary
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\EventCulinary>
@@ -54,6 +61,22 @@ class EventReservation extends \RKW\RkwEvents\Domain\Model\EventReservation
         parent::initStorageObjects();
         $this->addPerson = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateEventculinary = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxHgontemplateEventcosts()
+    {
+        return $this->txHgontemplateEventcosts;
+    }
+
+    /**
+     * @param string $txHgontemplateEventcosts
+     */
+    public function setTxHgontemplateEventcosts($txHgontemplateEventcosts)
+    {
+        $this->txHgontemplateEventcosts = $txHgontemplateEventcosts;
     }
 
     /**

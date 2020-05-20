@@ -58,6 +58,9 @@
             </trans-unit>
 
 
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventcosts">
+                <source>Events Costs</source>
+            </trans-unit>
             <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary">
                 <source>Events Culinary</source>
             </trans-unit>

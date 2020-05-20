@@ -130,7 +130,6 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      */
     public function createAlternativeAction(\HGON\HgonTemplate\Domain\Model\EventReservation $newEventReservation, $terms = null, $privacy = null)
     {
-
         // 1. Check for existing reservations based on email.
         $frontendUser = $this->frontendUserRepository->findByUsername($newEventReservation->getEmail());
         if (count($frontendUser)) {
@@ -229,26 +228,29 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
         // HGON EDIT START: Culinary and PayPal-Handling
         if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('hgon_payment')) {
-            //DebuggerUtility::var_dump($newEventReservation->getTxHgontemplateEventculinary());
-            //exit;
 
-            if ($newEventReservation->getTxHgontemplateEventculinary()->count()) /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */ {
+            if (
+                $newEventReservation->getTxHgontemplateEventculinary()->count()
+                || ($newEventReservation->getEvent()->getCostsReg() || $newEventReservation->getEvent()->getCostsRed())
+            )  {
+                /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */
                 $basket = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Basket');
 
-
                 // add culinary
-                /** @var \HGON\HgonTemplate\Domain\Model\EventCulinary $eventCulinary */
-                foreach ($newEventReservation->getTxHgontemplateEventculinary() as $eventCulinary) {
-                    /** @var \HGON\HgonPayment\Domain\Model\Article $article */
-                    $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
-                    $article->setDescription($eventCulinary->getDescription());
-                    $article->setName($eventCulinary->getTitle());
-                    $article->setPrice(floatval($eventCulinary->getPrice()));
-                    $article->setSku('culinary' . $eventCulinary->getUid());
-                    $basket->addArticle($article);
+                if ($newEventReservation->getTxHgontemplateEventculinary()->count()) {
+                    /** @var \HGON\HgonTemplate\Domain\Model\EventCulinary $eventCulinary */
+                    foreach ($newEventReservation->getTxHgontemplateEventculinary() as $eventCulinary) {
+                        /** @var \HGON\HgonPayment\Domain\Model\Article $article */
+                        $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
+                        $article->setDescription($eventCulinary->getDescription());
+                        $article->setName($eventCulinary->getTitle());
+                        $article->setPrice(floatval($eventCulinary->getPrice()));
+                        $article->setSku('culinary' . $eventCulinary->getUid());
+                        $article->setIsDonation(false);
+                        $basket->addArticle($article);
+                    }
                 }
 
-                /*
                 // add possible event costs
                 if (
                     $newEventReservation->getEvent()->getCostsReg()
@@ -257,12 +259,17 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                     $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
                    // $article->setDescription('');
                     $article->setName('Kosten Teilnahme');
-                    $article->setPrice(floatval($eventCulinary->getPrice()));
+                    // regular price
+                    if ($newEventReservation->getTxHgontemplateEventcosts() == 'reg') {
+                        $article->setPrice(floatval($newEventReservation->getEvent()->getCostsReg()));
+                    } elseif ($newEventReservation->getTxHgontemplateEventcosts() == 'red') {
+                        // reduced price
+                        $article->setPrice(floatval($newEventReservation->getEvent()->getCostsRed()));
+                    }
                     $article->setSku('eventprice' . $newEventReservation->getEvent()->getUid());
+                    $article->setIsDonation(false);
                     $basket->addArticle($article);
                 }
-                */
-
 
                 $GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_payment_basket', $basket);
                 $GLOBALS['TSFE']->storeSessionData();

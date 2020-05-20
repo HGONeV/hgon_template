@@ -62,6 +62,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
                                                     <f:format.currency currencySign="€">
                                                         {event.costsReg}
                                                     </f:format.currency>
+                                                    <f:if condition="{event.costsRed}">
+                                                        (reduziert:
+                                                        <f:format.currency currencySign="€">
+                                                            {event.costsRed}
+                                                        </f:format.currency>
+                                                        )
+                                                    </f:if>
                                                 </f:then>
                                                 <f:else>
                                                     Kostenlos
