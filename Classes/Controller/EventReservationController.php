@@ -147,16 +147,8 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                     \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
                 );
 
-                // @toDo: Nachricht muss wahrscheinlich angepasst werden (paramter wurden entfernt)
-                $this->addFlashMessage(
-                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                        'eventReservationController.hint.reservations',
-                        'rkw_events'
-                    )
-                );
-
                 // already registered
-                $this->redirect('end', 'EventReservation', null, array('event' => $newEventReservation->getEvent()), intval($this->settings['showPid']));
+                $this->forward('end', null, null, array('event' => $newEventReservation->getEvent()));
                 //===
             }
         }
@@ -171,7 +163,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                 '',
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
-            $this->redirect('end', 'EventReservation', null, array('event' => $newEventReservation->getEvent()), $this->settings['showPid']);
+            $this->forward('end', null, null, array('event' => $newEventReservation->getEvent()));
             //===
         }
 
@@ -186,7 +178,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
 
-            $this->redirect('end', 'EventReservation', null, array('event' => $newEventReservation->getEvent()), intval($this->settings['showPid']));
+            $this->forward('end', null, null, array('event' => $newEventReservation->getEvent()));
             //===
         }
 
