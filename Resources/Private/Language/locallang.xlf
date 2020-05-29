@@ -71,6 +71,20 @@
                 <source>In particular, I agree that HGON may publish photographs and videos taken during the event in various media for the purposes of event reporting and general public relations work.</source>
             </trans-unit>
 
+            <trans-unit id="eventReservationController.message.reservationCreatedEmailAlt">
+                <source>An e-mail has been send to you. Please click the link in the e-mail to confirm your request.</source>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.0">
+                <source>Please choose</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.1">
+                <source>Locally</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
+                <source>PayPal</source>
+            </trans-unit>
+
         </body>
 	</file>
 </xliff>

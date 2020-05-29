@@ -82,6 +82,22 @@
                 <source>Events Culinary</source>
                 <target>Veranstaltungs-Speisen</target>
             </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype">
+                <source>Payment type</source>
+                <target>Zahlungsart</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.0">
+                <source>Please choose</source>
+                <target>Bitte wählen</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.1">
+                <source>Locally</source>
+                <target>Vor Ort (Barzahlung)</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
+                <source>PayPal</source>
+                <target>PayPal</target>
+            </trans-unit>
 
 
             <trans-unit id="tx_hgontemplate_domain_model_pages.tabs.hgon">

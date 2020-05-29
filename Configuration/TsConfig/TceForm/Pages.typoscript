@@ -39,6 +39,11 @@ TCEFORM {
         internal_contact.config.foreign_table_where = ORDER BY tx_rkwauthors_domain_model_authors.last_name ASC
     }
 
+    tx_rkwevents_domain_model_eventreservation {
+        add_person.disabled = 1
+    }
+
+    }
     # for secure: Disable possible problem fields
     tx_rkwbasics_domain_model_department {
         name.disabled = 1

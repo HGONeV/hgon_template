@@ -4,20 +4,22 @@
 		<div id="{element.uniqueIdentifier}" class="inputs-list">
 			<div class="form-group">
 				<f:for each="{element.properties.options}" as="label" key="value" iteration="idIterator">
-                    <span class="radio__input">
-                        <f:form.radio
-                            property="{element.identifier}"
-                            id="{element.uniqueIdentifier}-{idIterator.index}"
-                            class="{element.properties.elementClassAttribute} form-check-input"
-                            value="{value}"
-                            errorClass="{element.properties.elementErrorClassAttribute}"
-                            additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
-                        />
-                        <label class="" for="{element.uniqueIdentifier}-{idIterator.index}"></label>
-                    </span>
-                    <span class="radio__label">
-                        {formvh:translateElementProperty(element: element, property: '{0: \'options\', 1: value}')}
-                    </span>
+                    <label class="checkbox">
+                        <span class="checkbox__input">
+                            <f:form.radio
+                                property="{element.identifier}"
+                                id="{element.uniqueIdentifier}-{idIterator.index}"
+                                class="{element.properties.elementClassAttribute} form-check-input"
+                                value="{value}"
+                                errorClass="{element.properties.elementErrorClassAttribute}"
+                                additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
+                            />
+                            <label class="" for="{element.uniqueIdentifier}-{idIterator.index}"></label>
+                        </span>
+                        <span class="checkbox__label">
+                            {formvh:translateElementProperty(element: element, property: '{0: \'options\', 1: value}')}
+                        </span>
+                    </label>
 				</f:for>
 			</div>
 		</div>

@@ -73,6 +73,23 @@
                 <target>Ja, ich stimme zu, dass das HGON meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzerkontos verwendet.  Ferner habe ich die erweiterten Hinweise in der</target>
             </trans-unit>
 
+            <trans-unit id="eventReservationController.message.reservationCreatedEmailAlt">
+                <source>An e-mail has been send to you. Please click the link in the e-mail to confirm your request.</source>
+                <target><![CDATA[Fast geschafft! Eine E-Mail mit einem Bestätigungslink ist auf dem Weg zu Ihnen. Sollten Sie innerhalb der nächsten 2-3 Minuten keine E-Mail von uns erhalten, prüfen Sie Ihren Spam-Filter. Selbstverständlich steht Ihnen aber auch unser <a href="mailto:info@hgon.de">Support</a> bei Problemen jederzeit gerne zur Verfügung.]]></target>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.0">
+                <source>Please choose</source>
+                <target>Bitte wählen</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.1">
+                <source>Locally</source>
+                <target>Vor Ort (Barzahlung)</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
+                <source>PayPal</source>
+                <target>PayPal</target>
+            </trans-unit>
 
 
         </body>

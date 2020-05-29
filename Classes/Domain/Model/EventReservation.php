@@ -25,6 +25,13 @@ namespace HGON\HgonTemplate\Domain\Model;
 class EventReservation extends \RKW\RkwEvents\Domain\Model\EventReservation
 {
     /**
+     * txHgontemplatePaymenttype
+     *
+     * @var integer
+     */
+    protected $txHgontemplatePaymenttype = null;
+
+    /**
      * txHgontemplateEventcosts
      *
      * @var string
@@ -61,6 +68,22 @@ class EventReservation extends \RKW\RkwEvents\Domain\Model\EventReservation
         parent::initStorageObjects();
         $this->addPerson = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateEventculinary = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTxHgontemplatePaymenttype()
+    {
+        return $this->txHgontemplatePaymenttype;
+    }
+
+    /**
+     * @param int $txHgontemplatePaymenttype
+     */
+    public function setTxHgontemplatePaymenttype($txHgontemplatePaymenttype)
+    {
+        $this->txHgontemplatePaymenttype = $txHgontemplatePaymenttype;
     }
 
     /**

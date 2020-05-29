@@ -20,8 +20,8 @@
 # Environments
 [applicationContext = Development*]
     <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/Constants.typoscript">
-[global]
+[end]
 
 [applicationContext = Production/Staging]
     <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Constants.typoscript">
-[global]
+[end]

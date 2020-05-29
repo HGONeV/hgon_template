@@ -32,7 +32,7 @@ plugin.tx_rkwevents {
         reservationPid = 64
 
         # cat=plugin.tx_rkwevents; type=integer; label=PID for create new FeUser
-        storagePidFeUser =
+        storagePidFeUser = 270
 
         # cat=plugin.tx_rkwevents; type=integer; label=PID for terms and conditions (AGB)
         termsPid =

@@ -227,7 +227,10 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
 
         // HGON EDIT START: Culinary and PayPal-Handling
-        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('hgon_payment')) {
+        if (
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('hgon_payment')
+            && $newEventReservation->getTxHgontemplatePaymenttype() == 2
+        ) {
 
             if (
                 $newEventReservation->getTxHgontemplateEventculinary()->count()
@@ -307,7 +310,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
         $this->addFlashMessage(
             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                'eventReservationController.message.reservationCreatedEmail', 'rkw_events',
+                'eventReservationController.message.reservationCreatedEmailAlt', 'hgon_template',
                 '',
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::OK
             )

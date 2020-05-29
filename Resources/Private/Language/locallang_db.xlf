@@ -64,6 +64,18 @@
             <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary">
                 <source>Events Culinary</source>
             </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype">
+                <source>Payment type</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.0">
+                <source>Please choose</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.1">
+                <source>Locally</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
+                <source>PayPal</source>
+            </trans-unit>
 
 
             <trans-unit id="tx_hgontemplate_domain_model_pages.tabs.hgon">

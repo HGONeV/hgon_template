@@ -1,0 +1,45 @@
+#############################################################################
+// STANDARD- SEITENOBJEKT
+// Used for popups which are calling standard pages
+#############################################################################
+// Normale Seite referenzieren
+pagePrint = PAGE
+pagePrint {
+
+	//===============================================================
+	// Seiten-Typ
+	//===============================================================
+	typeNum = 1590761711
+
+	//===============================================================
+	// Globale Einstellungen
+	//===============================================================
+	config {
+
+		// Für Suche deaktivieren
+		index_enable = 0
+		index_metatags = 0
+		index_externals = 0
+	}
+
+	//===============================================================
+	// CSS
+	//===============================================================
+	// CSS löschen und spezielles setzen
+	includeCSS >
+	includeCSS.file1 = {$globalWebsiteConfig.templatePaths.default.styles}/styles.css
+	includeCSS.file1.media = screen, print	
+	
+	//===============================================================
+	// JS
+	//===============================================================
+	includeJS >
+	includeJSFooterlibs >
+	includeJSFooter >
+
+    //===============================================================
+    // Inhalte
+    //===============================================================
+    10 = CONTENT
+    10 < styles.content.get
+}

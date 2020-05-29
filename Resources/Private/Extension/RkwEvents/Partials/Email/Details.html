@@ -28,14 +28,16 @@
 {reservation.zip} {reservation.city}
 <f:if condition="{reservation.remark}">
 <rkwMailer:frontend.translate key="partials_email_details.reservationRemarks" languageKey="{language}" extensionName="rkwEvents" />:
-{reservation.remark}</f:if><f:if condition="{reservation.addPerson}">
+{reservation.remark}</f:if>
 
-<rkwMailer:frontend.translate key="partials_email_details.reservationOthers" languageKey="{language}" extensionName="rkwEvents" />:
-<f:for each="{reservation.addPerson}" as="person" iteration="iterator"><f:if condition="{person.lastName}">{person.firstName} {person.lastName}<f:if condition="{iterator.isLast}"><f:else>
-</f:else></f:if></f:if></f:for></f:if><f:if condition="{reservation.serverHost}">
+<f:if condition="{reservation.event.costsReg}"><p>Preis:<f:if condition="{reservation.txHgontemplateEventcosts} == 'reg'"><f:then><f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{reservation.event.costsReg}</f:format.currency></f:then><f:else><f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{reservation.event.costsRed}</f:format.currency></f:else></f:if></p></f:if>
+
+<f:if condition="<f:count>{reservation.txHgontemplateEventculinary}</f:count>"><p>Essen:<f:for each="{reservation.txHgontemplateEventculinary}" as="culinary"><f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{culinary.price}</f:format.currency>{culinary.title} - {culinary.description}</f:for></p></f:if>
+
+<f:if condition="{reservation.txHgontemplatePaymenttype}"><rkwMailer:frontend.translate key="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.{reservation.txHgontemplatePaymenttype}" languageKey="{language}" extensionName="hgonTemplate" /></f:if>
 
 <rkwMailer:frontend.translate key="partials_email_details.reservationVia" languageKey="{language}" extensionName="rkwEvents" />:
-{reservation.serverHost}</f:if></f:else></f:if>
+{reservation.serverHost}</f:else></f:if>
 </f:section>
 
 
@@ -104,20 +106,58 @@
 				</p>
 			</f:if>
 
-			<f:if condition="{reservation.addPerson}">
-				<p>
-					<strong><rkwMailer:frontend.translate key="partials_email_details.reservationOthers" languageKey="{language}" extensionName="rkwEvents" /></strong>:
-					<f:for each="{reservation.addPerson}" as="person" iteration="iterator">
-						<f:if condition="{person.lastName}"><br/>{person.firstName} {person.lastName}</f:if>
-					</f:for>
-				</p>
-			</f:if>
-            <f:if condition="{reservation.serverHost}">
+            <f:if condition="{reservation.event.costsReg}">
                 <p>
-                    <strong><rkwMailer:frontend.translate key="partials_email_details.reservationVia" languageKey="{language}" extensionName="rkwEvents" /></strong>:
-                    <br/>{reservation.serverHost}
+                    Preis:
+                    <f:if condition="{reservation.txHgontemplateEventcosts} == 'reg'">
+                        <f:then>
+                            <f:comment> <!-- Selected regular price in form --></f:comment>
+                            <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
+                                {reservation.event.costsReg}
+                            </f:format.currency>
+                        </f:then>
+                        <f:else>
+                            <f:comment> <!-- Selected reduced price in form --></f:comment>
+                            <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
+                                {reservation.event.costsRed}
+                            </f:format.currency>
+                        </f:else>
+                    </f:if>
                 </p>
             </f:if>
+
+            <f:if condition="<f:count>{reservation.txHgontemplateEventculinary}</f:count>">
+                <p>
+                    Essen:
+                    <f:for each="{reservation.txHgontemplateEventculinary}" as="culinary">
+                        <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
+                            {culinary.price}
+                        </f:format.currency>
+                        {culinary.title} - {culinary.description}
+                    </f:for>
+                </p>
+            </f:if>
+
+            <f:if condition="{reservation.txHgontemplatePaymenttype}">
+                <rkwMailer:frontend.translate key="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.{reservation.txHgontemplatePaymenttype}" languageKey="{language}" extensionName="hgonTemplate" />
+            </f:if>
+
+            <f:comment>
+                <f:if condition="{reservation.addPerson}">
+                    <p>
+                        <strong><rkwMailer:frontend.translate key="partials_email_details.reservationOthers" languageKey="{language}" extensionName="rkwEvents" /></strong>:
+                        <f:for each="{reservation.addPerson}" as="person" iteration="iterator">
+                            <f:if condition="{person.lastName}"><br/>{person.firstName} {person.lastName}</f:if>
+                        </f:for>
+                    </p>
+                </f:if>
+                <f:if condition="{reservation.serverHost}">
+                    <p>
+                        <strong><rkwMailer:frontend.translate key="partials_email_details.reservationVia" languageKey="{language}" extensionName="rkwEvents" /></strong>:
+                        <br/>{reservation.serverHost}
+                    </p>
+                </f:if>
+            </f:comment>
 		</f:else>
 	</f:if>
 </f:section>

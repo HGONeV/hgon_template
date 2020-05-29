@@ -78,10 +78,3 @@ renderables:
         validators:
           -
             identifier: NotEmpty
-  -
-    renderingOptions:
-      previousButtonLabel: 'Previous step'
-      nextButtonLabel: 'Neue Seite'
-    identifier: summarypage
-    label: 'Summary page'
-    type: SummaryPage

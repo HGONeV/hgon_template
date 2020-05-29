@@ -1,55 +1,58 @@
 {namespace rkw=RKW\RkwEvents\ViewHelpers}
 {namespace rkwRegistration=RKW\RkwRegistration\ViewHelpers}
 
-<f:if condition="{event.costsReg} || {event.costsRed}">
+<f:if condition="{event.costsReg}">
 
-    <f:if condition="{event.costsRed}" >
-        <label class="checkbox">
+    <p>Teilnahmegebühr</p>
+    <span class="form-group">
+        <f:if condition="{event.costsRed}" >
+
+            <label class="checkbox">
+                <span class="checkbox__input">
+                    <f:form.radio id="txHgontemplateEventcostsRed" class="input input-radio" property="txHgontemplateEventcosts" name="txHgontemplateEventcosts" value="red" />
+                    <label for="txHgontemplateEventcostsRed"></label>
+                </span>
+                <span class="checkbox__label">
+                    Reduziert (Ich bin Vereinsmitglied):
+                    <b>
+                        <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
+                            {event.costsRed}
+                        </f:format.currency>
+                    </b>
+                </span>
+            </label>
+        </f:if>
+
+        <f:if condition="{event.costsReg}" >
+            <label class="checkbox">
             <span class="checkbox__input">
-                <f:form.radio class="input input-radio" property="txHgontemplateEventcosts" name="txHgontemplateEventcosts" value="red" />
-                <label for="event-costs"></label>
+                <f:form.radio id="txHgontemplateEventcostsReg" class="input input-radio" checked="TRUE" property="txHgontemplateEventcosts" name="txHgontemplateEventcosts" value="reg" />
+                <label for="txHgontemplateEventcostsReg"></label>
             </span>
             <span class="checkbox__label">
-                Teilnahmegebühr reduziert:
+                Regulär:
                 <b>
                     <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
-                        {event.costsRed}
+                        {event.costsReg}
                     </f:format.currency>
                 </b>
             </span>
-        </label>
-    </f:if>
-
-    <f:if condition="{event.costsReg}" >
-        <label class="checkbox">
-        <span class="checkbox__input">
-            <f:form.radio class="input input-radio" checked="TRUE" property="txHgontemplateEventcosts" name="txHgontemplateEventcosts" value="reg" />
-            <label for="event-costs"></label>
-        </span>
-        <span class="checkbox__label">
-            Teilnahmegebühr regulär:
-            <b>
-                <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
-                    {event.costsReg}
-                </f:format.currency>
-            </b>
-        </span>
-        </label>
-    </f:if>
-
+            </label>
+        </f:if>
+    </span>
 </f:if>
 
 
 <!-- culinary options -->
 <f:if condition="<f:count>{event.txHgontemplateEventCulinary}</f:count>">
-    <p>Mahlzeiten mitbuchen und anschließend direkt mit PayPal bezahlen</p>
+    <p>Mahlzeiten optional mitbuchen</p>
     <p class="form__field">
         <span class="checkbox-group">
             <f:for each="{event.txHgontemplateEventCulinary}" as="culinary" iteration="iter">
                 <label class="checkbox">
                     <span class="checkbox__input">
                         <f:form.checkbox class="input input-radio" id="culinary{culinary.uid}" property="txHgontemplateEventculinary.{iter.index}" value="{culinary.uid}" name="txHgontemplateEventculinary.{iter.index}" />
-                        <label for="culinary{culinary.uid}"></label>
+                        <label for="tx_rkwevents_rkweventsreservation[newEventReservation][txHgontemplateEventculinary][{iter.index}]"></label>
                     </span>
                     <span class="checkbox__label" title="<f:format.stripTags>{culinary.description}</f:format.stripTags>">
                         {culinary.title}: <b><f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{culinary.price}</f:format.currency></b>
@@ -59,6 +62,37 @@
             </f:for>
         </span>
     </p>
+</f:if>
+
+
+<!-- how to pay options -->
+<f:if condition="{event.costsReg} || <f:count>{event.txHgontemplateEventCulinary}</f:count>">
+    <p>Bezahlart</p>
+    <span class="checkbox-group">
+        <f:if condition="{event.costsRed}" >
+            <label class="checkbox">
+                <span class="checkbox__input">
+                    <f:form.radio class="input input-radio" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="1" />
+                    <label for="txHgontemplatePaymenttype"></label>
+                </span>
+                <span class="checkbox__label">
+                    Vor Ort am Tag der Veranstaltung
+                </span>
+            </label>
+        </f:if>
+
+        <f:if condition="{event.costsReg}" >
+            <label class="checkbox">
+            <span class="checkbox__input">
+                <f:form.radio class="input input-radio" checked="TRUE" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="2" />
+                <label for="txHgontemplatePaymenttype"></label>
+            </span>
+            <span class="checkbox__label">
+                Jetzt direkt mit PayPal bezahlen
+            </span>
+            </label>
+        </f:if>
+    </span>
 </f:if>
 
 
