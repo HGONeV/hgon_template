@@ -23,6 +23,9 @@ config.tx_extbase {
         RKW\RkwNewsletter\Controller\SubscriptionController {
             className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
         }
+        RKW\RkwRegistration\Service\RkwMailService {
+            className = HGON\HgonTemplate\Service\RkwMailService
+        }
         GeorgRinger\News\Controller\NewsController {
             className = HGON\HgonTemplate\Controller\NewsController
         }

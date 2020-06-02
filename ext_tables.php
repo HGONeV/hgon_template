@@ -141,6 +141,10 @@ call_user_func(
     $_EXTKEY
 );
 
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_newsletter/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwnewsletter.xlf';
+
+
 //=================================================================
 // Add Flexform
 //=================================================================
