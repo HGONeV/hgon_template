@@ -41,9 +41,10 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="width:670px;">
+                                                        Lalala: <f:count>{content.image}</f:count>
                                                         <f:for each="{content.image}" as="image" iteration="iter">
                                                             <f:if condition="{iter.isFirst}">
-                                                                <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="671" height="auto" cropVariant="14to5" />
+                                                                <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="671" height="auto" />
                                                             </f:if>
                                                         </f:for>
                                                     </td>
@@ -82,7 +83,8 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <f:if condition="{content.headerLink}">
+                                    <f:comment> <!-- check also, if a link can successfully generated --> </f:comment>
+                                    <f:if condition="{content.headerLink} && <rkwMailer:frontend.typolink parameter='{content.headerLink}' />">
                                         <tr>
                                             <td vertical-align="middle" style="font-size:0px;padding:0;padding-top:20px;word-break:break-word;" align="left">
                                                 <table role="presentation" style="border-collapse:separate;line-height:100%;" cellspacing="0" cellpadding="0" border="0">
@@ -116,13 +118,12 @@
 
                     <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                         <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
-                            <tbody><tr>
-                                <td style="font-size:0px;word-break:break-word;">
-
-                                    <div style="height:24px;"> &nbsp; </div>
-
-                                </td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td style="font-size:0px;word-break:break-word;">
+                                        <div style="height:24px;"> &nbsp; </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

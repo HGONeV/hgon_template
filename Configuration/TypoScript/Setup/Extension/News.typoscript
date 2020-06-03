@@ -44,5 +44,10 @@ plugin.tx_news {
     }
     settings {
         listPid = {$plugin.tx_news.settings.listPid}
+
+        detail {
+            errorHandling = showStandaloneTemplate,EXT:hgon_template/Resources/Private/Extension/News/Templates/News/DetailNotFound.html,404
+
+        }
     }
 }
