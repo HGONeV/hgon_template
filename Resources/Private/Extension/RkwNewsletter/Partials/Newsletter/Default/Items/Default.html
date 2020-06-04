@@ -8,12 +8,7 @@
             <f:render partial="Default/Items/Default/TopicBadge" section="Plaintext" arguments="{_all}" />
         </f:then>
     </f:if>
-    <f:comment>
-        <!-- zunächst einmal auskommentiert. Kommt aus RkwNewsletter und dieser nutzt alten ViewHelper -->
-        <f:render partial="Default/Items/Default/Content" section="Plaintext" arguments="{_all}" />\n
-        <f:render partial="Default/Items/Default/Contact" section="Plaintext" arguments="{_all}" />
-    </f:comment>
-
+    <f:render partial="Default/Items/Default/Content" section="Plaintext" arguments="{_all}" />\n
 </f:section>
 
 
@@ -41,11 +36,25 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="width:670px;">
-                                                        <f:for each="{content.image}" as="image" iteration="iter">
-                                                            <f:if condition="{iter.isFirst}">
-                                                                <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="671" height="auto" />
-                                                            </f:if>
-                                                        </f:for>
+                                                        <f:if condition="<f:count>{content.image}</f:count>">
+                                                            <f:then>
+                                                                <f:for each="{content.image}" as="image" iteration="iter">
+                                                                    <f:if condition="{iter.isFirst}">
+                                                                        <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="670c" height="265c" />
+                                                                    </f:if>
+                                                                </f:for>
+                                                            </f:then>
+                                                            <f:else>
+                                                                <f:comment><!-- textmedia elements coming with "assets" instead "image" property --></f:comment>
+                                                                <f:if condition="<f:count>{content.assets}</f:count>">
+                                                                    <f:for each="{content.assets}" as="image" iteration="iter">
+                                                                        <f:if condition="{iter.isFirst}">
+                                                                            <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="670c" height="265c" />
+                                                                        </f:if>
+                                                                    </f:for>
+                                                                </f:if>
+                                                            </f:else>
+                                                        </f:if>
                                                     </td>
                                                 </tr>
                                             </tbody>

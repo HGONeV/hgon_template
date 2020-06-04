@@ -2,8 +2,10 @@
 {namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
 
 <!-- PLAINTEXT -->
-<f:section name="Plaintext" />
-
+<f:section name="Plaintext" >
+    <f:render partial="Default/Items/Editorial/Content" section="Plaintext" arguments="{_all}" />
+    <f:render partial="Default/Items/Editorial/Contact" section="Plaintext" arguments="{_all}" />
+</f:section>
 
 
 <!-- HTML for all other items -->

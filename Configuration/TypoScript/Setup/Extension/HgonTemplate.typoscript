@@ -29,6 +29,10 @@ config.tx_extbase {
         GeorgRinger\News\Controller\NewsController {
             className = HGON\HgonTemplate\Controller\NewsController
         }
+        RKW\RkwNewsletter\Domain\Model\TtContent {
+            className = HGON\HgonTemplate\Domain\Model\TtContent
+        }
+
     }
 
     persistence {
@@ -126,6 +130,13 @@ config.tx_extbase {
                 mapping {
                     tableName = tx_hgonpayment_domain_model_article
                     recordType =
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\TtContent {
+                mapping {
+                    recordType =
+                    tableName = tt_content
                 }
             }
 

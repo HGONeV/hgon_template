@@ -1,7 +1,10 @@
 {namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
 
 <!-- PLAINTEXT -->
-<f:section name="Plaintext" />
+<f:section name="Plaintext">
+{content.header}
+<f:format.raw>{content.bodytext}</f:format.raw>
+</f:section>
 
 
 <!-- HTML  -->

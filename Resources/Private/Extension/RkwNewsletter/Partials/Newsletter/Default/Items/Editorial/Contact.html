@@ -3,7 +3,15 @@
 {namespace hgonTemplate=HGON\HgonTemplate\ViewHelpers}
 
 <!-- PLAINTEXT -->
-<f:section name="Plaintext" />
+<f:section name="Plaintext">
+    <f:if condition="{content.txRkwnewsletterAuthors}">
+        <f:for each="{content.txRkwnewsletterAuthors}" as="author" iteration="iteratorAuthor">
+            <f:if condition="{iteratorAuthor.isFirst}">
+                <hgonTemplate:GetCombinedName author='{author}'/> - {author.functionTitle}
+            </f:if>
+        </f:for>
+    </f:if>
+</f:section>
 
 
 <!-- HTML for the first item-->
