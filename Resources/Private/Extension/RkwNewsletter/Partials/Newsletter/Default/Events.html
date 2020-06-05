@@ -5,32 +5,40 @@
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-    <f:if condition="{pages}">
-        <f:for each="{pages}" as="page">
-            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='{page.uid}-{webView}-{includeEditorials}' />">
-                <f:then>
-                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
-                </f:then>
-                <f:else>
-                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}">
-                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" isPlaintext="true">
-                            <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='{includeEditorials}' />" as="content" iteration="itemIterator">
-                                <f:if condition="{iterator.cycle} < {maxItemsPerTopic}">
-                                    <f:then>
-                                        <f:render partial="Default/Items/Default" section="Plaintext" arguments="{_all}" />\n\n
-                                    </f:then>
-                                    <f:else>
-                                        <f:if condition="{itemIterator.isLast}">
-                                            <f:render partial="Default/Items/More" section="Plaintext" arguments="{_all}" />\n\n
-                                        </f:if>
-                                    </f:else>
-                                </f:if>
+    <f:if condition="<f:count><hgonTemplate:newsletter.getEventRecords issue='{issue}' /></f:count>">
+        ##################################################\n
+        Bevorstehende Termine\n
+        ##################################################\n\n
+        <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='events-{queueMail.uid}' />">
+            <f:then>
+                <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="events-{queueMail.uid}" />
+            </f:then>
+            <f:else>
+                <f:format.raw>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="events-{queueMail.uid}">
+                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
+                            <f:for each="<hgonTemplate:newsletter.getEventRecords issue='{issue}' />" as="event" iteration="iter">
+                                ==================================================\n
+                                {event.title} - <f:format.date format="d.m.Y">{event.start}</f:format.date>\n
+                                ==================================================\n
+                                <f:format.stripTags>
+                                    <rkwMailer:frontend.replace.rteLinks plaintextFormat="true">
+                                        <f:format.raw>
+                                            <rkwMailer:plaintextLineBreaks keepLineBreaks="true">{event.description}</rkwMailer:plaintextLineBreaks>
+                                        </f:format.raw>
+                                    </rkwMailer:frontend.replace.rteLinks>
+                                </f:format.stripTags>
+
+                                \n\n
+                                <rkwMailer:frontend.link action='show' controller='Event' extensionName='RkwEvents' pluginName='Pi1' pageUid='40' absolute='true' queueMail='{queueMail}' arguments='{event: event.uid}' />
+                                \n
+
                             </f:for>
                         </rkwMailer:frontend.replaceLinksRedirect>
                     </rkwMailer:cache.setRenderCache>
-                </f:else>
-            </f:if>
-        </f:for>
+                </f:format.raw>
+            </f:else>
+        </f:if>
     </f:if>
 </f:section>
 
@@ -42,12 +50,12 @@
 
             <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='events-{queueMail.uid}' />">
                 <f:then>
-                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="events-{queueMail.uid}" />
+                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="events-{queueMail.uid}" />
                 </f:then>
                 <f:else>
                     <f:format.raw>
-                        <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="events-{queueMail.uid}">
-                            <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" isPlaintext="true">
+                        <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="events-{queueMail.uid}">
+                            <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
 
                                 <f:render section="htmlHeadline" />
 

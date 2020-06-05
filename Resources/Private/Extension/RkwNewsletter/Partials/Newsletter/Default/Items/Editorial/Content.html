@@ -2,8 +2,14 @@
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-{content.header}
-<f:format.raw>{content.bodytext}</f:format.raw>
+{content.header}\n
+<f:format.stripTags>
+    <rkwMailer:frontend.replace.rteLinks plaintextFormat="true">
+        <f:format.raw>
+            <rkwMailer:plaintextLineBreaks keepLineBreaks="true">{content.bodytext}</rkwMailer:plaintextLineBreaks>
+        </f:format.raw>
+    </rkwMailer:frontend.replace.rteLinks>
+</f:format.stripTags>\n
 </f:section>
 
 

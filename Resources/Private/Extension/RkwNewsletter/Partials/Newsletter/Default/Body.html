@@ -6,9 +6,16 @@
 
 <rkwMailer:recipientSalutation queueRecipient="{queueRecipient}" prependText="<rkwMailer:frontend.translate key='partials_newsletter_body.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwNewsletter' /> " appendText="," />
 \n\n
-wir wünschen Ihnen viel Freude mit dem neuen HGON Newsletter.<f:comment><f:render partial="Default/FilterEditorial" section="Plaintext" arguments="{_all}" /></f:comment>
+<f:render partial="Default/FilterEditorial" section="Plaintext" arguments="{_all}" />
 \n\n
 <f:render partial="Default/Items" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, includeEditorials: includeEditorials}" />
+
+<f:render partial="Default/News" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+<f:render partial="Default/Article" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+<f:render partial="Default/Events" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
 </rkwMailer:plaintextLineBreaks></f:section>
 
 

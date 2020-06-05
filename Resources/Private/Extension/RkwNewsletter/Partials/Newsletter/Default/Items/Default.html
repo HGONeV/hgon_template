@@ -6,9 +6,28 @@
     <f:if condition="{itemIterator.isFirst}">
         <f:then>
             <f:render partial="Default/Items/Default/TopicBadge" section="Plaintext" arguments="{_all}" />
+
         </f:then>
     </f:if>
-    <f:render partial="Default/Items/Default/Content" section="Plaintext" arguments="{_all}" />\n
+    <f:comment>
+        <!-- we got some weird trouble on calling this partial -->
+        <f:render partial="Default/Items/Default/Content" section="Plaintext" arguments="{_all}" />\n
+    </f:comment>
+    ==================================================\n
+    {content.header}\n
+    ==================================================\n
+    <f:format.stripTags>
+        <rkwMailer:frontend.replace.rteLinks plaintextFormat="true">
+            <f:format.raw>
+                <rkwMailer:plaintextLineBreaks keepLineBreaks="true">{content.bodytext}</rkwMailer:plaintextLineBreaks>
+            </f:format.raw>
+        </rkwMailer:frontend.replace.rteLinks>
+    </f:format.stripTags>
+
+    <f:if condition="{content.headerLink}">
+        \n\n
+        <rkwMailer:frontend.typolink parameter='{content.headerLink}' />
+    </f:if>\n
 </f:section>
 
 

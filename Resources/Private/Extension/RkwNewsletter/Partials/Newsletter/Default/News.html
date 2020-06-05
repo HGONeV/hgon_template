@@ -5,34 +5,41 @@
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-    <f:if condition="{pages}">
-        <f:for each="{pages}" as="page">
-            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='{page.uid}-{webView}-{includeEditorials}' />">
-                <f:then>
-                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
-                </f:then>
+    <f:if condition="<f:count><hgonTemplate:newsletter.getNewsRecords issue='{issue}' /></f:count>">
+        ##################################################\n
+        Aktuelle Meldungen\n
+        ##################################################\n\n
+        <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='tx_news-{queueMail.uid}' />">
+            <f:then>
+                <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}" />
+            </f:then>
+            <f:else>
+                <f:format.raw>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}">
+                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" >
+                            <f:for each="<hgonTemplate:newsletter.getNewsRecords issue='{issue}' />" as="news" iteration="iter">
+                                ==================================================\n
+                                {news.title}\n
+                                ==================================================\n
+                                <f:format.stripTags>
+                                    <rkwMailer:frontend.replace.rteLinks plaintextFormat="true">
+                                        <f:format.raw>
+                                            <rkwMailer:plaintextLineBreaks keepLineBreaks="true"><f:if condition="{news.teaser}"><f:then>{news.teaser}</f:then><f:else>{news.bodytext}</f:else></f:if></rkwMailer:plaintextLineBreaks>
+                                        </f:format.raw>
+                                    </rkwMailer:frontend.replace.rteLinks>
+                                </f:format.stripTags>
 
-                <f:else>
-                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}">
-                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" isPlaintext="true">
-                            <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='{includeEditorials}' />" as="content" iteration="itemIterator">
-                                <f:if condition="{iterator.cycle} < {maxItemsPerTopic}">
-                                    <f:then>
-                                        <f:render partial="Default/Items/Default" section="Plaintext" arguments="{_all}" />\n\n
-                                    </f:then>
-                                    <f:else>
-                                        <f:if condition="{itemIterator.isLast}">
-                                            <f:render partial="Default/Items/More" section="Plaintext" arguments="{_all}" />\n\n
-                                        </f:if>
-                                    </f:else>
-                                </f:if>
+                                \n\n
+                                <rkwMailer:frontend.link action='detail' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' arguments='{news: news.uid}' />
+                                \n
+
                             </f:for>
                         </rkwMailer:frontend.replaceLinksRedirect>
                     </rkwMailer:cache.setRenderCache>
-                </f:else>
-            </f:if>
-        </f:for>
-    </f:if>
+                </f:format.raw>
+            </f:else>
+        </f:if>
+    </f:if>\n\n
 </f:section>
 
 
@@ -50,73 +57,70 @@
     -->
 
     <f:if condition="<f:count><hgonTemplate:newsletter.getNewsRecords issue='{issue}' /></f:count>">
+        <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='tx_news-{queueMail.uid}' />">
+            <f:then>
+                <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}" />
+            </f:then>
+            <f:else>
+                <f:format.raw>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}">
+                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" >
+
+                            <f:render section="htmlHeadline" />
+
+                            <f:for each="<hgonTemplate:newsletter.getNewsRecords issue='{issue}' />" as="news" iteration="iter">
+
+                                <f:if condition="{iter.isFirst}">
+                                    <f:then>
+                                        <f:comment><!-- first single item --></f:comment>
+                                        <f:render section="htmlNewsBig" arguments="{_all}" />
+                                        <f:comment><!-- give some space below --></f:comment>
+                                        <f:render section="htmlPlaceholderBetweenHorizontalItems" />
+                                    </f:then>
+                                    <f:else>
+                                        <f:comment><!-- now we have two items per line. Except the last line has only one item --></f:comment>
+                                        <f:if condition="{iter.isEven}">
+                                            <f:then>
+                                                <f:if condition="{iter.isLast}">
+                                                    <f:then>
+                                                        <f:comment><!-- last single item --></f:comment>
+                                                        <f:render section="htmlNewsBig" arguments="{_all}" />
+                                                        <f:comment><!-- give some space below --></f:comment>
+                                                        <f:render section="htmlPlaceholderBetweenHorizontalItems" />
+                                                    </f:then>
+                                                    <f:else>
+                                                        <f:comment><!-- open box for two item row --></f:comment>
+                                                        <f:render section="htmlOpenTwoItemRow" />
+                                                        <f:comment><!-- show first item --></f:comment>
+                                                        <f:render section="htmlNewsSmall" arguments="{_all}" />
+
+                                                        <f:comment><!-- add placeholder between item 1 and 2 --></f:comment>
+                                                        <f:render section="htmlPlaceholderBetweenVerticalItems" />
+
+                                                    </f:else>
+                                                </f:if>
+                                            </f:then>
+                                            <f:else>
+                                                <f:comment><!-- show second item--></f:comment>
+                                                <f:render section="htmlNewsSmall" arguments="{_all}" />
+
+                                                <f:comment><!-- close box for two item row --></f:comment>
+                                                <f:render section="htmlCloseTwoItemRow" />
+
+                                                <f:comment><!-- give some space below --></f:comment>
+                                                <f:render section="htmlPlaceholderBetweenHorizontalItems" />
+                                            </f:else>
+                                        </f:if>
+                                    </f:else>
+                                </f:if>
 
 
-            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='tx_news-{queueMail.uid}' />">
-                <f:then>
-                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="tx_news-{queueMail.uid}" />
-                </f:then>
-                <f:else>
-                    <f:format.raw>
-                        <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="tx_news-{queueMail.uid}">
-                            <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" isPlaintext="true">
-
-                                <f:render section="htmlHeadline" />
-
-                                <f:for each="<hgonTemplate:newsletter.getNewsRecords issue='{issue}' />" as="news" iteration="iter">
-
-                                    <f:if condition="{iter.isFirst}">
-                                        <f:then>
-                                            <f:comment><!-- first single item --></f:comment>
-                                            <f:render section="htmlNewsBig" arguments="{_all}" />
-                                            <f:comment><!-- give some space below --></f:comment>
-                                            <f:render section="htmlPlaceholderBetweenHorizontalItems" />
-                                        </f:then>
-                                        <f:else>
-                                            <f:comment><!-- now we have two items per line. Except the last line has only one item --></f:comment>
-                                            <f:if condition="{iter.isEven}">
-                                                <f:then>
-                                                    <f:if condition="{iter.isLast}">
-                                                        <f:then>
-                                                            <f:comment><!-- last single item --></f:comment>
-                                                            <f:render section="htmlNewsBig" arguments="{_all}" />
-                                                            <f:comment><!-- give some space below --></f:comment>
-                                                            <f:render section="htmlPlaceholderBetweenHorizontalItems" />
-                                                        </f:then>
-                                                        <f:else>
-                                                            <f:comment><!-- open box for two item row --></f:comment>
-                                                            <f:render section="htmlOpenTwoItemRow" />
-                                                            <f:comment><!-- show first item --></f:comment>
-                                                            <f:render section="htmlNewsSmall" arguments="{_all}" />
-
-                                                            <f:comment><!-- add placeholder between item 1 and 2 --></f:comment>
-                                                            <f:render section="htmlPlaceholderBetweenVerticalItems" />
-
-                                                        </f:else>
-                                                    </f:if>
-                                                </f:then>
-                                                <f:else>
-                                                    <f:comment><!-- show second item--></f:comment>
-                                                    <f:render section="htmlNewsSmall" arguments="{_all}" />
-
-                                                    <f:comment><!-- close box for two item row --></f:comment>
-                                                    <f:render section="htmlCloseTwoItemRow" />
-
-                                                    <f:comment><!-- give some space below --></f:comment>
-                                                    <f:render section="htmlPlaceholderBetweenHorizontalItems" />
-                                                </f:else>
-                                            </f:if>
-                                        </f:else>
-                                    </f:if>
-
-
-                                </f:for>
-                            </rkwMailer:frontend.replaceLinksRedirect>
-                        </rkwMailer:cache.setRenderCache>
-                    </f:format.raw>
-                </f:else>
-            </f:if>
-
+                            </f:for>
+                        </rkwMailer:frontend.replaceLinksRedirect>
+                    </rkwMailer:cache.setRenderCache>
+                </f:format.raw>
+            </f:else>
+        </f:if>
     </f:if>
 
 </f:section>

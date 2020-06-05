@@ -5,10 +5,10 @@
 <f:section name="Plaintext">
     <f:if condition="{pages}">
         <f:for each="{pages}" as="page" iteration="pageIterator">
-            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='{page.uid}-{webView}-{includeEditorials}' />">
+            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='{page.uid}-{webView}-true' />">
                 <f:then>
                     <f:format.raw>
-                        <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
+                        <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}"/>
                     </f:format.raw>
                 </f:then>
                 <f:else>
@@ -16,7 +16,7 @@
                         <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='true' />" as="content" iteration="itemIterator">
                             <f:if condition="{content.txRkwnewsletterIsEditorial}">
                                 <f:then>
-                                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}">
+                                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}">
                                         <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
                                             <f:render partial="Default/Items/Editorial" section="Plaintext" arguments="{_all}" />
                                         </rkwMailer:frontend.replaceLinksRedirect>
