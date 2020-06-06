@@ -16,7 +16,7 @@
             <f:else>
                 <f:format.raw>
                     <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}">
-                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" >
+                        <rkwMailer:frontend.replace.redirectLinks isPlaintext="true" queueMail="{queueMail}" >
                             <f:for each="<hgonTemplate:newsletter.getNewsRecords issue='{issue}' />" as="news" iteration="iter">
                                 ==================================================\n
                                 {news.title}\n
@@ -28,13 +28,11 @@
                                         </f:format.raw>
                                     </rkwMailer:frontend.replace.rteLinks>
                                 </f:format.stripTags>
-
                                 \n\n
                                 <rkwMailer:frontend.link action='detail' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' arguments='{news: news.uid}' />
                                 \n
-
                             </f:for>
-                        </rkwMailer:frontend.replaceLinksRedirect>
+                        </rkwMailer:frontend.replace.redirectLinks>
                     </rkwMailer:cache.setRenderCache>
                 </f:format.raw>
             </f:else>
@@ -64,7 +62,7 @@
             <f:else>
                 <f:format.raw>
                     <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}">
-                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" >
+                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}" >
 
                             <f:render section="htmlHeadline" />
 
@@ -116,7 +114,7 @@
 
 
                             </f:for>
-                        </rkwMailer:frontend.replaceLinksRedirect>
+                        </rkwMailer:frontend.replace.redirectLinks>
                     </rkwMailer:cache.setRenderCache>
                 </f:format.raw>
             </f:else>

@@ -12,11 +12,11 @@
                 </f:then>
                 <f:else>
                     <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-false" marker="{pagesOrder : pagesOrder}">
-                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" isPlaintext="true">
+                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}" isPlaintext="true">
                             <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='false' />" as="content" iteration="itemIterator">
                                 <f:render partial="Default/Items/Default" section="Plaintext" arguments="{_all}" />\n\n
                             </f:for>
-                        </rkwMailer:frontend.replaceLinksRedirect>
+                        </rkwMailer:frontend.replace.redirectLinks>
                     </rkwMailer:cache.setRenderCache>
                 </f:else>
             </f:if>
@@ -40,12 +40,12 @@
                 <f:else>
                     <f:format.raw>
                         <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-false" marker="{pagesOrder : pagesOrder}">
-                            <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
+                            <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
                                 <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='false' />" as="content" iteration="itemIterator">
                                     <!-- normal -->
                                     <f:render partial="Default/Items/Default" section="Html" arguments="{_all}" />
                                 </f:for>
-                            </rkwMailer:frontend.replaceLinksRedirect>
+                            </rkwMailer:frontend.replace.redirectLinks>
                         </rkwMailer:cache.setRenderCache>
                     </f:format.raw>
                 </f:else>

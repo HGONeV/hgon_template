@@ -16,7 +16,7 @@
             <f:else>
                 <f:format.raw>
                     <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="events-{queueMail.uid}">
-                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
+                        <rkwMailer:frontend.replace.redirectLinks isPlaintext="true" queueMail="{queueMail}">
                             <f:for each="<hgonTemplate:newsletter.getEventRecords issue='{issue}' />" as="event" iteration="iter">
                                 ==================================================\n
                                 {event.title} - <f:format.date format="d.m.Y">{event.start}</f:format.date>\n
@@ -34,7 +34,7 @@
                                 \n
 
                             </f:for>
-                        </rkwMailer:frontend.replaceLinksRedirect>
+                        </rkwMailer:frontend.replace.redirectLinks>
                     </rkwMailer:cache.setRenderCache>
                 </f:format.raw>
             </f:else>
@@ -55,7 +55,7 @@
                 <f:else>
                     <f:format.raw>
                         <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="events-{queueMail.uid}">
-                            <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
+                            <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
 
                                 <f:render section="htmlHeadline" />
 
@@ -67,7 +67,7 @@
                                     <f:render section="spaceHorizontal" />
 
                                 </f:for>
-                            </rkwMailer:frontend.replaceLinksRedirect>
+                            </rkwMailer:frontend.replace.redirectLinks>
                         </rkwMailer:cache.setRenderCache>
                     </f:format.raw>
                 </f:else>

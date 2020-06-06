@@ -17,9 +17,9 @@
                             <f:if condition="{content.txRkwnewsletterIsEditorial}">
                                 <f:then>
                                     <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}">
-                                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
+                                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
                                             <f:render partial="Default/Items/Editorial" section="Plaintext" arguments="{_all}" />
-                                        </rkwMailer:frontend.replaceLinksRedirect>
+                                        </rkwMailer:frontend.replace.redirectLinks>
                                     </rkwMailer:cache.setRenderCache>
                                 </f:then>
                             </f:if>
@@ -38,10 +38,10 @@
 
     <f:if condition="{pages}">
         <f:for each="{pages}" as="page" iteration="pageIterator">
-            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='{page.uid}-{webView}-{includeEditorials}' />">
+            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='{page.uid}-{webView}-true' />">
                 <f:then>
                     <f:format.raw>
-                        <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
+                        <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}"/>
                     </f:format.raw>
                 </f:then>
                 <f:else>
@@ -52,12 +52,12 @@
                             <f:if condition="{content.txRkwnewsletterIsEditorial}">
                                 <f:then>
 
-                                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}">
-                                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
+                                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}">
+                                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
 
                                             <!-- editorial -->
                                             <f:render partial="Default/Items/Editorial" section="Html" arguments="{_all}" />
-                                        </rkwMailer:frontend.replaceLinksRedirect>
+                                        </rkwMailer:frontend.replace.redirectLinks>
                                     </rkwMailer:cache.setRenderCache>
                                 </f:then>
                             </f:if>

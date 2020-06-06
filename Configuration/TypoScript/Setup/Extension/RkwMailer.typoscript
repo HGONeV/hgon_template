@@ -14,7 +14,7 @@ module.tx_rkwmailer {
             1 = {$plugin.tx_rkwmailer.view.partialRootPath}
         }
     }
-
+/*
     settings {
 
         # cat=module.tx_rkwmailer; type=integer; label=URL for images in templates
@@ -23,6 +23,8 @@ module.tx_rkwmailer {
         # cat=module.tx_rkwmailer; type=integer; label=URL for logo in templates
         basePathLogo = EXT:hgon_template/Resources/Public/Images/Email/logo.png
     }
+
+    */
 }
 
 plugin.tx_rkwmailer < module.tx_rkwmailer
