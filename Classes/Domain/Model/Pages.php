@@ -60,6 +60,13 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      */
     protected $txHgontemplateArticle = null;
 
+    /**
+     * txRkwbasicsArticleImage
+     *
+     * @var \RKW\RkwBasics\Domain\Model\FileReference
+     */
+    protected $txRkwbasicsArticleImage = null;
+
 
     /**
      * __construct
@@ -265,6 +272,29 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
     public function setTxHgontemplateArticle(\HGON\HgonTemplate\Domain\Model\Projects $txHgontemplateArticle)
     {
         $this->txHgontemplateArticle = $txHgontemplateArticle;
+    }
+
+    /**
+     * Returns the txRkwbasicsArticleImage
+     *
+     * @return \RKW\RkwBasics\Domain\Model\FileReference $txRkwbasicsTeaserImage
+     */
+    public function getTxRkwbasicsArticleImage()
+    {
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . '::' . __METHOD__ . ' is deprecated and will be removed soon');
+        return $this->txRkwbasicsArticleImage;
+    }
+
+    /**
+     * Sets the txRkwbasicsArticleImage
+     *
+     * @param \RKW\RkwBasics\Domain\Model\FileReference $txRkwbasicsTeaserImage
+     * @return void
+     */
+    public function setTxRkwbasicsArticleImage(\RKW\RkwBasics\Domain\Model\FileReference $txRkwbasicsArticleImage)
+    {
+        \TYPO3\CMS\Core\Utility\GeneralUtility::deprecationLog(__CLASS__ . '::' . __METHOD__ . ' is deprecated and will be removed soon');
+        $this->txRkwbasicsArticleImage = $txRkwbasicsArticleImage;
     }
 }
 
