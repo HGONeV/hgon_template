@@ -2,18 +2,27 @@
 <f:comment><!-- Filter options --></f:comment>
 <f:if condition="{sysCategoryList}">
     <nav class="main__nav">
-        <ul class="menu menu-sub menu--filter" id="journal-list-anchor">
+        <ul class="menu menu-sub menu--filter" id="tag">
             <f:for each="{sysCategoryList}" as="sysCategory">
                 <li>
                     <f:comment><!-- compare with uid: because we have different sysCategory models --></f:comment>
                     <f:if condition="{selectedSysCategory.uid} == {sysCategory.uid}">
                         <f:then>
-                            <f:link.action section="journal-list-anchor" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" >
-                                {sysCategory.title} <svg class="icon icon--btn-right" width="12" height="12"><use xlink:href="#ui-close"></use></svg>
-                            </f:link.action>
+                            <f:if condition="{sysCategory.parentcategory.uid} != {settings.journal.parentCategoryUid}">
+                                <f:then>
+                                    <f:link.action section="tag" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" additionalParams="{tx_hgontemplate_journal: '{sysCategory: sysCategory.parentcategory}'}" >
+                                        {sysCategory.title} <svg class="icon icon--btn-right" width="12" height="12"><use xlink:href="#ui-close"></use></svg>
+                                    </f:link.action>
+                                </f:then>
+                                <f:else>
+                                    <f:link.action section="tag" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" >
+                                        {sysCategory.title} <svg class="icon icon--btn-right" width="12" height="12"><use xlink:href="#ui-close"></use></svg>
+                                    </f:link.action>
+                                </f:else>
+                            </f:if>
                         </f:then>
                         <f:else>
-                            <f:link.action section="journal-list-anchor" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" additionalParams="{tx_hgontemplate_journal: '{sysCategory: sysCategory}'}" >
+                            <f:link.action section="tag" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" additionalParams="{tx_hgontemplate_journal: '{sysCategory: sysCategory}'}" >
                                 {sysCategory.title}
                             </f:link.action>
                         </f:else>

@@ -8,5 +8,8 @@ plugin.tx_hgonworkgroup {
         # currently showPid == listPid, because of Template trouble. So we want just use the standard template
         # (showPid is still set for plugin handling, even if listPid and showPid the same at the moment)
         showPid = 265
+        news {
+            showPid = 62
+        }
     }
 }

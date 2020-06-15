@@ -117,10 +117,13 @@ class EventAjaxController extends \RKW\RkwEvents\Controller\AjaxController
             $workGroupEventList = $this->eventRepository->findByFilterOptions($filter, $listItemsPerView, intval($page), false, true)->toArray();
 
             $showMoreLink = false;
-            if ($listItemsPerView < count($workGroupEventList)) {
+           // DebuggerUtility::var_dump($workGroupEventList); exit;
+            if (
+                $listItemsPerView < count($workGroupEventList)
+            ) {
                 $showMoreLink = true;
                 // kill additional counter-item
-                array_pop($workGroupEventList);
+                //array_pop($workGroupEventList);
 
                 // if pagination for work groups is disabled - don't show more link
                 if (!$this->settings['showWorkGroupPagination']) {

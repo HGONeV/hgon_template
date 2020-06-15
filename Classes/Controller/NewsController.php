@@ -179,7 +179,24 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             foreach ($newsList as $news) {
                 /** @var \HGON\HgonTemplate\Domain\Model\SysCategory $category */
                 foreach ($news->getCategories() as $category) {
-                    $categoryList[$category->getUid()] = $category;
+
+                    // some logic: Show only selected category and children (if a category is selected)
+                    if (
+                        // get all top categories (OR) categories and their direct children
+                        (
+                            !$sysCategory
+                            && $category->getParentcategory()->getUid() == $this->settings['journal']['parentCategoryUid']
+                        )
+                        ||
+                        ($sysCategory
+                        && (
+                            $category->getUid() == $sysCategory->getUid()
+                            || $category->getParentcategory()->getUid() == $sysCategory->getUid()
+                        ))
+                    ) {
+                        $categoryList[$category->getUid()] = $category;
+                    }
+
                 }
             }
             $templateDataArray['sysCategoryList'] = $categoryList;
