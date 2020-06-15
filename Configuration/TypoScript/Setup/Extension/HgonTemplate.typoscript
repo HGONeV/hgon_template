@@ -5,6 +5,9 @@
 config.tx_extbase {
 
     objects {
+        RKW\RkwBasics\UserFunctions\PageNotFound {
+            className = HGON\HgonTemplate\UserFunctions\PageNotFound
+        }
         RKW\RkwEvents\Controller\EventController {
             className = HGON\HgonTemplate\Controller\EventController
         }
@@ -23,15 +26,16 @@ config.tx_extbase {
         RKW\RkwNewsletter\Controller\SubscriptionController {
             className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
         }
+        RKW\RkwNewsletter\Domain\Model\TtContent {
+            className = HGON\HgonTemplate\Domain\Model\TtContent
+        }
         RKW\RkwRegistration\Service\RkwMailService {
             className = HGON\HgonTemplate\Service\RkwMailService
         }
         GeorgRinger\News\Controller\NewsController {
             className = HGON\HgonTemplate\Controller\NewsController
         }
-        RKW\RkwNewsletter\Domain\Model\TtContent {
-            className = HGON\HgonTemplate\Domain\Model\TtContent
-        }
+
 
     }
 

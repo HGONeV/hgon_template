@@ -82,6 +82,16 @@ $tempPagesColumns = array(
             $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
         ),
     ],
+    'tx_rkwbasics_teaser_text' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:rkw_basics/Resources/Private/Language/locallang_db.xlf:tx_rkwbasics_domain_model_pages.tx_rkwbasics_teaser_text',
+        'config' => [
+            'type' => 'text',
+            'cols' => 40,
+            'rows' => 15,
+            'eval' => 'trim',
+        ],
+    ],
 
 );
 // Add TCA
@@ -105,6 +115,13 @@ $tempConfig = '--div--;LLL:EXT:hgon_template/Resources/Private/Language/locallan
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     'tx_rkwbasics_article_image',
+    '',
+    'before:abstract'
+);
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'pages',
+    'tx_rkwbasics_teaser_text',
     '',
     'before:abstract'
 );
