@@ -115,7 +115,7 @@
                                 <div id="lightbox-gallery" class="lightbox" style="opacity: 0; visibility: hidden;">
                                     <f:for each="{newsItem.mediaNonPreviews}" as="media">
                                         <picture class="picture / lightbox__img" style="visibility: hidden; opacity: 0;">
-                                            <f:image image="{media}" alt="{media.name}"  />
+                                            <img src="<f:uri.image image='{media}'/>" />
                                         </picture>
                                     </f:for>
 
