@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-04-07T16:19:42Z" product-name="hgon_template">
+		<header/>
+		<body>
+
+            <trans-unit id="tx_rkwauthors_domain_model_authors.internal.I.enabled" xml:space="preserve">
+                <source>Internal Author</source>
+                <target>Interner Autor/Ansprechpartner des HGON</target>
+            </trans-unit>
+
+		</body>
+	</file>
+</xliff>

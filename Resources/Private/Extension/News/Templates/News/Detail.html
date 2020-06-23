@@ -68,6 +68,14 @@
                         <f:comment>
                             <f:render partial="Detail/MediaContainer" arguments="{media: newsItem.mediaNonPreviews, settings:settings}" />
                         </f:comment>
+
+
+
+                        <f:if condition="{newsItem.txHgontemplateYoutubeVideoId}">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{newsItem.txHgontemplateYoutubeVideoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </f:if>
+
+
                         <!-- main text -->
                         <p>
                             <f:format.html>{newsItem.bodytext}</f:format.html>
@@ -200,12 +208,30 @@
                             <h6>Weiterführende Links</h6>
                         </header>
                         <div class="aside__content">
-                            <ul>
+                            <ul class="news-downloads">
                                 <f:for each="{newsItem.relatedLinks}" as="relatedLink">
                                     <li>
+                                        <f:if condition="{relatedLink.uri -> f:format.crop(maxCharacters: 4, append='')} == 'http'">
+                                            <f:then>
+                                                <i class="fa fa-external-link"></i>&nbsp;
+                                            </f:then>
+                                            <f:else>
+                                                <i class="fa fa-link"></i>&nbsp;
+                                            </f:else>
+                                        </f:if>
                                         <span class="news-related-files-link">
                                             <f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}" />
-                                            <f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span></f:if>
+
+                                            <f:comment>
+                                            <f:if condition="{relatedLink.title}">
+                                                <f:then>
+                                                    {relatedLink.title}
+                                                </f:then>
+                                                <f:else>
+                                                    <span>{relatedLink.uri}</span>
+                                                </f:else>
+                                            </f:if>
+                                                </f:comment>
                                         </span>
                                     </li>
                                 </f:for>
@@ -222,7 +248,17 @@
                         <div class="aside__content">
                             <ul class="news-downloads">
                                 <f:for each="{newsItem.relatedFiles}" as="relatedFile">
-                                    <li><i class="fa fa-download"></i>
+                                    <li>
+                                        <f:if condition="{relatedFile.originalResource.originalFile.properties.type} == 4">
+                                            <f:then>
+                                                <f:comment><!-- video --></f:comment>
+                                                <i class="fa fa-video-camera"></i>&nbsp;
+                                            </f:then>
+                                            <f:else>
+                                                <i class="fa fa-download"></i>&nbsp;
+                                            </f:else>
+                                        </f:if>
+
                                         <span class="news-related-files-link">
                                             <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
                                                 {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}

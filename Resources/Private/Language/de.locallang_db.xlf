@@ -139,6 +139,11 @@
                 <target>Projektvorstellung</target>
             </trans-unit>
 
+            <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_youtube_video_id">
+                <source>YouTube Video ID</source>
+                <target>YouTube Video ID</target>
+            </trans-unit>
+
             <trans-unit id="tx_hgontemplate_domain_model_news.tx_rkwproject_project">
                 <source>Project</source>
                 <target>Projekt</target>

@@ -1,8 +1,8 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:if condition="{item.spacer} || {item.current}">
+<f:if condition="{item.spacer} || {item.active}">
 	<f:then>
-		<li onclick="{f:if(condition:item.children, then:'return true')}" class="{f:if(condition:item.current, then:' is-active')} {f:if(condition:item.children, then:' nav__item has-dropdown')}" >
+		<li onclick="{f:if(condition:item.children, then:'return true')}" class="{f:if(condition:item.active, then:' is-active')} {f:if(condition:item.children, then:' nav__item has-dropdown')}" >
             <f:render partial="Navigation/Elements/Link" arguments="{item: item}"/>
 	</f:then>
 	<f:else if="{item.active}">

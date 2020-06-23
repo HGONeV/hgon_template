@@ -32,6 +32,16 @@ $tempPagesColumns = [
         'onChange' => 'reload',
     ],
 
+    'tx_hgontemplate_youtube_video_id' => [
+        'exclude' => false,
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_youtube_video_id',
+        'config' => [
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim'
+        ],
+    ],
+
     'tx_rkwproject_project' => [
         'exclude' => true,
         'label' => 'LLL:EXT:rkw_events/Resources/Private/Language/locallang_db.xlf:tx_rkwevents_domain_model_event.project',
@@ -59,6 +69,12 @@ $tempPagesColumns = [
     '',
     'before:title'
 );
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tx_news_domain_model_news',
+    'tx_hgontemplate_youtube_video_id',
+    '',
+    'before:fal_media'
+);
 
 $GLOBALS['TCA']['tx_news_domain_model_news']['types']['0'] = [
     'showitem' => '
@@ -66,7 +82,7 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['types']['0'] = [
     datetime,
     bodytext,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,
-    fal_media,fal_related_files,
+    tx_hgontemplate_youtube_video_id,fal_media,fal_related_files,
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
     categories,
     --div--;' . $ll . 'tx_news_domain_model_news.tabs.relations,

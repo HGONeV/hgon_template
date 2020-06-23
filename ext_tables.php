@@ -143,6 +143,7 @@ call_user_func(
 
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_newsletter/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwnewsletter.xlf';
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwauthors_db.xlf';
 
 
 //=================================================================
