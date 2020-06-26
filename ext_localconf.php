@@ -208,6 +208,30 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonTemplate',
+            'Header',
+            [
+                'News' => 'header'
+            ],
+            // non-cacheable actions
+            [
+                'News' => 'header'
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonTemplate',
+            'Sidebar',
+            [
+                'News' => 'sidebar'
+            ],
+            // non-cacheable actions
+            [
+                'News' => 'sidebar'
+            ]
+        );
+
 
 
         // ***************

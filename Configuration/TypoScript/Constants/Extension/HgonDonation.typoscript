@@ -4,7 +4,7 @@ plugin.tx_hgondonation {
         partialRootPath = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/
     }
 	persistence {
-		storagePid = 59
+		storagePid = 59,274
 	}
     settings {
         listPid = 11

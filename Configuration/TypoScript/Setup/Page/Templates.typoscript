@@ -126,6 +126,95 @@ page {
                 settings =< plugin.tx_hgonworkgroup.settings
             }
 
+
+            //=================================================================
+            // add news header to news view
+            //=================================================================
+            newsHeader = USER
+            newsHeader {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = Header
+                vendorName = HGON
+                controller = News
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    News {
+                        1 = header
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+            //=================================================================
+            // add news sidebar to news view
+            //=================================================================
+            newsSidebar = USER
+            newsSidebar {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = Sidebar
+                vendorName = HGON
+                controller = News
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    News {
+                        1 = sidebar
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+            //=================================================================
+            // add donation header to donation view
+            //=================================================================
+            donationHeader = USER
+            donationHeader {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonDonation
+                pluginName = Header
+                vendorName = HGON
+                controller = Donation
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Donation {
+                        1 = header
+                    }
+                }
+
+                view =< plugin.tx_hgondonation.view
+                persistence =< plugin.tx_hgondonation.persistence
+                settings =< plugin.tx_hgondonation.settings
+            }
+
+            //=================================================================
+            // add donation sidebar to donation view
+            //=================================================================
+            donationSidebar = USER
+            donationSidebar {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonDonation
+                pluginName = Sidebar
+                vendorName = HGON
+                controller = Donation
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Donation {
+                        1 = sidebar
+                    }
+                }
+
+                view =< plugin.tx_hgondonation.view
+                persistence =< plugin.tx_hgondonation.persistence
+                settings =< plugin.tx_hgondonation.settings
+            }
+
 		}
 	}
 }

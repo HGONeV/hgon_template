@@ -9,9 +9,9 @@
     </f:section>
 
     <header class="main__header main__header--image">
-
         <f:format.html parseFuncTSPath="">{workGroupHeader}</f:format.html>
-
+        <f:format.html parseFuncTSPath="">{newsHeader}</f:format.html>
+        <f:format.html parseFuncTSPath="">{donationHeader}</f:format.html>
     </header>
 
     <div class="main__content">
@@ -21,6 +21,8 @@
             </article>
             <div class="sidebar sidebar--boxed">
                 <f:format.html parseFuncTSPath="">{workGroupSidebar}</f:format.html>
+                <f:format.html parseFuncTSPath="">{newsSidebar}</f:format.html>
+                <f:format.html parseFuncTSPath="">{donationSidebar}</f:format.html>
                 <f:comment>
                     <!-- Plugin -->
                     <f:render partial="Layout/Sidebar" arguments="{_all}" />

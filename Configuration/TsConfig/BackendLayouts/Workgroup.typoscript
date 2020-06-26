@@ -5,8 +5,8 @@
 mod {
 	web_layout {
 		BackendLayouts {
-			workgroup {
-				title = Arbeitsgruppe Detailansicht
+			singleSpecial {
+				title = Bild-Header, Zweispaltig (Spezial für Plugin-Detailansichten)
 				#icon = EXT:hgon_template/Resources/Public/Icons/BackendLayouts/default.svg
 				config {
 					backend_layout {

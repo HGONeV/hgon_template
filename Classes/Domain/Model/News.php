@@ -39,6 +39,14 @@ class News extends \GeorgRinger\News\Domain\Model\News
     protected $txRkwprojectProject = null;
 
     /**
+     * txHgontemplateHeaderImage
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @cascade remove
+     */
+    protected $txHgontemplateHeaderImage = null;
+
+    /**
      * @return string
      */
     public function getTxHgontemplateYoutubeVideoId()
@@ -73,5 +81,26 @@ class News extends \GeorgRinger\News\Domain\Model\News
     public function setTxRkwprojectProject(\HGON\HgonTemplate\Domain\Model\Projects $txRkwprojectProject)
     {
         $this->txRkwprojectProject = $txRkwprojectProject;
+    }
+
+    /**
+     * Returns the txHgontemplateHeaderImage
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $txHgontemplateHeaderImage
+     */
+    public function getTxHgontemplateHeaderImage()
+    {
+        return $this->txHgontemplateHeaderImage;
+    }
+
+    /**
+     * Sets the txHgontemplateHeaderImage
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $txHgontemplateHeaderImage
+     * @return void
+     */
+    public function setTxHgontemplateHeaderImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $txHgontemplateHeaderImage)
+    {
+        $this->txHgontemplateHeaderImage = $txHgontemplateHeaderImage;
     }
 }

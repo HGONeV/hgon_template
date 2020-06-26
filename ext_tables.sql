@@ -84,6 +84,7 @@ CREATE TABLE tx_news_domain_model_news (
     tx_rkwproject_project int(11) unsigned DEFAULT '0',
 	tx_hgontemplate_type int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_youtube_video_id varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_header_image int(11) unsigned NOT NULL default '0',
 
 );
 

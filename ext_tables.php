@@ -105,11 +105,21 @@ call_user_func(
             'JournalHighlight',
             'HGON: Journal Highlights'
         );
-
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'HGON.HgonTemplate',
             'Journal',
             'HGON: Journal'
+        );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'HGON.HgonTemplate',
+            'Header',
+            'HGON: News Header'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'HGON.HgonTemplate',
+            'Sidebar',
+            'HGON: News Sidebar'
         );
 
 

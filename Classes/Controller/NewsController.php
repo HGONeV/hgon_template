@@ -256,6 +256,45 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
 
     /**
+     * action header
+     * Template helper
+     *
+     * @return void
+     */
+    public function headerAction()
+    {
+
+        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_news_pi1');
+
+        $newsUid = preg_replace('/[^0-9]/', '', $getParams['news']);
+        $news = $this->newsRepository->findByIdentifier(filter_var($newsUid, FILTER_SANITIZE_NUMBER_INT));
+
+        $this->view->assign('newsItem', $news);
+    }
+
+
+
+    /**
+     * action sidebar
+     * Template helper
+     *
+     * @return void
+     */
+    public function sidebarAction()
+    {
+
+        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_news_pi1');
+
+        $newsUid = preg_replace('/[^0-9]/', '', $getParams['news']);
+        $news = $this->newsRepository->findByIdentifier(filter_var($newsUid, FILTER_SANITIZE_NUMBER_INT));
+
+        $this->view->assign('newsItem', $news);
+        //$this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
+    }
+
+
+
+    /**
      * Returns TYPO3 settings
      *
      * @param string $extension extension name
