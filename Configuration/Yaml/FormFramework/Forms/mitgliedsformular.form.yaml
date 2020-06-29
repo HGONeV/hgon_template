@@ -8,7 +8,7 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Your message: {subject}'
+      subject: 'Ihr Mitgliedsantrag: {subject}'
       recipientAddress: your.company@example.com
       recipientName: 'Your Company name'
       senderAddress: '{email}'
@@ -20,7 +20,28 @@ finishers:
       attachUploads: true
       translation:
         language: ''
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToReceiver
+  -
+    options:
+      subject: 'Mitgliedsformular: Eine neue Nachricht'
+      recipientAddress: info@hgon.de
+      recipientName: ''
+      senderAddress: info@hgon.de
+      senderName: ''
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToSender
 renderables:
   -
     renderingOptions:
@@ -37,7 +58,6 @@ renderables:
             Ordentliches: '...ordentliches Mitglied (Schnuppermitgliedschaft erster Jahresbeitrag 40 EUR, dann: 65 EUR)'
             Familie: '...Familie (Jahresbeitrag 80 EUR)'
             Ermäßigt: '...Mitglied zum ermäßigten Beitrag (Schüler, Studenten, Azubis etc. gegen Nachweis, Jahresbeitrag 20 EUR)'
-          fluidAdditionalAttributes: {  }
         type: RadioButton
         identifier: radiobutton-1
         label: 'Ja, ich will mehr Natur für Hessen und trete der HGON bei als...'
@@ -48,7 +68,6 @@ renderables:
             T-Shirt: 'Ein HGON-T-Shirt, Größe:'
             Kappe: 'Eine HGON-Kappe'
             Spende: 'Ich spende mein Begrüßungsgeschenk'
-          fluidAdditionalAttributes: {  }
         type: RadioButton
         identifier: radiobutton-2
         label: 'Mein Begrüßungsgeschenk:'

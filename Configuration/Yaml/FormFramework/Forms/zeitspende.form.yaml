@@ -20,7 +20,28 @@ finishers:
       attachUploads: true
       translation:
         language: ''
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToReceiver
+  -
+    options:
+      subject: 'Mitmachen-formular: Eine neue Nachricht'
+      recipientAddress: info@hgon.de
+      recipientName: ''
+      senderAddress: info@hgon.de
+      senderName: ''
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToSender
 renderables:
   -
     renderingOptions:

@@ -17,8 +17,12 @@ TYPO3:
                 partialRootPaths:
                   100: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Partials/'
                   110: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Custom/Partials/'
+                  # currently does not work for emails: https://wiki.sebkln.de/doku.php?id=typo3:form
+                  #120: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
                 layoutRootPaths:
                   100: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Layouts/'
+                  # currently does not work for emails: https://wiki.sebkln.de/doku.php?id=typo3:form
+                  #110: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
                 translation:
                   translationFile:
                     # Default translation file for the frontend:
@@ -43,3 +47,7 @@ TYPO3:
                 templateName: 'Confirmation'
                 templateRootPaths:
                   10: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/Finishers/Confirmation/'
+      mixins:
+        finishersEmailMixin:
+          options:
+            templatePathAndFilename: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/Finishers/Email/{@format}.html'
