@@ -227,6 +227,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
 
         // HGON EDIT START: Culinary and PayPal-Handling
+        $approvalUrl = '';
         if (
             \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('hgon_payment')
             && $newEventReservation->getTxHgontemplatePaymenttype() == 2
@@ -245,7 +246,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                     foreach ($newEventReservation->getTxHgontemplateEventculinary() as $eventCulinary) {
                         /** @var \HGON\HgonPayment\Domain\Model\Article $article */
                         $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
-                        $article->setDescription($eventCulinary->getDescription());
+                        $article->setDescription($newEventReservation->getEvent()->getTitle() . ' - ' . date("d.m.Y", $newEventReservation->getEvent()->getStart()));
                         $article->setName($eventCulinary->getTitle());
                         $article->setPrice(floatval($eventCulinary->getPrice()));
                         $article->setSku('culinary' . $eventCulinary->getUid());
@@ -270,9 +271,13 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                         $article->setPrice(floatval($newEventReservation->getEvent()->getCostsRed()));
                     }
                     $article->setSku('eventprice' . $newEventReservation->getEvent()->getUid());
+                    $article->setDescription($newEventReservation->getEvent()->getTitle() . ' - ' . date("d.m.Y", $newEventReservation->getEvent()->getStart()));
                     $article->setIsDonation(false);
                     $basket->addArticle($article);
                 }
+
+                // to send opt-in mail after finishing payment process
+                //$GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_event_reservation', $newEventReservation);
 
                 $GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_payment_basket', $basket);
                 $GLOBALS['TSFE']->storeSessionData();
@@ -287,6 +292,9 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
         }
         // HGON EDIT END
 
+
+        // do only send now if there is no payment! (otherwise this will send after payment)
+        //if (!$approvalUrl) {
         // register new user or simply send opt-in to user
         /** @var \RKW\RkwRegistration\Tools\Registration $registration */
         $registration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwRegistration\\Tools\\Registration');
@@ -307,6 +315,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
             'rkwEvents',
             $this->request
         );
+        //}
 
         $this->addFlashMessage(
             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(

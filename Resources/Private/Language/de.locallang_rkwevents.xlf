@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-04-07T16:19:42Z" product-name="hgon_template">
+		<header/>
+		<body>
+
+            <!-- Templates/Email/OptInReservationUser.html -->
+            <trans-unit id="templates_email_optInReservationUser.text1">
+                <source>thank you for your interest.</source>
+                <target>vielen Dank für Ihr Interesse an der Teilnahme an einer Veranstaltung der HGON.</target>
+            </trans-unit>
+
+		</body>
+	</file>
+</xliff>

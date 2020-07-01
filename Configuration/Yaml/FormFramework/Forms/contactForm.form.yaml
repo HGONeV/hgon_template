@@ -1,3 +1,4 @@
+
 renderingOptions:
   submitButtonLabel: Submit
 identifier: contactForm
@@ -90,11 +91,11 @@ renderables:
       -
         defaultValue: ''
         identifier: subject
-        label: Subject
+        label: Betreff
         type: Text
         properties:
           fluidAdditionalAttributes:
-            placeholder: Subject
+            placeholder: Betreff
             required: required
         validators:
           -
@@ -102,7 +103,7 @@ renderables:
       -
         defaultValue: ''
         identifier: message
-        label: Message
+        label: Nachricht
         type: Textarea
         properties:
           fluidAdditionalAttributes:

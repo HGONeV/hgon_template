@@ -68,4 +68,21 @@ class DivUtility extends \RKW\RkwEvents\Helper\DivUtility
         return $reservations;
         //===
     }
+
+
+    /**
+     * workshopRegistration
+     * !! returns FALSE, if not every workshop had a place for registration
+     *
+     * @author Maximilian Fäßler
+     * @param \RKW\RkwEvents\Domain\Model\EventReservation $eventReservation
+     * @return boolean
+     */
+    public static function workshopRegistration(\RKW\RkwEvents\Domain\Model\EventReservation $eventReservation)
+    {
+        // original function throws errors because workshops not included and not countable
+
+        return false;
+        //===
+    }
 }
