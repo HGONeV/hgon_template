@@ -3,6 +3,9 @@ if (!defined ('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
+$GLOBALS['TCA']['tx_rkwevents_domain_model_event']['columns']['be_user']['config']['foreign_table_where'] = 'AND be_users.uid != 1 AND be_users.deleted = 0 AND be_users.email != "" ORDER BY be_users.username';
+
+
 $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['columns']['tx_hgontemplate_eventculinary'] = [
     'exclude' => 0,
     'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary',
