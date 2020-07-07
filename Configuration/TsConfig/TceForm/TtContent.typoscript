@@ -50,6 +50,7 @@ TCEFORM {
                 75 = Kacheln klein (3 Bilder)
                 76 = Kacheln mittel (2 Bilder)
                 77 = Kacheln groß (1 Bild)
+                80 = Zentrierter Text
 
             }
 

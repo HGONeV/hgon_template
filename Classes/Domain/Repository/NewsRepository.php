@@ -129,6 +129,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
             $query->matching($query->logicalAnd($constraints));
         }
 
+        $query->setLimit(10);
+
         return $query->execute();
         //===
     }

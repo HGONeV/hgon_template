@@ -477,6 +477,30 @@
         </f:case>
 
 
+        <f:comment><!-- centered text  --></f:comment>
+        <f:case value="80">
+            <section class="section">
+                <header class="section__header">
+                    <div class="wrap wrap--text / align-center">
+                        <h2>
+                            <f:if condition="{data.subheader}">
+                                <span class="badge badge--secondary">{data.subheader}<span class="is-hidden">: </span></span>
+                            </f:if>
+                            <f:if condition="{data.header}">
+                                <span class="h2 headline">{data.header}</span>
+                            </f:if>
+                        </h2>
+                        <f:if condition="{data.bodytext}">
+                            <p>
+                                <f:format.raw>
+                                    {data.bodytext}
+                                </f:format.raw>
+                            </p>
+                        </f:if>
+                    </div>
+                </header>
+            </section>
+        </f:case>
 
         <f:defaultCase>
             <div class="ce-textpic ce-{gallery.position.horizontal} ce-{gallery.position.vertical}{f:if(condition: gallery.position.noWrap, then: ' ce-nowrap')}">

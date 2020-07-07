@@ -1,29 +1,30 @@
-<section class="box box--bordered pb-1">
-    <header class="box__header">
-        <div class="wrap">
-            <h2 class="tagline">Anstehende Termine</h2>
-        </div>
-    </header>
-    <div class="box__content">
-        <div class="flex-container space-between gutter">
-            <f:if condition="<f:count>{sortedEventList}</f:count>">
-                <f:then>
-                    <!-- further boxes with events -->
-                    <f:for each="{sortedEventList}" as="event">
-                        <div class="flex-item c-<f:cObject typoscriptObjectPath='lib.math' data='12/<f:count>{sortedEventList}</f:count>' /> ">
-                            <f:render partial="Event/List/Box" arguments="{_all}" />
-                        </div>
-                    </f:for>
-                </f:then>
-                <f:else>
-                    <div class="csc-default csc-element-n1">
-                        <p><strong><f:translate key="tx_rkwevents_fluid.templates_event_list.noEvent" extensionName="RkwEvents" /></strong></p>
-                    </div>
-                </f:else>
-            </f:if>
-        </div>
+    <div class="wrap">
+        <section class="box box--bordered pb-1">
+            <header class="box__header">
+                <div class="wrap">
+                    <h2 class="tagline">Anstehende Termine</h2>
+                </div>
+            </header>
+            <div class="box__content">
+                <div class="flex-container space-between gutter">
+                    <f:if condition="<f:count>{sortedEventList}</f:count>">
+                        <f:then>
+                            <!-- further boxes with events -->
+                            <f:for each="{sortedEventList}" as="event">
+                                <div class="flex-item c-<f:cObject typoscriptObjectPath='lib.math' data='12/<f:count>{sortedEventList}</f:count>' /> ">
+                                    <f:render partial="Event/List/Box" arguments="{_all}" />
+                                </div>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <div class="csc-default csc-element-n1">
+                                <p><strong><f:translate key="tx_rkwevents_fluid.templates_event_list.noEvent" extensionName="RkwEvents" /></strong></p>
+                            </div>
+                        </f:else>
+                    </f:if>
+                </div>
 
+            </div>
+
+        </section>
     </div>
-
-</section>
-

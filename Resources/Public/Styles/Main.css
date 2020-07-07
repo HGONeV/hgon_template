@@ -119,3 +119,8 @@ ul.news-downloads {
 section.section.helper .section__header {
     padding-top: 0;
 }
+
+/* for centered content */
+.frame-layout-80 {
+    width: 100%;
+}
