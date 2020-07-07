@@ -245,7 +245,7 @@
                             <div class="bar__icons bar__icons--left">
                                 <div class="bar__text align-center">
                                       <span class="js-slider-counter">
-                                        <span class="current__slide">1</span> / <span class="max__slides">3</span>
+                                        <span class="current__slide">1</span> / <span class="max__slides"><f:count>{gallery.rows}</f:count></span>
                                       </span>
                                 </div>
                             </div>
@@ -270,23 +270,27 @@
                     <div class="gallery">
                         <f:for each="{gallery.rows}" as="row">
                             <f:for each="{row.columns}" as="column">
-                                <div class="gallery__image">
-                                    <a class="js-open-lightbox" href="#" data-lightbox="lightbox-gallery" data-index="0">
-                                        <svg class="gallery__image-icon icon icon--24"><use xlink:href="#ui-fullscreen"></use></svg>
-                                        <figure>
-                                            <f:image image="{column.media}" alt="{column.media.name}" width="300px" />
-                                        </figure>
-                                    </a>
-                                </div>
+                                <f:if condition="{column.media}">
+                                    <div class="gallery__image">
+                                        <a class="js-open-lightbox" href="#" data-lightbox="lightbox-gallery" data-index="0">
+                                            <svg class="gallery__image-icon icon icon--24"><use xlink:href="#ui-fullscreen"></use></svg>
+                                            <figure>
+                                                <f:image image="{column.media}" alt="{column.media.name}" width="300px" />
+                                            </figure>
+                                        </a>
+                                    </div>
+                                </f:if>
                             </f:for>
                         </f:for>
                     </div>
                     <div id="lightbox-gallery" class="lightbox" style="opacity: 0; visibility: hidden;">
                         <f:for each="{gallery.rows}" as="row">
                             <f:for each="{row.columns}" as="column">
-                                <picture class="picture / lightbox__img" style="visibility: hidden; opacity: 0;">
-                                    <f:image image="{column.media}" alt="{column.media.name}" />
-                                </picture>
+                                <f:if condition="{column.media}">
+                                    <picture class="picture / lightbox__img" style="visibility: hidden; opacity: 0;">
+                                        <f:image image="{column.media}" alt="{column.media.name}" />
+                                    </picture>
+                                </f:if>
                             </f:for>
                         </f:for>
 
@@ -319,6 +323,157 @@
                 <p class="text-italic"><f:format.stripTags>{data.bodytext}</f:format.stripTags></p>
                 <cite class="quote__cite-large">{data.header}</cite>
             </blockquote>
+        </f:case>
+
+
+        <f:comment><!-- "Kacheln" small  --></f:comment>
+        <f:case value="75">
+
+            <f:if condition="{gallery.rows}">
+                <div class="flex-container space-between gutter valign-stretch">
+                <f:for each="{gallery.rows}" as="row">
+                    <f:for each="{row.columns}" as="column">
+                        <f:if condition="{column.media}">
+                            <div class="flex-item c-4">
+                                <f:comment><!-- c4: Always border --></f:comment>
+                                <article class="card card--border {f:if(condition: '{column.media}', else: 'card-plain')}">
+                                    <f:if condition="{column.media}">
+                                        <picture class="card__image">
+                                            <f:image image="{column.media}" alt="{image.alternative}" width="395c" height="300c" cropVariant="4to3" />
+                                        </picture>
+                                    </f:if>
+                                    <div class="card__inner">
+                                        <header class="card__header">
+                                            <time class="tagline" datetime="{f:format.date(format: 'Y.m.d', date: date)} "><f:format.date format="d.m.Y">{date}</f:format.date></time>
+                                            <h3 class="headline">{column.media.title}</h3>
+                                        </header>
+                                        <div class="card__content">
+                                            <f:format.crop maxCharacters="250">
+                                                <f:if condition="{column.media.description}">
+                                                    <f:format.html>{column.media.description}</f:format.html>
+                                                </f:if>
+                                            </f:format.crop>
+                                        </div>
+                                        <footer class="card__footer">
+                                            <f:if condition="{column.media.link}">
+                                                <f:link.typolink parameter="{column.media.link}" title="{column.media.link.title}" class="btn btn--rounded btn--tertiary">
+                                                    <f:if condition="{column.media.alternative}">
+                                                        <f:then>
+                                                            {column.media.alternative}
+                                                        </f:then>
+                                                        <f:else>
+                                                            {column.media.link}
+                                                        </f:else>
+                                                    </f:if>
+                                                </f:link.typolink>
+                                            </f:if>
+                                        </footer>
+                                    </div>
+                                </article>
+                            </div>
+                        </f:if>
+                    </f:for>
+                </f:for>
+                </div>
+            </f:if>
+
+        </f:case>
+
+
+        <f:comment><!-- "Kacheln" middle  --></f:comment>
+        <f:case value="76">
+
+            <f:if condition="{gallery.rows}">
+                <div class="flex-container space-between gutter valign-stretch">
+                    <f:for each="{gallery.rows}" as="row">
+                        <f:for each="{row.columns}" as="column">
+                            <f:if condition="{column.media}">
+                                <div class="flex-item c-6">
+                                    <f:comment><!-- c6: Always border --></f:comment>
+                                    <article class="card card-image" style="background-image: url(<f:uri.image image='{column.media}' absolute='true' cropVariant='2to1' />);">
+                                        <div class="card__inner">
+                                            <header class="card__header">
+                                                <time class="tagline" datetime="{f:format.date(format: 'Y.m.d', date: date)} "><f:format.date format="d.m.Y">{date}</f:format.date></time>
+                                                <h3 class="headline">{column.media.title}</h3>
+                                            </header>
+                                            <div class="card__content">
+                                                <f:format.crop maxCharacters="500">
+                                                    <f:if condition="{column.media.description}">
+                                                        <f:format.html>{column.media.description}</f:format.html>
+                                                    </f:if>
+                                                </f:format.crop>
+                                            </div>
+                                            <footer class="card__footer">
+                                                <f:if condition="{column.media.link}">
+                                                    <f:link.typolink parameter="{column.media.link}" title="{column.media.link.title}" class="btn btn--rounded btn--tertiary">
+                                                        <f:if condition="{column.media.alternative}">
+                                                            <f:then>
+                                                                {column.media.alternative}
+                                                            </f:then>
+                                                            <f:else>
+                                                                {column.media.link}
+                                                            </f:else>
+                                                        </f:if>
+                                                    </f:link.typolink>
+                                                </f:if>
+                                            </footer>
+                                        </div>
+                                    </article>
+                                </div>
+                            </f:if>
+                        </f:for>
+                    </f:for>
+                </div>
+            </f:if>
+
+        </f:case>
+
+
+        <f:comment><!-- "Kacheln" big  --></f:comment>
+        <f:case value="77">
+
+            <f:if condition="{gallery.rows}">
+                <div class="flex-container space-between gutter valign-stretch">
+                    <f:for each="{gallery.rows}" as="row">
+                        <f:for each="{row.columns}" as="column">
+                            <f:if condition="{column.media}">
+                                <div class="flex-item c-12">
+                                    <article class="card card-image" style="background-image: url(<f:uri.image image='{column.media}' absolute='true' cropVariant='14to5' />);">
+                                        <div class="card__inner">
+                                            <header class="card__header">
+                                                <time class="tagline" datetime="{f:format.date(format: 'Y.m.d', date: date)} "><f:format.date format="d.m.Y">{date}</f:format.date></time>
+                                                <h3 class="headline">{column.media.title}</h3>
+                                            </header>
+                                            <div class="card__content">
+                                                <f:format.crop maxCharacters="500">
+                                                    <f:if condition="{column.media.description}">
+                                                        <f:format.html>{column.media.description}</f:format.html>
+                                                    </f:if>
+                                                </f:format.crop>
+                                            </div>
+                                            <footer class="card__footer">
+                                                <f:if condition="{column.media.link}">
+                                                    <f:link.typolink parameter="{column.media.link}" title="{column.media.link.title}" class="btn btn--rounded btn--tertiary">
+                                                        <f:if condition="{column.media.alternative}">
+                                                            <f:then>
+                                                                {column.media.alternative}
+                                                            </f:then>
+                                                            <f:else>
+                                                                {column.media.link}
+                                                            </f:else>
+                                                        </f:if>
+                                                    </f:link.typolink>
+                                                </f:if>
+                                            </footer>
+                                        </div>
+                                    </article>
+                                </div>
+                            </f:if>
+                        </f:for>
+                    </f:for>
+                </div>
+            </f:if>
+
         </f:case>
 
 

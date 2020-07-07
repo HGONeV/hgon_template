@@ -1,0 +1,22 @@
+// workgroup: Override variables on detail view
+[globalVar = TSFE:id = {$plugin.tx_hgonworkgroup.settings.showPid}]
+
+    config.noPageTitle = 2
+
+    # override page title
+    lib.pageTitle = RECORDS
+    lib.pageTitle {
+        tables = tx_hgonworkgroup_domain_model_workgroup
+        source.data = GP:tx_hgonworkgroup_detail|workGroup
+        source.intval = 1
+        conf.tx_hgonworkgroup_domain_model_workgroup = TEXT
+        conf.tx_hgonworkgroup_domain_model_workgroup {
+            field = title
+            htmlSpecialChars = 1
+        }
+        wrap = <title>Arbeitskreis:&nbsp; |</title>
+    }
+    page.headerData.1 >
+    page.headerData.1 < lib.pageTitle
+
+[global]

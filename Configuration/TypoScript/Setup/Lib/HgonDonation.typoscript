@@ -1,0 +1,22 @@
+// workgroup: Override variables on detail view
+[globalVar = TSFE:id = {$plugin.tx_hgondonation.settings.showPid}]
+
+    config.noPageTitle = 2
+
+    # override page title
+    lib.pageTitle = RECORDS
+    lib.pageTitle {
+        tables = tx_hgondonation_domain_model_donation
+        source.data = GP:tx_hgondonation_detail|donation
+        source.intval = 1
+        conf.tx_hgondonation_domain_model_donation = TEXT
+        conf.tx_hgondonation_domain_model_donation {
+            field = title
+            htmlSpecialChars = 1
+        }
+        wrap = <title>Mit Freude spenden:&nbsp; |</title>
+    }
+    page.headerData.1 >
+    page.headerData.1 < lib.pageTitle
+
+[global]

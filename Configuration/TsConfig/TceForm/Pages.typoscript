@@ -9,6 +9,12 @@ TCEFORM {
         tx_rkwbasics_information.disabled = 1
         tx_rkwauthors_authorship.disabled = 1
         tx_rkwbasics_css_class.disabled = 1
+
+        tx_rkwbasics_series.disabled = 1
+        tx_rkwbasics_enterprisesize.disabled = 1
+        tx_rkwbasics_sector.disabled = 1
+        tx_bmpdf2content_is_import.disabled = 1
+
     }
 
     tx_rkwevents_domain_model_event {

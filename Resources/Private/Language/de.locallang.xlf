@@ -11,7 +11,7 @@
             </trans-unit>
             <trans-unit id="LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.1">
                 <source>Press</source>
-                <target>Pressemitteilungyp</target>
+                <target>Pressemitteilung</target>
             </trans-unit>
             <trans-unit id="LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2">
                 <source>Project</source>

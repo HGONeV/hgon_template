@@ -3,6 +3,7 @@
     xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper"
     data-namespace-typo3-fluid="true">
 
+<f:if condition="{newsItem}">
     <f:link.page class="link link--icon / float-right" pageUid="{settings.listPid}" title="Entdecken">
         <svg class="icon icon--btn-left" width="18" height="18"><use xlink:href="#ui-arrow-left"></use></svg>
         Zurück zur Übersicht
@@ -35,19 +36,19 @@
                                 </f:else>
                             </f:if>
                             <span class="news-related-files-link">
-                                            <f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}" />
+                                <f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link:relatedLink.uri)}" />
 
-                                            <f:comment>
-                                            <f:if condition="{relatedLink.title}">
-                                                <f:then>
-                                                    {relatedLink.title}
-                                                </f:then>
-                                                <f:else>
-                                                    <span>{relatedLink.uri}</span>
-                                                </f:else>
-                                            </f:if>
-                                                </f:comment>
-                                        </span>
+                                <f:comment>
+                                <f:if condition="{relatedLink.title}">
+                                    <f:then>
+                                        {relatedLink.title}
+                                    </f:then>
+                                    <f:else>
+                                        <span>{relatedLink.uri}</span>
+                                    </f:else>
+                                </f:if>
+                                    </f:comment>
+                            </span>
                         </li>
                     </f:for>
                 </ul>
@@ -92,3 +93,4 @@
     <f:if condition="{newsItem}">
         <f:cObject typoscriptObjectPath="page.10.variables.relatedNews" />
     </f:if>
+</f:if>

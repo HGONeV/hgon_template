@@ -105,6 +105,33 @@
                         </div>
                         </f:comment>
 
+                        <f:comment><!-- Slider Small "Fotoshow"--></f:comment>
+                        <f:if condition="{newsItem.mediaNonPreviews}">
+                            <div class="slider slider--small js-slider" data-slide="0">
+                                <f:for each="{newsItem.mediaNonPreviews}" as="column">
+                                    <f:if condition="{column}">
+                                        <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{column}' absolute='true' cropVariant='16:9' />);" ></article>
+                                    </f:if>
+                                </f:for>
+                                <div class="bar bar--bottom bar--border">
+                                    <div class="bar__icons bar__icons--right">
+                                        <a class="bar__icon js-slide-prev is-disabled" href=""><svg class="icon"><use xlink:href="#ui-prev"></use></svg></a>
+                                        <a class="bar__icon js-slide-next" href=""><svg class="icon"><use xlink:href="#ui-next"></use></svg></a>
+                                    </div>
+                                    <div class="bar__icons bar__icons--left">
+                                        <div class="bar__text align-center">
+                                  <span class="js-slider-counter">
+                                    <span class="current__slide">1</span> / <span class="max__slides"><f:count>{newsItem.mediaNonPreviews}</f:count></span>
+                                  </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </f:if>
+
+
+                        <f:comment><!-- fotoshow --></f:comment>
+                        <f:comment>
                         <f:if condition="{newsItem.mediaNonPreviews}">
                             <section class="js-lightbox">
                                 <div class="gallery">
@@ -143,6 +170,7 @@
                                 </div>
                             </section>
                         </f:if>
+                        </f:comment>
 
                     </n:renderMedia>
 

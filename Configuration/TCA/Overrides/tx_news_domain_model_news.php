@@ -3,8 +3,15 @@ if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
+// fix: https://github.com/georgringer/news/issues/1072
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['config']['default'] = '';
+
 // hide tx_news own type
-$condFce = 'FIELD:type:!=:0';
+//$condFce = 'FIELD:type:!=:0';
+$condFce = ['AND' => [
+    'FIELD:type:!=:0',
+    'FIELD:type:!=:',
+    ]];
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['type']['displayCond'] = $condFce;
 
 // the tx_news-type is working like a doktype and has much influence on queries. Create own type!
@@ -20,6 +27,7 @@ $tempPagesColumns = [
                 ['LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.0', 0],
                 ['LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.1', 1],
                 ['LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2', 2],
+                ['--- Bitte wählen ---', ''],
             ],
             'fieldWizard' => [
                 'selectIcons' => [
@@ -28,6 +36,8 @@ $tempPagesColumns = [
             ],
             'size' => 1,
             'maxitems' => 1,
+            'default' => '',
+            'required' => 1
         ],
         'onChange' => 'reload',
     ],

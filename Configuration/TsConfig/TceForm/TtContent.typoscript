@@ -47,6 +47,9 @@ TCEFORM {
                 61 = Slider: Fotoshow
                 65 = Fotoshow (Lightbox Gallerie)
                 70 = Zitat (ohne Bild)
+                75 = Kacheln klein (3 Bilder)
+                76 = Kacheln mittel (2 Bilder)
+                77 = Kacheln groß (1 Bild)
 
             }
 

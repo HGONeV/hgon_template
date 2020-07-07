@@ -100,15 +100,21 @@ $tempPagesColumns = array(
     $tempPagesColumns
 );
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_rkwbasics_extended','tx_hgontemplate_contactperson','after:tx_rkwprojects_project_uid');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_rkwbasics_extended2','tx_hgontemplate_article','after:tx_hgontemplate_contactperson');
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_hgontemplate_palette', 'tx_hgontemplate_contactperson, tx_hgontemplate_article');
+//\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_rkwbasics_extended', 'tx_hgontemplate_contactperson, tx_hgontemplate_article');
 
 // Add palette to new tab
+// using renamed RKW tab instead
+/*
 $tempConfig = '--div--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tabs.hgon,--palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.palettes.common;tx_hgontemplate_palette,';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     $tempConfig
 );
+*/
+
 // Add field to the existing palette
 //\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'editorial','--linebreak--,tx_hgontemplate_contactperson','after:lastUpdated');
 

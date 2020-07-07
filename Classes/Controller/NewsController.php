@@ -288,8 +288,10 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $newsUid = preg_replace('/[^0-9]/', '', $getParams['news']);
         $news = $this->newsRepository->findByIdentifier(filter_var($newsUid, FILTER_SANITIZE_NUMBER_INT));
 
-        $this->view->assign('newsItem', $news);
-        //$this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
+        if ($news) {
+            $this->view->assign('newsItem', $news);
+            //$this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
+        }
     }
 
 
