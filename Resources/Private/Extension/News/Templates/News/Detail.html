@@ -14,6 +14,14 @@
 	<f:if condition="{newsItem}">
 		<f:then>
                 <div class="article__content">
+                    <f:if condition="{newsItem.categories}">
+                        <f:for each="{newsItem.categories}" as="category">
+                            <f:link.page pageUid="{settings.listPid}" additionalParams="{tx_hgontemplate_journal: '{sysCategory: category}'}">
+                                <span class="badge badge--secondary">{category.title}<span class="is-hidden">: </span></span>
+                            </f:link.page>&nbsp;
+                        </f:for>
+                    </f:if>
+
                     <h2>{newsItem.title}</h2>
 
                     <div class="news-footer">

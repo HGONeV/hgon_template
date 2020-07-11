@@ -35,12 +35,12 @@
             <f:comment><!-- iterate and set first image of news --></f:comment>
             <f:for each="{news.falMedia}" as="newsImage" iteration="iter">
                 <f:if condition="{iter.isFirst}">
-                    <f:render partial="FlexItem/CardInner" arguments="{type: type, image: newsImage, date: news.datetime, title: news.title, teaserText: news.teaser, text: news.bodytext}" />
+                    <f:render partial="FlexItem/CardInner" arguments="{type: type, image: newsImage, date: news.datetime, title: news.title, teaserText: news.teaser, text: news.bodytext, categories: news.categories}" />
                 </f:if>
             </f:for>
         </f:then>
         <f:else>
-            <f:render partial="FlexItem/CardInner" arguments="{type: type, date: news.datetime, title: news.title, teaserText: news.teaser, text: news.bodytext}" />
+            <f:render partial="FlexItem/CardInner" arguments="{type: type, date: news.datetime, title: news.title, teaserText: news.teaser, text: news.bodytext, categories: news.categories}" />
         </f:else>
     </f:if>
     <footer class="card__footer">

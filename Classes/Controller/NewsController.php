@@ -81,7 +81,10 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
             /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
             $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
-            $categories = $donation->getTxRkwprojectProject()->getSysCategory();
+            if ($donation->getTxRkwprojectProject()) {
+                $categories = $donation->getTxRkwprojectProject()->getSysCategory();
+            }
+
         }
 
 
@@ -226,8 +229,9 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $templateDataArray['pageTypeAjax'] = $this->settings['journal']['ajaxTypeNum'];
         $templateDataArray['pageNumber'] = $pageNumber;
 
+
         if (count($templateDataArray['journalRowList'])) {
-            $templateDataArray['showMoreLink'] = $this->newsRepository->findByFilter($sysCategory, [], [], $pageNumber, 9999)->count() > $pageNumber * intval($this->settings['journal']['itemsPerPage']) ? true : false;
+            $templateDataArray['showMoreLink'] = $this->newsRepository->findByFilter($sysCategory, [], [], 1, 9999)->count() > $pageNumber * intval($this->settings['journal']['itemsPerPage']) ? true : false;
         } else {
             $templateDataArray['showMoreLink'] = false;
         }

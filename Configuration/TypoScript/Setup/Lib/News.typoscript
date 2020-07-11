@@ -14,7 +14,7 @@
             field = title
             htmlSpecialChars = 1
         }
-        wrap = <title>|</title>
+        wrap = <title>Entdecken:&nbsp; |</title>
     }
     page.headerData.1 >
     page.headerData.1 < lib.pageTitle
