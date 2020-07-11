@@ -1,6 +1,6 @@
 
 renderingOptions:
-  submitButtonLabel: Submit
+  submitButtonLabel: Absenden
 identifier: zeitspende
 label: Zeitspende
 type: Form
@@ -8,12 +8,12 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Your message: {subject}'
-      recipientAddress: your.company@example.com
-      recipientName: 'Your Company name'
+      subject: 'Mitmachen-formular: Eine neue Nachricht {subject}'
+      recipientAddress: info@hgon.de
+      recipientName: 'HGON Geschäftstelle'
       senderAddress: '{email}'
       senderName: '{name}'
-      replyToAddress: ''
+      replyToAddress: '{email}'
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
@@ -27,12 +27,12 @@ finishers:
     identifier: EmailToReceiver
   -
     options:
-      subject: 'Mitmachen-formular: Eine neue Nachricht'
-      recipientAddress: info@hgon.de
-      recipientName: ''
+      subject: 'Mitmachen-formular: Nachricht erhalten'
+      recipientAddress: '{email}'
+      recipientName: '{name}'
       senderAddress: info@hgon.de
-      senderName: ''
-      replyToAddress: ''
+      senderName: 'HGON Geschäftstelle'
+      replyToAddress: info@hgon.de
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
@@ -42,11 +42,15 @@ finishers:
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToSender
+  -
+    options:
+      message: 'Vielen Dank für die Anmeldung. Wir melden und mit weiteren Details bei Ihnen. '
+    identifier: Confirmation
 renderables:
   -
     renderingOptions:
-      previousButtonLabel: 'Previous step'
-      nextButtonLabel: 'Neue Seite'
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
     identifier: page-1
     label: 'Ich will mitmachen!'
     type: Page
@@ -59,19 +63,21 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             placeholder: Name
+            required: required
         validators:
           -
             identifier: NotEmpty
       -
-        defaultValue: ''
+        defaultValue: 'Zeitspende '
         identifier: subject
-        label: Subject
+        label: Betreff
         type: Text
         renderingOptions:
-          enabled: false
+          enabled: true
         properties:
           fluidAdditionalAttributes:
-            placeholder: Subject
+            placeholder: Betreff
+            required: required
         validators:
           -
             identifier: NotEmpty
@@ -82,7 +88,8 @@ renderables:
         type: Text
         properties:
           fluidAdditionalAttributes:
-            placeholder: 'Email address'
+            placeholder: 'Email Addresse'
+            required: required
         validators:
           -
             identifier: NotEmpty
@@ -91,11 +98,12 @@ renderables:
       -
         defaultValue: ''
         identifier: message
-        label: Message
+        label: Nachricht
         type: Textarea
         properties:
           fluidAdditionalAttributes:
             placeholder: ''
+            required: required
         validators:
           -
             identifier: NotEmpty

@@ -167,6 +167,18 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonTemplate',
+            'ProjectPartner',
+            [
+                'Standard' => 'projectPartner'
+            ],
+            // non-cacheable actions
+            [
+                'Standard' => 'projectPartner'
+            ]
+        );
+
         // ***************
         // NEWS
         // ***************
@@ -234,6 +246,7 @@ call_user_func(
 
 
 
+
         // ***************
         // Article
         // ***************
@@ -249,6 +262,22 @@ call_user_func(
                 'Article' => 'showArticleFromPages, newOrder, createOrder'
             ]
         );
+
+
+
+        /* TEST
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwEvents',
+            'Reservation',
+            [
+                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
+            ],
+            // non-cacheable actions
+            [
+                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
+            ]
+        );*/
+
 
         // caching
         if( !is_array($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] ) ) {

@@ -27,7 +27,7 @@ plugin.tx_hgontemplate {
         }
         article {
             # cat=plugin.tx_hgontemplate//a; type=int; label=PID of order plugin (shows content for lightbox)
-            orderFormPid = 82
+            orderFormPid = 89
         }
         # cat=plugin.tx_hgontemplate//a; type=int; label=pages which should shown google maps with hgon marker
         showMapsPidList = 34

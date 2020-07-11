@@ -66,7 +66,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
         // if we're in new plugin context (for reservation)
         if (!$event) {
-            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwevents_rkweventsreservation');
+            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwevents_reservation');
             $eventUid = preg_replace('/[^0-9]/', '', $getParams['event']);
             $event = $this->eventRepository->findByUid($eventUid);
         }
@@ -92,12 +92,16 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      */
     public function initializeCreateAlternativeAction()
     {
+
         // needed, because not selected culinary checkboxes are empty. And this throws an error
         if ($this->arguments->hasArgument('newEventReservation')) {
 
             $request = $this->request->getArguments();
             // always: Filter empty elements
-            if (key_exists('txHgontemplateEventculinary', $request['newEventReservation'])) {
+            if (
+                $request['newEventReservation']
+                && key_exists('txHgontemplateEventculinary', $request['newEventReservation'])
+            ) {
                 $request['newEventReservation']['txHgontemplateEventculinary'] = array_filter($request['newEventReservation']['txHgontemplateEventculinary']);
 
                 // do only ignore, if no content is set. Otherwise we got no objects
@@ -237,6 +241,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                 $newEventReservation->getTxHgontemplateEventculinary()->count()
                 || ($newEventReservation->getEvent()->getCostsReg() || $newEventReservation->getEvent()->getCostsRed())
             )  {
+
                 /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */
                 $basket = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Basket');
 
@@ -285,6 +290,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                 /** @var \HGON\HgonPayment\Api\PayPalApi $payPalApi */
                 $payPalApi = $this->objectManager->get('HGON\\HgonPayment\\Api\\PayPalApi');
                 $result = $payPalApi->createPayment($basket);
+
                 // extract approval_url
                 $approvalUrlArray = $result->links;
                 $approvalUrl = $approvalUrlArray[1]->href;
@@ -345,6 +351,8 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      */
     public function endAction($event, $approvalUrl = '')
     {
+
+
         if ($approvalUrl) {
             $this->view->assign('approvalUrl', $approvalUrl);
         }

@@ -20,6 +20,10 @@
 				<target>vielen Dank für Ihr Interesse an den Newslettern des HGON. Gerne senden wir Ihnen künftig aktuelle Meldungen zu den folgenden Themen per E-Mail zu:</target>
 			</trans-unit>
 
+            <trans-unit id="templates_email_optInRequest.textOptIn">
+				<source>Please click here to confirm your subscription.</source>
+				<target>Bitte klicken Sie hier, um das Abonnement zu bestätigen.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

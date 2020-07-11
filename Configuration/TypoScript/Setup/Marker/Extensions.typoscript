@@ -132,7 +132,7 @@ page {
             rkwEventsReservation {
                 userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = RkwEvents
-                pluginName = RkwEventsReservation
+                pluginName = Reservation
                 vendorName = RKW
                 controller = EventReservation
                 switchableControllerActions {
@@ -146,6 +146,7 @@ page {
                         6 = optIn
                         7 = edit
                         8 = end
+                        9 = createAlternative
                     }
                 }
 
@@ -368,6 +369,30 @@ page {
                         1 = showArticleFromPages
                         2 = newOrder
                         3 = createOrder
+                    }
+                }
+
+                view =< plugin.tx_hgontemplate.view
+                persistence =< plugin.tx_hgontemplate.persistence
+                settings =< plugin.tx_hgontemplate.settings
+            }
+
+
+
+            //=================================================================
+            // Show project partner
+            //=================================================================
+            showProjectPartner = USER
+            showProjectPartner {
+                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+                extensionName = HgonTemplate
+                pluginName = ProjectPartner
+                vendorName = HGON
+                controller = Standard
+                switchableControllerActions {
+                    // Again: Controller-Name and Action
+                    Standard {
+                        1 = projectPartner
                     }
                 }
 

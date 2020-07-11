@@ -136,7 +136,7 @@
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2">
                 <source>Project</source>
-                <target>Projektvorstellung</target>
+                <target>Projektmeldung</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_youtube_video_id">
                 <source>YouTube Video ID</source>
@@ -372,6 +372,14 @@
             <trans-unit id="flexform.sixReasons.reason6">
                <source>Good reason 6</source>
                <target>Guter Grund 6 (Optional)</target>
+            </trans-unit>
+            <trans-unit id="flexform.projectPartner.sheetTitle">
+               <source>Project</source>
+               <target>Projektauswahl (Optional)</target>
+            </trans-unit>
+            <trans-unit id="flexform.projectPartner.projectUid">
+               <source>Project</source>
+               <target>Projekt</target>
             </trans-unit>
 
         </body>

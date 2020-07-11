@@ -15,7 +15,7 @@
             </trans-unit>
             <trans-unit id="LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2">
                 <source>Project</source>
-                <target>Projektvorstellung</target>
+                <target>Projektmeldung</target>
             </trans-unit>
 
 
@@ -55,7 +55,7 @@
             </trans-unit>
             <trans-unit id="tx_hgontemplate_page_partials_layout.newstype.2">
                 <source>Project</source>
-                <target>Projektvorstellung</target>
+                <target>Projektmeldung</target>
             </trans-unit>
 
             <trans-unit id="tx_hgontemplate_extension_rkwevents_partials_filter.pleaseChoose">

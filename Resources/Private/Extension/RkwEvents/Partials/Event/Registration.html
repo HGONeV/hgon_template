@@ -27,18 +27,24 @@
                                             <f:then>
                                                 <f:if condition="<rkw:freePlacesAvailable event='{event}' />">
                                                     <f:then>
+                                                        <f:comment>
+                                                            <f:link.page pageUid="106" class="btn btn--primary btn--rounded" additionalParams="{tx_rkwevents_reservation: {event: event}}" additionalAttributes="{data-featherlight: 'iframe', data-featherlight-iframe-height: '600', data-featherlight-iframe-width: '600'}">
+                                                            </f:link.page>
+                                                        </f:comment>
+
                                                         <a href="#" data-featherlight="#rkw-events-reservation-plugin" class="btn btn--primary btn--rounded" >
-                                                        <span>
-                                                            <f:security.ifAuthenticated>
-                                                                <f:then>
-                                                                    <f:translate key="tx_rkwevents_fluid.partials_event_registration.internalLinkLoggedIn" />
-                                                                </f:then>
-                                                                <f:else>
-                                                                    <f:translate key="tx_rkwevents_fluid.partials_event_registration.internalLink" />
-                                                                </f:else>
-                                                            </f:security.ifAuthenticated>
-                                                        </span>
+                                                            <span>
+                                                                <f:security.ifAuthenticated>
+                                                                    <f:then>
+                                                                        <f:translate key="tx_rkwevents_fluid.partials_event_registration.internalLinkLoggedIn" />
+                                                                    </f:then>
+                                                                    <f:else>
+                                                                        <f:translate key="tx_rkwevents_fluid.partials_event_registration.internalLink" />
+                                                                    </f:else>
+                                                                </f:security.ifAuthenticated>
+                                                            </span>
                                                         </a>
+
                                                     </f:then>
                                                     <f:else>
                                                         <f:if condition="{additionalButtonClass}">

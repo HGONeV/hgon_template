@@ -145,6 +145,9 @@ class PageNotFound extends \RKW\RkwBasics\UserFunctions\PageNotFound
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                         $content = curl_exec($ch);
                         curl_close($ch);
+
+                       // DebuggerUtility::var_dump($url);
+                       // DebuggerUtility::var_dump($content); exit;
                     }
 
                     if ($content) {

@@ -1,0 +1,28 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.projectPartner.sheetTitle</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.projectPartner.projectUid>
+                        <TCEforms>
+                            <label>LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:flexform.projectPartner.projectUid</label>
+                            <config>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <type>select</type>
+                                <foreign_table>tx_rkwprojects_domain_model_projects</foreign_table>
+                                <foreign_table_where>
+                                    AND tx_rkwprojects_domain_model_projects.deleted = 0 AND tx_rkwprojects_domain_model_projects.hidden = 0 ORDER BY tx_rkwprojects_domain_model_projects.name
+                                </foreign_table_where>
+                            </config>
+                        </TCEforms>
+                    </settings.projectPartner.projectUid>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

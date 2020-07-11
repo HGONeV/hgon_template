@@ -2,15 +2,15 @@
 renderingOptions:
   submitButtonLabel: Senden
 identifier: fJ
-label: 'Interesse am FÖJ'
+label: FÖJ
 type: Form
 prototypeName: standard
 finishers:
   -
     options:
       subject: 'Deine Anfrage zum FÖJ'
-      recipientAddress: andrea.ewerling@hgon.de
-      recipientName: 'Andrea Ewerling'
+      recipientAddress: your.company@example.com
+      recipientName: 'Your Company name'
       senderAddress: '{email}'
       senderName: '{name}'
       replyToAddress: ''
@@ -27,11 +27,11 @@ finishers:
     identifier: EmailToReceiver
   -
     options:
-      subject: 'Deine Anfrage zum FÖJ'
-      recipientAddress: '{email}'
-      recipientName: '{name} {text-1}'
-      senderAddress: andrea.ewerling@hgon.de
-      senderName: 'Andrea Ewerling'
+      subject: 'FÖJ-Formular: Eine neue Nachricht'
+      recipientAddress: info@hgon.de
+      recipientName: ''
+      senderAddress: info@hgon.de
+      senderName: ''
       replyToAddress: ''
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
@@ -45,12 +45,21 @@ finishers:
 renderables:
   -
     renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: 'Formular Senden'
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Neue Seite'
     identifier: page-1
-    label: 'Kontaktformular '
+    label: 'Contact Form'
     type: Page
     renderables:
+      -
+        properties:
+          options:
+            Herr: Herr
+            Frau: Frau
+            Familie: Familie
+        type: SingleSelect
+        identifier: singleselect-1
+        label: Anrede
       -
         defaultValue: ''
         identifier: name
@@ -75,6 +84,14 @@ renderables:
         validators:
           -
             identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-4
+        label: 'Firma / Institution'
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: 'Firma / Institution'
       -
         type: GridRow
         identifier: gridrow-1
@@ -152,8 +169,7 @@ renderables:
         type: Text
         properties:
           fluidAdditionalAttributes:
-            placeholder: 'Email addresse'
-            required: required
+            placeholder: 'Email address'
         validators:
           -
             identifier: NotEmpty
@@ -162,19 +178,18 @@ renderables:
       -
         defaultValue: ''
         identifier: message
-        label: Nachricht
+        label: Message
         type: Textarea
         properties:
           fluidAdditionalAttributes:
             placeholder: ''
-            required: required
         validators:
           -
             identifier: NotEmpty
   -
     renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: Absenden
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: Senden
     identifier: summarypage
-    label: Zusammenfassung
+    label: 'Summary page'
     type: SummaryPage

@@ -233,7 +233,7 @@
                         <f:for each="{gallery.rows}" as="row">
                             <f:for each="{row.columns}" as="column">
                                 <f:if condition="{column.media}">
-                                    <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{column.media}' absolute='true' cropVariant='16:9' />);" ></article>
+                                    <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{column.media}' absolute='true' cropVariant='16:9' width='860' />);" ></article>
                                 </f:if>
                             </f:for>
                         </f:for>
@@ -342,33 +342,35 @@
                                             <f:image image="{column.media}" alt="{image.alternative}" width="395c" height="300c" cropVariant="4to3" />
                                         </picture>
                                     </f:if>
-                                    <div class="card__inner">
-                                        <header class="card__header">
-                                            <time class="tagline" datetime="{f:format.date(format: 'Y.m.d', date: date)} "><f:format.date format="d.m.Y">{date}</f:format.date></time>
-                                            <h3 class="headline">{column.media.title}</h3>
-                                        </header>
-                                        <div class="card__content">
-                                            <f:format.crop maxCharacters="250">
-                                                <f:if condition="{column.media.description}">
-                                                    <f:format.html>{column.media.description}</f:format.html>
-                                                </f:if>
-                                            </f:format.crop>
-                                        </div>
-                                        <footer class="card__footer">
-                                            <f:if condition="{column.media.link}">
-                                                <f:link.typolink parameter="{column.media.link}" title="{column.media.link.title}" class="btn btn--rounded btn--tertiary">
-                                                    <f:if condition="{column.media.alternative}">
-                                                        <f:then>
-                                                            {column.media.alternative}
-                                                        </f:then>
-                                                        <f:else>
-                                                            {column.media.link}
-                                                        </f:else>
+                                    <f:if condition="{column.media.title} || {column.media.description}">
+                                        <div class="card__inner">
+                                            <header class="card__header">
+                                                <time class="tagline" datetime="{f:format.date(format: 'Y.m.d', date: date)} "><f:format.date format="d.m.Y">{date}</f:format.date></time>
+                                                <h3 class="headline">{column.media.title}</h3>
+                                            </header>
+                                            <div class="card__content">
+                                                <f:format.crop maxCharacters="250">
+                                                    <f:if condition="{column.media.description}">
+                                                        <f:format.html>{column.media.description}</f:format.html>
                                                     </f:if>
-                                                </f:link.typolink>
-                                            </f:if>
-                                        </footer>
-                                    </div>
+                                                </f:format.crop>
+                                            </div>
+                                            <footer class="card__footer">
+                                                <f:if condition="{column.media.link}">
+                                                    <f:link.typolink parameter="{column.media.link}" title="{column.media.link.title}" class="btn btn--rounded btn--tertiary">
+                                                        <f:if condition="{column.media.alternative}">
+                                                            <f:then>
+                                                                {column.media.alternative}
+                                                            </f:then>
+                                                            <f:else>
+                                                                {column.media.link}
+                                                            </f:else>
+                                                        </f:if>
+                                                    </f:link.typolink>
+                                                </f:if>
+                                            </footer>
+                                        </div>
+                                    </f:if>
                                 </article>
                             </div>
                         </f:if>

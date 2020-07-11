@@ -1,16 +1,16 @@
 
 renderingOptions:
-  submitButtonLabel: 'Formular senden'
-identifier: contactForm
-label: Kontaktformular
+  submitButtonLabel: Submit
+identifier: zeitspende
+label: Zeitspende
 type: Form
 prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Kontaktformular:  {subject}'
-      recipientAddress: info@hgon.de
-      recipientName: 'HGON Geschäftsstelle'
+      subject: 'Your message: {subject}'
+      recipientAddress: your.company@example.com
+      recipientName: 'Your Company name'
       senderAddress: '{email}'
       senderName: '{name}'
       replyToAddress: ''
@@ -27,12 +27,12 @@ finishers:
     identifier: EmailToReceiver
   -
     options:
-      subject: 'HGON Kontaktformular:  {subject}'
-      recipientAddress: '{email}'
-      recipientName: '{name}'
+      subject: 'Mitmachen-formular: Eine neue Nachricht'
+      recipientAddress: info@hgon.de
+      recipientName: ''
       senderAddress: info@hgon.de
-      senderName: 'HGON Geschäftstelle'
-      replyToAddress: info@hgon.de
+      senderName: ''
+      replyToAddress: ''
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
@@ -42,17 +42,13 @@ finishers:
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToSender
-  -
-    options:
-      message: 'Danke für dieNachricht. Wir melden uns schnellstmöglich zurück.'
-    identifier: Confirmation
 renderables:
   -
     renderingOptions:
-      previousButtonLabel: ''
-      nextButtonLabel: 'Nachricht senden'
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Neue Seite'
     identifier: page-1
-    label: ''
+    label: 'Ich will mitmachen!'
     type: Page
     renderables:
       -
@@ -63,17 +59,22 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             placeholder: Name
-            required: required
-            minlength: '3'
-            maxlength: '999'
         validators:
           -
             identifier: NotEmpty
+      -
+        defaultValue: ''
+        identifier: subject
+        label: Subject
+        type: Text
+        renderingOptions:
+          enabled: false
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Subject
+        validators:
           -
-            options:
-              minimum: '3'
-              maximum: '999'
-            identifier: StringLength
+            identifier: NotEmpty
       -
         defaultValue: ''
         identifier: email
@@ -82,7 +83,6 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             placeholder: 'Email address'
-            required: required
         validators:
           -
             identifier: NotEmpty
@@ -90,45 +90,12 @@ renderables:
             identifier: EmailAddress
       -
         defaultValue: ''
-        identifier: subject
-        label: Betreff
-        type: Text
-        properties:
-          fluidAdditionalAttributes:
-            placeholder: Betreff
-            required: required
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        defaultValue: ''
         identifier: message
-        label: Nachricht
+        label: Message
         type: Textarea
         properties:
           fluidAdditionalAttributes:
             placeholder: ''
-            required: required
-            minlength: '10'
-            maxlength: '9999'
         validators:
           -
             identifier: NotEmpty
-          -
-            options:
-              minimum: '10'
-              maximum: '9999'
-            identifier: StringLength
-      -
-        type: Fieldset
-        identifier: fieldset-1
-        label: 'Ich möchte...'
-        renderables:
-          -
-            type: Checkbox
-            identifier: checkbox-1
-            label: '...Mitglied werden. Bitte senden Sie mir Informationsmaterial und das Beitrittsformular zu.'
-          -
-            type: Checkbox
-            identifier: checkbox-2
-            label: '...als Sponsor die Naturschutzarbeit der HGON unterstützen.'

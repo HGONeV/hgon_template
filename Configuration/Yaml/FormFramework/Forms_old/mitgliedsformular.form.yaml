@@ -8,9 +8,9 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: 'HGON Mitgliedsantrag für  {singleselect-1} {subject} '
-      recipientAddress: info@hgon.de
-      recipientName: 'HGON Geschäftstelle'
+      subject: 'Ihr Mitgliedsantrag: {subject}'
+      recipientAddress: your.company@example.com
+      recipientName: 'Your Company name'
       senderAddress: '{email}'
       senderName: '{name}'
       replyToAddress: ''
@@ -27,11 +27,11 @@ finishers:
     identifier: EmailToReceiver
   -
     options:
-      subject: 'HGON Mitgliedsantrag für  {singleselect-1} {subject} '
-      recipientAddress: '{email}'
-      recipientName: '{name} {subject}'
+      subject: 'Mitgliedsformular: Eine neue Nachricht'
+      recipientAddress: info@hgon.de
+      recipientName: ''
       senderAddress: info@hgon.de
-      senderName: 'HGON Geschäftstelle'
+      senderName: ''
       replyToAddress: ''
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
@@ -42,10 +42,6 @@ finishers:
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToSender
-  -
-    options:
-      message: 'Vielen Dank für das Vertrauen. Wir melden uns umgehend. '
-    identifier: Confirmation
 renderables:
   -
     renderingOptions:

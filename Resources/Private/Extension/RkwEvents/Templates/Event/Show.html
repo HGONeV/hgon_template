@@ -222,11 +222,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
     </div>
 
 
-    <!-- featherlight reservation form -->
-    <span class="container" style="display: none;">
-        <span id="rkw-events-reservation-plugin" class="featherlight-form-container">
-            <f:cObject typoscriptObjectPath="page.10.variables.rkwEventsReservation" />
+
+        <!-- featherlight reservation form -->
+        <!-- using iframe instead, because we got JS checkbox trouble -->
+        <span class="container" style="display: none;">
+            <span id="rkw-events-reservation-plugin" class="featherlight-form-container">
+                <f:cObject typoscriptObjectPath="page.10.variables.rkwEventsReservation" />
+            </span>
         </span>
-    </span>
 
 </f:section>

@@ -13,6 +13,7 @@ namespace HGON\HgonTemplate\Controller\RkwNewsletter;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * SubscriptionController
@@ -45,7 +46,6 @@ class SubscriptionController extends \RKW\RkwNewsletter\Controller\SubscriptionC
      */
     public function createAction(\RKW\RkwNewsletter\Domain\Model\FrontendUser $frontendUser, $topics = array(), $terms = null, $privacy = null)
     {
-
         // check if terms are checked
         if (
             ($frontendUser->_isNew())
@@ -78,10 +78,13 @@ class SubscriptionController extends \RKW\RkwNewsletter\Controller\SubscriptionC
             //===
         }
 
+
+        // we do not really working with topics at this point. But for the newsletter usage the people need topics
+        // -> So we give them all topics which are available for this newsletter
+
         /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage $subscriptions */
         $subscriptions = $this->buildCleanedTopicList($topics);
 
-        /*
         // If no topics are selected this can't be the indention :)
         if (count($subscriptions) < 1) {
             $this->addFlashMessage(
@@ -95,7 +98,6 @@ class SubscriptionController extends \RKW\RkwNewsletter\Controller\SubscriptionC
             $this->forward('new', null, null, $this->request->getArguments());
             //===
         }
-        */
 
 
         // Case 1: FE-User is not logged in and is not identified via hash-tag
@@ -178,4 +180,5 @@ class SubscriptionController extends \RKW\RkwNewsletter\Controller\SubscriptionC
         //===
 
     }
+
 }

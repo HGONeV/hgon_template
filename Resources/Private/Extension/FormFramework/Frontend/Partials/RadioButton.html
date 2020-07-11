@@ -2,10 +2,10 @@
 <formvh:renderRenderable renderable="{element}">
 	<f:render partial="Field/Field" arguments="{element: element}" contentAs="elementContent">
 		<div id="{element.uniqueIdentifier}" class="inputs-list">
-			<div class="form-group">
+			<div class="form-group radio-group">
 				<f:for each="{element.properties.options}" as="label" key="value" iteration="idIterator">
-                    <label class="checkbox">
-                        <span class="checkbox__input">
+                    <label class="radio">
+                        <span class="radio__input">
                             <f:form.radio
                                 property="{element.identifier}"
                                 id="{element.uniqueIdentifier}-{idIterator.index}"
@@ -20,6 +20,7 @@
                             {formvh:translateElementProperty(element: element, property: '{0: \'options\', 1: value}')}
                         </span>
                     </label>
+                    <br/>
 				</f:for>
 			</div>
 		</div>

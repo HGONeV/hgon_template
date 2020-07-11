@@ -95,6 +95,12 @@ call_user_func(
             'HGON: Zeigt HGON auf GoogleMaps'
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'HGON.HgonTemplate',
+            'ProjectPartner',
+            'HGON: Zeigt Projekt-Partner'
+        );
+
 
         // ***************
         // NEWS
@@ -142,6 +148,12 @@ call_user_func(
             'RKW.RkwEvents',
             'Upcoming',
             'RKW Events: Zeigt bevorstehende Veranstaltungen'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'RKW.RkwEvents',
+            'Reservation',
+            'RKW Events: Angepasstes Reservierungs-Plugin (HGON)'
         );
 
 
@@ -196,6 +208,12 @@ $pluginSignature = $extensionName.'_'.$pluginName;
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY . '/Configuration/FlexForms/PageSlider.xml');
+
+$pluginName = strtolower('ProjectPartner');
+$pluginSignature = $extensionName.'_'.$pluginName;
+$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY . '/Configuration/FlexForms/ProjectPartner.xml');
 
 /*
  * Moved to HGON Donation

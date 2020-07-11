@@ -207,6 +207,12 @@
             <trans-unit id="flexform.sixReasons.reason6">
                <source>Good reason 6</source>
             </trans-unit>
+            <trans-unit id="flexform.projectPartner.sheetTitle">
+               <source>Project</source>
+            </trans-unit>
+            <trans-unit id="flexform.projectPartner.projectUid">
+               <source>Project</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

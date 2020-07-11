@@ -85,7 +85,7 @@ $tempPagesColumns = [
                     ],
                 ],
             ),
-            'jpg, png, gif'
+            'jpg, jpeg, png, gif'
         ),
 
     ],

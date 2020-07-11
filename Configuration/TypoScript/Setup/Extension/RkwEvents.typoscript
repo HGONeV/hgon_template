@@ -8,6 +8,10 @@ plugin.tx_rkwevents {
     settings {
         ajaxTypeNumReservation = {$plugin.tx_rkwevents.settings.ajaxTypeNumReservation}
         showWorkGroupPagination = {$plugin.tx_rkwevents.settings.showWorkGroupPagination}
+
+        # cat=plugin.tx_hgondonation//a; type=int; label=TypeNum for page with content and css (see hgon_template)
+        # The number 1590761711 is copied from hgon_template. Do not change!
+        typeNumPageWithCss = 1590761711
     }
 }
 
@@ -17,7 +21,6 @@ plugin.tx_rkwevents {
 txRkweventsReservationAjax = PAGE
 txRkweventsReservationAjax {
 
-    # also written in partial Listing.html
     typeNum = {$plugin.tx_rkwevents.settings.ajaxTypeNumReservation}
 
     config {
@@ -32,7 +35,7 @@ txRkweventsReservationAjax {
     10 {
         userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
         extensionName = RkwEvents
-        pluginName = RkwEventsReservation
+        pluginName = Reservation
         vendorName = RKW
         controller = EventReservation
         switchableControllerActions {

@@ -46,6 +46,14 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     protected $sysCategoryRepository = null;
 
     /**
+     * donationRepository
+     *
+     * @var \HGON\HgonDonation\Domain\Repository\DonationRepository
+     * @inject
+     */
+    protected $donationRepository = null;
+
+    /**
      * showRelatedSidebarAction
      */
     public function showRelatedSidebarAction()
@@ -67,11 +75,23 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             }
         }
 
+        // Else: on donation detail: Use Project category
+        if (!$categories) {
+            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail');
+            $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
+            /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
+            $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
+            $categories = $donation->getTxRkwprojectProject()->getSysCategory();
+        }
+
+
         // Else: Get categories of pages
-        /** @var \HGON\HgonTemplate\Domain\Model\Pages $pages */
-        $pages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
-        if (count($pages->getCategories())) {
-            $categories = $pages->getCategories();
+        if (!$categories) {
+            /** @var \HGON\HgonTemplate\Domain\Model\Pages $pages */
+            $pages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
+            if (count($pages->getCategories())) {
+                $categories = $pages->getCategories();
+            }
         }
 
 

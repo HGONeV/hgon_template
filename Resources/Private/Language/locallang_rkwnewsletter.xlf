@@ -17,6 +17,10 @@
                 <source>thank you for your interest in the newsletters of the HGON. We will be happy to send you future news on the following topics by e-mail:</source>
             </trans-unit>
 
+            <trans-unit id="templates_email_optInRequest.textOptIn">
+                <source>Please click here to confirm your subscription.</source>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>
