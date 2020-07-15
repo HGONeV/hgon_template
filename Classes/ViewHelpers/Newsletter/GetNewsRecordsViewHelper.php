@@ -70,6 +70,7 @@ class GetNewsRecordsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
         // 1 = show automatically selected items by given count
         if ($hgonNewsletter->getTxHgontemplateNewsSelect() == 1) {
             return $newsRepository->findByMaxDate($hgonNewsletter->getLastIssueTstamp(), $hgonNewsletter->getTxHgontemplateNewsCount());
+            //===
         }
 
         // 2 = show manual selected items

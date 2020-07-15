@@ -57,6 +57,10 @@ textarea.f3-form-error {
     border-right: 3px solid #FF5252;
 }
 
+.typo3-messages .alert-message {
+    color: red;
+}
+
 
 
 /* Pseudo-fix for header-images: Maybe the css is not the real problem */

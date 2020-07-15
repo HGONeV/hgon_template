@@ -78,10 +78,6 @@ class SubscriptionController extends \RKW\RkwNewsletter\Controller\SubscriptionC
             //===
         }
 
-
-        // we do not really working with topics at this point. But for the newsletter usage the people need topics
-        // -> So we give them all topics which are available for this newsletter
-
         /** @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage $subscriptions */
         $subscriptions = $this->buildCleanedTopicList($topics);
 

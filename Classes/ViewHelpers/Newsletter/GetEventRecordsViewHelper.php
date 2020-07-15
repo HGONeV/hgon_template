@@ -69,7 +69,8 @@ class GetEventRecordsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 
         // 1 = show automatically selected items by given count
         if ($hgonNewsletter->getTxHgontemplateEventSelect() == 1) {
-            return $eventRepository->findByMaxDate($hgonNewsletter->getLastIssueTstamp(), $hgonNewsletter->getTxHgontemplateEventCount());
+            return $eventRepository->findUpcoming($hgonNewsletter->getTxHgontemplateEventCount());
+            //===
         }
 
         // 2 = show manual selected items

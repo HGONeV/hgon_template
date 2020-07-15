@@ -121,6 +121,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
             $constraints[] = $query->in('categories.uid', $sysCategoryList);
         }
 
+
         if ($excludeNewsList) {
             $constraints[] = $query->logicalNot($query->in('uid', $excludeNewsList));
         }

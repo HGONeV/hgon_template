@@ -41,6 +41,7 @@ $tempPagesColumns = array(
             'renderType' => 'selectMultipleSideBySide',
             'foreign_table' => 'tx_news_domain_model_news',
             'foreign_table_where' => 'ORDER BY tx_news_domain_model_news.tstamp ASC',
+            //'foreign_sortby' => 'sorting',
             'size' => 10,
             'autoSizeMax' => 30,
             'maxitems' => 5,

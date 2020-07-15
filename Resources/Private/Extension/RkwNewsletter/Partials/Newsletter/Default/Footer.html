@@ -214,4 +214,29 @@ info(at)hgon.de
     </div>
 
 
+    <f:if condition="{hash}">
+        <div style="Margin:0px auto;max-width:670px;">
+            <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+                <tbody>
+                <tr>
+                    <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
+                        <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+                                            <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#212121;"> Du kannst Dich <a href="<rkwMailer:frontend.link action='edit' controller='Subscription' extensionName='rkwNewsletter' pluginName='Subscription' pageUid='{subscriptionPid}' absolute='true' queueMail='{queueMail}' arguments='{hash: hash}' noCacheHash='true' />" class="link link--underline" style="color: #869733; text-decoration: underline;">hier</a> von unserem Newsletter abmelden. </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </f:if>
+
+
 </f:section>

@@ -23,13 +23,11 @@
 <!-- HTML -->
 <f:section name="Html">
 
-    <f:comment>
         <f:if condition="{webView}">
-            <f:else>
+            <f:then>
                 <f:render partial="Default/TopNews" section="Html" arguments="{_all}" />
-            </f:else>
+            </f:then>
         </f:if>
-    </f:comment>
 
     <!-- Normal Contents -->
     <f:render partial="Default/Items" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />

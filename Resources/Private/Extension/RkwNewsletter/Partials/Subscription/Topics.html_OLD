@@ -1,0 +1,18 @@
+{namespace rkwNewsletter=RKW\RkwNewsletter\ViewHelpers}
+
+    <f:for each="{newsletterList}" as="newsletter" iteration="newsletterIterator">
+
+        <f:for each="{newsletter.topic}" as="topic" iteration="topicIterator">
+            <f:if condition="{topic.isSpecial} == 0">
+                        <f:form.hidden name="topics[{topicIterator.index}]" value="{topic.uid}" />
+            </f:if>
+        </f:for>
+    </f:for>
+
+
+
+
+
+
+
+

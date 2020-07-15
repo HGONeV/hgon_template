@@ -252,19 +252,20 @@
 
     <div class="mj-column-per-48 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
         <table role="presentation" style="background-color:white;border:3px solid #CFD5B7;vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
-            <tbody><tr>
+            <tbody>
+            <tr>
                 <td style="background:#CFD5B7;font-size:0px;padding:0;word-break:break-word;" align="center">
                     <table role="presentation" style="border-collapse:collapse;border-spacing:0px;" cellspacing="0" cellpadding="0" border="0">
                         <tbody>
-                        <tr>
-                            <td style="width:315px;">
-                                <f:for each="{news.falRelatedFiles}" as="image" iteration="iter">
-                                    <f:if condition="{iter.isFirst}">
-                                        <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="315c" height="auto" />
-                                    </f:if>
-                                </f:for>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td style="width:315px;">
+                                    <f:for each="{news.falMedia}" as="image" iteration="iter">
+                                        <f:if condition="{iter.isFirst}">
+                                            <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="315c" height="auto" />
+                                        </f:if>
+                                    </f:for>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>

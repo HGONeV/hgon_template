@@ -120,6 +120,7 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
      */
     public function upcomingAction()
     {
+
         $this->view->assignMultiple(array(
             'sortedEventList' => $this->eventRepository->findUpcoming(),
             'showPid' => $this->settings['showPid']

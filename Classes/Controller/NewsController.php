@@ -81,10 +81,13 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
             /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
             $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
-            if ($donation->getTxRkwprojectProject()) {
-                $categories = $donation->getTxRkwprojectProject()->getSysCategory();
+            if ($donation) {
+                if ($donation->getTxRkwprojectProject()) {
+                    if ($donation->getTxRkwprojectProject()->getSysCategory()->count()) {
+                        $categories = $donation->getTxRkwprojectProject()->getSysCategory();
+                    }
+                }
             }
-
         }
 
 
@@ -293,7 +296,9 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $newsUid = preg_replace('/[^0-9]/', '', $getParams['news']);
         $news = $this->newsRepository->findByIdentifier(filter_var($newsUid, FILTER_SANITIZE_NUMBER_INT));
 
-        $this->view->assign('newsItem', $news);
+        if ($news) {
+            $this->view->assign('newsItem', $news);
+        }
     }
 
 

@@ -251,7 +251,7 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
 
 
     /**
-     * Returns upcoming events
+     * Returns upcoming events (no work group events!)
      *
      * @param int $limit
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
@@ -261,12 +261,16 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
     {
         $query = $this->createQuery();
 
+        // set this flag for newsletter "GetEventRecordsViewHelper"
+        $query->getQuerySettings()->setRespectStoragePage(false);
+
         return $query->matching(
             $query->logicalAnd(
                 $query->logicalAnd(
                     $query->logicalAnd(
                         $query->logicalAnd(
-                            $query->greaterThanOrEqual('start', time())
+                            $query->greaterThanOrEqual('start', time()),
+                            $query->equals('txHgonWorkgroupStdevent', 1)
                         ),
                         $query->greaterThan('end', time())
                     ),
