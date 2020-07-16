@@ -49,7 +49,7 @@ class GetArticleRecordsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstr
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
-     * @return bool|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
     static public function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
     {
@@ -78,7 +78,8 @@ class GetArticleRecordsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstr
             //===
         }
 
-        return false;
+        // return countable
+        return [];
         //===
     }
 

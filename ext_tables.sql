@@ -120,13 +120,49 @@ CREATE TABLE tx_rkwevents_domain_model_eventreservation (
 CREATE TABLE tx_rkwnewsletter_domain_model_newsletter (
 	tx_hgontemplate_news_select int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_news_count int(11) unsigned DEFAULT '0' NOT NULL,
-	tx_hgontemplate_news_list varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_news_list int(11) DEFAULT '0' NOT NULL,
 
 	tx_hgontemplate_article_select int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_article_count int(11) unsigned DEFAULT '0' NOT NULL,
-	tx_hgontemplate_article_list varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_article_list int(11) DEFAULT '0' NOT NULL,
 
 	tx_hgontemplate_event_select int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_event_count int(11) unsigned DEFAULT '0' NOT NULL,
-	tx_hgontemplate_event_list varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_event_list int(11) DEFAULT '0' NOT NULL,
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_news_mm'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_news_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_article_mm'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_article_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_event_mm'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_event_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
 );

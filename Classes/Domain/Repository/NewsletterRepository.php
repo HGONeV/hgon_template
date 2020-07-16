@@ -13,6 +13,7 @@ namespace HGON\HgonTemplate\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * NewsletterRepository
@@ -23,6 +24,33 @@ namespace HGON\HgonTemplate\Domain\Repository;
  */
 class NewsletterRepository extends \RKW\RkwNewsletter\Domain\Repository\NewsletterRepository
 {
+
+    protected $defaultOrderings = array(
+        'txHgontemplateNewsList' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+    );
+
+    /**
+     * get news of a newsletter configuration. Solves sorting issue
+     * (we can't get the object storage sorting itself. The records are always sorted by uid)
+     *
+     * @param \HGON\HgonTemplate\Domain\Model\Newsletter $newsletter
+     * @return \Traversable
+    */
+    public function findNewsOfNewsletter(\HGON\HgonTemplate\Domain\Model\Newsletter $newsletter)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->matching(
+            $query->equals('uid', $newsletter)
+        );
+
+        $newsletter = $query->execute()->getFirst();
+
+        DebuggerUtility::var_dump($query->execute()->getFirst()); exit;
+
+        return $query->execute()->getFirst();
+        //===
+    }
 
 
 }

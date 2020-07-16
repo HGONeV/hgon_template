@@ -49,7 +49,7 @@ class GetEventRecordsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
      * @param array $arguments
      * @param \Closure $renderChildrenClosure
      * @param RenderingContextInterface $renderingContext
-     * @return bool|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface|\TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
     static public function renderStatic(array $arguments, \Closure $renderChildrenClosure, RenderingContextInterface $renderingContext)
     {
@@ -86,7 +86,8 @@ class GetEventRecordsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
             //===
         }*/
 
-        return false;
+        // return countable
+        return [];
         //===
     }
 
