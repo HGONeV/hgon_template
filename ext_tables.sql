@@ -129,6 +129,10 @@ CREATE TABLE tx_rkwnewsletter_domain_model_newsletter (
 	tx_hgontemplate_event_select int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_event_count int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_event_list int(11) DEFAULT '0' NOT NULL,
+
+	tx_hgontemplate_donation_select int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_donation_count int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_donation_list int(11) DEFAULT '0' NOT NULL,
 );
 
 #
@@ -159,6 +163,18 @@ CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_article_mm (
 # Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_event_mm'
 #
 CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_event_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_donation_mm'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_donation_mm (
 	uid_local int(11) DEFAULT '0' NOT NULL,
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 	sorting int(11) DEFAULT '0' NOT NULL,

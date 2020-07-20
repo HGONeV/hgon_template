@@ -165,6 +165,10 @@
                 <source>Events</source>
                 <target>Veranstaltungen</target>
             </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.donation">
+                <source>Donation</source>
+                <target>Spenden</target>
+            </trans-unit>
 
             <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select">
                 <source>News select</source>
@@ -219,7 +223,7 @@
 
 
             <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select">
-                <source>Article select</source>
+                <source>Event select</source>
                 <target>Art der Veranstaltungsausgabe</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.none">
@@ -239,6 +243,32 @@
                 <target>Anzahl angezeigter Veranstaltungen</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_list">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select">
+                <source>Donation select</source>
+                <target>Art der Spendenausgabe</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.none">
+                <source>Don't show anything</source>
+                <target>Keine Spenden anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.automatic">
+                <source>Automatic</source>
+                <target>Zeige aktuellste Spenden automatisch an</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.manualSelect">
+                <source>Manual select</source>
+                <target>Manuelle Auswahl</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_count">
+                <source>Count</source>
+                <target>Anzahl angezeigter Spenden</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_list">
                 <source>List</source>
                 <target>Liste</target>
             </trans-unit>

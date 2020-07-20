@@ -67,6 +67,20 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
     protected $txHgontemplateEventCount = 0;
 
     /**
+     * txHgontemplateDonationSelect
+     *
+     * @var integer
+     */
+    protected $txHgontemplateDonationSelect = 0;
+
+    /**
+     * txHgontemplateDonationCount
+     *
+     * @var integer
+     */
+    protected $txHgontemplateDonationCount = 0;
+
+    /**
      * txHgontemplateNewsList
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\News>
@@ -86,6 +100,13 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\Event>
      */
     protected $txHgontemplateEventList;
+
+    /**
+     * txHgontemplateDonationList
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonDonation\Domain\Model\Donation>
+     */
+    protected $txHgontemplateDonationList;
 
     /**
      * __construct
@@ -110,7 +131,7 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
         $this->txHgontemplateNewsList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateArticleList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateEventList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-
+        $this->txHgontemplateDonationList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -237,6 +258,48 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
     public function setTxHgontemplateEventCount($txHgontemplateEventCount)
     {
         $this->txHgontemplateEventCount = $txHgontemplateEventCount;
+    }
+
+    /**
+     * Returns the txHgontemplateDonationSelect
+     *
+     * @return int $txHgontemplateDonationSelect
+     */
+    public function getTxHgontemplateDonationSelect()
+    {
+        return $this->txHgontemplateDonationSelect;
+    }
+
+    /**
+     * Sets the txHgontemplateDonationSelect
+     *
+     * @param int $txHgontemplateDonationSelect
+     * @return void
+     */
+    public function setTxHgontemplateDonationSelect($txHgontemplateDonationSelect)
+    {
+        $this->txHgontemplateDonationSelect = $txHgontemplateDonationSelect;
+    }
+
+    /**
+     * Returns the txHgontemplateDonationCount
+     *
+     * @return int $txHgontemplateDonationCount
+     */
+    public function getTxHgontemplateDonationCount()
+    {
+        return $this->txHgontemplateDonationCount;
+    }
+
+    /**
+     * Sets the txHgontemplateDonationCount
+     *
+     * @param int $txHgontemplateDonationCount
+     * @return void
+     */
+    public function setTxHgontemplateDonationCount($txHgontemplateDonationCount)
+    {
+        $this->txHgontemplateDonationCount = $txHgontemplateDonationCount;
     }
 
     /**
@@ -384,6 +447,56 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
     public function setTxHgontemplateEventList(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $txHgontemplateEventList)
     {
         $this->txHgontemplateEventList = $txHgontemplateEventList;
+    }
+
+
+    /**
+     * Adds a txHgontemplateDonationList to the newsletter
+     *
+     * @param \HGON\HgonTemplate\Domain\Model\Event $txHgontemplateDonationList
+     * @return void
+     * @api
+     */
+    public function addTxHgontemplateDonationList(\HGON\HgonTemplate\Domain\Model\Event $txHgontemplateDonationList)
+    {
+        $this->txHgontemplateDonationList->attach($txHgontemplateDonationList);
+    }
+
+    /**
+     * Removes a txHgontemplateDonationList from the newsletter
+     *
+     * @param \HGON\HgonTemplate\Domain\Model\Event $txHgontemplateDonationList
+     * @return void
+     * @api
+     */
+    public function removeTxHgontemplateDonationList(\HGON\HgonTemplate\Domain\Model\Event $txHgontemplateDonationList)
+    {
+        $this->topic->detach($txHgontemplateDonationList);
+    }
+
+    /**
+     * Returns the txHgontemplateEventList. Keep in mind that the property is called "txHgontemplateEventList"
+     * although it can hold several txHgontemplateEventList.
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage An object storage containing the txHgontemplateDonationList
+     * @api
+     */
+    public function getTxHgontemplateDonationList()
+    {
+        return $this->txHgontemplateDonationList;
+    }
+
+    /**
+     * Sets the txHgontemplateEventList. Keep in mind that the property is called "txHgontemplateDonationList"
+     * although it can hold several txHgontemplateDonationList.
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $txHgontemplateDonationList
+     * @return void
+     * @api
+     */
+    public function setTxHgontemplateDonationList(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $txHgontemplateDonationList)
+    {
+        $this->txHgontemplateDonationList = $txHgontemplateDonationList;
     }
 
 }

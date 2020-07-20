@@ -273,7 +273,7 @@
             <tr>
                 <td class="teaser-text" style="line-height: 24px; margin: 0; font-size: 0px; padding: 25px 15px 5px; word-break: break-word;" align="left">
                     <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
-                        <time datetime="2019-01-12">12.01.2019</time>
+                        <time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}"><f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date></time>
                         <h3 style="line-height: 24px; font-size: 20px; margin: 5px 0 15px; font-weight: 600;">{news.title}</h3>
                         <p style="line-height: 24px; font-size: 16px; margin: 0;"><f:format.crop maxCharacters="150"><f:format.stripTags><f:if condition="{news.teaser}"><f:then>{news.teaser}</f:then><f:else>{news.bodytext}</f:else></f:if></f:format.stripTags></f:format.crop></p>
                     </div>

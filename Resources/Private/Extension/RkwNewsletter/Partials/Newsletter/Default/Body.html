@@ -14,6 +14,8 @@
 
 <f:render partial="Default/Article" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
 
+<f:render partial="Default/Donation" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
 <f:render partial="Default/Events" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
 
 </rkwMailer:plaintextLineBreaks></f:section>
@@ -37,6 +39,9 @@
 
     <!-- Article -->
     <f:render partial="Default/Article" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+    <!-- Donation -->
+    <f:render partial="Default/Donation" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
 
     <!-- Events -->
     <f:render partial="Default/Events" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />

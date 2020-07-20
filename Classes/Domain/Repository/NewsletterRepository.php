@@ -35,9 +35,10 @@ class NewsletterRepository extends \RKW\RkwNewsletter\Domain\Repository\Newslett
      *
      * @param \HGON\HgonTemplate\Domain\Model\Newsletter $newsletter
      * @return \Traversable
-    */
+    *
     public function findNewsOfNewsletter(\HGON\HgonTemplate\Domain\Model\Newsletter $newsletter)
     {
+
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->matching(
@@ -46,11 +47,9 @@ class NewsletterRepository extends \RKW\RkwNewsletter\Domain\Repository\Newslett
 
         $newsletter = $query->execute()->getFirst();
 
-        DebuggerUtility::var_dump($query->execute()->getFirst()); exit;
-
         return $query->execute()->getFirst();
         //===
-    }
+    }*/
 
 
 }

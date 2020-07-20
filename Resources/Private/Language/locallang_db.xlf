@@ -116,6 +116,98 @@
                 <source>Project</source>
             </trans-unit>
 
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.news">
+                <source>News</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.article">
+                <source>Article</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.events">
+                <source>Events</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.donation">
+                <source>Donation</source>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select">
+                <source>News select</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.none">
+                <source>Don't show anything</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.automatic">
+                <source>Automatic</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.manualSelect">
+                <source>Manual select</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_count">
+                <source>Count</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_list">
+                <source>List</source>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select">
+                <source>Article select</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.none">
+                <source>Don't show anything</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.automatic">
+                <source>Automatic</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.manualSelect">
+                <source>Manual select</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_count">
+                <source>Count</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_list">
+                <source>List</source>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select">
+                <source>Event select</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.none">
+                <source>Don't show anything</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.automatic">
+                <source>Automatic</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.manualSelect">
+                <source>Manual select</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_count">
+                <source>Count</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_list">
+                <source>List</source>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select">
+                <source>Donation select</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.none">
+                <source>Don't show anything</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.automatic">
+                <source>Automatic</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.manualSelect">
+                <source>Manual select</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_count">
+                <source>Count</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_list">
+                <source>List</source>
+            </trans-unit>
+
 
             <!-- FLEXFORM -->
             <trans-unit id="flexform.journalHighlight.sheetTitle">
