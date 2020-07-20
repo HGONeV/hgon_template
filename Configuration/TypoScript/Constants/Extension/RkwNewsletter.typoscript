@@ -17,6 +17,13 @@ plugin.tx_rkwnewsletter {
     }
 
     settings {
+
+        subscriptionPid = 31
+
+        newsPid =
+        eventPid =
+        donationPid =
+
         pages {
             # permissions for pages elements
             permissions {

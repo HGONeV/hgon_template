@@ -14,6 +14,12 @@ plugin.tx_rkwnewsletter {
             1 = {$plugin.tx_rkwnewsletter.view.partialRootPath}
         }
     }
+
+    settings {
+        newsPid =  {$plugin.tx_rkwnewsletter.settings.newsPid}
+        eventPid =  {$plugin.tx_rkwnewsletter.settings.eventPid}
+        donationPid =  {$plugin.tx_rkwnewsletter.settings.donationPid}
+    }
 }
 
 #===============================================================

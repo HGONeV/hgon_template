@@ -10,7 +10,7 @@
             </trans-unit>
 
             <trans-unit id="rkwMailService.subject.optInRequest">
-                <source>Confirmation for RKW Newsletter</source>
+                <source>Confirmation for HGON Newsletter</source>
             </trans-unit>
 
              <trans-unit id="templates_email_optInRequest.text1">

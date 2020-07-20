@@ -206,8 +206,8 @@ $tempConfig = '
                 --div--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tabs.hgon,
                 --palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.palettes.news;tx_hgontemplate_palette_news,
                 --palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.palettes.article;tx_hgontemplate_palette_article,
+                --palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.palettes.donation;tx_hgontemplate_palette_donation,
                 --palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.palettes.events;tx_hgontemplate_palette_events,
-                --palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.palettes.donation;tx_hgontemplate_palette_donation
                ';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tx_rkwnewsletter_domain_model_newsletter',
