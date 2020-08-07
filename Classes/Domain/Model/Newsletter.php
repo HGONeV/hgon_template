@@ -25,6 +25,13 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
 {
     /**
+     * txHgontemplateIsInternal
+     *
+     * @var integer
+     */
+    protected $txHgontemplateIsInternal = 0;
+
+    /**
      * txHgontemplateNewsSelect
      *
      * @var integer
@@ -132,6 +139,27 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
         $this->txHgontemplateArticleList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateEventList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateDonationList = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
+     * Returns the txHgontemplateIsInternal
+     *
+     * @return int $txHgontemplateIsInternal
+     */
+    public function getTxHgontemplateIsInternal()
+    {
+        return $this->txHgontemplateIsInternal;
+    }
+
+    /**
+     * Sets the txHgontemplateIsInternal
+     *
+     * @param int $txHgontemplateIsInternal
+     * @return void
+     */
+    public function setTxHgontemplateIsInternal($txHgontemplateIsInternal)
+    {
+        $this->txHgontemplateIsInternal = $txHgontemplateIsInternal;
     }
 
     /**

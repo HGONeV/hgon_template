@@ -170,6 +170,11 @@
                 <target>Spenden</target>
             </trans-unit>
 
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_is_internal">
+                <source>Internal newsletter</source>
+                <target>Interner Newsletter (kann nicht über die Website abonniert werden)</target>
+            </trans-unit>
+
             <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select">
                 <source>News select</source>
                 <target>Art der Newsausgabe</target>

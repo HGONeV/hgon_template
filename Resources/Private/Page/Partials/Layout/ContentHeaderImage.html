@@ -4,10 +4,17 @@
         <f:render partial="Layout/HeaderImage" arguments="{_all}" />
 
     </picture>
-    <div class="wrap wrap--text / align-center">
-        <h1>
-            <span class="badge badge--dark">{pageTitle}<span class="is-hidden">: </span></span>
-            <span class="h1 headline">{pageSubtitle}</span>
-        </h1>
-    </div>
+    <f:if condition="{pageTitle} || {pageSubtitle}">
+        <div class="wrap wrap--text / align-center">
+            <h1>
+                <f:if condition="{pageTitle}">
+                    <span class="badge badge--dark">{pageTitle}<span class="is-hidden">: </span></span>
+                </f:if>
+                <f:if condition="{pageSubtitle}">
+                    <span class="h1 headline">{pageSubtitle}</span>
+                </f:if>
+            </h1>
+        </div>
+    </f:if>
+
 </header>

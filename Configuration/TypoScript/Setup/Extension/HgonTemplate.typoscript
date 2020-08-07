@@ -26,6 +26,9 @@ config.tx_extbase {
         RKW\RkwNewsletter\Controller\SubscriptionController {
             className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
         }
+        RKW\RkwNewsletter\Domain\Model\Newsletter {
+            className = HGON\HgonTemplate\Domain\Model\Newsletter
+        }
         RKW\RkwNewsletter\Domain\Model\TtContent {
             className = HGON\HgonTemplate\Domain\Model\TtContent
         }

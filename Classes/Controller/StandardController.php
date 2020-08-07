@@ -217,7 +217,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         // Get (direct) sub-pages of this siblings -> delivers NOT the whole pagetree!
         /** @var \HGON\HgonTemplate\Domain\Model\Pages $siblingPages */
         foreach ($siblingPagesList as $siblingPages) {
-            $subPagesList = $this->pagesRepository->findByPid($siblingPages->getUid());
+            $subPagesList = $this->pagesRepository->findByPid($siblingPages->getUid())->toArray();
+            shuffle($subPagesList);
             foreach ($subPagesList as $subPages) {
                 $siblingPages->addSubPages($subPages);
             }
@@ -386,10 +387,18 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         if (!$project) {
             $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail');
-            $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
+
+            if (key_exists('donation', $getParams)) {
+                $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
+            } else {
+                // Workground in relation to FormExt: Although we got this params here, the GP vars above delivers some crap
+                $donationUid = preg_replace('/[^0-9]/', '', $_GET['tx_hgondonation_detail']['donation']);
+            }
+
             /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
             $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
             $project = $donation->getTxRkwprojectProject();
+
         }
 
         $this->view->assign('project', $project);

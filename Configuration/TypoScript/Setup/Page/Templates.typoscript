@@ -9,6 +9,72 @@ page {
 
 	typeNum = 0
 
+    bodyTag >
+    bodyTagCObject = COA
+    bodyTagCObject {
+
+        5 = TEXT
+        5.value = <body
+        5.noTrimWrap = || |
+
+        10 = COA
+        10 {
+
+            // Zusatzklasse je nach gewähltem Layout ausgeben
+            // Dabei Vererbungsfeld berücksichtigen !
+            10 = COA
+            10 {
+
+                // Fall 1: Wenn kein Layout gesetzt ODER wenn explizit das default-Layout gewählt wurde
+                // (layout < 2 bzw. felayout_next_level < 2)
+                // -- > 1 wird zu default gezählt, weil ist aktive Auswahl des default-layouts!
+                10 = TEXT
+                10 {
+
+                    value = default
+
+                    if.value.field = layout
+                    if.isGreaterThan = 2
+                    if.isGreaterThan.if.value.data = levelfield:-2,backend_layout_next_level,slide
+                    if.isGreaterThan.if.isGreaterThan = 2
+                }
+
+                // Fall 2: Layout- Feld als Klasse setzen
+                // aber nur, wenn es > 1 ist (1 wird ignoriert, weil ist aktive Auswahl des default-layouts!)
+                20 = TEXT
+                20 {
+
+                    field = backend_layout
+
+                    if.value.field = backend_layout
+                    if.isLessThan = 1
+                }
+
+                // Fall 3: Layoutvererbungs- Feld als Klasse setzen
+                // aber nur, wenn es > 1 ist UND layout nicht gesetzt
+                30 = TEXT
+                30 {
+
+                    data = levelfield:-2,backend_layout_next_level,slide
+
+                    if.value.data = levelfield:-2,backend_layout_next_level,slide
+                    if.isLessThan = 1
+                    if.isLessThan.if.isFalse = layout
+
+                }
+
+                stdWrap.split.token = defaultpagets__
+                stdWrap.noTrimWrap = | ||
+            }
+
+            wrap = class="|"
+        }
+
+        20 = TEXT
+        20.value = >
+
+    }
+
 	10 = FLUIDTEMPLATE
 	10 {
 		# Template paths

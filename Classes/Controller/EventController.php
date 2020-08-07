@@ -96,7 +96,7 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
      * @return void
      * @ignorevalidation $event
      */
-    public function showAction(\RKW\RkwEvents\Domain\Model\Event $event)
+    public function showAction(\RKW\RkwEvents\Domain\Model\Event $event = null)
     {
         // for list view within show
         $this->settings['itemsPerPage'] = 5;

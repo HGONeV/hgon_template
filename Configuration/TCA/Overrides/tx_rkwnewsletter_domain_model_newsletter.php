@@ -6,6 +6,14 @@ if (!defined ('TYPO3_MODE')) {
 
 $tempPagesColumns = array(
 
+    'tx_hgontemplate_is_internal' => [
+        'exclude' => 0,
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_is_internal',
+        'config' => [
+            'type' => 'check',
+        ],
+    ],
+
     // NEWS
     'tx_hgontemplate_news_select' => array(
         'onChange' => 'reload',
@@ -204,6 +212,7 @@ $tempPagesColumns = array(
 // Add palette to new tab
 $tempConfig = '
                 --div--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tabs.hgon,
+                tx_hgontemplate_is_internal,
                 --palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.palettes.news;tx_hgontemplate_palette_news,
                 --palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.palettes.article;tx_hgontemplate_palette_article,
                 --palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_newsletter.palettes.donation;tx_hgontemplate_palette_donation,

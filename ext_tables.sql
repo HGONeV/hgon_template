@@ -118,6 +118,8 @@ CREATE TABLE tx_rkwevents_domain_model_eventreservation (
 # Table structure for table 'tx_rkwnewsletter_domain_model_newsletter'
 #
 CREATE TABLE tx_rkwnewsletter_domain_model_newsletter (
+    tx_hgontemplate_is_internal int(11) unsigned DEFAULT '0' NOT NULL,
+
 	tx_hgontemplate_news_select int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_news_count int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_news_list int(11) DEFAULT '0' NOT NULL,

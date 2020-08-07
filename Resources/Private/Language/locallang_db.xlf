@@ -129,6 +129,10 @@
                 <source>Donation</source>
             </trans-unit>
 
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_is_internal">
+                <source>Internal newsletter</source>
+            </trans-unit>
+
             <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select">
                 <source>News select</source>
             </trans-unit>
