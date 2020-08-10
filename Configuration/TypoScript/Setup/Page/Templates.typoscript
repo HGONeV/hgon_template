@@ -64,7 +64,7 @@ page {
                 }
 
                 stdWrap.split.token = defaultpagets__
-                stdWrap.noTrimWrap = | ||
+                stdWrap.noTrimWrap = | tmpl-||
             }
 
             wrap = class="|"
