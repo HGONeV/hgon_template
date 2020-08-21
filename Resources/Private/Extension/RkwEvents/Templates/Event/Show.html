@@ -14,31 +14,17 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 
-    <f:if condition="{flashMessages}">
-        <section class="section helper">
-            <header class="section__header">
-                <div class="wrap wrap--text / align-center">
-                    <div class="section__content">
-                        <f:flashMessages as="flashMessages">
-                            <f:for each="{flashMessages}" as="flashMessage">
-                                <div class="typo3-messages">
-                                    <div class="alert alert-{flashMessage.class}">
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <div class="alert-message">
-                                                    <f:format.raw>{flashMessage.message}</f:format.raw>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </f:for>
-                        </f:flashMessages>
+    <section class="section helper">
+        <header class="section__header">
+            <div class="wrap wrap--text / align-center">
+                <div class="typo3-messages" role="alert">
+                    <div class="typo3-message">
+                        <f:flashMessages />
                     </div>
                 </div>
-            </header>
-        </section>
-    </f:if>
+            </div>
+        </header>
+    </section>
 
     <div class="section">
         <div class="event-container">

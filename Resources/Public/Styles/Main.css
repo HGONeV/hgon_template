@@ -57,16 +57,23 @@ textarea.f3-form-error {
     border-right: 3px solid #FF5252;
 }
 
-.typo3-messages .alert-message {
+.typo3-messages .message-error {
     color: red;
 }
 
+ .typo3-messages {
+     color: #000;
+ }
 
+ li.alert {
+     list-style: none;
+ }
 
-/* Pseudo-fix for header-images: Maybe the css is not the real problem */
+/* Pseudo-fix for header-images: Maybe the css is not the real problem
 .main .main__header--image .picture img {
     width: 100%;
 }
+*/
 
 /* Fix: For not using a class in img tag itself (would need some additional partials) */
 aside.color-bg-tertiary img {

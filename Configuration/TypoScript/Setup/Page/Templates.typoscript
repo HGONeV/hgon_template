@@ -70,6 +70,19 @@ page {
             wrap = class="|"
         }
 
+        15 = COA
+        15 {
+            10 = COA
+            10 {
+                10 = TEXT
+                10 {
+                    data = field:uid
+                }
+                stdWrap.noTrimWrap = | id="page-|"|
+            }
+            noTrimWrap = | ||
+        }
+
         20 = TEXT
         20.value = >
 

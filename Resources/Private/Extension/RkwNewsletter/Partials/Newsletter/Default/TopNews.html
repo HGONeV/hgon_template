@@ -47,6 +47,9 @@
                                                 <li style="line-height: 24px; margin-bottom: 10px;"><a href="#event-anchor" style="color: #869733; text-decoration: none;"># Bevorstehende Termine</a></li>
                                             </f:if>
 
+                                            <f:if condition="<f:count><hgonTemplate:newsletter.getDonationRecords issue='{issue}' /></f:count>">
+                                                <li style="line-height: 24px; margin-bottom: 10px;"><a href="#project-anchor" style="color: #869733; text-decoration: none;"># Projekte im Blickpunkt</a></li>
+                                            </f:if>
                                         </ul>
                                     </div>
                                 </td>
