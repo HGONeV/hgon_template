@@ -4,7 +4,7 @@
 
 
 config {
-    baseURL = http://www.hgon.de/
+    baseURL = https://www.hgon.de/
 
     spamProtectEmailAddresses = 2
     spamProtectEmailAddresses_atSubst = (at)

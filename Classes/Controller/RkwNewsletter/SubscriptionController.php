@@ -127,7 +127,7 @@ class SubscriptionController extends \RKW\RkwNewsletter\Controller\SubscriptionC
                 )
             );
 
-            $this->redirect('message');
+            $this->forward('message');
             //===
 
             // Case 3: Fe-User is logged in
@@ -175,6 +175,24 @@ class SubscriptionController extends \RKW\RkwNewsletter\Controller\SubscriptionC
         $this->redirect('new');
         //===
 
+    }
+
+
+
+    /**
+     * action message
+     *
+     * @return void
+     */
+    public function messageAction()
+    {
+        // nothing to do here – just look good
+
+        $this->view->assignMultiple(
+            array(
+                'frontendUser' => ($this->getFrontendUser() ? $this->getFrontendUser() : $this->getFrontendUserByHash()),
+            )
+        );
     }
 
 }

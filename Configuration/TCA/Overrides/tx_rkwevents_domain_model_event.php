@@ -31,7 +31,7 @@ $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = s
 // RkwEvents (we need a extra plugin for reservations)
 // -> we can't create a simple marker with controller and actions for eventReservation. Throws an error in relation of the multiple use of controller / actions / plugins on the same page
 // ***************
-
+/*
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'RKW.RkwEvents',
     'Reservation',
@@ -55,3 +55,4 @@ $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['types']['1']['showitem'] = s
         'Event' => 'upcoming'
     )
 );
+*/

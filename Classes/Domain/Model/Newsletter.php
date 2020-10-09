@@ -91,6 +91,7 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
      * txHgontemplateNewsList
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\News>
+     * @lazy
      */
     protected $txHgontemplateNewsList;
 
@@ -98,6 +99,7 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
      * txHgontemplateArticleList
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\Article>
+     * @lazy
      */
     protected $txHgontemplateArticleList;
 
@@ -105,6 +107,7 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
      * txHgontemplateEventList
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\Event>
+     * @lazy
      */
     protected $txHgontemplateEventList;
 
@@ -112,6 +115,7 @@ class Newsletter extends \RKW\RkwNewsletter\Domain\Model\Newsletter
      * txHgontemplateDonationList
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonDonation\Domain\Model\Donation>
+     * @lazy
      */
     protected $txHgontemplateDonationList;
 

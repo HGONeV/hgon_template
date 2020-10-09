@@ -93,7 +93,7 @@
                             <f:if condition="{newsItem.mediaNonPreviews}">
                                 <f:for each="{newsItem.mediaNonPreviews}" as="media">
                                     <f:if condition="{media}">
-                                        <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{media}' absolute='true' />);" ></article>
+                                        <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{media}' absolute='true' cropVariant='16to9' width='860c' />);" ></article>
                                     </f:if>
                                 </f:for>
                                 <div class="bar bar--bottom bar--border">
@@ -118,7 +118,7 @@
                             <div class="slider slider--small js-slider" data-slide="0">
                                 <f:for each="{newsItem.mediaNonPreviews}" as="column">
                                     <f:if condition="{column}">
-                                        <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{column}' absolute='true' cropVariant='16:9' />);" ></article>
+                                        <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{column}' absolute='true' cropVariant='16to9' />);" ></article>
                                     </f:if>
                                 </f:for>
                                 <div class="bar bar--bottom bar--border">

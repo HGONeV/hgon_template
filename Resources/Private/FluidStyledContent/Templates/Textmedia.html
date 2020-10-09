@@ -233,7 +233,7 @@
                         <f:for each="{gallery.rows}" as="row">
                             <f:for each="{row.columns}" as="column">
                                 <f:if condition="{column.media}">
-                                    <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{column.media}' absolute='true' cropVariant='16:9' width='860' />);" ></article>
+                                    <article class="slider__item js-slider-item" style="background-image: url(<f:uri.image image='{column.media}' absolute='true' cropVariant='16to9' width='860c' />);" ></article>
                                 </f:if>
                             </f:for>
                         </f:for>

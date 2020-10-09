@@ -65,12 +65,12 @@
 
             <trans-unit id="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.terms3">
                 <source>In particular, I agree that HGON may publish photographs and videos taken during the event in various media for the purposes of event reporting and general public relations work.</source>
-                <target>Insbesondere bin ich damit einverstanden, dass das HGON im Rahmen der Veranstaltung gemachte Foto- und Videoaufnahmen für Zwecke der Veranstaltungsberichterstattung und der allgemeinen Öffentlichkeitsarbeit in verschiedenen Medien veröffentlicht.</target>
+                <target>Insbesondere bin ich damit einverstanden, dass die HGON im Rahmen der Veranstaltung gemachte Foto- und Videoaufnahmen für Zwecke der Veranstaltungsberichterstattung und der allgemeinen Öffentlichkeitsarbeit in verschiedenen Medien veröffentlicht.</target>
             </trans-unit>
 
             <trans-unit id="templates_registration_privacy_default.firstPart">
                 <source>Yes, I agree that HGON will use my personal data for the above purpose and to create a free user account.  Furthermore, I have read and agree to the extended notes in the</source>
-                <target>Ja, ich stimme zu, dass das HGON meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzerkontos verwendet.  Ferner habe ich die erweiterten Hinweise in der</target>
+                <target>Ja, ich stimme zu, dass die HGON meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzerkontos verwendet.  Ferner habe ich die erweiterten Hinweise in der</target>
             </trans-unit>
 
             <trans-unit id="eventReservationController.message.reservationCreatedEmailAlt">
