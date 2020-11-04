@@ -1,3 +1,8 @@
+/* FIX: by any reason a color-bg-cta-Element (yellow sidebar) overwrites all other color-bg-cta elements */
+/* so we create a simple alternative class */
+.color-bg-cta-2 {background-color:#fadc40}
+
+
 /* Overwrite helllicht maps padding (we're not using an iframe) */
 .map {padding-top: 0;}
 
