@@ -3,12 +3,14 @@
 
     config.noPageTitle = 2
 
+
     # override page title
     lib.pageTitle = RECORDS
     lib.pageTitle {
         tables = tx_rkwevents_domain_model_event
         source.data = GP:tx_rkwevents_pi1|event
         source.intval = 1
+        conf.tx_rkwevents_domain_model_event >
         conf.tx_rkwevents_domain_model_event = TEXT
         conf.tx_rkwevents_domain_model_event {
             field = title
@@ -16,8 +18,9 @@
         }
         wrap = <title>|</title>
     }
-    page.headerData.1 >
-    page.headerData.1 < lib.pageTitle
+
+    #page.headerData.11 >
+   # page.headerData.11 < lib.pageTitle
 
     # override template subtitle marker
     lib.pageSubtitle = RECORDS
@@ -33,6 +36,8 @@
     }
     page.10.variables.pageSubtitle = TEXT
     page.10.variables.pageSubtitle < lib.pageSubtitle
+    # just a workaround for individual pageTitle on exactly this pid (because of some caching issues)
+    #lib.eventPageSubtitle < lib.pageSubtitle
 
     # override template teasertext marker
     lib.pageTeaserText = RECORDS
@@ -49,6 +54,37 @@
     }
     page.10.variables.pageTeaserText = TEXT
     page.10.variables.pageTeaserText < lib.pageTeaserText
+
+
+
+    //=================================================================
+    lib.eventTitle = USER
+    lib.eventTitle {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = RkwEvents
+        pluginName = Eventtitle
+        vendorName = RKW
+        controller = Event
+        switchableControllerActions {
+            // Again: Controller-Name and Action
+            Event {
+                1 = title
+            }
+        }
+
+        view =< plugin.tx_rkwevents.view
+        persistence =< plugin.tx_rkwevents.persistence
+        settings =< plugin.tx_rkwevents.settings
+    }
+
+/*
+    lib.eventTitleHeader = TEXT
+    lib.eventTitleHeader {
+        dataWrap = DB:tx_rkwevents_domain_model_event:{gp:tx_rkwevents_pi1|event}:title
+        wrap3 = {|}
+        insertData = 1
+    }
+*/
 
 
 [global]

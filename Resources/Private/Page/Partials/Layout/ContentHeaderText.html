@@ -42,7 +42,15 @@
                 </f:if>
 
                 <f:if condition="{pageSubtitle}">
-                    <span class="h1 headline">{pageSubtitle}</span>
+                    <f:if condition='<f:cObject typoscriptObjectPath="lib.eventTitle" />'>
+                        <f:then>
+                              <span class="h1 headline"><f:cObject typoscriptObjectPath="lib.eventTitle" /></span>
+                        </f:then>
+                        <f:else>
+                            <span class="h1 headline">{pageSubtitle}</span>
+                        </f:else>
+                    </f:if>
+
                 </f:if>
             </h1>
             <f:if condition="{pageTeaserText}">
