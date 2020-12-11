@@ -50,5 +50,13 @@ jQuery(document).ready(function(){
        jQuery(this).parent('div.align-center').parent('div.grid').remove();
     });
 
+
+    jQuery('.link--topanchor').click(function(e) {
+        $('body,html').animate({
+           scrollTop: 0
+       }, 800);
+        e.preventDefault();
+    });
+
 });
 

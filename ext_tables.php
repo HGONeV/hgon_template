@@ -101,6 +101,12 @@ call_user_func(
             'HGON: Zeigt Projekt-Partner'
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'HGON.HgonTemplate',
+            'AuthorList',
+            'HGON: Teammitglieder (Liste)'
+        );
+
 
         // ***************
         // NEWS
@@ -214,6 +220,12 @@ $pluginSignature = $extensionName.'_'.$pluginName;
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY . '/Configuration/FlexForms/ProjectPartner.xml');
+
+$pluginName = strtolower('AuthorList');
+$pluginSignature = $extensionName.'_'.$pluginName;
+$TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$_EXTKEY . '/Configuration/FlexForms/AuthorList.xml');
 
 /*
  * Moved to HGON Donation

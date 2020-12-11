@@ -190,6 +190,18 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonTemplate',
+            'AuthorList',
+            [
+                'Standard' => 'authorList'
+            ],
+            // non-cacheable actions
+            [
+                'Standard' => 'authorList'
+            ]
+        );
+
         // ***************
         // NEWS
         // ***************

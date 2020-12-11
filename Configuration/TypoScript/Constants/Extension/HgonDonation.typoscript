@@ -1,6 +1,6 @@
 plugin.tx_hgondonation {
     view {
-        # this ist for using the CardStandard-Partial
+        # this is for using the CardStandard-Partial
         partialRootPath = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/
     }
 	persistence {

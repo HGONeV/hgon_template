@@ -403,4 +403,16 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         $this->view->assign('project', $project);
     }
+
+
+
+    /**
+     * action authorList
+     *
+     * @return void
+     */
+    public function authorListAction()
+    {
+        $this->view->assign('authorList', $this->authorsRepository->findByUidList($this->settings['authorList']['authorUidList']));
+    }
 }

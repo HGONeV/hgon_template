@@ -184,3 +184,24 @@ CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_donation_mm (
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
 );
+
+
+#
+# Table structure for table 'tx_rkwprojects_domain_model_projects'
+#
+CREATE TABLE tx_rkwprojects_domain_model_projects (
+    tx_hgontemplate_bank_header varchar(255) DEFAULT '' NOT NULL,
+    tx_hgontemplate_bank_institute varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_bank_iban varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_bank_bic varchar(255) DEFAULT '' NOT NULL,
+);
+
+
+
+#
+# Table structure for table 'tx_rkwauthors_domain_model_authors'
+#
+CREATE TABLE tx_rkwauthors_domain_model_authors (
+  tx_hgontemplate_short_description varchar(255) DEFAULT '' NOT NULL,
+  tx_hgontemplate_longer_description text NOT NULL,
+);

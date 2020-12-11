@@ -29,6 +29,43 @@ $tempColumns = array(
         ),
     ],
 
+    'tx_hgontemplate_bank_header' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_header',
+        'config' => [
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim'
+        ],
+    ],
+    'tx_hgontemplate_bank_institute' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_institute',
+        'config' => [
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim'
+        ],
+    ],
+    'tx_hgontemplate_bank_iban' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_iban',
+        'config' => [
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim'
+        ],
+    ],
+    'tx_hgontemplate_bank_bic' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_bic',
+        'config' => [
+            'type' => 'input',
+            'size' => 30,
+            'eval' => 'trim'
+        ],
+    ],
+
 
 );
 // Add TCA
@@ -36,6 +73,8 @@ $tempColumns = array(
     'tx_rkwprojects_domain_model_projects',
     $tempColumns
 );
+
+$GLOBALS['TCA']['tx_rkwprojects_domain_model_projects']['types']['1']['showitem'] = str_replace('project_staff,', 'project_staff, tx_hgontemplate_bank_header, tx_hgontemplate_bank_institute, tx_hgontemplate_bank_iban, tx_hgontemplate_bank_bic,', $GLOBALS['TCA']['tx_rkwprojects_domain_model_projects']['types']['1']['showitem']);
 
 
 

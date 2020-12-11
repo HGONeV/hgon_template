@@ -278,6 +278,33 @@
                 <target>Liste</target>
             </trans-unit>
 
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_header">
+                <source>Bank header</source>
+                <target>Bank Überschrift (z.B. "Spendenkonto HGON Fledermausbahnhof")</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_institute">
+                <source>Bank institute</source>
+                <target>Bank Institut (z.B. "Sparkasse Marburg-Biedenkopf")</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_iban">
+                <source>Bank IBAN</source>
+                <target>Bank IBAN</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_bic">
+                <source>Bank BIC</source>
+                <target>Bank BIC</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_authors.tx_hgontemplate_short_description">
+                <source>Short description</source>
+                <target>Beschreibung kurz (wird für Team-Mitglieder Plugin verwendet)</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_authors.tx_hgontemplate_longer_description">
+                <source>Longer description</source>
+                <target>Beschreibung lang (wird für Team-Mitglieder Plugin verwendet)</target>
+            </trans-unit>
+
 
 
             <!-- FLEXFORM -->
@@ -415,6 +442,16 @@
             <trans-unit id="flexform.projectPartner.projectUid">
                <source>Project</source>
                <target>Projekt</target>
+            </trans-unit>
+
+
+            <trans-unit id="flexform.authorList.sheetTitle">
+                <source>Author list</source>
+                <target>Ansprechpartner Liste</target>
+            </trans-unit>
+            <trans-unit id="flexform.authorList.authorUidList">
+                <source>Author list</source>
+                <target>Ansprechpartner auswählen</target>
             </trans-unit>
 
         </body>

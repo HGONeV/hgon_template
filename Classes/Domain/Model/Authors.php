@@ -25,5 +25,49 @@ namespace HGON\HgonTemplate\Domain\Model;
  */
 class Authors extends \RKW\RkwAuthors\Domain\Model\Authors
 {
+    /**
+     * txHgontemplateShortDescription
+     *
+     * @var string
+     */
+    protected $txHgontemplateShortDescription = '';
 
+    /**
+     * txHgontemplateLongerDescription
+     *
+     * @var string
+     */
+    protected $txHgontemplateLongerDescription = '';
+
+    /**
+     * @return string
+     */
+    public function getTxHgontemplateShortDescription()
+    {
+        return $this->txHgontemplateShortDescription;
+    }
+
+    /**
+     * @param string $txHgontemplateShortDescription
+     */
+    public function setTxHgontemplateShortDescription($txHgontemplateShortDescription)
+    {
+        $this->txHgontemplateShortDescription = $txHgontemplateShortDescription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxHgontemplateLongerDescription()
+    {
+        return $this->txHgontemplateLongerDescription;
+    }
+
+    /**
+     * @param string $txHgontemplateLongerDescription
+     */
+    public function setTxHgontemplateLongerDescription($txHgontemplateLongerDescription)
+    {
+        $this->txHgontemplateLongerDescription = $txHgontemplateLongerDescription;
+    }
 }

@@ -212,6 +212,26 @@
                 <source>List</source>
             </trans-unit>
 
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_header">
+                <source>Bank header</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_institute">
+                <source>Bank institute</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_iban">
+                <source>Bank IBAN</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_bic">
+                <source>Bank BIC</source>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_authors.tx_hgontemplate_short_description">
+                <source>Short description</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_authors.tx_hgontemplate_longer_description">
+                <source>Longer description</source>
+            </trans-unit>
+
 
             <!-- FLEXFORM -->
             <trans-unit id="flexform.journalHighlight.sheetTitle">

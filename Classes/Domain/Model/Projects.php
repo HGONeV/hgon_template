@@ -27,6 +27,35 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 class Projects extends \RKW\RkwProjects\Domain\Model\Projects
 {
     /**
+     * txHgontemplateBankHeader
+     *
+     * @var string
+     */
+    protected $txHgontemplateBankHeader = '';
+
+    /**
+     * txHgontemplateBankInstitute
+     *
+     * @var string
+     */
+    protected $txHgontemplateBankInstitute = '';
+
+    /**
+     * txHgontemplateBankIban
+     *
+     * @var string
+     */
+    protected $txHgontemplateBankIban = '';
+
+    /**
+     * txHgontemplateBankBic
+     *
+     * @var string
+     */
+    protected $txHgontemplateBankBic = '';
+
+
+    /**
      * projectPid
      *
      * Overwrite:   One the one hand, the original ObjectStorage doesn't works
@@ -74,6 +103,70 @@ class Projects extends \RKW\RkwProjects\Domain\Model\Projects
     protected function initStorageObjects()
     {
         $this->projectManager = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxHgontemplateBankHeader()
+    {
+        return $this->txHgontemplateBankHeader;
+    }
+
+    /**
+     * @param string $txHgontemplateBankHeader
+     */
+    public function setTxHgontemplateBankHeader($txHgontemplateBankHeader)
+    {
+        $this->txHgontemplateBankHeader = $txHgontemplateBankHeader;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxHgontemplateBankInstitute()
+    {
+        return $this->txHgontemplateBankInstitute;
+    }
+
+    /**
+     * @param string $txHgontemplateBankInstitute
+     */
+    public function setTxHgontemplateBankInstitute($txHgontemplateBankInstitute)
+    {
+        $this->txHgontemplateBankInstitute = $txHgontemplateBankInstitute;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxHgontemplateBankIban()
+    {
+        return $this->txHgontemplateBankIban;
+    }
+
+    /**
+     * @param string $txHgontemplateBankIban
+     */
+    public function setTxHgontemplateBankIban($txHgontemplateBankIban)
+    {
+        $this->txHgontemplateBankIban = $txHgontemplateBankIban;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxHgontemplateBankBic()
+    {
+        return $this->txHgontemplateBankBic;
+    }
+
+    /**
+     * @param string $txHgontemplateBankBic
+     */
+    public function setTxHgontemplateBankBic($txHgontemplateBankBic)
+    {
+        $this->txHgontemplateBankBic = $txHgontemplateBankBic;
     }
 
 

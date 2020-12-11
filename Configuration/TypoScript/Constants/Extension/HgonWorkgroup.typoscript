@@ -1,4 +1,8 @@
 plugin.tx_hgonworkgroup {
+    view {
+        # this is for using the contactPerson partial
+        partialRootPath = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/
+    }
     persistence {
         storagePid = 42
     }
