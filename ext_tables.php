@@ -162,9 +162,6 @@ call_user_func(
             'RKW Events: Angepasstes Reservierungs-Plugin (HGON)'
         );
 
-
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'HGON Template');
-
     },
     $_EXTKEY
 );
@@ -173,6 +170,7 @@ call_user_func(
 // locallang override FE
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_newsletter/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwnewsletter.xlf';
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_events/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwevents.xlf';
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:sr_freecap/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_srfreecap.xlf';
 
 // locallang override BE
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwauthors_db.xlf';

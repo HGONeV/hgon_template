@@ -25,6 +25,8 @@
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Setup/Page" extensions="typoscript">
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Setup/Lib" extensions="typoscript">
 
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Themes/_Websites/RebhuhnHessen/Configuration/TypoScript/Setup/Page" extensions="typoscript">
+
 
 # Environments
 [applicationContext = Development*]

@@ -43,7 +43,6 @@ class PageNotFound extends \RKW\RkwBasics\UserFunctions\PageNotFound
      */
     function pageNotFound($params = array(), $typoScriptFrontendController = null)
     {
-
         // clean up path
         $path = $params['currentUrl'];
         if (strpos($path, '/') === 0) {
@@ -140,14 +139,12 @@ class PageNotFound extends \RKW\RkwBasics\UserFunctions\PageNotFound
                     $url = $domain . '/index.php?id=' . intval($configuration['fallbackPid']) . $languageAddition . '&originalUrl=' . urlencode($_SERVER['REQUEST_URI']);
                     if (ini_get('allow_url_fopen')) {
                         $content = file_get_contents($url, false, $cxContext);
+
                     } else {
                         curl_setopt($ch=curl_init(), CURLOPT_URL, $url);
                         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                         $content = curl_exec($ch);
                         curl_close($ch);
-
-                       // DebuggerUtility::var_dump($url);
-                       // DebuggerUtility::var_dump($content); exit;
                     }
 
                     if ($content) {

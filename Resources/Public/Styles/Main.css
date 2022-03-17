@@ -1,3 +1,16 @@
+/* styling captcha from sr_freecap */
+img.tx-srfreecap-image {
+    margin-left: 0;
+    margin-top: 10px;
+}
+
+.tx-srfreecap-cant-read {
+    width: 50%;
+    margin-top: 10px;
+}
+
+
+
 /* FIX: by any reason a color-bg-cta-Element (yellow sidebar) overwrites all other color-bg-cta elements */
 /* so we create a simple alternative class */
 .color-bg-cta-2 {background-color:#fadc40}

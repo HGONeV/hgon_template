@@ -1,0 +1,20 @@
+# https://usetypo3.com/backend-layouts.html
+
+page = PAGE
+page {
+
+	10 = FLUIDTEMPLATE
+	10 {
+		# Template paths
+		layoutRootPaths {
+			30 = EXT:hgon_template/Themes/_Websites/LibellenHessen/Resources/Private/Page/Layouts/
+		}
+		partialRootPaths {
+			30 = EXT:hgon_template/Themes/_Websites/LibellenHessen/Resources/Private/Page/Partials/
+		}
+		templateRootPaths {
+			30 = EXT:hgon_template/Themes/_Websites/LibellenHessen/Resources/Private/Page/Templates/
+		}
+
+	}
+}

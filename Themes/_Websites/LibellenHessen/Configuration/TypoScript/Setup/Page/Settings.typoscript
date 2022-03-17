@@ -1,0 +1,18 @@
+// ############################################################################
+// Settings from constants for FLUIDTEMPLATE
+// ############################################################################
+// Select template based on layout
+page {
+    10 {
+        // make settings available in template
+        settings {
+
+            # social media marker
+            twitter >
+            youtube >
+            facebook >
+            instagram >
+
+        }
+    }
+}

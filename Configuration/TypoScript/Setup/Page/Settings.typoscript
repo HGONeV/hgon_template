@@ -20,13 +20,20 @@ page {
             #socialMedia = {$globalWebsiteConfig.socialMedia}
 
             # social media marker
-            twitter = https://twitter.com/HGON_eV/
-            youtube = https://youtube.com/channel/UCPDDmNoVRKYFUXYEsITpYiw
-            facebook = https://facebook.com/hgon.de/
-            instagram = https://www.instagram.com/hgon_ev/
+            twitter = {$globalWebsiteConfig.website.twitter}
+            youtube = {$globalWebsiteConfig.website.youtube}
+            facebook = {$globalWebsiteConfig.website.facebook}
+            instagram = {$globalWebsiteConfig.website.instagram}
+
+            email = {$globalWebsiteConfig.website.email}
 
             # pid of newsletter registration
             newsletterRegPid = 31
+
+            showMetaNav = {$globalWebsiteConfig.website.showMetaNav}
+            showJournal = {$globalWebsiteConfig.website.showJournal}
+            showMainFooter = {$globalWebsiteConfig.website.showMainFooter}
+            #showFooterContent = {$globalWebsiteConfig.website.showFooterContent}
         }
     }
 }

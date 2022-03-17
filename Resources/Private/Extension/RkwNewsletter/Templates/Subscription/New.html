@@ -46,6 +46,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
         </f:comment>
         <f:render partial="Subscription/User" arguments="{_all}" />
 
+        <p>
+            <f:render partial="Subscription/CaptchaElement" />
+        </p>
+
         <p class="form__field">
             <span class="checkbox-group">
 
@@ -73,6 +77,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 </label>
             </span>
         </p>
+
         <p>
             <f:form.submit class="btn btn--primary btn--rounded" value='<f:translate key="templates_subscription_new.subscribe" />' />
         </p>

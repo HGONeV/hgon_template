@@ -1,0 +1,17 @@
+config.baseURL = http://hgon-libellen.rkw.local/
+
+plugin.tx_rkwbasics {
+    settings {
+        pageNotFoundConfig {
+            _DEFAULT {
+                fallbackPid = 80
+                defaultDomain = hgon-libellen.rkw.local
+            }
+        }
+    }
+}
+
+page.10.dataProcessing {
+    10.special.value = 78
+    35.special.value = 86
+}

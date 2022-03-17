@@ -1,0 +1,17 @@
+config.baseURL = http://stage.hgon-rebhuhn.de/
+
+plugin.tx_rkwbasics {
+    settings {
+        pageNotFoundConfig {
+            _DEFAULT {
+                fallbackPid = 355
+                defaultDomain = stage.hgon-rebhuhn.de
+            }
+        }
+    }
+}
+
+page.10.dataProcessing {
+    10.special.value = 345
+    35.special.value = 350
+}

@@ -15,8 +15,8 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_workgroup/Configuration/TypoScript/constants.typoscript">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_payment/Configuration/TypoScript/constants.typoscript">
 
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Constants/Config" extensions="typoscript">
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Constants/Extension" extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Themes/_Websites/LibellenHessen/Configuration/TypoScript/Constants/Config" extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Themes/_Websites/LibellenHessen/Configuration/TypoScript/Constants/Extension" extensions="typoscript">
 
 # Environments
 [applicationContext = Development]

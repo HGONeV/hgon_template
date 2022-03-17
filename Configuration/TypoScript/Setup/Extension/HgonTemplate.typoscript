@@ -23,12 +23,12 @@ config.tx_extbase {
         RKW\RkwEvents\Helper\DivUtility {
             className = HGON\HgonTemplate\Helper\DivUtility
         }
-        RKW\RkwNewsletter\Controller\SubscriptionController {
-            className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
-        }
-        RKW\RkwNewsletter\Controller\ReleaseController {
-            className = HGON\HgonTemplate\Controller\RkwNewsletter\ReleaseController
-        }
+        #RKW\RkwNewsletter\Controller\SubscriptionController {
+        #    className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
+        #}
+        #RKW\RkwNewsletter\Controller\ReleaseController {
+        #    className = HGON\HgonTemplate\Controller\RkwNewsletter\ReleaseController
+        #}
         RKW\RkwNewsletter\Domain\Model\Newsletter {
             className = HGON\HgonTemplate\Domain\Model\Newsletter
         }
