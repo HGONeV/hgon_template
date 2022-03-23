@@ -1,11 +1,11 @@
-config.baseURL = http://hgon-rebhuhn.rkw.local/
+config.baseURL = http://hgon-heuschrecken.rkw.local/
 
 plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {
             _DEFAULT {
                 fallbackPid = 94
-                defaultDomain = hgon-rebhuhn.rkw.local
+                defaultDomain = hgon-heuschrecken.rkw.local
             }
         }
     }

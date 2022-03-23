@@ -1,4 +1,5 @@
 {namespace rkw=RKW\RkwEvents\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <f:layout name="Default" />
 
 This Template is responsible for displaying a single view for a domain object
@@ -14,6 +15,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="main">
 
+    <v:page.header.meta name="og:description" content="{event.description -> f:format.stripTags()}" />
+    <v:page.header.meta name="og:title" content="{event.title}" />
     <v:page.header.title>{event.title}</v:page.header.title>
 
     <section class="section helper">
@@ -155,6 +158,20 @@ Otherwise your changes will be overwritten the next time you save the extension 
             </article>
             <div class="sidebar">
                 <aside class="aside color-bg-light">
+
+                    <f:if condition="{relatedWorkgroup}">
+                        <nav class="">
+                            <ul class="menu menu--list">
+                                <f:for each="{relatedWorkgroup}" as="workgroup">
+                                    <f:link.page pageUid="{txHgonWorkgroupShowPid}" additionalParams="{tx_hgonworkgroup_detail: {workGroup: relatedWorkgroup.0}}">
+                                        {relatedWorkgroup.0.title}
+                                    </f:link.page>
+                                </f:for>
+                            </ul>
+                        </nav>
+                        <br />
+                    </f:if>
+
                     <header class="aside__header">
                         <h6>Kontakt</h6>
                     </header>

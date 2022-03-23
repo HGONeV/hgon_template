@@ -1,11 +1,11 @@
-config.baseURL = http://stage.hgon-rebhuhn.de/
+config.baseURL = http://stage-typo3.heuschrecken-hessen.de/
 
 plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {
             _DEFAULT {
                 fallbackPid = 355
-                defaultDomain = stage.hgon-rebhuhn.de
+                defaultDomain = stage-typo3.heuschrecken-hessen.de
             }
         }
     }

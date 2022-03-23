@@ -1,3 +1,8 @@
+/* removing opacity from header images */
+.main__header--image .picture::after {
+    opacity: 0 !important;
+}
+
 /* styling captcha from sr_freecap */
 img.tx-srfreecap-image {
     margin-left: 0;

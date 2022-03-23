@@ -27,5 +27,10 @@ plugin.tx_hgonworkgroup_list {
         showPid = 43
     }
 }
+plugin.tx_hgonworkgroup {
+    settings {
+        showPid = 43
+    }
+}
 
 txHgondonationBecomeMember.10.select.uidInList = 191

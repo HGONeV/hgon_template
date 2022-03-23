@@ -3,6 +3,9 @@
 
     config.noPageTitle = 2
 
+    page.meta.og:title >
+    page.meta.og:description >
+
     # override page title
     lib.pageTitle = RECORDS
     lib.pageTitle {

@@ -1,11 +1,11 @@
-config.baseURL = http://stage.hgon-libellen.de/
+config.baseURL = http://stage-typo3.libellen-hessen.de/
 
 plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {
             _DEFAULT {
                 fallbackPid = 335
-                defaultDomain = stage.hgon-libellen.de
+                defaultDomain = stage-typo3.libellen-hessen.de
             }
         }
     }

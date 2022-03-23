@@ -83,6 +83,18 @@ renderables:
             identifier: NotEmpty
       -
         defaultValue: ''
+        type: Text
+        identifier: text-1
+        label: Landkreis/e
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          elementDescription: 'Wo möchten Sie aktiv werden?'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
         identifier: email
         label: Email
         type: Text

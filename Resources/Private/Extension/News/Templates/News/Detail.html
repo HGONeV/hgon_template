@@ -1,6 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
 	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
 	  xmlns:rx="http://typo3.org/ns/Reelworx/RxShariff/ViewHelper"
+      xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
 	  data-namespace-typo3-fluid="true">
 
 <f:layout name="Detail" />
@@ -13,6 +14,14 @@
 <f:section name="content">
 	<f:if condition="{newsItem}">
 		<f:then>
+
+            <v:page.header.meta name="og:description" content="{newsItem.teaser -> f:format.stripTags()}" />
+            <v:page.header.meta name="og:title" content="{newsItem.title}" />
+            <f:if condition="{newsItem.falMedia}">
+                <v:page.header.meta name="og:image" content="{f:uri.image(src:newsItem.falMedia.0.uid, treatIdAsReference: 1)-> v:format.prepend(add: '{v:site.url() -> v:format.substring(length: \'-1\')}/')}" />
+            </f:if>
+
+
                 <div class="article__content">
                     <f:if condition="{newsItem.categories}">
                         <f:for each="{newsItem.categories}" as="category">

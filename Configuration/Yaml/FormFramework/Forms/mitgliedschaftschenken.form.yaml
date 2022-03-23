@@ -1,8 +1,8 @@
 
 renderingOptions:
   submitButtonLabel: Submit
-identifier: mitgliedsformular
-label: Mitgliedsformular
+identifier: mitgliedschaftschenken
+label: 'Mitgliedschaft schenken'
 type: Form
 prototypeName: standard
 finishers:
@@ -59,21 +59,21 @@ renderables:
         properties:
           elementDescription: ''
           options:
-            Ordentliches: '...ordentliches Mitglied (Schnuppermitgliedschaft erster Jahresbeitrag 40 EUR, dann: 65 EUR)'
-            Familie: '...Familie (Jahresbeitrag 80 EUR)'
-            Ermäßigt: '...Mitglied zum ermäßigten Beitrag (Schüler, Studenten, Azubis etc. gegen Nachweis, Jahresbeitrag 20 EUR)'
+            Ordentliches: 'Ordentliches Mitglied (Jahresbeitrag 65 EUR)'
+            Familie: 'Familie (Jahresbeitrag 80 EUR)'
+            Ermäßigt: 'Mitglied zum ermäßigten Beitrag (Schüler, Studenten, Azubis etc. gegen Nachweis, Jahresbeitrag 20 EUR)'
         type: RadioButton
         identifier: radiobutton-1
-        label: 'Ja, ich will mehr Natur für Hessen und trete der HGON bei als...'
+        label: 'Ja, ich will mehr Natur für Hessen und verschenke eine Mitgliedschaft:'
       -
         properties:
           options:
-            T-Shirt: 'Ein HGON-T-Shirt, Größe:'
-            Kappe: 'Eine HGON-Kappe'
-            Spende: 'Ich spende mein Begrüßungsgeschenk'
+            'Eine HGON-Tasse (8 €)': 'Eine HGON-Tasse (8 €)'
+            'Eine HGON-Kappe (12 €)': 'Eine HGON-Kappe (12 €)'
+            'Ein HGON-T-Shirt (15 €), Größe:': 'Ein HGON-T-Shirt (15 €), Größe:'
         type: RadioButton
         identifier: radiobutton-2
-        label: 'Mein Begrüßungsgeschenk:'
+        label: 'Zur Begrüßung möchte ich zusätzlich verschenken:'
       -
         properties:
           options:
@@ -81,41 +81,40 @@ renderables:
             L: L
             XL: XL
         type: RadioButton
+        identifier: radiobutton-4
+        label: 'T-Shirt-Größe:'
+      -
+        properties:
+          options:
+            '1 Jahr (endet automatisch)': '1 Jahr (endet automatisch)'
+            'unbefristet (endet bei Kündigung)': 'unbefristet (endet bei Kündigung)'
+        type: RadioButton
         identifier: radiobutton-3
-        label: 'T-Shirt Größe'
+        label: 'Dauer der verschenkten Mitgliedschaft:'
       -
         type: Fieldset
-        identifier: fieldset-1
-        label: 'Weniger Verwaltungskosten, mehr Mittel für den Naturschutz durch Bankeinzug. Ich ermächtige die HGON den Jahresbeitrag von meinem Konto abzubuchen:'
+        identifier: fieldset-3
+        label: 'Beschenkte Person'
         renderables:
           -
             defaultValue: ''
             type: Text
-            identifier: text-1
-            label: IBAN
-            properties:
-              fluidAdditionalAttributes:
-                placeholder: IBAN
+            identifier: text-11
+            label: Name
+      -
+        type: Fieldset
+        identifier: fieldset-4
+        label: 'Dein Wunschtext für das Anschreiben'
+        renderables:
           -
             defaultValue: ''
-            type: Text
-            identifier: text-2
-            label: BIC
-            properties:
-              fluidAdditionalAttributes:
-                placeholder: BIC
-          -
-            defaultValue: ''
-            type: Text
-            identifier: text-3
-            label: Bankinstitut
-            properties:
-              fluidAdditionalAttributes:
-                placeholder: Bankinstitut
+            type: Textarea
+            identifier: textarea-1
+            label: Text
       -
         type: Fieldset
         identifier: fieldset-2
-        label: 'Meine persönlichen Daten:'
+        label: 'Meine persönlichen Daten (schenkende Person)'
         renderables:
           -
             properties:
@@ -258,19 +257,35 @@ renderables:
             validators:
               -
                 identifier: NotEmpty
+      -
+        type: Fieldset
+        identifier: fieldset-1
+        label: 'Weniger Verwaltungskosten, mehr Mittel für den Naturschutz durch Bankeinzug. Ich ermächtige die HGON den Jahresbeitrag von meinem Konto abzubuchen:'
+        renderables:
           -
             defaultValue: ''
             type: Text
-            identifier: text-10
-            label: 'Geworben durch'
-          -
-            defaultValue: ''
-            identifier: message
-            label: Anmerkung
-            type: Textarea
+            identifier: text-1
+            label: IBAN
             properties:
               fluidAdditionalAttributes:
-                placeholder: 'Ihr Nachricht an uns'
+                placeholder: IBAN
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-2
+            label: BIC
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: BIC
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-3
+            label: Bankinstitut
+            properties:
+              fluidAdditionalAttributes:
+                placeholder: Bankinstitut
   -
     renderingOptions:
       previousButtonLabel: 'Nochmal zurück!'

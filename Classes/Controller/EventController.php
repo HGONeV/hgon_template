@@ -68,6 +68,8 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
         $hgonWorkGroupSettings = self::getSettings('HgonWorkgroup', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         // get event list with one additional counter (check for further elements)
         $workGroupEventList = $this->eventRepository->findNotFinishedOrderAsc($listItemsPerView + 1, $hgonWorkGroupSettings, true)->toArray();
+
+        /*
         $showMoreLink = false;
         if ($listItemsPerView < count($workGroupEventList)) {
             $showMoreLink = true;
@@ -79,12 +81,19 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
                 $showMoreLink = false;
             }
         }
+        */
+
+        // do not paginate workGroupEvents except its explicit wanted
+        if (!$this->settings['showWorkGroupPagination']) {
+            $this->view->assign('showMoreLink', false);
+        }
+
         $this->view->assign('workGroupEventList', $workGroupEventList);
         // filter options
         $this->view->assign('documentTypeList', $this->documentTypeRepository->findAllByTypeAndVisibility('events', false));
         $this->view->assign('workGroupList', $this->workGroupRepository->findAll());
         $this->view->assign('timeArrayList', EventHelper::createMonthListArray());
-        $this->view->assign('showMoreLink', $showMoreLink);
+        //$this->view->assign('showMoreLink', $showMoreLink);
     }
 
 
@@ -105,6 +114,21 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
         // prevent grouping
         $this->view->assign('noGrouping', true);
         $this->view->assign('eventToExclude', $event);
+
+        // Get related workGroup to event
+        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
+        $txHgonWorkgroupEventRepository = $objectManager->get(\HGON\HgonWorkgroup\Domain\Repository\EventRepository::class);
+        /** @var \HGON\HgonWorkgroup\Domain\Model\Event $eventWorkgroup */
+        $eventWorkgroup = $txHgonWorkgroupEventRepository->findByUid($event->getUid());
+        if ($eventWorkgroup->getTxHgonWorkgroup()->count()) {
+            $this->view->assign('relatedWorkgroup', $eventWorkgroup->getTxHgonWorkgroup());
+        } elseif ($eventWorkgroup->getTxHgonWorkgroupStdevent()->count()) {
+            $this->view->assign('relatedWorkgroup', $eventWorkgroup->getTxHgonWorkgroupStdevent());
+        }
+        if ($txHgonWorkGroupSettings = self::getSettings('Hgonworkgroup')) {
+            $this->view->assign('txHgonWorkgroupShowPid', $txHgonWorkGroupSettings['showPid']);
+        }
+
 
         // get standard show action
         parent::showAction($event);
