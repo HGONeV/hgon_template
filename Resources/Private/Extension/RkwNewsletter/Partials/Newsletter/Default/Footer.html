@@ -37,7 +37,9 @@ info(at)hgon.de
                                     <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody><tr>
                                             <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
-                                                <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;text-transform:uppercase;color:#212121;"> In Kontakt bleiben </div>
+                                                <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;text-transform:uppercase;color:#212121;">
+                                                    In Kontakt bleiben
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody></table>
@@ -68,7 +70,14 @@ info(at)hgon.de
                                                                                     <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-twitter.png' absolute='true' />" alt="Twitter Logo" style="border-radius:3px;" width="22" height="22">
                                                                                 </f:then>
                                                                                 <f:else>
-                                                                                    <f:image src="{settings.basePathImages}Email/icon-twitter.png" style="border-radius:3px;" width="22" height="22" />
+                                                                                    <f:if condition="{settings.basePathImages}">
+                                                                                        <f:then>
+                                                                                            <f:image src="{settings.basePathImages}Email/icon-twitter.png" style="border-radius:3px;" width="22" height="22" />
+                                                                                        </f:then>
+                                                                                        <f:else>
+                                                                                            <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-twitter.png' absolute='true' />" alt="Twitter Logo" style="border-radius:3px;" width="22" height="22">
+                                                                                        </f:else>
+                                                                                    </f:if>
                                                                                 </f:else>
                                                                             </f:if>
                                                                         </a>
@@ -92,7 +101,14 @@ info(at)hgon.de
                                                                                         <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-youtube.png' absolute='true' />" alt="YouTube Logo" style="border-radius:3px;" width="27" height="19">
                                                                                     </f:then>
                                                                                     <f:else>
-                                                                                        <f:image src="{settings.basePathImages}Email/icon-youtube.png" style="border-radius:3px;" width="27" height="19" />
+                                                                                        <f:if condition="{settings.basePathImages}">
+                                                                                            <f:then>
+                                                                                                <f:image src="{settings.basePathImages}Email/icon-youtube.png" style="border-radius:3px;" width="27" height="19" />
+                                                                                            </f:then>
+                                                                                            <f:else>
+                                                                                                <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-youtube.png' absolute='true' />" alt="YouTube Logo" style="border-radius:3px;" width="27" height="19">
+                                                                                            </f:else>
+                                                                                        </f:if>
                                                                                     </f:else>
                                                                                 </f:if>
                                                                             </a>
@@ -117,7 +133,14 @@ info(at)hgon.de
                                                                                         <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-facebook.png' absolute='true' />" alt="Facebook Logo" style="border-radius:3px;" width="19" height="19">
                                                                                     </f:then>
                                                                                     <f:else>
-                                                                                        <f:image src="{settings.basePathImages}Email/icon-facebook.png" style="border-radius:3px;" width="19" height="19" />
+                                                                                        <f:if condition="{settings.basePathImages}">
+                                                                                            <f:then>
+                                                                                                <f:image src="{settings.basePathImages}Email/icon-facebook.png" style="border-radius:3px;" width="19" height="19" />
+                                                                                            </f:then>
+                                                                                            <f:else>
+                                                                                                <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-facebook.png' absolute='true' />" alt="Facebook Logo" style="border-radius:3px;" width="19" height="19">
+                                                                                            </f:else>
+                                                                                        </f:if>
                                                                                     </f:else>
                                                                                 </f:if>
                                                                             </a>
@@ -143,7 +166,14 @@ info(at)hgon.de
                                                                                     <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-instagram.png' absolute='true' />" alt="Instagram Logo" style="border-radius:3px;" width="19" height="19">
                                                                                 </f:then>
                                                                                 <f:else>
-                                                                                    <f:image src="{settings.basePathImages}Email/icon-instagram.png" style="border-radius:3px;" width="19" height="19" />
+                                                                                    <f:if condition="{settings.basePathImages}">
+                                                                                        <f:then>
+                                                                                            <f:image src="{settings.basePathImages}Email/icon-instagram.png" style="border-radius:3px;" width="19" height="19" />
+                                                                                        </f:then>
+                                                                                        <f:else>
+                                                                                            <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-instagram.png' absolute='true' />" alt="Instagram Logo" style="border-radius:3px;" width="19" height="19">
+                                                                                        </f:else>
+                                                                                    </f:if>
                                                                                 </f:else>
                                                                             </f:if>
                                                                         </a>
@@ -170,7 +200,14 @@ info(at)hgon.de
                                                                                             <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-mail.png' absolute='true' />" alt="E-Mail Logo" style="border-radius:3px;" width="22" height="17">
                                                                                         </f:then>
                                                                                         <f:else>
-                                                                                            <f:image src="{settings.basePathImages}Email/icon-mail.png" style="border-radius:3px;" width="22" height="17" />
+                                                                                            <f:if condition="{settings.basePathImages}">
+                                                                                                <f:then>
+                                                                                                    <f:image src="{settings.basePathImages}Email/icon-mail.png" style="border-radius:3px;" width="22" height="17" />
+                                                                                                </f:then>
+                                                                                                <f:else>
+                                                                                                    <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-mail.png' absolute='true' />" alt="E-Mail Logo" style="border-radius:3px;" width="22" height="17">
+                                                                                                </f:else>
+                                                                                            </f:if>
                                                                                         </f:else>
                                                                                     </f:if>
                                                                                 </a>
