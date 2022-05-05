@@ -36,7 +36,15 @@
 <f:section name="Html">
 
     <f:if condition="{itemIterator.isFirst}">
-        <f:render partial="Default/Items/Headline" section="Html" arguments="{headline: '{page.txRkwnewsletterTopic.name}', itemId: '{page.txRkwnewsletterTopic.uid}'}" />
+
+        <f:if condition="{webView}">
+            <f:then>
+                <f:render partial="Items/Headline" section="Html" arguments="{headline: '{page.txRkwnewsletterTopic.name}', itemId: '{page.txRkwnewsletterTopic.uid}'}" />
+            </f:then>
+            <f:else>
+                <f:render partial="Default/Items/Headline" section="Html" arguments="{headline: '{page.txRkwnewsletterTopic.name}', itemId: '{page.txRkwnewsletterTopic.uid}'}" />
+            </f:else>
+        </f:if>
     </f:if>
 
 

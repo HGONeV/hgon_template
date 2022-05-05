@@ -27,6 +27,7 @@
 
     <f:if condition="{webView}">
         <f:then>
+            <f:render partial="FilterEditorial" section="Html" arguments="{_all}" />
             <f:render partial="TopNews" section="Html" arguments="{_all}" />
         </f:then>
     </f:if>

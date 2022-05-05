@@ -18,6 +18,10 @@ finishers:
       blindCarbonCopyAddress: ''
       format: html
       attachUploads: true
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToSender
   -
     options:
@@ -33,6 +37,10 @@ finishers:
       attachUploads: false
       translation:
         language: ''
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToReceiver
   -
     options:

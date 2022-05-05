@@ -43,7 +43,14 @@
                             <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
                                 <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='false' />" as="content" iteration="itemIterator">
                                     <!-- normal -->
-                                    <f:render partial="Default/Items/Default" section="Html" arguments="{_all}" />
+                                    <f:if condition="{webView}">
+                                        <f:then>
+                                            <f:render partial="Items/Default" section="Html" arguments="{_all}" />
+                                        </f:then>
+                                        <f:else>
+                                            <f:render partial="Default/Items/Default" section="Html" arguments="{_all}" />
+                                        </f:else>
+                                    </f:if>
                                 </f:for>
                             </rkwMailer:frontend.replace.redirectLinks>
                         </rkwMailer:cache.setRenderCache>
