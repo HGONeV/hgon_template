@@ -35,6 +35,9 @@ TYPO3:
             Textarea:
               properties:
                 elementClassAttribute: 'textarea'
+            ImageUpload:
+              properties:
+                elementClassAttribute: 'ext-form-img'
             DonationElement:
               __inheritances:
                 10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Fieldset'
