@@ -13,6 +13,7 @@ $GLOBALS['TCA']['tx_rkwevents_domain_model_event']['columns']['tx_hgontemplate_e
         'type' => 'inline',
         'foreign_table' => 'tx_hgontemplate_domain_model_eventculinary',
         'foreign_field' => 'event',
+        'foreign_sortby' => 'sorting',
         'maxitems'      => 9999,
         'minitems'      => 0,
         'appearance' => [

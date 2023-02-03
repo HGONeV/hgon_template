@@ -45,13 +45,13 @@
 
 <!-- culinary options -->
 <f:if condition="<f:count>{event.txHgontemplateEventCulinary}</f:count>">
-    <p>Mahlzeiten optional mitbuchen</p>
+    <p>Optional mitbuchen</p>
     <p class="form__field">
         <span class="checkbox-group">
             <f:for each="{event.txHgontemplateEventCulinary}" as="culinary" iteration="iter">
                 <label class="checkbox">
                     <span class="checkbox__input">
-                        <f:form.checkbox class="input input-radio" id="culinary{culinary.uid}" property="txHgontemplateEventculinary.{iter.index}" value="{culinary.uid}" name="txHgontemplateEventculinary.{iter.index}" />
+                        <f:form.checkbox class="input input-radio" id="culinary{culinary.uid}" property="txHgontemplateEventculinary.{iter.index}" value="{culinary.uid}" />
                         <label for="culinary{culinary.uid}"></label>
                     </span>
                     <span class="checkbox__label" title="<f:format.stripTags>{culinary.description}</f:format.stripTags>">
@@ -64,36 +64,29 @@
     </p>
 </f:if>
 
-
 <!-- how to pay options -->
 <f:if condition="{event.costsReg} || <f:count>{event.txHgontemplateEventCulinary}</f:count>">
-    <p>Bezahlart</p>
-    <span class="radio-group">
-        <f:if condition="{event.costsRed} || {event.costsReg}" >
-            <label class="radio">
-                <span class="radio__input">
-                    <f:form.radio class="input input-radio" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="1" />
-                    <label for="txHgontemplatePaymenttype"></label>
-                </span>
-                <span class="checkbox__label">
-                    Vor Ort am Tag der Veranstaltung
-                </span>
-            </label>
-            <br />
-            <label class="radio">
+    <p>Bezahlart (falls hier aufgeführte Kosten anfallen)</p>
+    <div class="form-group radio-group inputs-list">
+        <label class="radio" for="txHgontemplatePaymenttype1">
             <span class="radio__input">
-                <f:form.radio class="input input-radio" checked="TRUE" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="2" />
-                <label for="txHgontemplatePaymenttype"></label>
+                <f:form.radio id="txHgontemplatePaymenttype1" class="input input-radio form-check-input" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="1" />
+                <label for="txHgontemplatePaymenttype1"></label>
             </span>
             <span class="checkbox__label">
-                Jetzt direkt mit PayPal bezahlen
+                Vor Ort am Tag der Veranstaltung
             </span>
-            </label>
-        </f:if>
-    </span>
+        </label>
+        <br />
+        <label class="radio" for="txHgontemplatePaymenttype2">
+        <span class="radio__input">
+            <f:form.radio id="txHgontemplatePaymenttype2" class="input input-radio" checked="TRUE" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="2" />
+            <label for="txHgontemplatePaymenttype2"></label>
+        </span>
+        <span class="checkbox__label">
+            Jetzt direkt mit PayPal bezahlen
+        </span>
+        </label>
+    </div>
 </f:if>
-
-
-
-
 

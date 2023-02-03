@@ -9,6 +9,22 @@
                 <source>thank you for your interest.</source>
                 <target>vielen Dank für Ihr Interesse an der Teilnahme an einer Veranstaltung der HGON.</target>
             </trans-unit>
+			<trans-unit id="templates_email_confirmationReservationUser.text1">
+				<source>thank you for your reservation.</source>
+				<target>vielen Dank für Ihre Anmeldung zu einer Veranstaltung der HGON.</target>
+			</trans-unit>
+			<trans-unit id="templates_email_updateReservationUser.text1">
+				<source>thank you for your reservation.</source>
+				<target>vielen Dank für Ihre Anmeldung zu einer Veranstaltung der HGON.</target>
+			</trans-unit>
+			<trans-unit id="templates_email_surveyReservationUser.text1">
+				<source>thank you for your reservation.</source>
+				<target>vielen Dank für Ihre Anmeldung zu einer Veranstaltung der HGON.</target>
+			</trans-unit>
+			<trans-unit id="templates_email_sendSurveyForPastEvent.text1">
+				<source>thank you for your participation.</source>
+				<target>vielen Dank für Ihre Teilnahme an einer Veranstaltung der HGON.</target>
+			</trans-unit>
 
 		</body>
 	</file>

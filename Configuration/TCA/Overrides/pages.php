@@ -135,5 +135,5 @@ $tempConfig = '--div--;LLL:EXT:hgon_template/Resources/Private/Language/locallan
 
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile('hgon_template', 'Themes/_Websites/LibellenHessen/Configuration/TsConfig/TsConfig.typoscript', 'HGON Template - Theme: Libellen');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile('hgon_template', 'Themes/_Websites/HeuschreckenHessen/Configuration/TsConfig/TsConfig.typoscript', 'HGON Template - Theme: Rebhuhn');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile('hgon_template', 'Themes/_Websites/HeuschreckenHessen/Configuration/TsConfig/TsConfig.typoscript', 'HGON Template - Theme: Heuschrecken');
 

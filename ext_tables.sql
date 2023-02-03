@@ -109,7 +109,7 @@ CREATE TABLE tx_rkwevents_domain_model_event (
 # Table structure for table 'tx_rkwevents_domain_model_eventreservation'
 #
 CREATE TABLE tx_rkwevents_domain_model_eventreservation (
-	tx_hgontemplate_eventculinary int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_eventculinary varchar(255) DEFAULT '' NOT NULL,
 	tx_hgontemplate_eventcosts varchar(255) DEFAULT '' NOT NULL,
 	tx_hgontemplate_paymenttype int(11) unsigned DEFAULT '0' NOT NULL,
 );

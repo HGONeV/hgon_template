@@ -34,15 +34,11 @@ $GLOBALS['TCA']['tx_rkwevents_domain_model_eventreservation']['columns']['tx_hgo
     'exclude' => 0,
     'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary',
     'config' => [
-        'type' => 'inline',
+        'type' => 'select',
+        'renderType' => 'selectMultipleSideBySide',
         'foreign_table' => 'tx_hgontemplate_domain_model_eventculinary',
-        'foreign_field' => 'event',
-        'maxitems'      => 9999,
         'minitems'      => 0,
-        'appearance' => [
-            'collapseAll' => 1,
-            'expandSingle' => 1,
-        ],
+        'maxitems'      => 9999,
     ],
 ];
 //$GLOBALS['TCA']['tx_rkwevents_domain_model_eventreservation']['types']['1']['showitem'] = str_replace(', tx_hgontemplate_eventcosts,', ', tx_hgontemplate_eventcosts, tx_hgontemplate_eventculinary,', $GLOBALS['TCA']['tx_rkwevents_domain_model_eventreservation']['types']['1']['showitem']);

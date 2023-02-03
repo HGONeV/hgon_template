@@ -58,5 +58,77 @@ jQuery(document).ready(function(){
         e.preventDefault();
     });
 
+
+    // HANDLE IT THAT THE FORM IN THE POPUP IS ONLY A COPY. HAS IDENTIFIER ISSUES ON SELECT CHECKOXES AND RADIOS
+    /*
+    jQuery('.btn.btn--primary.btn--rounded').featherlight({
+
+        // using featherlight functions leads to some issues on send via ajax, objects and what ever...
+
+        filter: jQuery(document).on('submit', '#rkwevents-reservation-form'),
+        afterOpen: function(event){
+            jQuery(document).find('.main__content #rkw-events-reservation-plugin.featherlight-form-container label.checkbox, .main__content #rkw-events-reservation-plugin.featherlight-form-container label.radio').each(function (index) {
+                var newIdentifier = 'custom-identifier' + index + Date.now();
+
+                // first get it and save it
+                var oldIdentifier = jQuery(this).attr('for');
+                jQuery(this).attr('data-for', oldIdentifier);
+
+                // override it
+                jQuery(this).attr('for', newIdentifier);
+                jQuery(this).find('label').attr('for', newIdentifier);
+                jQuery(this).find('input.input').attr('id', newIdentifier);
+            });
+        },
+
+         afterClose: function(event){
+             jQuery(document).find('.main__content #rkw-events-reservation-plugin.featherlight-form-container label.checkbox, .main__content #rkw-events-reservation-plugin.featherlight-form-container label.radio').each(function (index) {
+
+                 // first get it and save it
+                 var oldIdentifier = jQuery(this).attr('data-for');
+
+                 // override it
+                 jQuery(this).attr('for', oldIdentifier);
+                 jQuery(this).find('label').attr('for', oldIdentifier);
+                 jQuery(this).find('input.input').attr('id', oldIdentifier);
+             });
+         }
+      });
+    */
+
+
+    // Featherlight Lightbox fix for duplicated html ID elements
+    jQuery(document).on('DOMNodeInserted', '.featherlight-content #rkw-events-reservation-plugin', function (e) {
+
+        jQuery(document).find('.main__content #rkw-events-reservation-plugin.featherlight-form-container label.checkbox, .main__content #rkw-events-reservation-plugin.featherlight-form-container label.radio').each(function (index) {
+            var newIdentifier = 'custom-identifier' + index + Date.now();
+
+            // first get it and save it
+            var oldIdentifier = jQuery(this).attr('for');
+            jQuery(this).attr('data-for', oldIdentifier);
+
+            // override it
+            jQuery(this).attr('for', newIdentifier);
+            jQuery(this).find('label').attr('for', newIdentifier);
+            jQuery(this).find('input.input').attr('id', newIdentifier);
+        });
+
+    });
+
+    jQuery(document).on('DOMNodeRemoved', '.featherlight-content #rkw-events-reservation-plugin', function (e) {
+
+        jQuery(document).find('.main__content #rkw-events-reservation-plugin.featherlight-form-container label.checkbox, .main__content #rkw-events-reservation-plugin.featherlight-form-container label.radio').each(function (index) {
+
+            // first get it and save it
+            var oldIdentifier = jQuery(this).attr('data-for');
+
+            // override it
+            jQuery(this).attr('for', oldIdentifier);
+            jQuery(this).find('label').attr('for', oldIdentifier);
+            jQuery(this).find('input.input').attr('id', oldIdentifier);
+        });
+
+    });
+
 });
 

@@ -14,5 +14,10 @@ page {
             instagram >
 
         }
+
+        dataProcessing {
+            10.special.value = 345
+            35.special.value = 351
+        }
     }
 }
