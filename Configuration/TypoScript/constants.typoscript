@@ -11,9 +11,11 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_projects/Configuration/TypoScript/constants.txt">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_registration/Configuration/TypoScript/constants.txt">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_newsletter/Configuration/TypoScript/constants.txt">
+
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_donation/Configuration/TypoScript/constants.typoscript">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_workgroup/Configuration/TypoScript/constants.typoscript">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_payment/Configuration/TypoScript/constants.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_species/Configuration/TypoScript/constants.typoscript">
 
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Constants/Config" extensions="typoscript">
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Constants/Extension" extensions="typoscript">

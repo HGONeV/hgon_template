@@ -1,16 +1,16 @@
 
 renderingOptions:
   submitButtonLabel: Absenden
-identifier: fJ
-label: 'Interesse am FÖJ'
+identifier: mentoringprogramm
+label: Mentoringprogramm
 type: Form
 prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Deine Anfrage zum FÖJ'
-      recipientAddress: andrea.ewerling@hgon.de
-      recipientName: 'Andrea Ewerling'
+      subject: 'Deine Anfrage zum Mentoring-Programm'
+      recipientAddress: franziska.sommer@hgon.de
+      recipientName: 'Franziska Sommer'
       senderAddress: '{email}'
       senderName: '{name}'
       replyToAddress: ''
@@ -27,7 +27,7 @@ finishers:
     identifier: EmailToReceiver
   -
     options:
-      subject: 'Deine Anfrage zum FÖJ'
+      subject: 'Deine Anfrage zum Mentoring-Programm'
       recipientAddress: '{email}'
       recipientName: '{name} {text-1}'
       senderAddress: andrea.ewerling@hgon.de
@@ -52,7 +52,7 @@ renderables:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Formular Senden'
     identifier: page-1
-    label: 'Kontaktformular '
+    label: 'Ich habe Interesse am Mentoringprogramm'
     type: Page
     renderables:
       -
@@ -164,17 +164,115 @@ renderables:
           -
             identifier: EmailAddress
       -
-        defaultValue: ''
-        identifier: message
-        label: Nachricht
-        type: Textarea
         properties:
           fluidAdditionalAttributes:
-            placeholder: ''
+            required: required
+          options:
+            'Die Kriterien treffen zu': 'Die Kriterien treffen zu'
+            'Die Kriterien treffen nicht zu': 'Die Kriterien treffen nicht zu'
+        type: RadioButton
+        identifier: radiobutton-1
+        label: 'Hiermit bestätige ich, dass die in den Guidelines genannten Kriterien auf mich zutreffen:'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        properties:
+          text: 'Du kannst dich entweder als Einzelperson oder zu zweit auf Mentor*innen bewerben. Solltest du besonders interessiert an einem oder mehreren der Mentor*innen sein, kannst du dich auch direkt auf diese bewerben. '
+        type: StaticText
+        identifier: statictext-2
+        label: ''
+      -
+        properties:
+          options:
+            'Ich bewerbe mich alleine': 'Ich bewerbe mich alleine'
+            'Ich bewerbe mich mit einer weiteren Person': 'Ich bewerbe mich mit einer weiteren Person:'
+          fluidAdditionalAttributes:
+            required: required
+        type: RadioButton
+        identifier: radiobutton-2
+        label: ''
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-4
+        label: ''
+        properties:
+          elementDescription: 'Name und Kontakt:'
+      -
+        properties:
+          options:
+            'Ich habe keine Präferenz': 'Ich habe keine Präferenz'
+            'Ich interessiere mich für folgende Mentor*innen': 'Ich interessiere mich für folgende Mentor*innen:'
+          fluidAdditionalAttributes:
+            required: required
+        type: RadioButton
+        identifier: radiobutton-3
+        label: ''
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-8
+        label: ''
+        properties:
+          elementDescription: 'Namen der Mentor*innen'
+      -
+        properties:
+          text: 'Grundlage für die Findung der Mentoring-Teams ist die Übereinstimmung eurer Interessen und der Fähigkeiten, die du dir gerne aneignen möchtest. Denn deine Vorstellungen und Erwartungen an das Mentoring-Programm sollten mit den Erfahrungen und der Expertise der Mentor*innen zusammenpassen. Beantworte uns dazu bitte folgende Fragen:'
+        type: StaticText
+        identifier: statictext-1
+        label: 'Motivation für die Bewerbung als Mentee beim HGON Mentoring-Programm'
+      -
+        defaultValue: ''
+        type: Textarea
+        identifier: textarea-1
+        label: 'Welche Bereiche des Naturschutzes interessieren dich? Warst du bereits selbst tätig? '
+        properties:
+          elementDescription: '(Ca. 200-300 Wörter)'
+          fluidAdditionalAttributes:
             required: required
         validators:
           -
             identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Textarea
+        identifier: textarea-2
+        label: 'Was wünscht du dir von deinem Mentor oder deiner Mentorin?'
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          elementDescription: '(Ca. 100-200 Wörter)'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Textarea
+        identifier: textarea-3
+        label: 'Welche ist deine letzte und/oder für das Mentoring-Programm relevanteste Ausbildung?'
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          elementDescription: ''
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        identifier: message
+        label: 'Bitte füge hier ggf. zusätzliche Kommentare oder Fragen ein.'
+        type: Textarea
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: ''
+          elementDescription: Optional
   -
     renderingOptions:
       previousButtonLabel: Zurück

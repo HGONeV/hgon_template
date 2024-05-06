@@ -1,8 +1,8 @@
 
 renderingOptions:
   submitButtonLabel: Absenden
-identifier: contactForm
-label: Kontaktformular
+identifier: shop-Formular_1
+label: Shop-Formular
 type: Form
 prototypeName: standard
 finishers:
@@ -90,6 +90,11 @@ renderables:
             identifier: EmailAddress
       -
         defaultValue: ''
+        type: Text
+        identifier: text-1
+        label: Telefon
+      -
+        defaultValue: ''
         identifier: subject
         label: Betreff
         type: Text
@@ -111,6 +116,7 @@ renderables:
             required: required
             minlength: '10'
             maxlength: '9999'
+          elementDescription: 'Beachten Sie: Nicht alle Größen und Farben sind dauerhaft verfügbar. Bitte nenne direkt deine Größe und Farbwünsche.'
         validators:
           -
             identifier: NotEmpty
@@ -122,13 +128,17 @@ renderables:
       -
         type: Fieldset
         identifier: fieldset-1
-        label: 'Ich möchte...'
+        label: 'Ich habe Interesse an...'
         renderables:
           -
             type: Checkbox
             identifier: checkbox-1
-            label: '...Mitglied werden. Bitte senden Sie mir Informationsmaterial und das Beitrittsformular zu.'
+            label: '...einem HGON-Shirt (20 €)'
           -
             type: Checkbox
             identifier: checkbox-2
-            label: '...als Sponsor die Naturschutzarbeit der HGON unterstützen.'
+            label: '...einer HGON-Kappe (15 €)'
+          -
+            type: Checkbox
+            identifier: checkbox-3
+            label: '...einer HGON-Wintermütze (20 €)'

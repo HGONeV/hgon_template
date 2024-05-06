@@ -1,6 +1,6 @@
 
 renderingOptions:
-  submitButtonLabel: 'Meldung absenden'
+  submitButtonLabel: Absenden
 type: Form
 identifier: aKHMeldebogen
 label: 'AKH Meldebogen'
@@ -13,7 +13,7 @@ finishers:
       recipientName: '{text-16}'
       senderAddress: '{text-24}'
       senderName: '{text-16}'
-      replyToAddress: stefan.stuebing@gmx.de
+      replyToAddress: avikh@hgon.de
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
@@ -26,15 +26,15 @@ finishers:
   -
     options:
       subject: 'Meldung an Avifaunistische Kommision Hessen  {text-1}'
-      recipientAddress: stefan.stuebing@gmx.de
+      recipientAddress: avikh@hgon.de
       recipientName: 'Avifaunistische Kommission Hessen'
       senderAddress: '{text-24}'
       senderName: '{text-16}'
-      replyToAddress: ''
+      replyToAddress: avikh@hgon.de
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
-      attachUploads: false
+      attachUploads: true
       translation:
         language: ''
       partialRootPaths:
@@ -44,7 +44,7 @@ finishers:
     identifier: EmailToReceiver
   -
     options:
-      message: "Vielen Dank für ihre Meldung an die Avifaunistische Kommission Hessen. \nWir melden uns nach Prüfung der Beobachtung."
+      message: "Vielen Dank für Ihre Meldung an die Avifaunistische Kommission Hessen. \nWir melden uns nach Prüfung der Beobachtung."
     identifier: Confirmation
 renderables:
   -

@@ -44,7 +44,7 @@ finishers:
     identifier: EmailToSender
   -
     options:
-      message: 'Vielen Dank für die Anmeldung. Wir melden und mit weiteren Details bei Ihnen. '
+      message: 'Vielen Dank für die Anmeldung. Wir melden uns mit weiteren Details bei Ihnen. '
     identifier: Confirmation
 renderables:
   -

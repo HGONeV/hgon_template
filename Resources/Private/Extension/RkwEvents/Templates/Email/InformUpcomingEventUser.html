@@ -20,11 +20,6 @@
 
 <f:render partial="Email/Details" section="Plaintext" arguments="{reservation: reservation, frontendUser: frontendUser, language:frontendUser.txRkwregistrationLanguageKey, showPid: showPid}"/>
 
-=============================================================
-<vh:frontend.translate key="templates_email_informUpcomingEventUser.changeDeleteHeadline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
-=============================================================
-<vh:frontend.translate key="templates_email_informUpcomingEventUser.text4" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
-<vh:frontend.link absolute="TRUE" pageUid="{loginPid}" />
 </f:section>
 
 <!-- HTML -->
@@ -56,8 +51,5 @@
 		<vh:frontend.translate key="templates_email_informUpcomingEventUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
 	</p>
 	<f:render partial="Email/Details" section="Html" arguments="{reservation:reservation, frontendUser: frontendUser, language:frontendUser.txRkwregistrationLanguageKey, showPid: showPid}"/>
-	<h2><vh:frontend.translate key="templates_email_informUpcomingEventUser.changeDeleteHeadline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" /></h2>
-	<p>
-		<a href="<vh:frontend.link absolute='TRUE' pageUid='{loginPid}' />" target="_blank"><vh:frontend.translate key="templates_email_informUpcomingEventUser.text4" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" /></a>
-	</p>
+
 </f:section>
