@@ -4,7 +4,7 @@ plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {
             _DEFAULT {
-                fallbackPid = 80
+                fallbackPid = 88
                 defaultDomain = hgon-libellen.rkw.local
             }
         }
@@ -12,6 +12,6 @@ plugin.tx_rkwbasics {
 }
 
 page.10.dataProcessing {
-    10.special.value = 78
-    35.special.value = 86
+    10.special.value = 80
+    35.special.value = 33
 }
