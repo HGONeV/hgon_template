@@ -27,6 +27,7 @@
 
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Themes/_Websites/LibellenHessen/Configuration/TypoScript/Setup/Extension" extensions="typoscript">
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Themes/_Websites/LibellenHessen/Configuration/TypoScript/Setup/Page" extensions="typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Themes/_Websites/LibellenHessen/Configuration/TypoScript/Setup/Include" extensions="typoscript">
 
 
 # Environments
