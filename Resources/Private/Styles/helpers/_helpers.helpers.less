@@ -1,0 +1,167 @@
+/**! ==================================================
+ * HELPERS/Helpers
+ * ================================================== */
+hr {
+  border:none;
+  border-top:1px solid @color-gray-4;
+}
+
+.limiter {
+  max-width:920px!important;
+}
+
+.is-block {
+  display:block;
+}
+
+.is-clickable {
+  cursor:pointer;
+}
+
+.is-centered {
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%;)
+}
+
+.is-disabled {
+  opacity:0.5;
+  cursor:default;
+}
+
+.is-transparent {
+  background-color:transparent;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.is-fixed {
+  position:fixed;
+}
+
+.is-relative {
+  position: relative;
+}
+
+.is-sticky {
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  z-index:@zindex-3;
+}
+
+.is-image-container {
+  position: relative;
+
+  @media @mq-narrow {
+    height: 400px;
+  }
+
+  @media @mq-mobile {
+    height: 280px;
+  }
+}
+
+.is-mobile {
+	display:none;
+
+	@media @mq-mobile {
+    display:block;
+	}
+}
+
+.is-medium {
+	display:none;
+
+	@media @mq-medium {
+    display:block;
+	}
+}
+
+.is-smalldesk {
+	display:none;
+
+	@media @mq-smalldesk {
+    display:block;
+	}
+}
+
+.align-left {
+  text-align:left!important;
+}
+
+.align-right {
+  text-align:right!important;
+}
+
+.align-center {
+  text-align:center!important;
+}
+
+.align-justify {
+  text-align:justify!important;
+}
+
+.float-right {
+  float:right;
+}
+
+.float-left {
+  float:left;
+}
+
+.no-border {
+  border:none!important;
+}
+
+.no-border-bottom {
+  border-bottom: 0!important;
+}
+
+.no-overflow {
+  overflow:hidden!important;
+}
+
+.relative {
+  position: relative;
+}
+
+.has-shadow {
+  box-shadow: 0 20px 40px rgba(0,0,0, .15);
+}
+
+.clearfix{
+  zoom:1;
+  &:before, &:after{ content:""; display:table; }
+  &:after{ clear: both; }
+}
+
+.medium-align-center {
+
+  @media @mq-medium {
+    text-align: center;
+  }
+}
+
+.mobile-align-center {
+
+  @media @mq-mobile {
+    text-align: center;
+  }
+}
+
+
+.cf {
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+  &::after {
+    clear: both;
+  }
+}

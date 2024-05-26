@@ -1,0 +1,169 @@
+/**! ==================================================
+ * LAYOUT/Header
+ * reusable header module
+ * ================================================== */
+.header {
+  position:relative;
+  background-color: @color-tertiary;
+  z-index: @zindex-1;
+  &, p, li, li a, h6 {
+    .font-size(14);
+    letter-spacing: .5px;
+  }
+
+  .header__top {
+    background-color: shade( @color-tertiary, 5% );
+    padding: .5*@gap 0;
+    .flex-container {
+      padding-left: 8*@gap;
+    }
+    @media @mq-smalldesk {
+      .flex-container {
+        padding-left: 6.5*@gap;
+      }
+    }
+    @media only screen and (max-width: 55em) {
+      display: none;
+    }
+
+    p {
+      margin: 0;
+
+      @media @mq-1280 {
+        .font-size(12);
+      }
+    }
+
+    .menu-social {
+      line-height: 0;
+    }
+  }
+  .header__content {
+    padding: @gap 0;
+
+    .flex-container {
+      padding-left: 8*@gap;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+    @media @mq-smalldesk {
+      padding: .5*@gap 0;
+
+      .flex-container {
+        padding-left: 6.5*@gap;
+      }
+    }
+
+    @media only screen and (max-width: 55em) {
+      height: 54px;
+    }
+
+  }
+
+  .header__title {
+    span {
+      display: none;
+    }
+    top: -65px;
+    z-index: 40;
+    .font-size(12);
+    background-color: @color-white;
+    display: inline-block;
+    box-shadow: 0 20px 40px rgba(0,0,0, .15);
+    position: absolute;
+    left: @gap;
+    margin: 0;
+
+    @media @mq-smalldesk {
+      top: -55px;
+      box-shadow: 0 10px 20px rgba(0,0,0, .15);
+    }
+
+    @media only screen and (max-width: 55em) {
+      position: static;
+      box-shadow: none;
+    }
+
+    .header__logo {
+      padding: 3*@gap 1.25*@gap 1.5*@gap;
+      display: block;
+      .logo--mobile {
+        display: none;
+      }
+      @media @mq-smalldesk {
+        padding: 1.5*@gap @gap;
+
+        .logo {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      @media only screen and (max-width: 55em) {
+        padding: 0;
+
+        .logo {
+          display: none;
+
+          &.logo--mobile {
+            width: 93px;
+            height: 30px;
+            display: block;
+          }
+
+        }
+      }
+
+    }
+  }
+
+  &.header--ghost {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: none;
+    .header__top {
+      background: none;
+    }
+    .header__top, .header__content {
+      &, p, li, .menu-social >li >a, .menu-main >li >a {
+        color: @color-white!important;
+      }
+      &, .menu-main >li >span.dropdown-touch-device {
+        color: @color-white!important;
+        &:after {
+          border-top-color: @color-white!important;
+        }
+      }
+    }
+    .header__title {
+      top: -110px;
+      @media @mq-smalldesk {
+        top: -70px;
+      }
+      @media @mq-medium {
+        top: 0;
+      }
+    }
+    .header__content {
+      padding-top: 3*@gap;
+      @media @mq-smalldesk {
+        padding-top: @gap;
+      }
+      @media @mq-medium {
+        padding-top: 12px;
+      }
+      .menu.menu-main > li.has-dropdown > a:after {
+        border-top-color: @color-white;
+        opacity: .6;
+      }
+      .btn.btn--primary {
+        border: 2px solid @color-white;
+        background: none;
+        &:hover {
+          background-color: @color-white;
+          color: @color-text!important;
+        }
+      }
+    }
+  }
+}

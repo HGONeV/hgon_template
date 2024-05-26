@@ -1,0 +1,26 @@
+.article {
+  min-width: ~"calc( 100% - 400px )";
+  max-width: ~"calc( 100% - 400px )";
+  @media @mq-smalldesk {
+    min-width: ~"calc( 100% - 350px )";
+    max-width: ~"calc( 100% - 350px )";
+  }
+
+  @media @mq-medium {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .article__header {
+    margin-bottom: @gap;
+  }
+  .article__footer {
+    border-top: 4px solid @color-light;
+    padding-top: @gap;
+    margin-top: 2*@gap;
+  }
+  &--fullwidth {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+}

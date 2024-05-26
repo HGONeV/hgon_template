@@ -1,0 +1,132 @@
+/**! ==================================================
+ * CONTENT/Table
+ *
+ * ================================================== */
+.table-wrapper {
+  overflow:hidden;
+
+  @media @mq-narrow {
+    box-shadow:-5px 0 5px 0 rgba(0,0,0,0.22) inset;
+    overflow-x:scroll;
+    -webkit-overflow-scrolling:touch;
+  }
+}
+
+.table {
+  margin-bottom:@gap15;
+  width:100%;
+  min-width:480px;
+  background-color:transparent;
+  border-collapse:collapse;
+  border-spacing:0;
+  max-width:100%;
+  border-bottom:2px solid @color-gray-4;
+
+  td {
+    border-top:1px solid @color-gray-4;
+    line-height: 1.5em;
+    padding:@gap05 @gap1;
+    text-align:left;
+    vertical-align:middle;
+    color: @color-text;
+  }
+
+  th {
+    background-color:@color-gray-5;
+    border:none;
+    font-weight:@font-weight-bold;
+    line-height:1.5em;
+    padding:@gap05 @gap1;
+    text-align:left;
+    vertical-align:middle;
+    border-bottom:2px solid @color-gray-4;
+    color: @color-text;
+  }
+}
+
+.table--support-tasks {
+  margin-bottom: 0;
+  border: 0;
+  padding: 0!important;
+  @media only screen and (max-width: 55em) {
+    display: block;
+    width: 100%;
+  }
+  thead {
+    th {
+      background-color: @color-tertiary;
+      padding: .5*@gap @gap;
+      .font-size(18);
+      text-transform: uppercase;
+      border: 0;
+    }
+    @media only screen and (max-width: 55em) {
+      display: none;
+    }
+  }
+  tbody {
+    @media only screen and (max-width: 55em) {
+      display: block;
+      width: 100%;
+    }
+    tr {
+      background-color: white;
+      @media only screen and (max-width: 55em) {
+        display: block;
+        width: 100%;
+      }
+    }
+    th {
+      background-color: @color-light;
+      border-top: 1px solid #cccccc;
+      border-bottom: 0;
+      padding: .5*@gap @gap;
+      h3,h4 {
+        .font-size(18);
+        font-weight: @font-weight-bold;
+      }
+      @media only screen and (max-width: 55em) {
+        display: block;
+        width: 100%;
+      }
+    }
+    td {
+      padding: .5*@gap @gap;
+      .badge {
+        margin-top: .5*@gap;
+        margin-bottom: 0;
+      }
+      .th {
+        display: none;
+      }
+      @media only screen and (max-width: 55em) {
+        display: block;
+        width: 100%;
+        padding: @gap;
+        &:first-child {
+          border-top: 2px solid @color-border;
+        }
+        .th {
+          display: inline-block;
+          margin-right: .5*@gap;
+        }
+        &.align-right {
+          text-align: left !important;
+        }
+      }
+      p {
+        .font-size(16);
+      }
+      h3, h4 {
+        font-weight: @font-weight-regular;
+        .font-size(18);
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}

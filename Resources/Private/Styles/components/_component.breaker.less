@@ -1,0 +1,45 @@
+.breaker {
+  background-color: @color-tertiary;
+  padding: 4*@gap 0;
+  margin: 4*@gap 0;
+  position: relative;
+  overflow: hidden;
+  @media @mq-medium {
+    padding: 3*@gap 0;
+    margin: 3*@gap 0;
+  }
+  @media @mq-mobile {
+    padding: 2*@gap 0;
+    margin: 2*@gap 0;
+  }
+  .breaker__header {
+    margin-bottom: @gap;
+    h2 {
+      margin-bottom: 0;
+      .font-size(24);
+    }
+  }
+  .breaker__footer {
+    margin: 2*@gap -.25*@gap 0;
+    a {
+      margin: 0 .25*@gap;
+    }
+  }
+  .breaker__image {
+    @media @mq-medium {
+      margin-top: 2*@gap;
+    }
+    &--bg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .breaker__content {
+    max-width: 100%;
+  }
+  .form {
+    position: relative;
+    z-index: 1;
+  }
+}

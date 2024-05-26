@@ -1,0 +1,118 @@
+.box {
+  position: relative;
+  .box__inner {
+    background-color: @color-tertiary;
+    padding: 2*@gap;
+    @media @mq-medium {
+      padding: @gap;
+    }
+    @media @mq-smalldesk {
+      .c-8 {
+        width: 100%;
+      }
+      .pl-2 {
+        padding: 0;
+        width: 100%;
+      }
+    }
+
+  }
+  .box__header {
+    margin-bottom: @gap;
+  }
+  &--bordered {
+    background-color: @color-white;
+    border: 4px solid @color-tertiary;
+    padding: 2*@gap;
+    .box__header, .box__content {
+      > .wrap, > .flex-container {
+        padding: 0;
+      }
+      .gutter {
+        margin-left: -1*@gap;
+        margin-right: -1*@gap;
+      }
+    }
+    @media @mq-1280 {
+      padding: @gap;
+    }
+    @media @mq-mobile {
+      padding: @gap 0;
+    }
+  }
+  &--floated {
+
+
+    @media @mq-smalldesk {
+      margin-bottom: 3*@gap!important;
+    }
+
+    @media @mq-medium {
+      margin-bottom: 2*@gap!important;
+    }
+
+    @media @mq-narrow {
+      margin-bottom: @gap!important;
+    }
+
+    &:extend(.clearfix all);
+    .box__inner {
+      max-width: 80%;
+      width: 100%;
+      @media @mq-smalldesk {
+        max-width: 90%;
+      }
+      @media @mq-medium {
+        max-width: 100%;
+      }
+    }
+    .box__image {
+      height: 100%;
+      margin-top: -6*@gap;
+      margin-bottom: 4*@gap;
+      @media @mq-medium {
+        max-width: 260px;
+      }
+
+      img {
+        &:extend(.has-shadow all);
+      }
+    }
+    &-left {
+      .box__inner {
+        float: left;
+      }
+      .box__image {
+        float: right;
+        margin-right: ~"calc( -6em - 200px )";
+        margin-left: 2*@gap;
+        @media @mq-smalldesk {
+          margin: -3*@gap -5*@gap 2*@gap @gap;
+        }
+      }
+    }
+    &-right {
+      .box__inner {
+        float: right;
+      }
+      .box__image {
+        float: left;
+        margin-left: ~"calc( -6em - 200px )";
+        margin-right: 2*@gap;
+        @media @mq-smalldesk {
+          margin: -3*@gap @gap 2*@gap -5*@gap;
+        }
+      }
+    }
+    .box__image {
+
+      @media @mq-medium {
+        height: auto !important;
+        margin: 0 0 @gap 0!important;
+        float: none!important;
+        width: 100%!important;
+        img { width: 100%!important;}
+      }
+    }
+  }
+}

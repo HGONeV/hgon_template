@@ -1,0 +1,19 @@
+.sidebar {
+  max-width: 400px;
+  min-width: 400px;
+  width: 100%;
+  @media @mq-smalldesk {
+    max-width: 350px;
+    min-width: 350px;
+  }
+  @media @mq-medium {
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .link.float-right:first-child {
+    @media @mq-medium {
+      float: none;
+    }
+  }
+}

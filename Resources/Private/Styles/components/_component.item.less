@@ -1,0 +1,36 @@
+.item {
+  &.item-event {
+    .item__header {
+      margin-bottom: @gap;
+
+      time {
+        font-weight: @font-weight-bold;
+        display: block;
+      }
+      span {
+        text-transform: uppercase;
+        color: @color-text-light;
+      }
+      svg {
+        float: left;
+        margin-right: .5*@gap;
+        margin-bottom: @gap;
+        @media @mq-smalldesk {
+          margin-bottom: .5*@gap;
+        }
+      }
+    }
+    .item__content {
+      h3 {
+        .font-size(16);
+
+      }
+    }
+    .item__footer {
+      margin-top: @gap;
+      @media @mq-mobile {
+        margin-top: (@gap / 2);
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+/**! ==================================================
+ * Mixins
+ * ================================================== */
+
+.font-size(@size-value) {
+  @rem-value: (@size-value / 16);
+  @px-value: @size-value;
+  font-size: ~"@{px-value}px";
+  font-size: ~"@{rem-value}rem";
+}
+
+.font-gap(@gap-value) {
+  @gap-base: @gap-value + 8;
+  @gap-type: (@gap-base / @gap-value);
+  margin-bottom: ~"@{gap-type}em";
+  line-height: ~"@{gap-type}em";
+}
+
+.spacing(@property, @spacing-base, @spacing-step, @spacing-value) {
+  @{property}: (@spacing-base * @spacing-step * @spacing-value);
+  @media @mq-medium {
+    @step-medium: 0.75;
+    @{property}: (@spacing-base * @step-medium * @spacing-value);
+  }
+  @media @mq-mobile {
+    @step-mobile: 0.5;
+    @{property}: (@spacing-base * @step-mobile * @spacing-value);
+	}
+}

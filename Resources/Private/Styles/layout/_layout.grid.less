@@ -1,0 +1,150 @@
+/**! ==================================================
+ * LAYOUT/Grid
+ *
+ * ================================================== */
+.grid {
+  width:100%;
+  max-width:@layout-max-width;
+  margin:0 auto;
+  padding:0 @gap15;
+
+  &:after {
+    content:"";
+    clear:both;
+    display:table;
+	}
+
+	&--endless {
+
+    .grid__col:last-child {
+      float:left;
+    }
+  }
+}
+
+.grid .grid {
+  width:100%;
+  max-width:100%;
+  margin:0;
+  padding:0;
+}
+
+.grid__col {
+  float:left;
+  min-height:1px;
+
+  &.col__switch-right {
+
+    &:first-child {
+      float:right!important;
+    }
+
+    &:last-child {
+      float:left!important;
+    }
+  }
+
+  &:last-child {
+    float:right;
+  }
+
+  &:first-child {
+    float:left;
+  }
+}
+
+.c-1 {width:8.333336%;}
+.c-2 {width:16.666667%;}
+.c-3 {width:25.000008%;}
+.c-4 {width:33.333344%}
+.c-5 {width:41.66668%;}
+.c-6 {width:50.000016%;}
+.c-7 {width:58.333352%;}
+.c-8 {width:66.666667%;}
+.c-9 {width:75.000024%;}
+.c-10 {width:83.33336%;}
+.c-11 {width:91.666696%;}
+.c-12 {width:100%;}
+
+@media only screen and (min-width: 769px) {
+  .grid__col--hide-wide {display:none!important;}
+}
+
+@media @mq-medium  {
+
+  .c-1,.c-2,.c-3,.c-4,.c-5,.c-6,.c-7,.c-8,.c-9,.c-10,.c-11,.c-12 {
+    width:100%;
+
+    &.grid__col--medium-half {
+      width:50%;
+    }
+
+    &.grid__col--medium-third {
+      width:33.333344%;
+    }
+
+    &.grid__col--medium-quarter {
+      width:25%;
+    }
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 768px)  {
+  .grid__col--hide-medium {display:none!important;}
+}
+
+@media @mq-narrow {
+
+  .c-1,.c-2,.c-3,.c-4,.c-5,.c-6,.c-7,.c-8,.c-9,.c-10,.c-11,.c-12 {
+
+    &.grid__col--medium-half {
+      width:100%;
+    }
+
+    &.grid__col--medium-third {
+      width:100%;
+    }
+
+    &.grid__col--medium-quarter {
+      width:100%;
+    }
+
+    &.grid__col--narrow-half {
+      width:50%;
+    }
+
+    &.grid__col--narrow-third {
+      width:33.333344%;
+    }
+
+    &.grid__col--narrow-quarter {
+      width:25%;
+    }
+
+    &.grid__col--hide-narrow {
+      display:none!important;
+    }
+  }
+}
+
+@media @mq-mobile  {
+
+  .c-1,.c-2,.c-3,.c-4,.c-5,.c-6,.c-7,.c-8,.c-9,.c-10,.c-11,.c-12 {
+
+    &.grid__col--narrow-half {
+      width:100%;
+    }
+
+    &.grid__col--narrow-third {
+      width:100%;
+    }
+
+    &.grid__col--narrow-quarter {
+      width:100%;
+    }
+
+    &.grid__col--hide-mobile {
+      display:none!important;
+    }
+  }
+}

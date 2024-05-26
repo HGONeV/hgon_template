@@ -1,0 +1,43 @@
+/**! ==================================================
+ * LAYOUT/CSS-Grid
+ *
+ * ================================================== */
+.cssgrid {
+  display:grid;
+  height:100vh;
+  grid-template-rows:200px 1fr 100px;
+  grid-template-columns:28% 28% 28% 16%;
+  grid-template-areas:
+    "header header header header"
+    "content content content aside"
+    "footer footer footer footer"
+  ;
+
+  .cssgrid__header {
+    display:grid;
+    grid-area:header;
+    background-color:@color-primary;
+  }
+
+  .cssgrid__content {
+    display:grid;
+    grid-area:content;
+    background-color:white;
+  }
+
+  .cssgrid__aside {
+    display:grid;
+    grid-area:aside;
+    background-color:@color-gray-5;
+  }
+
+  .cssgrid__footer {
+    display:grid;
+    grid-area:footer;
+    background-color:@color-black;
+  }
+
+  span {
+    margin:auto;
+  }
+}

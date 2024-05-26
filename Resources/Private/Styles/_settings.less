@@ -1,0 +1,106 @@
+/**! ==================================================
+ * Global Settings
+ * ================================================== */
+
+// GLOBAL
+@basefont   : 16;
+@baseline   : (@basefont / 100 * 150);           // 24px
+@basegap    : 1.5em; // 1.5em
+@gap        : @basegap;
+
+// GLOBAL UNITS
+@gap025    : 0.25em;
+@gap05     : 0.5em;
+@gap075    : 0.75em;
+@gap1      : 1em;
+@gap125    : 1.25em;
+@gap15     : 1.5em;
+@gap175    : 1.75em;
+@gap2      : 2em;
+@gap225    : 2.25em;
+@gap25     : 2.5em;
+@gap275    : 2.75em;
+@gap3      : 3em;
+@gap325    : 3.25em;
+@gap35     : 3.5em;
+@gap375    : 3.75em;
+@gap4      : 4em;
+@gap425    : 4.25em;
+@gap45     : 4.5em;
+@gap475    : 4.75em;
+@gap5      : 5em;
+
+
+// LAYOUT
+@layout-max-width : 1280px;
+@page-max-width   : 1680px;
+
+
+// COLORS
+@color-white      : #ffffff;
+@color-black      : #000000;
+@color-gray-1     : lighten(@color-black, 20%); // #333333
+@color-gray-2     : lighten(@color-black, 40%); // #666666
+@color-gray-3     : lighten(@color-black, 60%); // #999999
+@color-gray-4     : lighten(@color-black, 80%); // #CCCCCC
+@color-gray-5     : lighten(@color-black, 95%); // #F2F2F2
+
+@color-primary    : #869733;
+@color-secondary  : #6AA4C3;
+@color-tertiary   : #EDEFE0;
+
+@color-text       : @color-gray-2;
+@color-text-dark  : @color-gray-1;
+@color-text-light : @color-gray-3;
+@color-link       : @color-primary;
+@color-border     : @color-gray-4;
+@color-border-primary : lighten(@color-primary, 45%);
+
+@color-error      : #FF5252;
+@color-success    : #4CAF50;
+@color-cta        : #FADC40;
+@color-light      : #f8f8f6;
+
+// FONT
+@font-family-sans     : 'Source Sans Pro', Helvetica, Arial, sans-serif;
+@font-family-serif    : Georgia, 'Times New Roman', serif;
+@font-family-headline : @font-family-sans;
+@font-family-body     : @font-family-sans;
+@font-family          : @font-family-sans; // default font family
+
+@font-weight-thin     : 100;
+@font-weight-light    : 300;
+@font-weight-regular  : 400;
+@font-weight-medium   : 600;
+@font-weight-bold     : @font-weight-medium;
+@font-weight-black    : 800;
+
+
+// MEDIA QUERIES
+@mq-x-wide: ~"only screen and (min-width:120em)";       // 1920px
+@mq-wide: ~"only screen and (max-width:90em)";          // 1440px
+@mq-1280:  ~"only screen and (max-width:80em)";         // 1280px
+@mq-smalldesk: ~"only screen and (max-width:64em)";     // 1024px
+@mq-medium: ~"only screen and (max-width:48em)";        // 768px
+@mq-narrow: ~"only screen and (max-width:37.5em)";      // 600px
+@mq-mobile: ~"only screen and (max-width:30em)";        // 480px
+@mq-smalldesk-landscape: ~"only screen and (max-width:64em) and (orientation:landscape)";  // 1024px Landscape Mode
+@mq-screen: ~"only screen";
+
+
+// ANIMATIONS
+@duration    : 300ms;
+@ease        : ease-in-out;
+
+
+// Z-INDEX
+@zindex-1     : 10;
+@zindex-2     : 20;
+@zindex-3     : 30;
+@zindex-4     : 40;
+@zindex-5     : 50;
+@zindex-6     : 60;
+@zindex-7     : 70;
+@zindex-8     : 80;
+@zindex-9     : 90;
+@zindex-10    : 100;
