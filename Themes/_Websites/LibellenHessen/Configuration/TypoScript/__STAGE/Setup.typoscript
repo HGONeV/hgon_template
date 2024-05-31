@@ -15,3 +15,13 @@ page.10.dataProcessing {
     10.special.value = 333
     35.special.value = 340
 }
+
+
+plugin.tx_hgonspecies {
+    settings {
+        parentCategoryUid = 61
+        listPid = 356
+        listCatPid = 357
+        showPid = 369
+    }
+}
