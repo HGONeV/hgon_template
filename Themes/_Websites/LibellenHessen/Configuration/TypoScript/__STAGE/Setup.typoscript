@@ -25,3 +25,12 @@ plugin.tx_hgonspecies {
         showPid = 369
     }
 }
+
+plugin.tx_hgonspecies_list {
+    settings {
+        parentCategoryUid = 61
+        listPid = 356
+        listCatPid = 357
+        showPid = 369
+    }
+}
