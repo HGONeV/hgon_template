@@ -1,11 +1,11 @@
-config.baseURL = http://hgon.rkw.local
+config.baseURL = https://hgon.ddev.site:8443/
 
 plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {
             _DEFAULT {
                 fallbackPid = 68
-                defaultDomain = hgon.rkw.local
+                defaultDomain = hgon.ddev.site
             }
         }
     }
@@ -17,7 +17,7 @@ module.tx_rkwmailer {
     settings {
 
         # URL for hard-links in templates
-        baseUrl = http://hgon.rkw.local
+        baseUrl = https://hgon.ddev.site:8443/
     }
 }
 
