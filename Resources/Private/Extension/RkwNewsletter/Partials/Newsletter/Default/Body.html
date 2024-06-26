@@ -4,12 +4,20 @@
 <!-- PLAINTEXT -->
 <f:section name="Plaintext"><rkwMailer:plaintextLineBreaks>
 
-<rkwMailer:recipientSalutation queueRecipient="{queueRecipient}" prependText="<rkwMailer:frontend.translate87 key='partials_newsletter_body.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwNewsletter' /> " appendText="," />
+<rkwMailer:recipientSalutation queueRecipient="{queueRecipient}" prependText="<rkwMailer:frontend.translate key='partials_newsletter_body.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwNewsletter' /> " appendText="," />
 \n\n
-xxx FREIER TEXT AUS NEWSLETTER xxx
+<f:render partial="FilterEditorial" section="Plaintext" arguments="{_all}" />
 \n\n
-<f:render partial="Default/Items" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, includeEditorials: includeEditorials}" />
-<f:comment><f:render partial="Default/Items" section="Plaintext" arguments="{pages: specialPages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, includeEditorials: '0'}" /></f:comment>
+<f:render partial="Items" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, includeEditorials: includeEditorials}" />
+
+<f:render partial="News" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+<f:render partial="Article" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+<f:render partial="Donation" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+<f:render partial="Events" section="Plaintext" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
 </rkwMailer:plaintextLineBreaks></f:section>
 
 
@@ -17,50 +25,35 @@ xxx FREIER TEXT AUS NEWSLETTER xxx
 <!-- HTML -->
 <f:section name="Html">
 
-    <!-- Headline -->
-    <f:render partial="Body/Intro" arguments="{_all}" />
-
-    <f:render partial="Body/ImageAndSignature" arguments="{_all}" />
-
-    <!-- Top-News -->
-    <f:comment>
-        <f:if condition="{webView}">
-            <f:else>
-                <f:render partial="Default/TopNews" section="Html" arguments="{_all}" />
-            </f:else>
-        </f:if>
-    </f:comment>
+    <f:if condition="{webView}">
+        <f:then>
+            <f:render partial="FilterEditorial" section="Html" arguments="{_all}" />
+            <f:render partial="TopNews" section="Html" arguments="{_all}" />
+        </f:then>
+    </f:if>
 
     <!-- Normal Contents -->
-    <f:render partial="Default/Items" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />
+    <f:render partial="Items" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, pagesOrder: pagesOrder, webView: webView, includeEditorials: includeEditorials}" />
+
+    <!-- News -->
+    <f:render partial="News" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+    <!-- Article -->
+    <f:render partial="Article" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+    <!-- Donation -->
+    <f:render partial="Donation" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
+
+    <!-- Events -->
+    <f:render partial="Events" section="Html" arguments="{pages: pages, issue: issue, queueMail: queueMail}" />
 
     <f:comment>
         <!-- Special Contents -->
-        <f:render partial="Default/Items" section="Html" arguments="{pages: specialPages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, webView: webView, includeEditorials: '0'}" />
+        <f:render partial="Items" section="Html" arguments="{pages: specialPages, issue: issue, queueMail: queueMail, queueRecipient: queueRecipient, maxItemsPerTopic: maxItemsPerTopic, pageTypeMore: pageTypeMore, webView: webView, includeEditorials: '0'}" />
     </f:comment>
 
-    <!--[if mso | IE]>
-    </td>
-    </tr>
-    </table>
-
-    </td>
-    </tr>
-
-    <tr>
-        <td
-            class="" width="700px"
-        >
-
-            <table
-                align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:670px;" width="670"
-            >
-                <tr>
-                    <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
-
-
-    <f:render partial="Default/News" section="Html" arguments="{_all}" />
-
+    <f:comment>
+        <f:render partial="News" section="Html" arguments="{_all}" />
+    </f:comment>
 
 </f:section>

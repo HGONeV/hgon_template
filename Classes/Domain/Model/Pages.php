@@ -60,7 +60,6 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
      */
     protected $txHgontemplateArticle = null;
 
-
     /**
      * __construct
      */
@@ -266,6 +265,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
     {
         $this->txHgontemplateArticle = $txHgontemplateArticle;
     }
+
 }
 
 ?>

@@ -3,6 +3,7 @@
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TypoScript/setup.txt">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:pb_social/Configuration/TypoScript/setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:sr_freecap/Configuration/TypoScript/setup.txt">
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_basics/Configuration/TypoScript/setup.txt">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_authors/Configuration/TypoScript/setup.txt">
@@ -16,6 +17,7 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_donation/Configuration/TypoScript/setup.typoscript">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_workgroup/Configuration/TypoScript/setup.typoscript">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_payment/Configuration/TypoScript/setup.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_species/Configuration/TypoScript/setup.typoscript">
 
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Setup/Config" extensions="typoscript">
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:hgon_template/Configuration/TypoScript/Setup/Extension" extensions="typoscript">
@@ -27,9 +29,9 @@
 
 # Environments
 [applicationContext = Development*]
-    <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/setup.typoscript">
+    <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/Setup.typoscript">
 [global]
 
 [applicationContext = Production/Staging]
-    <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/setup.typoscript">
+    <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Setup.typoscript">
 [global]

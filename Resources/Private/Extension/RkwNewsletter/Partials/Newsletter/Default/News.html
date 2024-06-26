@@ -1,147 +1,320 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+{namespace rkwBasics=RKW\RkwBasics\ViewHelpers}
+{namespace rkwNewsletter=RKW\RkwNewsletter\ViewHelpers}
+{namespace hgonTemplate=HGON\HgonTemplate\ViewHelpers}
+
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-    PLAINTEXT NEWS PART
+    <f:if condition="<f:count><hgonTemplate:newsletter.getNewsRecords issue='{issue}' /></f:count>">
+        ##################################################\n
+        Aktuelle Meldungen\n
+        ##################################################\n\n
+        <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='tx_news-{queueMail.uid}' />">
+            <f:then>
+                <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}" />
+            </f:then>
+            <f:else>
+                <f:format.raw>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}">
+                        <rkwMailer:frontend.replace.redirectLinks isPlaintext="true" queueMail="{queueMail}" >
+                            <f:for each="<hgonTemplate:newsletter.getNewsRecords issue='{issue}' />" as="news" iteration="iter">
+                                ==================================================\n
+                                {news.title}\n
+                                ==================================================\n
+                                <f:format.stripTags>
+                                    <rkwMailer:frontend.replace.rteLinks plaintextFormat="true">
+                                        <f:format.raw>
+                                            <rkwMailer:plaintextLineBreaks keepLineBreaks="true"><f:if condition="{news.teaser}"><f:then>{news.teaser}</f:then><f:else>{news.bodytext}</f:else></f:if></rkwMailer:plaintextLineBreaks>
+                                        </f:format.raw>
+                                    </rkwMailer:frontend.replace.rteLinks>
+                                </f:format.stripTags>
+                                \n\n
+                                <rkwMailer:frontend.link action='detail' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' arguments='{news: news.uid}' />
+                                \n
+                            </f:for>
+                        </rkwMailer:frontend.replace.redirectLinks>
+                    </rkwMailer:cache.setRenderCache>
+                </f:format.raw>
+            </f:else>
+        </f:if>
+    </f:if>\n\n
 </f:section>
 
 
 <!-- HTML -->
 <f:section name="Html">
+
+    <!--
+    @toDo:
+    - Extend Getter & Setter for Newsletter Configuration
+    - falls manuelle Auswahl, reicht ggf schon eine normale Schleife
+    (ggf auch im ViewHelper geordnet ausgeben, damit man nicht zwei Schleifen erstellen muss?)
+    - ansonsten Datensätze per UID in VH auslesen und ausgeben
+
+
+    -->
+
+    <f:if condition="<f:count><hgonTemplate:newsletter.getNewsRecords issue='{issue}' /></f:count>">
+        <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='tx_news-{queueMail.uid}' />">
+            <f:then>
+                <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}" />
+            </f:then>
+            <f:else>
+                <f:format.raw>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="tx_news-{queueMail.uid}">
+                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}" >
+
+                            <f:render section="htmlHeadline" />
+
+                            <f:for each="<hgonTemplate:newsletter.getNewsRecords issue='{issue}' />" as="news" iteration="iter">
+
+                                <f:if condition="{iter.isFirst}">
+                                    <f:then>
+                                        <f:comment><!-- first single item --></f:comment>
+                                        <f:render section="htmlNewsBig" arguments="{_all}" />
+                                        <f:comment><!-- give some space below --></f:comment>
+                                        <f:render section="htmlPlaceholderBetweenHorizontalItems" />
+                                    </f:then>
+                                    <f:else>
+                                        <f:comment><!-- now we have two items per line. Except the last line has only one item --></f:comment>
+                                        <f:if condition="{iter.isEven}">
+                                            <f:then>
+                                                <f:if condition="{iter.isLast}">
+                                                    <f:then>
+                                                        <f:comment><!-- last single item --></f:comment>
+                                                        <f:render section="htmlNewsBig" arguments="{_all}" />
+                                                        <f:comment><!-- give some space below --></f:comment>
+                                                        <f:render section="htmlPlaceholderBetweenHorizontalItems" />
+                                                    </f:then>
+                                                    <f:else>
+                                                        <f:comment><!-- open box for two item row --></f:comment>
+                                                        <f:render section="htmlOpenTwoItemRow" />
+                                                        <f:comment><!-- show first item --></f:comment>
+                                                        <f:render section="htmlNewsSmall" arguments="{_all}" />
+
+                                                        <f:comment><!-- add placeholder between item 1 and 2 --></f:comment>
+                                                        <f:render section="htmlPlaceholderBetweenVerticalItems" />
+
+                                                    </f:else>
+                                                </f:if>
+                                            </f:then>
+                                            <f:else>
+                                                <f:comment><!-- show second item--></f:comment>
+                                                <f:render section="htmlNewsSmall" arguments="{_all}" />
+
+                                                <f:comment><!-- close box for two item row --></f:comment>
+                                                <f:render section="htmlCloseTwoItemRow" />
+
+                                                <f:comment><!-- give some space below --></f:comment>
+                                                <f:render section="htmlPlaceholderBetweenHorizontalItems" />
+                                            </f:else>
+                                        </f:if>
+                                    </f:else>
+                                </f:if>
+
+
+                            </f:for>
+                        </rkwMailer:frontend.replace.redirectLinks>
+                    </rkwMailer:cache.setRenderCache>
+                </f:format.raw>
+            </f:else>
+        </f:if>
+    </f:if>
+
+</f:section>
+
+
+<f:section name="htmlHeadline">
     <div style="Margin:0px auto;max-width:670px;">
         <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
             <tbody>
             <tr>
                 <td style="direction:ltr;font-size:0px;padding:0;text-align:center;vertical-align:top;">
-                    <!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-                        <tr>
-
-                            <td
-                                class="" style="vertical-align:top;width:670px;"
-                            >
-                    <![endif]-->
                     <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                        <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
-                            <tbody><tr>
-                                <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
-                                    <table role="presentation" style="border-collapse:collapse;border-spacing:0px;" cellspacing="0" cellpadding="0" border="0">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding-bottom:15px;">
+                                    <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
                                         <tbody>
                                         <tr>
-                                            <td style="width:670px;">
-                                                <img src="assets/img/image-01.jpg" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="670" height="auto">
+                                            <td class="headline" style="font-size:0px;padding:0;word-break:break-word;" align="left">
+                                                <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                                    <h2 style="margin: 48px 0 0 0; color: #869733; font-size: 18px; letter-spacing: .4px; text-transform: uppercase; font-weight: 600;">Aktuelle Meldungen<a id="news-anchor" name="topic-{itemId}"></a></h2>
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </td>
                             </tr>
-                            </tbody></table>
+                            </tbody>
+                        </table>
                     </div>
-                    <!--[if mso | IE]>
-                    </td>
-
-                    </tr>
-
-                    </table>
-                    <![endif]-->
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
+</f:section>
 
-    <!--[if mso | IE]>
-    </td>
-    </tr>
-    </table>
 
-    </td>
-    </tr>
-    <![endif]-->
-    <!-- Featured -->
-    <!--[if mso | IE]>
-    <tr>
-        <td
-            class="news-featured-outlook" width="700px"
-        >
+<f:section name="htmlNewsBig">
 
-            <table
-                align="center" border="0" cellpadding="0" cellspacing="0" class="news-featured-outlook" style="width:670px;" width="670"
-            >
-                <tr>
-                    <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
+    <div style="Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0;text-align:center;vertical-align:top;">
+
+                    <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+                                        <table role="presentation" style="border-collapse:collapse;border-spacing:0px;" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                            <tr>
+                                                <td style="width:670px;">
+                                                    <f:for each="{news.falMedia}" as="image" iteration="iter">
+                                                        <f:if condition="{iter.isFirst}">
+                                                            <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="670c" height="auto" />
+                                                        </f:if>
+                                                    </f:for>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="news-featured" style="background:white;background-color:white;Margin:0px auto;max-width:670px;">
         <table role="presentation" style="background:white;background-color:white;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
             <tbody>
             <tr>
                 <td style="border:3px solid #CFD5B7;border-top:0;direction:ltr;font-size:0px;padding:60px 15px;text-align:center;vertical-align:top;">
-                    <!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
 
-                        <tr>
-
-                            <td
-                                class="" style="vertical-align:top;width:550px;"
-                            >
-                    <![endif]-->
                     <div class="mj-column-px-550 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                         <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
-                            <tbody><tr>
-                                <td class="text" style="line-height: 26px; font-size: 0px; padding: 0; word-break: break-word;" align="left">
-                                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
-                                        <h3 style="line-height: 30px; font-size: 24px; margin: 0; padding: 0; font-weight: 600;">Lorem ipsum dolor sit amet</h3>
-                                        <p style="line-height: 26px; font-size: 16px;"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
-                                        <p style="line-height: 26px; font-size: 16px;"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td vertical-align="middle" style="font-size:0px;padding:0;padding-top:20px;word-break:break-word;" align="left">
-                                    <table role="presentation" style="border-collapse:separate;line-height:100%;" cellspacing="0" cellpadding="0" border="0">
-                                        <tbody><tr>
-                                            <td role="presentation" style="border:none;border-radius:30px;cursor:auto;padding:15px 30px;background:#EDF0E1;" valign="middle" bgcolor="#EDF0E1" align="center">
-                                                <a href="#" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank"> Mehr Informationen </a>
-                                            </td>
-                                        </tr>
-                                        </tbody></table>
-                                </td>
-                            </tr>
-                            </tbody></table>
+                            <tbody>
+                                <tr>
+                                    <td class="text" style="line-height: 26px; font-size: 0px; padding: 0; word-break: break-word;" align="left">
+                                        <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                            <h3 style="line-height: 30px; font-size: 24px; margin: 0; padding: 0; font-weight: 600;">{news.title}</h3>
+                                            <p style="line-height: 26px; font-size: 16px;"><f:format.crop maxCharacters="500"><f:format.stripTags><f:if condition="{news.teaser}"><f:then>{news.teaser}</f:then><f:else>{news.bodytext}</f:else></f:if></f:format.stripTags></f:format.crop></p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td vertical-align="middle" style="font-size:0px;padding:0;padding-top:20px;word-break:break-word;" align="left">
+                                        <table role="presentation" style="border-collapse:separate;line-height:100%;" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td role="presentation" style="border:none;border-radius:30px;cursor:auto;padding:15px 30px;background:#EDF0E1;" valign="middle" bgcolor="#EDF0E1" align="center">
+
+                                                        <a href=" <rkwMailer:frontend.link action='detail' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' arguments='{news: news.uid}' /> " style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank"> Lesen </a>
+
+                                                        <f:comment>
+
+                                                            <a href=\" <rkwMailer:frontend.link action='detail' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' /> \" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank"> Mehr Informationen </a>
+
+
+                                                            <a href="<rkwMailer:frontend.link action='detail' controller='WebView' extensionName='rkwNewsletter' pluginName='Webview' absolute='true' arguments='{issue: issue, pagesOrder: \'---pagesOrder---\'}' section='item-{page.uid}-{maxItemsPerTopic}' noCacheHash='true' pageType='{pageTypeMore}'/>" style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank">Mehr Informationen</a>
+                                                        </f:comment>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <!--[if mso | IE]>
-                    </td>
 
-                    </tr>
-
-                    </table>
-                    <![endif]-->
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <!--[if mso | IE]>
+
+</f:section>
+
+<f:section name="htmlNewsSmall">
+
+    <div class="mj-column-per-48 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        <table role="presentation" style="background-color:white;border:3px solid #CFD5B7;vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+            <tr>
+                <td style="background:#CFD5B7;font-size:0px;padding:0;word-break:break-word;" align="center">
+                    <table role="presentation" style="border-collapse:collapse;border-spacing:0px;" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                            <tr>
+                                <td style="width:315px;">
+                                    <f:for each="{news.falMedia}" as="image" iteration="iter">
+                                        <f:if condition="{iter.isFirst}">
+                                            <f:image image="{image}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="315c" height="200c" />
+                                        </f:if>
+                                    </f:for>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="teaser-text" style="line-height: 24px; margin: 0; font-size: 0px; padding: 25px 15px 5px; word-break: break-word;" align="left">
+                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                        <time datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}"><f:format.date format="d.m.Y">{newsItem.datetime}</f:format.date></time>
+                        <h3 style="line-height: 24px; font-size: 20px; margin: 5px 0 15px; font-weight: 600;">{news.title}</h3>
+                        <p style="line-height: 24px; font-size: 16px; margin: 0;"><f:format.crop maxCharacters="150"><f:format.stripTags><f:if condition="{news.teaser}"><f:then>{news.teaser}</f:then><f:else>{news.bodytext}</f:else></f:if></f:format.stripTags></f:format.crop></p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td vertical-align="middle" style="font-size:0px;padding:0 15px 25px;padding-top:20px;word-break:break-word;" align="left">
+                    <table role="presentation" style="border-collapse:separate;line-height:100%;" cellspacing="0" cellpadding="0" border="0">
+                        <tbody><tr>
+                            <td role="presentation" style="border:none;border-radius:30px;cursor:auto;padding:15px 30px;background:#EDF0E1;" valign="middle" bgcolor="#EDF0E1" align="center">
+                                <a href=" <rkwMailer:frontend.link action='detail' controller='News' extensionName='News' pluginName='Pi1' pageUid='62' absolute='true' queueMail='{queueMail}' arguments='{news: news.uid}' /> " style="background: #EDF0E1; color: #869733; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: normal; line-height: 120%; Margin: 0; text-decoration: none; text-transform: uppercase;" target="_blank">
+                                    Lesen
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                </td>
+            </tr>
+            </tbody></table>
+    </div>
+
+</f:section>
+
+<f:section name="htmlOpenTwoItemRow">
+    <div class="teaser" style="Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0;text-align:center;vertical-align:top;">
+
+</f:section>
+
+<f:section name="htmlCloseTwoItemRow">
     </td>
     </tr>
+    </tbody>
     </table>
+    </div>
+</f:section>
 
-    </td>
-    </tr>
-
-    <tr>
-        <td
-            class="" width="700px"
-        >
-
-            <table
-                align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:670px;" width="670"
-            >
-                <tr>
-                    <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
-
+<f:section name="htmlPlaceholderBetweenHorizontalItems">
     <div style="Margin:0px auto;max-width:670px;">
         <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
             <tbody>
@@ -187,23 +360,26 @@
             </tbody>
         </table>
     </div>
-    <!--[if mso | IE]>
-    </td>
-    </tr>
-    </table>
+</f:section>
 
-    </td>
-    </tr>
+<f:section name="htmlPlaceholderBetweenVerticalItems">
+    <div class="mj-column-per-4 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+        <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody><tr>
+                <td style="font-size:0px;word-break:break-word;">
+                    <!--[if mso | IE]>
 
-    <tr>
-        <td
-            class="cta-outlook" width="700px"
-        >
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td height="48" style="vertical-align:top;height:48px;">
 
-            <table
-                align="center" border="0" cellpadding="0" cellspacing="0" class="cta-outlook" style="width:670px;" width="670"
-            >
-                <tr>
-                    <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
+                    <![endif]-->
+                    <div style="height:48px;"> &nbsp; </div>
+                    <!--[if mso | IE]>
+
+                    </td></tr></table>
+
+                    <![endif]-->
+                </td>
+            </tr>
+            </tbody></table>
+    </div>
 </f:section>

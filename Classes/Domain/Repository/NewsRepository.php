@@ -82,7 +82,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
         }
 
         if ($workgroupList) {
-            $constraints[] = $query->in('tx_hgon_workgroup', $workgroupList);
+            $constraints[] = $query->contains('txHgonWorkgroup', $workgroupList);
         }
 
         if ($excludedNews) {
@@ -121,6 +121,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
             $constraints[] = $query->in('categories.uid', $sysCategoryList);
         }
 
+
         if ($excludeNewsList) {
             $constraints[] = $query->logicalNot($query->in('uid', $excludeNewsList));
         }
@@ -128,6 +129,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
         if ($sysCategoryList || $excludeNewsList) {
             $query->matching($query->logicalAnd($constraints));
         }
+
+        $query->setLimit(10);
 
         return $query->execute();
         //===
@@ -153,6 +156,28 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
                 )
             );
         }
+
+        return $query->execute();
+        //===
+    }
+
+
+
+    /**
+     * Find a count of news until a set max date
+     *
+     * @param integer
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     */
+    public function findByMaxDate($maxTimestamp, $count = 3)
+    {
+        $query = $this->createQuery();
+
+        $query->matching(
+            $query->lessThanOrEqual('datetime', $maxTimestamp)
+        );
+
+        $query->setLimit($count);
 
         return $query->execute();
         //===

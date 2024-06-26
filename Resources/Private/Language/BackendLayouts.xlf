@@ -13,7 +13,7 @@
 				<source>Header</source>
 			</trans-unit>
 			<trans-unit id="content.header">
-				<source>Header (is inherited)</source>
+				<source>Header (wird vererbt)</source>
 			</trans-unit>
 			<trans-unit id="content.content">
 				<source>Content</source>
@@ -28,10 +28,10 @@
                 <source>Sidebar</source>
             </trans-unit>
             <trans-unit id="content.sidebarInherit">
-                <source>Sidebar (inherited)</source>
+                <source>Sidebar (wird vererbt)</source>
             </trans-unit>
 			<trans-unit id="content.footer">
-				<source>Footer (is inherited)</source>
+				<source>Footer (wird vererbt)</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -32,9 +32,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
         </f:for>
     </f:flashMessages>
 
-    <f:if condition="{frontendUser}">
-        <if condition="{frontendUser.txRkwnewsletterHash}">
-            <f:link.action action="edit" arguments="{hash : frontendUser.txRkwnewsletterHash}" class="button"><f:translate key="templates_subscription_message.goToSettings" /></f:link.action>
-        </if>
-    </f:if>
+    <f:comment>
+        <f:if condition="{frontendUser}">
+            <if condition="{frontendUser.txRkwnewsletterHash}">
+                <f:link.action action="edit" arguments="{hash : frontendUser.txRkwnewsletterHash}" class="button"><f:translate key="templates_subscription_message.goToSettings" /></f:link.action>
+            </if>
+        </f:if>
+    </f:comment>
 </f:section>

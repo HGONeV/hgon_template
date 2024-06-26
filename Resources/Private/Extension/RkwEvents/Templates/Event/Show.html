@@ -1,4 +1,5 @@
 {namespace rkw=RKW\RkwEvents\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <f:layout name="Default" />
 
 This Template is responsible for displaying a single view for a domain object
@@ -13,21 +14,22 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-    <f:flashMessages as="flashMessages">
-        <f:for each="{flashMessages}" as="flashMessage">
-            <div class="typo3-messages">
-                <div class="alert alert-{flashMessage.class}">
-                    <div class="media">
-                        <div class="media-body">
-                            <div class="alert-message">
-                                <f:format.raw>{flashMessage.message}</f:format.raw>
-                            </div>
-                        </div>
+
+    <v:page.header.meta name="og:description" content="{event.description -> f:format.stripTags()}" />
+    <v:page.header.meta name="og:title" content="{event.title}" />
+    <v:page.header.title>{event.title}</v:page.header.title>
+
+    <section class="section helper">
+        <header class="section__header">
+            <div class="wrap wrap--text / align-center">
+                <div class="typo3-messages" role="alert">
+                    <div class="typo3-message">
+                        <f:flashMessages />
                     </div>
                 </div>
             </div>
-        </f:for>
-    </f:flashMessages>
+        </header>
+    </section>
 
     <div class="section">
         <div class="event-container">
@@ -62,6 +64,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
                                                     <f:format.currency currencySign="€">
                                                         {event.costsReg}
                                                     </f:format.currency>
+                                                    <f:if condition="{event.costsRed}">
+                                                        (reduziert:
+                                                        <f:format.currency currencySign="€">
+                                                            {event.costsRed}
+                                                        </f:format.currency>
+                                                        )
+                                                    </f:if>
                                                 </f:then>
                                                 <f:else>
                                                     Kostenlos
@@ -103,48 +112,128 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 <div class="article__content">
                     <f:format.raw>{event.description}</f:format.raw>
                 </div>
+
+                <br/><br/>
+
+                <f:comment><!-- gallery --></f:comment>
+                <f:if condition="{event.gallery1}">
+                    <section class="js-lightbox">
+                        <div class="gallery">
+                            <f:for each="{event.gallery1}" as="media">
+                                <div class="gallery__image">
+                                    <a class="js-open-lightbox" href="#" data-lightbox="lightbox-gallery" data-index="0">
+                                        <svg class="gallery__image-icon icon icon--24"><use xlink:href="#ui-fullscreen"></use></svg>
+                                        <figure>
+                                            <f:image image="{media}" alt="{media.name}" width="300px" />
+                                        </figure>
+                                    </a>
+                                </div>
+                            </f:for>
+                        </div>
+                        <div id="lightbox-gallery" class="lightbox" style="opacity: 0; visibility: hidden;">
+                            <f:for each="{event.gallery1}" as="media">
+                                <picture class="picture / lightbox__img" style="visibility: hidden; opacity: 0;">
+                                    <f:image image="{media}" alt="{media.name}" />
+                                </picture>
+                            </f:for>
+
+                            <div class="bar bar--bottom bar--fixed">
+                                <div class="bar__icons bar__icons--right">
+                                    <a class="bar__icon js-close-lightbox" href=""><svg class="icon"><use xlink:href="#ui-close"></use></svg></a>
+                                    <a class="bar__icon js-lightbox-prev" href=""><svg class="icon"><use xlink:href="#ui-prev"></use></svg></a>
+                                    <a class="bar__icon js-lightbox-next" href=""><svg class="icon"><use xlink:href="#ui-next"></use></svg></a>
+                                </div>
+                                <div class="bar__icons bar__icons--left">
+                                    <div class="bar__text align-center">
+                                        <span class="js-lightbox-counter">
+                                            <span class="current__img">1</span> / <span class="max__img">2</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </f:if>
+
             </article>
             <div class="sidebar">
                 <aside class="aside color-bg-light">
+
+                    <f:if condition="{relatedWorkgroup}">
+                        <nav class="">
+                            <ul class="menu menu--list">
+                                <f:for each="{relatedWorkgroup}" as="workgroup">
+                                    <f:link.page pageUid="{txHgonWorkgroupShowPid}" additionalParams="{tx_hgonworkgroup_detail: {workGroup: relatedWorkgroup.0}}">
+                                        {relatedWorkgroup.0.title}
+                                    </f:link.page>
+                                </f:for>
+                            </ul>
+                        </nav>
+                        <br />
+                    </f:if>
+
                     <header class="aside__header">
                         <h6>Kontakt</h6>
                     </header>
                     <div class="aside__content">
                         <f:render partial="Event/Contact/Contact" arguments="{_all}" />
-                        <!--
-                        <p><strong>E-Mail-Adresse: </strong> <a href="mailto:user@example.com">info@hgon.de</a> </p>
-                        <p><strong>Telefon:</strong> <a href="http://hgon.helllicht.io/tel:+491234 56789">+49 1234 56789</a></p>
-                        -->
                     </div>
+
+                    <f:if condition="{event.presentations}">
+                        <br>
+                        <header class="aside__header">
+                            <h6>Downloads</h6>
+                        </header>
+                        <div class="aside__content">
+                            <ul class="news-downloads">
+                                <f:for each="{event.presentations}" as="relatedFile">
+                                    <li>
+                                        <i class="fa fa-download"></i>
+                                        <span class="news-related-files-link">
+                                            <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+                                                {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
+                                            </a>
+                                        </span>
+                                        <span class="news-related-files-size">
+                                            {relatedFile.originalResource.size -> f:format.bytes()}
+                                        </span>
+                                    </li>
+                                </f:for>
+                            </ul>
+                        </div>
+                    </f:if>
                 </aside>
             </div>
         </div>
 
-        <section class="section">
-            <header class="section__header">
-                <div class="wrap wrap--text / align-center">
-                    <h2>Weitere Veranstaltungen</h2>
-                </div>
-            </header>
-            <div class="section__content">
-                <div class="wrap">
-                    <f:render partial="Event/List/EventListing" arguments="{_all}" />
+        <f:if condition="{sortedEventList}">
+            <section class="section">
+                <header class="section__header">
+                    <div class="wrap wrap--text / align-center">
+                        <h2>Weitere Veranstaltungen</h2>
+                    </div>
+                </header>
+                <div class="section__content">
+                    <div class="wrap">
+                        <f:render partial="Event/List/EventListing" arguments="{_all}" />
 
-                    <!-- lazy loading / load more box -->
-                    <f:render partial="Event/List/MoreLink" arguments="{_all}" />
+                        <!-- lazy loading / load more box -->
+                        <f:render partial="Event/List/MoreLink" arguments="{_all}" />
+                    </div>
                 </div>
-            </div>
-
-        </section>
+            </section>
+        </f:if>
 
     </div>
 
 
-    <!-- featherlight reservation form -->
-    <span class="container" style="display: none;">
-        <span id="rkw-events-reservation-plugin" class="featherlight-form-container">
-            <f:cObject typoscriptObjectPath="page.10.variables.rkwEventsReservation" />
+
+        <!-- featherlight reservation form -->
+        <!-- using iframe instead, because we got JS checkbox trouble -->
+        <span class="container" style="display: none;">
+            <span id="rkw-events-reservation-plugin" class="featherlight-form-container">
+                <f:cObject typoscriptObjectPath="page.10.variables.rkwEventsReservation" />
+            </span>
         </span>
-    </span>
 
 </f:section>

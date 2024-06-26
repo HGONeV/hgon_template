@@ -2,6 +2,7 @@
 namespace HGON\HgonTemplate\Controller;
 
 use RKW\RkwEvents\Helper\DivUtility;
+//use HGON\HgonTemplate\Helper\DivUtility;
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -65,7 +66,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
         // if we're in new plugin context (for reservation)
         if (!$event) {
-            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwevents_rkweventsreservation');
+            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwevents_reservation');
             $eventUid = preg_replace('/[^0-9]/', '', $getParams['event']);
             $event = $this->eventRepository->findByUid($eventUid);
         }
@@ -91,16 +92,24 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      */
     public function initializeCreateAlternativeAction()
     {
+
         // needed, because not selected culinary checkboxes are empty. And this throws an error
         if ($this->arguments->hasArgument('newEventReservation')) {
 
             $request = $this->request->getArguments();
             // always: Filter empty elements
-            $request['newEventReservation']['txHgontemplateEventculinary'] = array_filter($request['newEventReservation']['txHgontemplateEventculinary']);
-            // do only ignore, if no content is set. Otherwise we got no objects
-            if (!array_sum($request['newEventReservation']['txHgontemplateEventculinary'])) {
-                $this->arguments->getArgument('newEventReservation')->getPropertyMappingConfiguration()->skipProperties('txHgontemplateEventculinary');
+            if (
+                $request['newEventReservation']
+                && key_exists('txHgontemplateEventculinary', $request['newEventReservation'])
+            ) {
+                $request['newEventReservation']['txHgontemplateEventculinary'] = array_filter($request['newEventReservation']['txHgontemplateEventculinary']);
+
+                // do only ignore, if no content is set. Otherwise we got no objects
+                if (!array_sum($request['newEventReservation']['txHgontemplateEventculinary'])) {
+                    $this->arguments->getArgument('newEventReservation')->getPropertyMappingConfiguration()->skipProperties('txHgontemplateEventculinary');
+                }
             }
+
             // reset filtered content with no empty array entries
             $this->request->setArgument('newEventReservation', $request['newEventReservation']);
         }
@@ -113,7 +122,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      * @param \HGON\HgonTemplate\Domain\Model\EventReservation $newEventReservation
      * @param integer $terms
      * @param integer $privacy
-     * @validate $newEventReservation \RKW\RkwEvents\Validation\Validator\EventReservationValidator
+     * @validate $newEventReservation \HGON\HgonTemplate\Validation\Validator\EventReservationValidator
      * @return void
      * @throws \RKW\RkwRegistration\Exception
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
@@ -141,16 +150,8 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                     \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
                 );
 
-                // @toDo: Nachricht muss wahrscheinlich angepasst werden (paramter wurden entfernt)
-                $this->addFlashMessage(
-                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                        'eventReservationController.hint.reservations',
-                        'rkw_events'
-                    )
-                );
-
                 // already registered
-                $this->redirect('end', 'EventReservation', null, array('event' => $newEventReservation->getEvent()), intval($this->settings['showPid']));
+                $this->forward('end', null, null, array('event' => $newEventReservation->getEvent()));
                 //===
             }
         }
@@ -165,7 +166,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                 '',
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
-            $this->redirect('end', 'EventReservation', null, array('event' => $newEventReservation->getEvent()), $this->settings['showPid']);
+            $this->forward('end', null, null, array('event' => $newEventReservation->getEvent()));
             //===
         }
 
@@ -180,7 +181,7 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR
             );
 
-            $this->redirect('end', 'EventReservation', null, array('event' => $newEventReservation->getEvent()), intval($this->settings['showPid']));
+            $this->forward('end', null, null, array('event' => $newEventReservation->getEvent()));
             //===
         }
 
@@ -199,7 +200,6 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
             $this->forward('new', null, null, array('newEventReservation' => $newEventReservation, 'event' => $newEventReservation->getEvent()));
             //===
         }
-
 
         // 5. check if email is valid
         if (!\RKW\RkwRegistration\Tools\Registration::validEmail($newEventReservation->getEmail())) {
@@ -231,52 +231,76 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
 
         // HGON EDIT START: Culinary and PayPal-Handling
-        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('hgon_payment')) {
-            //    DebuggerUtility::var_dump($newEventReservation); exit;
+        $approvalUrl = '';
+        if (
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('hgon_payment')
+            && $newEventReservation->getTxHgontemplatePaymenttype() == 2
+        ) {
 
-            /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */
-            $basket = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Basket');
-
-            // add culinary
-            /** @var \HGON\HgonTemplate\Domain\Model\EventCulinary $eventCulinary */
-            foreach ($newEventReservation->getTxHgontemplateEventculinary() as $eventCulinary) {
-                /** @var \HGON\HgonPayment\Domain\Model\Article $article */
-                $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
-                $article->setDescription($eventCulinary->getDescription());
-                $article->setName($eventCulinary->getTitle());
-                $article->setPrice(floatval($eventCulinary->getPrice()));
-                $article->setSku('culinary' . $eventCulinary->getUid());
-                $basket->addArticle($article);
-            }
-
-            /*
-            // add possible event costs
             if (
-                $newEventReservation->getEvent()->getCostsReg()
-                || $newEventReservation->getEvent()->getCostsRed()
-            ) {
-                $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
-               // $article->setDescription('');
-                $article->setName('Kosten Teilnahme');
-                $article->setPrice(floatval($eventCulinary->getPrice()));
-                $article->setSku('eventprice' . $newEventReservation->getEvent()->getUid());
-                $basket->addArticle($article);
+                $newEventReservation->getTxHgontemplateEventculinary()->count()
+                || ($newEventReservation->getEvent()->getCostsReg() || $newEventReservation->getEvent()->getCostsRed())
+            )  {
+
+                /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */
+                $basket = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Basket');
+
+                // add culinary
+                if ($newEventReservation->getTxHgontemplateEventculinary()->count()) {
+                    /** @var \HGON\HgonTemplate\Domain\Model\EventCulinary $eventCulinary */
+                    foreach ($newEventReservation->getTxHgontemplateEventculinary() as $eventCulinary) {
+                        /** @var \HGON\HgonPayment\Domain\Model\Article $article */
+                        $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
+                        $article->setDescription($newEventReservation->getEvent()->getTitle() . ' - ' . date("d.m.Y", $newEventReservation->getEvent()->getStart()));
+                        $article->setName($eventCulinary->getTitle());
+                        $article->setPrice(floatval($eventCulinary->getPrice()));
+                        $article->setSku('culinary' . $eventCulinary->getUid());
+                        $article->setIsDonation(false);
+                        $basket->addArticle($article);
+                    }
+                }
+
+                // add possible event costs
+                if (
+                    $newEventReservation->getEvent()->getCostsReg()
+                    || $newEventReservation->getEvent()->getCostsRed()
+                ) {
+                    $article = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Article');
+                   // $article->setDescription('');
+                    $article->setName('Kosten Teilnahme');
+                    // regular price
+                    if ($newEventReservation->getTxHgontemplateEventcosts() == 'reg') {
+                        $article->setPrice(floatval($newEventReservation->getEvent()->getCostsReg()));
+                    } elseif ($newEventReservation->getTxHgontemplateEventcosts() == 'red') {
+                        // reduced price
+                        $article->setPrice(floatval($newEventReservation->getEvent()->getCostsRed()));
+                    }
+                    $article->setSku('eventprice' . $newEventReservation->getEvent()->getUid());
+                    $article->setDescription($newEventReservation->getEvent()->getTitle() . ' - ' . date("d.m.Y", $newEventReservation->getEvent()->getStart()));
+                    $article->setIsDonation(false);
+                    $basket->addArticle($article);
+                }
+
+                // to send opt-in mail after finishing payment process
+                //$GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_event_reservation', $newEventReservation);
+
+                $GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_payment_basket', $basket);
+                $GLOBALS['TSFE']->storeSessionData();
+
+                /** @var \HGON\HgonPayment\Api\PayPalApi $payPalApi */
+                $payPalApi = $this->objectManager->get('HGON\\HgonPayment\\Api\\PayPalApi');
+                $result = $payPalApi->createPayment($basket);
+
+                // extract approval_url
+                $approvalUrlArray = $result->links;
+                $approvalUrl = $approvalUrlArray[1]->href;
             }
-            */
-
-
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_payment_basket', $basket);
-            $GLOBALS['TSFE']->storeSessionData();
-
-            /** @var \HGON\HgonPayment\Api\PayPalApi $payPalApi */
-            $payPalApi = $this->objectManager->get('HGON\\HgonPayment\\Api\\PayPalApi');
-            $result = $payPalApi->createPayment($basket);
-            // extract approval_url
-            $approvalUrlArray = $result->links;
-            $approvalUrl = $approvalUrlArray[1]->href;
         }
         // HGON EDIT END
 
+
+        // do only send now if there is no payment! (otherwise this will send after payment)
+        //if (!$approvalUrl) {
         // register new user or simply send opt-in to user
         /** @var \RKW\RkwRegistration\Tools\Registration $registration */
         $registration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwRegistration\\Tools\\Registration');
@@ -297,10 +321,11 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
             'rkwEvents',
             $this->request
         );
+        //}
 
         $this->addFlashMessage(
             \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                'eventReservationController.message.reservationCreatedEmail', 'rkw_events',
+                'eventReservationController.message.reservationCreatedEmailAlt', 'hgon_template',
                 '',
                 \TYPO3\CMS\Core\Messaging\AbstractMessage::OK
             )
@@ -326,10 +351,13 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
      */
     public function endAction($event, $approvalUrl = '')
     {
+
+
         if ($approvalUrl) {
             $this->view->assign('approvalUrl', $approvalUrl);
         }
 
         // just show messages
     }
+
 }

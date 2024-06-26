@@ -3,6 +3,9 @@
 
     config.noPageTitle = 2
 
+    page.meta.og:title >
+    page.meta.og:description >
+
     # override page title
     lib.pageTitle = RECORDS
     lib.pageTitle {
@@ -14,7 +17,7 @@
             field = title
             htmlSpecialChars = 1
         }
-        wrap = <title>|</title>
+        wrap = <title>Entdecken:&nbsp; |</title>
     }
     page.headerData.1 >
     page.headerData.1 < lib.pageTitle

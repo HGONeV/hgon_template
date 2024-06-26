@@ -1,16 +1,16 @@
 
 renderingOptions:
-  submitButtonLabel: Senden
+  submitButtonLabel: Absenden
 identifier: fJ
-label: FÖJ
+label: 'Interesse am FÖJ'
 type: Form
 prototypeName: standard
 finishers:
   -
     options:
       subject: 'Deine Anfrage zum FÖJ'
-      recipientAddress: your.company@example.com
-      recipientName: 'Your Company name'
+      recipientAddress: andrea.ewerling@hgon.de
+      recipientName: 'Andrea Ewerling'
       senderAddress: '{email}'
       senderName: '{name}'
       replyToAddress: ''
@@ -20,25 +20,41 @@ finishers:
       attachUploads: true
       translation:
         language: ''
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToReceiver
+  -
+    options:
+      subject: 'Deine Anfrage zum FÖJ'
+      recipientAddress: '{email}'
+      recipientName: '{name} {text-1}'
+      senderAddress: andrea.ewerling@hgon.de
+      senderName: 'Andrea Ewerling'
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToSender
+  -
+    options:
+      message: 'Vielen Dank für die Nachricht. Wir melden uns mit weiteren Details bei Ihnen. '
+    identifier: Confirmation
 renderables:
   -
     renderingOptions:
-      previousButtonLabel: 'Previous step'
-      nextButtonLabel: 'Neue Seite'
+      previousButtonLabel: Zurück
+      nextButtonLabel: 'Formular Senden'
     identifier: page-1
-    label: 'Contact Form'
+    label: 'Kontaktformular '
     type: Page
     renderables:
-      -
-        properties:
-          options:
-            Herr: Herr
-            Frau: Frau
-            Familie: Familie
-        type: SingleSelect
-        identifier: singleselect-1
-        label: Anrede
       -
         defaultValue: ''
         identifier: name
@@ -63,14 +79,6 @@ renderables:
         validators:
           -
             identifier: NotEmpty
-      -
-        defaultValue: ''
-        type: Text
-        identifier: text-4
-        label: 'Firma / Institution'
-        properties:
-          fluidAdditionalAttributes:
-            placeholder: 'Firma / Institution'
       -
         type: GridRow
         identifier: gridrow-1
@@ -148,7 +156,8 @@ renderables:
         type: Text
         properties:
           fluidAdditionalAttributes:
-            placeholder: 'Email address'
+            placeholder: 'Email addresse'
+            required: required
         validators:
           -
             identifier: NotEmpty
@@ -157,18 +166,19 @@ renderables:
       -
         defaultValue: ''
         identifier: message
-        label: Message
+        label: Nachricht
         type: Textarea
         properties:
           fluidAdditionalAttributes:
             placeholder: ''
+            required: required
         validators:
           -
             identifier: NotEmpty
   -
     renderingOptions:
-      previousButtonLabel: 'Previous step'
-      nextButtonLabel: 'Senden'
+      previousButtonLabel: Zurück
+      nextButtonLabel: Absenden
     identifier: summarypage
-    label: 'Summary page'
+    label: Zusammenfassung
     type: SummaryPage

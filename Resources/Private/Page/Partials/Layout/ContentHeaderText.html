@@ -42,14 +42,24 @@
                 </f:if>
 
                 <f:if condition="{pageSubtitle}">
-                    <span class="h1 headline">{pageSubtitle}</span>
+                    <f:if condition='<f:cObject typoscriptObjectPath="lib.eventTitle" />'>
+                        <f:then>
+                              <span class="h1 headline"><f:cObject typoscriptObjectPath="lib.eventTitle" /></span>
+                        </f:then>
+                        <f:else>
+                            <span class="h1 headline">{pageSubtitle}</span>
+                        </f:else>
+                    </f:if>
+
                 </f:if>
             </h1>
-            <f:if condition="{pageTeaserText}">
-                <p>
-                    {pageTeaserText}
-                </p>
-            </f:if>
+            <f:cache.disable>
+                <f:if condition="{pageTeaserText}">
+                    <p>
+                        {pageTeaserText}
+                    </p>
+                </f:if>
+            </f:cache.disable>
         </div>
     </header>
 </f:section>
@@ -59,13 +69,7 @@
     <header class="main__header main__header--image">
         <picture class="picture">
 
-            <source media="(min-width: 64.063em)" srcset="{pageArticleImageDesktop}">
-            <source media="(min-width: 48.063em) and (max-width: 64em)" srcset="{pageArticleImageTablet}">
-            <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="{pageArticleImageMobile}">
-            <source media="(max-width: 37.5em)" srcset="{pageArticleImageSmall}">
-            <f:format.raw>
-                {pageArticleImage}
-            </f:format.raw>
+            <f:render partial="Layout/HeaderImage" arguments="{_all}" />
 
         </picture>
         <div class="wrap wrap--text / align-center">

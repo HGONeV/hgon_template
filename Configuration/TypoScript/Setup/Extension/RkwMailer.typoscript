@@ -1,0 +1,30 @@
+
+module.tx_rkwmailer {
+    view {
+        layoutRootPaths {
+            0 = EXT:rkw_mailer/Resources/Private/Layouts/
+            1 = {$plugin.tx_rkwmailer.view.layoutRootPath}
+        }
+        templateRootPaths {
+            0 = EXT:rkw_mailer/Resources/Private/Templates/
+            1 = {$plugin.tx_rkwmailer.view.templateRootPath}
+        }
+        partialRootPaths {
+            0 = EXT:rkw_mailer/Resources/Private/Partials/
+            1 = {$plugin.tx_rkwmailer.view.partialRootPath}
+        }
+    }
+/*
+    settings {
+
+        # cat=module.tx_rkwmailer; type=integer; label=URL for images in templates
+        basePathImages = EXT:hgon_template/Resources/Public/Images/
+
+        # cat=module.tx_rkwmailer; type=integer; label=URL for logo in templates
+        basePathLogo = EXT:hgon_template/Resources/Public/Images/Email/logo.png
+    }
+
+    */
+}
+
+plugin.tx_rkwmailer < module.tx_rkwmailer

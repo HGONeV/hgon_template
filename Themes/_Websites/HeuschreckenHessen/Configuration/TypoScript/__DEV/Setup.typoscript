@@ -1,0 +1,17 @@
+config.baseURL = http://hgon-heuschrecken.rkw.local/
+
+plugin.tx_rkwbasics {
+    settings {
+        pageNotFoundConfig {
+            _DEFAULT {
+                fallbackPid = 94
+                defaultDomain = hgon-heuschrecken.rkw.local
+            }
+        }
+    }
+}
+
+page.10.dataProcessing {
+    10.special.value = 91
+    35.special.value = 95
+}

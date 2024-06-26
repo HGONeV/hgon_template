@@ -2,6 +2,10 @@
 
 <f:section name="Internal">
 
+    <f:if condition="{contact.firstName} && {contact.lastName}">
+        <strong>Name:</strong> {contact.firstName} {contact.lastName}<br>
+    </f:if>
+
     <f:if condition="{contact.email}">
         <strong>E-Mail-Adresse:</strong> <f:link.email email="{contact.email}" /><br>
     </f:if>
@@ -27,6 +31,11 @@
 <!-- ====================================================================== -->
 
 <f:section name="External">
+
+    <f:if condition="{contact.firstName} && {contact.lastName}">
+        <strong>Name:</strong> {contact.firstName} {contact.lastName}<br>
+    </f:if>
+
     <f:if condition="{contact.email}">
         <strong>E-Mail-Adresse:</strong> <f:link.email email="{contact.email}" /><br>
     </f:if>

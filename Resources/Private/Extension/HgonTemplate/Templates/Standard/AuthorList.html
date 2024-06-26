@@ -1,0 +1,63 @@
+<f:for each="{authorList}" as="author">
+    <div style="background-color: #f8f8f6;">
+        <section class="card card-team">
+            <div class="card__image js-lightbox">
+                <a class="js-open-lightbox" href="#" data-lightbox="lightbox-img" data-index="0">
+                    <figure>
+                        <f:if condition="{author.imageBoxes}">
+                            <f:image image="{author.imageBoxes}" alt="{author.imageBoxes.title}" width="300" height="451" cropVariant="3to4" />
+                        </f:if>
+                    </figure>
+                </a>
+                <div id="lightbox-img" class="lightbox">
+                    <picture class="picture / lightbox__img">
+                        <f:if condition="{author.imageBoxes}">
+                            <f:image image="{author.imageBoxes}" alt="{author.imageBoxes.title}" cropVariant="16to9" />
+                        </f:if>
+                    </picture>
+                    <div class="bar bar--bottom bar--fixed">
+                        <div class="bar__icons bar__icons--right">
+                            <a class="bar__icon js-close-lightbox" href="#">
+                                <svg class="icon">
+                                    <use xlink:href="#ui-close"></use>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="bar__icons bar__icons--left">
+                            <div class="bar__text align-center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card__inner">
+                <header class="card__header">
+                    <h2 class="headline">{author.firstName} {author.lastName}</h2>
+                    <span class="tagline">{author.functionTitle}</span>
+                </header>
+                <div class="card__text">
+                    <p>
+                        <f:if condition="{author.txHgontemplateShortDescription}">
+                            <f:then>
+                                <f:format.raw>{author.txHgontemplateShortDescription}</f:format.raw>
+                            </f:then>
+                            <f:else>
+                                <f:format.stripTags>{author.functionDescription}</f:format.stripTags>
+                            </f:else>
+                        </f:if>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <div class="card-team">
+            <div class="card__inner" style="padding-top: 0;">
+                <p>
+                    <f:format.raw>{author.txHgontemplateLongerDescription}</f:format.raw>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</f:for>
+
+
+

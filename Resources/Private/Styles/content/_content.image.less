@@ -1,0 +1,95 @@
+/**! ==================================================
+ * CONTENT/Image
+ *
+ * ================================================== */
+figure {
+  margin:0;
+}
+
+figcaption {
+  padding-top:@gap05;
+  .font-size(@p-small);
+}
+
+img {
+  max-width:100%;
+  height:auto;
+  vertical-align:middle;
+}
+
+picture {
+  display: inline-block;
+}
+
+.img-left {
+  float:left;
+  margin-right: .5*@gap;
+  margin-bottom: .5*@gap;
+}
+
+.img-right {
+  float:right;
+  margin-left:@gap3;
+}
+
+.img-rounded {
+  border-radius: 50%;
+}
+
+.icon {
+  display:inline-block;
+
+  &:not([width]):not([height]) {
+    width:16px;
+    height:16px;
+  }
+
+  &--group {
+    margin:0 5px;
+  }
+
+  &--btn-left {
+    width: 1em;
+    height: 1em;
+    margin-right: .5em;
+    margin-top: -.2em;
+    vertical-align: middle;
+  }
+
+  &--btn-right {
+    width: 1em;
+    height: 1em;
+    margin-left: .5em;
+    margin-top: -.2em;
+    vertical-align: middle;
+  }
+
+  &--12 {
+    width:12px;
+    height:12px;
+  }
+
+  &--24 {
+    width:24px;
+    height:24px;
+  }
+
+  &--32 {
+    width:32px;
+    height:32px;
+  }
+
+  &--48 {
+    width:48px;
+    height:48px;
+  }
+}
+
+.icon-text-align {
+  display:flex;
+  align-items:center;
+
+  .icon {
+    margin-right:5px;
+  }
+}

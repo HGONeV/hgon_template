@@ -1,0 +1,51 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <title> HGON Newsletter </title>
+        <!--[if !mso]><!-- -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--<![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <f:render partial="Default/Css" />
+
+	</head>
+    <body style="background-color:#EDF0E1;">
+        <div style="background-color:#EDF0E1;">
+            <div style="Margin:0px auto;max-width:700px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                    <tbody>
+                        <tr>
+                            <td style="direction:ltr;font-size:0px;padding:15px;text-align:center;vertical-align:top;">
+
+                                <f:comment><!-- Headline with subject and webview link --></f:comment>
+                                <f:render partial="Default/Head" section="Html" arguments="{_all}" />
+
+                                <f:comment><!-- Header Image with date --></f:comment>
+                                <f:render partial="Default/Header" section="Html" />
+
+                                <f:comment><!-- Editorial --></f:comment>
+                                <f:render partial="Default/FilterEditorial" section="Html" arguments="{_all}" />
+
+                                <f:comment><!-- contents overview --></f:comment>
+                                <f:render partial="Default/TopNews" section="Html" arguments="{_all}" />
+
+                                <f:render partial="Default/Space" section="Html" />
+
+                                <f:render section="Html" />
+
+                                <f:comment>
+                                    <f:render partial="Default/News" section="Html" arguments="{_all}" />
+                                </f:comment>
+
+                                <f:render partial="Default/Footer" section="Html" arguments="{_all}" />
+                            </td>
+                         </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,328 @@
+/**! ==================================================
+ * CONTENT/Typo
+ *  Typography
+ * ================================================== */
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
+  margin-top:0;
+  font-family:@font-family-headline;
+  font-weight: @font-weight-regular;
+  text-rendering:optimizelegibility;
+  word-wrap:break-word;
+  display: block;
+}
+
+/** Font Ratio – Golden Ratio (1.618) */
+/* @h1        : 67.773;
+@h1-medium : 59.301;
+@h1-mobile : 50.83;
+@h2        : 59.301;
+@h2-medium : 50.83;
+@h2-mobile : 41.887;
+@h3        : 41.887;
+@h3-medium : 36.651;
+@h3-mobile : 31.415;
+@h4        : 36.651;
+@h4-medium : 31.415;
+@h4-mobile : 25.888;
+@h5        : 25.888;
+@h5-mobile : 22.652;
+@h6        : 22.652;
+@h6-mobile : 16;
+@p         : 18;
+@p-lead    : 22.652;
+@p-small   : 16;
+@p-tiny    : 14; */
+
+/** Font Ratio – Perfect Fifth (1.5) */
+/* @h1       : 54;
+@h1-medium : 47.25;
+@h1-mobile : 40.5;
+@h2        : 47.25;
+@h2-medium : 40.5;
+@h2-mobile : 36;
+@h3        : 40.5;
+@h3-medium : 36;
+@h3-mobile : 31.5;
+@h4        : 36;
+@h4-medium : 31.5;
+@h4-mobile : 27;
+@h5        : 31.5;
+@h5-mobile : 24;
+@h6        : 27;
+@h6-mobile : 24;
+@p         : 16;
+@p-lead    : 21;
+@p-small   : 14;
+@p-tiny    : 12; */
+
+/** Font Ratio – Major Third (1.25) */
+@h1        : 48.828;
+@h1-medium : 42.725;
+@h1-mobile : 39.063;
+@h2        : 39.063;
+@h2-medium : 34.18;
+@h2-mobile : 31.25;
+@h3        : 31.25;
+@h3-medium : 27.344;
+@h3-mobile : 25;
+@h4        : 25;
+@h4-medium : 21.875;
+@h4-mobile : 20;
+@h5        : 20;
+@h5-mobile : 16;
+@h6        : 16;
+@h6-mobile : 14;
+@p         : 16;
+@p-lead    : 20;
+@p-small   : 14;
+@p-tiny    : 12;
+
+h1, .h1 {
+  font-weight: @font-weight-light;
+  .font-gap(@h1);
+  //.font-size(@h1);
+  .font-size(36);
+
+  @media @mq-medium {
+    .font-gap(@h1-medium);
+    .font-size(@h1-medium);
+  }
+
+  @media @mq-mobile {
+    .font-gap(@h1-mobile);
+    .font-size(@h1-mobile);
+  }
+}
+
+h2, .h2 {
+  font-weight: @font-weight-light;
+  .font-gap(@h2);
+  //.font-size(@h2);
+  .font-size(30);
+
+  @media @mq-medium {
+    .font-gap(@h2-medium);
+    .font-size(@h2-medium);
+  }
+
+  @media @mq-mobile {
+    .font-gap(@h2-mobile);
+    .font-size(@h2-mobile);
+  }
+}
+
+h3, .h3 {
+  .font-gap(@h3);
+  .font-size(@h3);
+  font-weight: @font-weight-medium;
+  @media @mq-medium {
+    .font-gap(@h3-medium);
+    .font-size(@h3-medium);
+  }
+
+  @media @mq-mobile {
+    .font-gap(@h3-mobile);
+    .font-size(@h3-mobile);
+  }
+}
+
+h4, .h4 {
+  .font-gap(@h4);
+  .font-size(@h4);
+
+  @media @mq-medium {
+    .font-gap(@h4-medium);
+    .font-size(@h4-medium);
+  }
+
+  @media @mq-mobile {
+    .font-gap(@h4-mobile);
+    .font-size(@h4-mobile);
+  }
+}
+
+h5, .h5 {
+  .font-gap(@h5);
+  .font-size(@h5);
+
+  @media @mq-mobile {
+    .font-gap(@h5-mobile);
+    .font-size(@h5-mobile);
+  }
+}
+
+h6, .h6 {
+  .font-gap(@h6);
+  .font-size(@h6);
+
+  @media @mq-mobile {
+    .font-gap(@h6-mobile);
+    .font-size(@h6-mobile);
+  }
+}
+
+p {
+  .font-gap(@p);
+  .font-size(@p);
+  color: @color-text;
+}
+
+ul, ol {
+  padding-left:1.2em;
+  .font-gap(@p);
+
+  &.list-unstyled {
+    padding-left:0;
+    list-style:none;
+  }
+
+  &.list-inline {
+    padding-left:0;
+    list-style:none;
+
+    li {
+      display:inline-block;
+      margin-bottom:0;
+      margin-right:@gap05
+    }
+  }
+
+  li {
+    margin-bottom:@gap05;
+    .font-size(@p);
+    color: @color-text;
+  }
+}
+
+.badge {
+  display:inline-block;
+  padding:3px 8px;
+  background-color:@color-gray-4;
+  .font-size(@p-tiny);
+  font-weight:@font-weight-regular;
+  vertical-align:middle;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  &--rounded {
+    padding:3px 12px;
+    border-radius: 3rem;
+  }
+
+  &--large {
+    padding:@gap075 @gap1;
+    .font-size(14);
+  }
+
+  &--dark {
+    background-color:@color-text-dark;
+    color:white;
+  }
+
+  &--primary {
+    background-color:@color-primary;
+    color:white;
+  }
+
+  &--secondary {
+    background-color:@color-secondary;
+    color:white;
+  }
+
+  &--light {
+    background-color:@color-light;
+    color: @color-text;
+  }
+
+  &--circle {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0.5em;
+    padding: 0;
+    background-color: @color-tertiary;
+    color :@color-primary;
+    .font-size(@h2);
+    font-weight: @font-weight-light;
+    border-radius: 50%;
+  }
+}
+
+strong, b {
+  font-weight:@font-weight-bold;
+}
+
+em, i {
+  font-style:italic;
+}
+
+code {
+  padding:2px 10px;
+  border:1px solid @color-border;
+  background-color:@color-gray-5;
+  .font-size(@p-small);
+}
+
+.text-small {
+  .font-gap(@p-small);
+  .font-size(@p-small);
+}
+
+.text-lead {
+  .font-size(@p-lead);
+}
+
+.text-uppercase {
+  text-transform:uppercase;
+}
+
+.text-italic {
+  font-style:italic;
+}
+
+.fontweight-bold {
+  font-weight:@font-weight-bold;
+}
+
+.fontweight-medium {
+  font-weight:@font-weight-medium;
+}
+
+.fontweight-regular {
+  font-weight:@font-weight-regular;
+}
+
+.fontweight-light {
+  font-weight:@font-weight-light;
+}
+
+.fontweight-thin {
+  font-weight:@font-weight-thin;
+}
+
+.tagline {
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  .font-size(14) !important;
+  font-weight: @font-weight-bold;
+}
+
+
+.article {
+  p + h2, p + .h2,
+  ul + h2, ul + .h2,
+  div + h2, div + .h2,
+  p + h4, p + .h4,
+  ul + h4, ul + .h4,
+  div + h4, div + .h4
+  {
+    margin-top: @gap;
+  }
+
+  p + h4, p + .h4,
+  ul + h4, ul + .h4,
+  div + h4, div + .h4
+  {
+    margin-bottom: .5*@gap;
+  }
+}

@@ -1,0 +1,7 @@
+plugin.tx_hgonworkgroup {
+    view {
+        partialRootPaths {
+            2 = EXT:hgon_template/Resources/Private/Extension/RkwEvents/Partials/
+        }
+    }
+}

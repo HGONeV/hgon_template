@@ -1,0 +1,261 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+{namespace rkwNewsletter=RKW\RkwNewsletter\ViewHelpers}
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+
+    ----------------------------------------------------------------------------------------------------------------------------------
+    <f:if condition="{hash}">
+        <rkwMailer:frontend.translate key="partials_newsletter_footer.subscriptionText" languageKey="{queueRecipient.languageCode}" extensionName="rkwNewsletter" />
+        <rkwMailer:frontend.translate key="partials_newsletter_footer.subscriptionLink" languageKey="{queueRecipient.languageCode}" extensionName="rkwNewsletter" />: <rkwMailer:frontend.link action="edit" controller="Subscription" extensionName="rkwNewsletter" pluginName="Subscription" pageUid="{subscriptionPid}" absolute="true" queueMail="{queueMail}" arguments="{hash: hash}" noCacheHash="true" />
+
+    </f:if>
+    HGON - Hessische Gesellschaft für Ornithologie und Naturschutz e.V.
+    Lindenstraße 5
+    61209 Echzell
+    Tel.:+49 6008/1803
+    Fax:+49 6008/7578
+    info(at)hgon.de
+</f:section>
+
+
+
+<!-- HTML -->
+<f:section name="Html">
+
+    <div style="background:#F8F8F6;background-color:#F8F8F6;Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="background:#F8F8F6;background-color:#F8F8F6;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:15px;text-align:center;vertical-align:top;">
+
+                    <div class="mj-column-px-180 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:15px;">
+                                    <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                            <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+                                                <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;text-transform:uppercase;color:#212121;"> In Kontakt bleiben </div>
+                                            </td>
+                                        </tr>
+                                        </tbody></table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mj-column-px-250 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td style="vertical-align:top;padding:7px;">
+                                        <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+
+                                                        <table role="presentation" style="float:none;display:inline-table;" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding:4px;">
+                                                                        <table role="presentation" style="background:transparent;border-radius:3px;width:22px;" cellspacing="0" cellpadding="0" border="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="font-size:0;height:22px;vertical-align:middle;width:22px;">
+                                                                                        <a href="https://twitter.com/hgon_ev" target="_blank" style="color: #869733; text-decoration: none;">
+                                                                                            <f:if condition="{formExt}">
+                                                                                                <f:then>
+                                                                                                    <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-twitter.png' absolute='true' />" alt="Twitter Logo" style="border-radius:3px;" width="22" height="22">
+                                                                                                </f:then>
+                                                                                                <f:else>
+                                                                                                    <f:image src="{settings.basePathImages}Email/icon-twitter.png" style="border-radius:3px;" width="22" height="22" />
+                                                                                                </f:else>
+                                                                                            </f:if>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <table role="presentation" style="float:none;display:inline-table;" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding:4px;">
+                                                                        <table role="presentation" style="background:transparent;border-radius:3px;width:27px;" cellspacing="0" cellpadding="0" border="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="font-size:0;height:19px;vertical-align:middle;width:27px;">
+                                                                                        <a href="https://www.youtube.com/user/HGONeV" target="_blank" style="color: #869733; text-decoration: none;">
+                                                                                            <f:if condition="{formExt}">
+                                                                                                <f:then>
+                                                                                                    <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-youtube.png' absolute='true' />" alt="YouTube Logo" style="border-radius:3px;" width="27" height="19">
+                                                                                                </f:then>
+                                                                                                <f:else>
+                                                                                                    <f:image src="{settings.basePathImages}Email/icon-youtube.png" style="border-radius:3px;" width="27" height="19" />
+                                                                                                </f:else>
+                                                                                            </f:if>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <table role="presentation" style="float:none;display:inline-table;" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding:4px;">
+                                                                        <table role="presentation" style="background:transparent;border-radius:3px;width:19px;" cellspacing="0" cellpadding="0" border="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="font-size:0;height:19px;vertical-align:middle;width:19px;">
+                                                                                        <a href="https://www.facebook.com/hgon.de/" target="_blank" style="color: #869733; text-decoration: none;">
+                                                                                            <f:if condition="{formExt}">
+                                                                                                <f:then>
+                                                                                                    <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-facebook.png' absolute='true' />" alt="YouTube Logo" style="border-radius:3px;" width="19" height="19">
+                                                                                                </f:then>
+                                                                                                <f:else>
+                                                                                                    <f:image src="{settings.basePathImages}Email/icon-facebook.png" style="border-radius:3px;" width="19" height="19" />
+                                                                                                </f:else>
+                                                                                            </f:if>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <table role="presentation" style="float:none;display:inline-table;" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding:4px;">
+                                                                        <table role="presentation" style="background:transparent;border-radius:3px;width:19px;" cellspacing="0" cellpadding="0" border="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="font-size:0;height:19px;vertical-align:middle;width:19px;">
+                                                                                        <a href="https://www.instagram.com/hgon_ev/" target="_blank" style="color: #869733; text-decoration: none;">
+                                                                                            <f:if condition="{formExt}">
+                                                                                                <f:then>
+                                                                                                    <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-instagram.png' absolute='true' />" alt="Instagram Logo" style="border-radius:3px;" width="19" height="19">
+                                                                                                </f:then>
+                                                                                                <f:else>
+                                                                                                    <f:image src="{settings.basePathImages}Email/icon-instagram.png" style="border-radius:3px;" width="19" height="19" />
+                                                                                                </f:else>
+                                                                                            </f:if>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <table role="presentation" style="float:none;display:inline-table;" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="padding:4px;">
+                                                                        <table role="presentation" style="background:transparent;border-radius:3px;width:22px;" cellspacing="0" cellpadding="0" border="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="font-size:0;height:17px;vertical-align:middle;width:22px;">
+                                                                                        <a href="mailto:info@hgon.de" target="_blank" style="color: #869733; text-decoration: none;">
+                                                                                            <f:if condition="{formExt}">
+                                                                                                <f:then>
+                                                                                                    <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Email/icon-mail.png' absolute='true' />" alt="Facebook Logo"  style="border-radius:3px;" width="22" height="17">
+                                                                                                </f:then>
+                                                                                                <f:else>
+                                                                                                    <f:image src="{settings.basePathImages}Email/icon-mail.png" style="border-radius:3px;" width="22" height="17" />
+                                                                                                </f:else>
+                                                                                            </f:if>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mj-column-px-180 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding:15px;">
+                                    <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                            <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+                                                <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#212121;">
+                                                    <a href="https://www.hgon.de" style="color: #869733; text-decoration: none;">www.hgon.de</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody></table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer" style="background:#E5E8D9;background-color:#E5E8D9;Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="background:#E5E8D9;background-color:#E5E8D9;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
+
+                    <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody><tr>
+                                <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+                                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#212121;">
+                                        <p style="font-size: 14px; line-height: 20px;">
+                                            <strong style="font-weight: 600;">Hessische Gesellschaft für  <br>Ornithologie und Naturschutz e. V.</strong><br>
+                                            <br> Lindenstraße 5 | 61209 Echzell<br>
+                                            <br> Tel.:+49 6008/1803 | Fax:+49 6008/7578<br>
+                                            <a href="mailto:info@hgon.de" style="color: #869733; text-decoration: none;">info@hgon.de</a><br>
+                                            <br> Registergericht: Amtsgericht Frankfurt am Main<br> Registernummer: VR 6303 <br>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</f:section>

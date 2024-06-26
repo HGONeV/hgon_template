@@ -11,11 +11,11 @@
             </trans-unit>
             <trans-unit id="LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.1">
                 <source>Press</source>
-                <target>Pressemitteilungyp</target>
+                <target>Pressemitteilung</target>
             </trans-unit>
             <trans-unit id="LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2">
                 <source>Project</source>
-                <target>Projektvorstellung</target>
+                <target>Projektmeldung</target>
             </trans-unit>
 
 
@@ -55,7 +55,7 @@
             </trans-unit>
             <trans-unit id="tx_hgontemplate_page_partials_layout.newstype.2">
                 <source>Project</source>
-                <target>Projektvorstellung</target>
+                <target>Projektmeldung</target>
             </trans-unit>
 
             <trans-unit id="tx_hgontemplate_extension_rkwevents_partials_filter.pleaseChoose">
@@ -65,14 +65,31 @@
 
             <trans-unit id="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.terms3">
                 <source>In particular, I agree that HGON may publish photographs and videos taken during the event in various media for the purposes of event reporting and general public relations work.</source>
-                <target>Insbesondere bin ich damit einverstanden, dass das HGON im Rahmen der Veranstaltung gemachte Foto- und Videoaufnahmen für Zwecke der Veranstaltungsberichterstattung und der allgemeinen Öffentlichkeitsarbeit in verschiedenen Medien veröffentlicht.</target>
+                <target>Insbesondere bin ich damit einverstanden, dass die HGON im Rahmen der Veranstaltung gemachte Foto- und Videoaufnahmen für Zwecke der Veranstaltungsberichterstattung und der allgemeinen Öffentlichkeitsarbeit in verschiedenen Medien veröffentlicht.</target>
             </trans-unit>
 
             <trans-unit id="templates_registration_privacy_default.firstPart">
                 <source>Yes, I agree that HGON will use my personal data for the above purpose and to create a free user account.  Furthermore, I have read and agree to the extended notes in the</source>
-                <target>Ja, ich stimme zu, dass das HGON meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzerkontos verwendet.  Ferner habe ich die erweiterten Hinweise in der</target>
+                <target>Ja, ich stimme zu, dass die HGON meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzerkontos verwendet.  Ferner habe ich die erweiterten Hinweise in der</target>
             </trans-unit>
 
+            <trans-unit id="eventReservationController.message.reservationCreatedEmailAlt">
+                <source>An e-mail has been send to you. Please click the link in the e-mail to confirm your request.</source>
+                <target><![CDATA[Fast geschafft! Eine E-Mail mit einem Bestätigungslink ist auf dem Weg zu Ihnen. Sollten Sie innerhalb der nächsten 2-3 Minuten keine E-Mail von uns erhalten, prüfen Sie Ihren Spam-Filter. Selbstverständlich steht Ihnen aber auch unser <a href="mailto:info@hgon.de">Support</a> bei Problemen jederzeit gerne zur Verfügung.]]></target>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.0">
+                <source>Please choose</source>
+                <target>Bitte wählen</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.1">
+                <source>Locally</source>
+                <target>Vor Ort (Barzahlung)</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
+                <source>PayPal</source>
+                <target>PayPal</target>
+            </trans-unit>
 
 
         </body>

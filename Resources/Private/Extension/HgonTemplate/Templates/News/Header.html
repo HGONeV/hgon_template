@@ -1,0 +1,26 @@
+<f:if condition="{newsItem}">
+    <picture class="picture">
+        <f:if condition="{newsItem.txHgontemplateHeaderImage}">
+            <f:then>
+                <source media="(min-width: 64.063em)" srcset="<f:uri.image image='{newsItem.txHgontemplateHeaderImage}' treatIdAsReference='1' absolute='true' cropVariant='14to5' width='1680c' height='600c' />">
+                <source media="(min-width: 48.063em) and (max-width: 64em)" srcset="<f:uri.image image='{newsItem.txHgontemplateHeaderImage}' treatIdAsReference='1' absolute='true' cropVariant='14to5' width='1024c' height='350c' />">
+                <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="<f:uri.image image='{newsItem.txHgontemplateHeaderImage}' treatIdAsReference='1' absolute='true' cropVariant='3to4' width='768c' height='350c' />">
+                <source media="(max-width: 37.5em)" srcset="<f:uri.image image='{newsItem.txHgontemplateHeaderImage}' treatIdAsReference='1' absolute='true' cropVariant='3to4' width='600c' height='350c' />">
+                <f:image image="{newsItem.txHgontemplateHeaderImage}" treatIdAsReference="1" width="1680" cropVariant="14to5" />
+            </f:then>
+            <f:else>
+                <source media="(min-width: 64.063em)" srcset="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Placeholder/news_placeholder.jpeg' width='1680c' height='600c' />">
+                <source media="(min-width: 48.063em) and (max-width: 64em)" srcset="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Placeholder/news_placeholder.jpeg' width='1024c' height='350c' />">
+                <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Placeholder/news_placeholder.jpeg' width='768c' height='350c' />">
+                <source media="(max-width: 37.5em)" srcset="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Placeholder/news_placeholder.jpeg' width='600c' height='350c' />">
+                <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Placeholder/news_placeholder.jpeg' width='600c' height='350c' />" />
+            </f:else>
+        </f:if>
+    </picture>
+    <div class="wrap wrap--text / align-center">
+        <h1>
+            <span class="badge badge--dark"><f:cObject typoscriptObjectPath="page.10.variables.parentPageTitle" /><span class="is-hidden">: </span></span>
+            <span class="h1 headline">{newsItem.title}</span>
+        </h1>
+    </div>
+</f:if>

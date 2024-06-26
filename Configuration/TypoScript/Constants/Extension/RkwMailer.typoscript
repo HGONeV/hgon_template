@@ -1,13 +1,40 @@
-
 module.tx_rkwmailer {
+
+    view {
+        # cat=plugin.tx_rkwmailer/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:hgon_template/Resources/Private/Extension/RkwMailer/Templates/
+
+        # cat=plugin.tx_rkwmailer/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/
+
+        # cat=plugin.tx_rkwmailer/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/
+    }
 
     settings {
 
+        // Page for redirect plugin
+        redirectPid = 269
+
+        // Delay for redirect
+        # redirectDelay = 0
+
+        // Link plugin for pixel counter (HTML-mails only)
+        counterPixelPid = 269
+
+        // URL for hard-links in templates
+        baseUrl = https://www.hgon.de
+
         # cat=module.tx_rkwmailer; type=integer; label=URL for images in templates
-        basePathImages =  EXT:hgon_template/Resources/Public/Images
+        #basePathImages = EXT:hgon_template/Resources/Public/Images/
+        # path replace does not work in Newsletter-WebView by any reason
+        basePathImages = typo3conf/ext/hgon_template/Resources/Public/Images/
 
         # cat=module.tx_rkwmailer; type=integer; label=URL for logo in templates
-        basePathLogo = EXT:hgon_template/Resources/Public/Images/logo.png
+        #basePathLogo = EXT:hgon_template/Resources/Public/Images/Email/logo.png
+        # path replace does not work in Newsletter-WebView by any reason
+        basePathLogo = typo3conf/ext/hgon_template/Resources/Public/Images/Email/logo.png
+
     }
 }
 

@@ -10,10 +10,21 @@
             </div>
             <div class="flex-item">
                 <ul class="menu menu-social">
-                    <li><a class="link--social" href="{settings.twitter}"><svg width="18" height="18"><use xlink:href="#ui-twitter"></use></svg></a></li>
-                    <li><a class="link--social" href="{settings.youtube}"><svg width="18" height="18"><use xlink:href="#ui-youtube"></use></svg></a></li>
-                    <li><a class="link--social" href="{settings.facebook}"><svg width="16" height="16"><use xlink:href="#ui-facebook"></use></svg></a></li>
-                    <li><a href="mailto:info@hgon.de"><svg width="18" height="18"><use xlink:href="#ui-mail"></use></svg></a></li>
+                    <f:if condition="{settings.twitter}">
+                        <li><a class="link--social" href="{settings.twitter}"><svg width="18" height="18"><use xlink:href="#ui-twitter"></use></svg></a></li>
+                    </f:if>
+                    <f:if condition="{settings.youtube}">
+                        <li><a class="link--social" href="{settings.youtube}"><svg width="18" height="18"><use xlink:href="#ui-youtube"></use></svg></a></li>
+                    </f:if>
+                    <f:if condition="{settings.facebook}">
+                        <li><a class="link--social" href="{settings.facebook}"><svg width="16" height="16"><use xlink:href="#ui-facebook"></use></svg></a></li>
+                    </f:if>
+                    <f:if condition="{settings.instagram}">
+                        <li><a class="link--social" href="{settings.instagram}"><svg width="16" height="16"><use xlink:href="#ui-instagram"></use></svg></a></li>
+                    </f:if>
+                    <f:if condition="{settings.email}">
+                        <li><a href="mailto:{settings.email}"><svg width="18" height="18"><use xlink:href="#ui-mail"></use></svg></a></li>
+                    </f:if>
                 </ul>
             </div>
         </div>
@@ -39,9 +50,11 @@
                     <f:render partial="Navigation/Main" arguments="{_all}" />
                 </div>
 
-                <div class="flex-item">
-                    <f:render partial="Navigation/Meta" arguments="{_all}" />
-                </div>
+                <f:if condition="{settings.showMetaNav}">
+                    <div class="flex-item">
+                        <f:render partial="Navigation/Meta" arguments="{_all}" />
+                    </div>
+                </f:if>
             </div>
         </nav>
     </div>

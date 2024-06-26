@@ -56,6 +56,18 @@ globalWebsiteConfig {
         #logoBrokenLinkFile = {$globalWebsiteConfig.templatePaths.default.logos}/broken-link.png
 
         #socialMedia = 1
+
+        twitter = https://twitter.com/HGON_eV/
+        youtube = https://youtube.com/channel/UCPDDmNoVRKYFUXYEsITpYiw
+        facebook = https://facebook.com/hgon.de/
+        instagram = https://www.instagram.com/hgon_ev/
+
+        email = info@hgon.de
+
+        showMetaNav = 1
+        showJournal = 1
+        showMainFooter = 1
+        #showFooterContent = 1
     }
 
 

@@ -1,0 +1,78 @@
+/**! ==================================================
+ * HELPERS/Animations
+ * Fancy CSS Animations & Microinteractions
+ * ================================================== */
+.animate-up {
+	opacity:0;
+	visibility:hidden;
+	transform:translateY(15%);
+}
+
+.animate-stagger-up > div {
+	opacity:0;
+	visibility:hidden;
+	transform:translateY(15%);
+}
+
+.animate-left {
+	opacity:0;
+	visibility:hidden;
+	transform:translateX(-15%);
+}
+
+.animate-right {
+	opacity:0;
+	visibility:hidden;
+	transform:translateX(15%);
+}
+
+.btn.is-animated-submit {
+	position:relative;
+	transition:none;
+
+	.icon-loader, .icon-done, .icon-error {
+		position:absolute;
+		top:16px;
+		right:10px;
+		opacity:0;
+		visibility:hidden;
+	}
+
+	.icon-done, .icon-error {
+		right:32px;
+	}
+
+	.icon-loader {
+		animation:rotate 500ms ease infinite;
+	}
+}
+
+@keyframes rotate {
+	from {transform:rotate(0deg);}
+	to {transform:rotate(360deg);}
+}
+
+.form__field.is-animated {
+  position:relative;
+  margin-top:0.5em;
+
+  input {
+    outline:none;
+  }
+
+  span {
+    pointer-events: none;
+    position:absolute;
+    left:0.5em;
+    top:50%;
+    transform:translateY(-50%);
+    color:@color-text-light;
+    transition:100ms ease;
+
+    &.is-selected {
+      top:0%;
+      color:@color-primary;
+      font-size:75%;
+    }
+  }
+}

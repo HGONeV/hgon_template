@@ -1,3 +1,11 @@
-<f:render partial="Event/ListWorkGroup" arguments="{_all}"/>
 
-<f:render partial="Event/List" arguments="{_all}"/>
+<f:if condition="{isWorkGroup}">
+    <f:then>
+        <f:render partial="Event/List/WorkGroupListing" arguments="{_all}"/>
+    </f:then>
+    <f:else>
+        <f:render partial="Event/List/EventListing" arguments="{_all}"/>
+    </f:else>
+</f:if>
+
+

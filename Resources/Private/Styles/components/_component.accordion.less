@@ -1,0 +1,62 @@
+/**! ==================================================
+ * COMPONENTS/Accordion
+ * reusable material accordion
+ * ================================================== */
+.accordion {
+
+  .accordion__item {
+    position:relative;
+    margin-bottom:(@gap / 3);
+    overflow:hidden;
+
+    input {
+      position:absolute;
+      opacity:0;
+      z-index:-1;
+
+      &:checked ~ .accordion__item-content {
+        max-height:48em;
+      }
+
+      &:checked + label:after {
+        transform:rotate(45deg);
+      }
+    }
+
+    label {
+      display:block;
+      position:relative;
+      padding:(@gap / 2) (@gap / 1.5);
+      background-color:@color-gray-4;
+      color:@color-text;
+      .font-size(@p);
+      cursor:pointer;
+
+      &:after {
+        position:absolute;
+        top:0;
+        right:0;
+        height:100%;
+        width:45px;
+        content: "+";
+        .font-size(20);
+        line-height:48px;
+        text-align:center;
+        transition:@duration @ease;
+      }
+    }
+  }
+
+  .accordion__item-content {
+    max-height:0;
+    padding:0;
+    background-color:@color-gray-5;
+    overflow:hidden;
+    transition:@duration @ease;
+
+    p {
+      margin:0;
+      padding:(@gap * 1.5) @gap (@gap * 1.75);
+    }
+  }
+}

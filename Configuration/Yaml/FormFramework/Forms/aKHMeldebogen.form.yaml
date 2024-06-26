@@ -1,0 +1,365 @@
+
+renderingOptions:
+  submitButtonLabel: Absenden
+type: Form
+identifier: aKHMeldebogen
+label: 'AKH Meldebogen'
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: 'Meldung an Avifaunistische Kommision Hessen  {text-1}'
+      recipientAddress: '{text-24}'
+      recipientName: '{text-16}'
+      senderAddress: '{text-24}'
+      senderName: '{text-16}'
+      replyToAddress: avikh@hgon.de
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToSender
+  -
+    options:
+      subject: 'Meldung an Avifaunistische Kommision Hessen  {text-1}'
+      recipientAddress: avikh@hgon.de
+      recipientName: 'Avifaunistische Kommission Hessen'
+      senderAddress: '{text-24}'
+      senderName: '{text-16}'
+      replyToAddress: avikh@hgon.de
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      translation:
+        language: ''
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToReceiver
+  -
+    options:
+      message: "Vielen Dank für Ihre Meldung an die Avifaunistische Kommission Hessen. \nWir melden uns nach Prüfung der Beobachtung."
+    identifier: Confirmation
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Neue Seite'
+    type: Page
+    identifier: page-1
+    label: 'Meldebogen Avifaunistische Kommission Hessen'
+    renderables:
+      -
+        type: Fieldset
+        identifier: fieldset-1
+        label: ''
+        renderables:
+          -
+            type: GridRow
+            identifier: gridrow-1
+            label: 'Art und Anzahl'
+            renderables:
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-1
+                label: Vogelart
+                properties:
+                  fluidAdditionalAttributes:
+                    placeholder: Vogelart
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-3
+                label: Anzahl
+                properties:
+                  fluidAdditionalAttributes:
+                    placeholder: Anzahl
+                    required: required
+                  gridColumnClassAutoConfiguration:
+                    viewPorts:
+                      lg:
+                        numbersOfColumnsToUse: '2'
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-2
+                label: Alter/Geschlecht/Kleid
+                properties:
+                  fluidAdditionalAttributes:
+                    placeholder: Alter/Geschlecht/Kleid
+          -
+            type: GridRow
+            identifier: gridrow-2
+            label: 'Grid: Row'
+            renderables:
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-26
+                label: 'Erstes Datum'
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                    placeholder: tt.mm.JJJJ
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-27
+                label: 'Letztes Datum'
+                properties:
+                  fluidAdditionalAttributes:
+                    placeholder: tt.mm.JJJJ
+      -
+        type: Fieldset
+        identifier: fieldset-2
+        label: Beobachtungsort
+        renderables:
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-4
+            label: Beobachtungort
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-9
+            label: Koordinaten
+          -
+            type: GridRow
+            identifier: gridrow-3
+            label: 'Grid: Row'
+            renderables:
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-5
+                label: Kreis
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-6
+                label: Bundesland
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-8
+            label: Lebensraum
+      -
+        type: Fieldset
+        identifier: fieldset-3
+        label: Beobachtungsbedingungen
+        renderables:
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-14
+            label: 'Wetter (Bewölkung, Lichtverhältnisse,Wind, Beobachtungsrichtung)'
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-7
+            label: 'Optische Ausrüstung (Fernglas, Spektiv)'
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            type: GridRow
+            identifier: gridrow-4
+            label: 'Grid: Row'
+            renderables:
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-11
+                label: 'Entfernung zum Vogel'
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-12
+                label: 'Beobachtungsdauer (davon gut gesehen)'
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-13
+                label: Uhrzeit
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-10
+            label: 'Gleichzeitig anwesende vergleichbare Arten'
+            properties:
+              elementDescription: ''
+      -
+        type: Fieldset
+        identifier: fieldset-4
+        label: 'Beobachter&Melder'
+        renderables:
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-16
+            label: Name
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-24
+            label: Email
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+              -
+                identifier: EmailAddress
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-15
+            label: Telefonnummer
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-25
+            label: Adresse
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-21
+            label: 'Weitere Beobachter (Name, Anschrift, Tel.)'
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-17
+            label: 'Haben sie versucht, Mitbeobachter zur Bestätigung herbeizurufen?'
+          -
+            type: GridRow
+            identifier: gridrow-5
+            label: 'Grid: Row'
+            renderables:
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-18
+                label: 'Wer entdeckte den Vogel?'
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-19
+                label: 'Wer bestimmte ihn zuerst?'
+              -
+                defaultValue: ''
+                type: Text
+                identifier: text-20
+                label: 'Wer war mit der Bestimmung nicht einverstanden?'
+      -
+        type: Fieldset
+        identifier: fieldset-5
+        label: Dokumentation
+        renderables:
+          -
+            type: GridRow
+            identifier: gridrow-6
+            label: 'Grid: Row'
+            renderables:
+              -
+                properties:
+                  options:
+                    sofort: sofort
+                    'nach längerer Beobachtung': 'nach längerer Beobachtung'
+                    'nach Literaturstudium': 'nach Literaturstudium'
+                type: MultiCheckbox
+                identifier: multicheckbox-1
+                label: 'Wann wurde der Vogel bestimmt?'
+              -
+                properties:
+                  options:
+                    Fotos: Fotos
+                    Tonbandaufnahmen: Tonbandaufnahmen
+                    Präparat: Präparat
+                type: MultiCheckbox
+                identifier: multicheckbox-2
+                label: 'Beobachtung ist Belegt durch'
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-22
+            label: 'Wo sind die Belege archiviert (Name, Anschrift)?'
+          -
+            defaultValue: ''
+            type: Text
+            identifier: text-23
+            label: 'Falls Beobachtungen bereits veröffentlicht, wo und wann?'
+          -
+            properties:
+              saveToFileMount: '1:/user_upload/'
+              allowedMimeTypes:
+                - image/jpeg
+                - image/png
+                - image/bmp
+            type: ImageUpload
+            identifier: imageupload-1
+            label: Bildupload
+          -
+            properties:
+              saveToFileMount: '1:/user_upload/'
+              allowedMimeTypes:
+                - application/msword
+                - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                - application/msexcel
+                - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+                - application/pdf
+                - application/vnd.oasis.opendocument.text
+                - application/vnd.oasis.opendocument.spreadsheet-template
+            type: FileUpload
+            identifier: fileupload-1
+            label: 'Dokumente hochladen'
+      -
+        properties:
+          text: 'Beobachtungsumstände - Beschreibung des Vogels (Gesamteindruck, Größe, Gestalt, Färbung von Kopf,  Oberseite, Schwanz, Unterseite und Flügeln, Größe und Färbung von Schnabel und Beinen, Flugbild, Stimme, Verhalten) anhand Ihrer Feldnotizen - Wenn es der Klärung dient, versuchen Sie bitte, eine Skizze des Vogels anzufertigen  - Welche Kennzeichen oder  Körperteile wurden nicht  gesehen?  - Geben Sie bei gefangenen oder toten Vögeln bitte Maße, Mauserdaten usw. an - Mit welchen Arten könnte der Vogel verwechselt werden, und warum ist eine Verwechslung ausgeschlossen? - Geben Sie bitte Einzelheiten darüber an, ob Sie oder ein Mitbeobachter mit der Art oder ähnlichen Arten von früheren Begegnungen her vertraut sind - Welche Bestimmungsliteratur haben Sie während der Beobachtung, kurz darauf oder später zu Rate gezogen? - Bleiben irgendwelche Restzweifel an der Bestimmung?'
+        type: StaticText
+        identifier: statictext-1
+        label: 'Bitte machen Sie ausführliche Angaben zu folgenden Punkten:'
+      -
+        defaultValue: ''
+        type: Textarea
+        identifier: textarea-1
+        label: ''

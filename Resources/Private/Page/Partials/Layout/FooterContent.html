@@ -1,0 +1,28 @@
+<div class="footer__content">
+    <div class="flex-container space-between">
+
+        <f:render partial="Navigation/Footer" arguments="{_all}" />
+
+        <div class="flex-item c-3 / pt-1 pb-1">
+            <h6>Unterstützen Sie uns jetzt</h6>
+            <p>
+                Für unsere Naturschutzarbeit brauchen wir Ihre Unterstützung: Werden Sie aktiv oder bringen Sie mit Ihrer Spende wichtige Naturschutzprojekte auf den Weg.
+            </p>
+            <p>
+                <f:render partial="Navigation/Footer" arguments="{_all}" section="additional" />
+            </p>
+        </div>
+    </div>
+    <form class="footer__form / form form-newsletter form--plain">
+        <div class="flex-container center-main">
+            <f:comment>
+                <div class="flex-item flex-item--medium-half / align-center">
+                    <input name="email" id="email" placeholder="Ihre E-Mail-Adresse" type="email">
+                </div>
+            </f:comment>
+            <div class="flex-item flex-item--medium-half / align-center">
+                <f:link.page pageUid="{settings.newsletterRegPid}" class="btn btn--primary-light btn--rounded">Newsletter abonnieren</f:link.page>
+            </div>
+        </div>
+    </form>
+</div>

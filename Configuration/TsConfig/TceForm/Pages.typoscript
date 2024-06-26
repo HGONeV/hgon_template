@@ -9,6 +9,12 @@ TCEFORM {
         tx_rkwbasics_information.disabled = 1
         tx_rkwauthors_authorship.disabled = 1
         tx_rkwbasics_css_class.disabled = 1
+
+        tx_rkwbasics_series.disabled = 1
+        tx_rkwbasics_enterprisesize.disabled = 1
+        tx_rkwbasics_sector.disabled = 1
+        tx_bmpdf2content_is_import.disabled = 1
+
     }
 
     tx_rkwevents_domain_model_event {
@@ -22,13 +28,28 @@ TCEFORM {
         series.disabled = 1
         partner.disabled = 1
         testimonials.disabled = 1
-        costs_reg.disabled = 1
-        costs_red.disabled = 1
-        costs_red_condition.disabled = 1
-        costs_tax.disabled = 1
+        #currency.disabled = 1
+        #costs_reg.disabled = 1
+        #costs_red.disabled = 1
+        #costs_red_condition.disabled = 1
+        #costs_tax.disabled = 1
         online_event.disabled = 1
+        sheet.disabled = 1
+        sheet_records.disabled = 1
+        reg_single.disabled = 1
+
+        // quick-change for labels
+        gallery1.label = Galerie
+        presentations.label = Downloads
+
+        internal_contact.config.foreign_table_where = ORDER BY tx_rkwauthors_domain_model_authors.last_name ASC
     }
 
+    tx_rkwevents_domain_model_eventreservation {
+        add_person.disabled = 1
+    }
+
+    }
     # for secure: Disable possible problem fields
     tx_rkwbasics_domain_model_department {
         name.disabled = 1
@@ -39,7 +60,8 @@ TCEFORM {
 
     tx_rkwauthors_domain_model_authors {
         department_name.disabled = 1
-        internal.disabled = 1
+        // show option to use it (if authors not internal, they not shown in events e.g.)
+        #internal.disabled = 1
         show_work.disabled = 1
         image_boxes_is_logo.disabled = 1
         image_big.disabled = 1

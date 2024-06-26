@@ -1,0 +1,229 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+{namespace rkwBasics=RKW\RkwBasics\ViewHelpers}
+{namespace rkwNewsletter=RKW\RkwNewsletter\ViewHelpers}
+{namespace hgonTemplate=HGON\HgonTemplate\ViewHelpers}
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+    <f:if condition="<f:count><hgonTemplate:newsletter.getArticleRecords issue='{issue}' /></f:count>">
+        ##################################################\n
+        Empfehlungen\n
+        ##################################################\n\n
+        <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='article-{queueMail.uid}' />">
+            <f:then>
+                <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="article-{queueMail.uid}" />
+            </f:then>
+            <f:else>
+                <f:format.raw>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="article-{queueMail.uid}">
+                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
+                            <f:for each="<hgonTemplate:newsletter.getArticleRecords issue='{issue}' />" as="article" iteration="iter">
+                                ==================================================\n
+                                {article.name}\n
+                                ==================================================\n
+                                <f:format.stripTags>
+                                    <rkwMailer:frontend.replace.rteLinks plaintextFormat="true">
+                                        <f:format.raw>
+                                            <rkwMailer:plaintextLineBreaks keepLineBreaks="true">{article.description}</rkwMailer:plaintextLineBreaks>
+                                        </f:format.raw>
+                                    </rkwMailer:frontend.replace.rteLinks>
+                                </f:format.stripTags>
+                            </f:for>
+                        </rkwMailer:frontend.replace.redirectLinks>
+                    </rkwMailer:cache.setRenderCache>
+                </f:format.raw>
+            </f:else>
+        </f:if>
+    </f:if>\n\n
+</f:section>
+
+
+<!-- HTML -->
+<f:section name="Html">
+
+    <f:if condition="<f:count><hgonTemplate:newsletter.getArticleRecords issue='{issue}' /></f:count>">
+        <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='article-{queueMail.uid}' />">
+            <f:then>
+                <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="article-{queueMail.uid}" />
+            </f:then>
+            <f:else>
+                <f:format.raw>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="article-{queueMail.uid}">
+                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
+
+                            <f:render section="htmlHeadline" />
+
+                            <f:for each="<hgonTemplate:newsletter.getArticleRecords issue='{issue}' />" as="article" iteration="iter">
+                                <f:render section="htmlArticleItemHeader" arguments="{_all}" />
+                                <f:render section="htmlArticleItemBody" arguments="{_all}" />
+
+                                <f:comment><!-- space below --></f:comment>
+                                <f:render section="spaceHorizontal" />
+
+                            </f:for>
+                        </rkwMailer:frontend.replace.redirectLinks>
+                    </rkwMailer:cache.setRenderCache>
+                </f:format.raw>
+            </f:else>
+        </f:if>
+    </f:if>
+
+</f:section>
+
+
+<f:section name="htmlHeadline">
+    <div style="Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0;text-align:center;vertical-align:top;">
+                    <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td style="vertical-align:top;padding-bottom:15px;">
+                                        <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="headline" style="font-size:0px;padding:0;word-break:break-word;" align="left">
+                                                        <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                                            <h2 style="margin: 48px 0 0 0; color: #869733; font-size: 18px; letter-spacing: .4px; text-transform: uppercase; font-weight: 600;">Empfehlungen<a id="article-anchor" name="topic-{itemId}"></a></h2>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</f:section>
+
+<f:section name="htmlArticleItemHeader">
+    <div style="background:#F8F8F6;background-color:#F8F8F6;Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="background:#F8F8F6;background-color:#F8F8F6;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:40px 15px 0;text-align:center;vertical-align:top;">
+
+                    <div class="mj-column-px-550 outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;">
+
+                        <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody><tr>
+                                    <td class="text" style="line-height: 26px; font-size: 0px; padding: 0; word-break: break-word;" align="left">
+                                        <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                            <h3 style="line-height: 30px; font-size: 24px; margin: 0; padding: 0; font-weight: 600;">{article.name}</h3>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody></table>
+                        </div>
+
+                    </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</f:section>
+
+<f:section name="htmlArticleItemBody">
+
+    <div style="background:#F8F8F6;background-color:#F8F8F6;Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="background:#F8F8F6;background-color:#F8F8F6;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:0 15px 40px;text-align:center;vertical-align:top;">
+
+                    <div class="mj-column-px-350 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding-top:20px;padding-right:25px;">
+                                    <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text" style="line-height: 26px; font-size: 0px; padding: 0; word-break: break-word;" align="left">
+                                                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                                        <p style="line-height: 26px; font-size: 16px;"><f:format.stripTags>{article.description}</f:format.stripTags></p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mj-column-px-200 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="vertical-align:top;padding-top:30px;">
+                                    <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+                                                    <table role="presentation" style="border-collapse:collapse;border-spacing:0px;" cellspacing="0" cellpadding="0" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="width:200px;">
+                                                                    <f:if condition="{article.txHgontemplateImage}">
+                                                                        <f:image image="{article.txHgontemplateImage}" treatIdAsReference="true" absolute="false" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;" width="200c" height="auto" />
+                                                                    </f:if>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</f:section>
+
+<f:section name="spaceHorizontal">
+    <div style="Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+                <tr>
+                    <td style="direction:ltr;font-size:0px;padding:0;text-align:center;vertical-align:top;">
+                        <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size:0px;word-break:break-word;">
+
+                                            <div style="height:24px;"> &nbsp; </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</f:section>

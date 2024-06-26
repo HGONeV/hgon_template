@@ -26,11 +26,11 @@
 
                 <f:render partial="Navigation/SubPageSingle" arguments="{_all}" />
 
+                <f:render partial="Layout/Sidebar" arguments="{_all}" />
+
                 <f:format.html parseFuncTSPath="">
                     {relatedNews}
                 </f:format.html>
-
-                <f:render partial="Layout/Sidebar" arguments="{_all}" />
 
                 <f:format.html parseFuncTSPath="">
                     {donationProject}

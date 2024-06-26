@@ -1,0 +1,101 @@
+
+renderingOptions:
+  submitButtonLabel: Submit
+identifier: zeitspende
+label: Zeitspende
+type: Form
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: 'Your message: {subject}'
+      recipientAddress: your.company@example.com
+      recipientName: 'Your Company name'
+      senderAddress: '{email}'
+      senderName: '{name}'
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      translation:
+        language: ''
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToReceiver
+  -
+    options:
+      subject: 'Mitmachen-formular: Eine neue Nachricht'
+      recipientAddress: info@hgon.de
+      recipientName: ''
+      senderAddress: info@hgon.de
+      senderName: ''
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToSender
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Neue Seite'
+    identifier: page-1
+    label: 'Ich will mitmachen!'
+    type: Page
+    renderables:
+      -
+        defaultValue: ''
+        identifier: name
+        label: Name
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Name
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        identifier: subject
+        label: Subject
+        type: Text
+        renderingOptions:
+          enabled: false
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Subject
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        identifier: email
+        label: Email
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: 'Email address'
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+      -
+        defaultValue: ''
+        identifier: message
+        label: Message
+        type: Textarea
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: ''
+        validators:
+          -
+            identifier: NotEmpty

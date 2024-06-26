@@ -2,9 +2,14 @@
 <section class="article article--fullwidth">
     <h2>Veranstaltungen</h2>
 
-    <f:render partial="Event/List/EventListing" arguments="{_all}" />
+    <div id="tx-rkwevents-grid-section">
+        <f:render partial="Event/List/EventListing" arguments="{_all}" />
+    </div>
 
 </section>
 
 <!-- lazy loading / load more box -->
 <f:render partial="Event/List/MoreLink" arguments="{_all}" />
+
+<f:comment><!-- give more button on page bottom some space --></f:comment>
+<br />

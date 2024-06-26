@@ -1,0 +1,41 @@
+plugin.tx_hgondonation {
+    settings {
+        rkwAuthorContactPerson = 2
+    }
+}
+
+plugin.tx_hgonpayment {
+    settings {
+        api {
+            # Muss leider sein: Unkorrekte URL, weil PayPal hier ein .local nicht akzeptiert und Fehler wirft
+            cancelUrl = http://stage.hgon.de/mitmachen
+        }
+    }
+}
+
+# Module configuration
+module.tx_rkwmailer {
+
+    settings {
+
+        // Page for redirect plugin
+        redirectPid = 97
+
+        // Link plugin for pixel counter (HTML-mails only)
+        counterPixelPid = 97
+
+        # URL for hard-links in templates
+        baseUrl = http://hgon.rkw.local
+    }
+}
+
+plugin.tx_rkwregistration {
+    persistence {
+        # cat=plugin.tx_rkwregistration//a; type=string; label=Default storage PID
+        storagePid = 98
+    }
+}
+
+
+
+

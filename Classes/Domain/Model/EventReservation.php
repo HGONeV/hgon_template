@@ -25,6 +25,20 @@ namespace HGON\HgonTemplate\Domain\Model;
 class EventReservation extends \RKW\RkwEvents\Domain\Model\EventReservation
 {
     /**
+     * txHgontemplatePaymenttype
+     *
+     * @var integer
+     */
+    protected $txHgontemplatePaymenttype = null;
+
+    /**
+     * txHgontemplateEventcosts
+     *
+     * @var string
+     */
+    protected $txHgontemplateEventcosts = null;
+
+    /**
      * txHgontemplateEventculinary
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\EventCulinary>
@@ -51,7 +65,41 @@ class EventReservation extends \RKW\RkwEvents\Domain\Model\EventReservation
      */
     protected function initStorageObjects()
     {
+        parent::initStorageObjects();
+        $this->addPerson = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateEventculinary = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTxHgontemplatePaymenttype()
+    {
+        return $this->txHgontemplatePaymenttype;
+    }
+
+    /**
+     * @param int $txHgontemplatePaymenttype
+     */
+    public function setTxHgontemplatePaymenttype($txHgontemplatePaymenttype)
+    {
+        $this->txHgontemplatePaymenttype = $txHgontemplatePaymenttype;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTxHgontemplateEventcosts()
+    {
+        return $this->txHgontemplateEventcosts;
+    }
+
+    /**
+     * @param string $txHgontemplateEventcosts
+     */
+    public function setTxHgontemplateEventcosts($txHgontemplateEventcosts)
+    {
+        $this->txHgontemplateEventcosts = $txHgontemplateEventcosts;
     }
 
     /**

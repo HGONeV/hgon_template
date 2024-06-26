@@ -34,7 +34,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
     <f:render partial="FormErrors" arguments="{for:frontendUser}" />
 
-    <f:form class="form-fields" enctype="multipart/form-data" action="update" >
+    <f:form class="form" enctype="multipart/form-data" action="update" >
 
         <div class="v320-1-of-2">
 
@@ -44,17 +44,23 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
             <f:render partial="Subscription/Topics" arguments="{_all}" />
 
-            <p class="v320-1">
-                <span class="checkbox">
-                    <label>
-                        <f:form.checkbox name="privacy" value="1" checked="{privacy}"/>
-                        <rkwRegistration:privacyText textVersion="newsletter" />
-                    </label>
-                </span>
-            </p>
+            <label class="checkbox">
+                    <span class="checkbox__input">
+                        <f:form.checkbox id="privacy-button" class="input input-radio" name="privacy" value="1" />
+                        <label for="privacy-button"></label>
+                    </span>
+                <span class="checkbox__label">
+                        <f:format.raw>
+                            <rkwRegistration:privacyText textVersion="newsletter" />
+                        </f:format.raw>
+                    </span>
+            </label>
+
+
+
 
             <p class="v320-1">
-                <f:form.submit class="button" value='<f:translate key="templates_subscription_edit.subscribe" />' />
+                <f:form.submit class="btn btn--primary btn--rounded" value='<f:translate key="templates_subscription_edit.subscribe" />' />
             </p>
 
         </div>

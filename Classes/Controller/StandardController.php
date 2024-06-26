@@ -68,6 +68,22 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected $didYouKnowRepository = null;
 
     /**
+     * projectsRepository
+     *
+     * @var \HGON\HgonTemplate\Domain\Repository\ProjectsRepository
+     * @inject
+     */
+    protected $projectsRepository = null;
+
+    /**
+     * donationRepository
+     *
+     * @var \HGON\HgonDonation\Domain\Repository\DonationRepository
+     * @inject
+     */
+    protected $donationRepository = null;
+
+    /**
      * cacheManager
      *
      * @var \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend
@@ -201,7 +217,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         // Get (direct) sub-pages of this siblings -> delivers NOT the whole pagetree!
         /** @var \HGON\HgonTemplate\Domain\Model\Pages $siblingPages */
         foreach ($siblingPagesList as $siblingPages) {
-            $subPagesList = $this->pagesRepository->findByPid($siblingPages->getUid());
+            $subPagesList = $this->pagesRepository->findByPid($siblingPages->getUid())->toArray();
+            shuffle($subPagesList);
             foreach ($subPagesList as $subPages) {
                 $siblingPages->addSubPages($subPages);
             }
@@ -343,5 +360,59 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     {
         // showMapsPidList (if current PID is registered in $this->settings['showMapsPidList'])
         $this->view->assign('showMaps', in_array(intval($GLOBALS['TSFE']->id), GeneralUtility::trimExplode(',', $this->settings['showMapsPidList'])));
+    }
+
+
+
+    /**
+     * action projectPartner
+     *
+     *
+     * @param \RKW\RkwProjects\Domain\Model\Projects $project
+     * @return void
+     */
+    public function projectPartnerAction(\RKW\RkwProjects\Domain\Model\Projects $project = null)
+    {
+        // if set via flexform: Override in any case
+        if ($this->settings['projectPartner']['projectUid']) {
+            $projectUid = intval($this->settings['projectPartner']['projectUid']);
+            $project = $this->projectsRepository->findByIdentifier($projectUid);
+        }
+
+        if (!$project) {
+            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgontemplate_project');
+            $projectUid = preg_replace('/[^0-9]/', '', $getParams['project']);
+            $project = $this->projectsRepository->findByIdentifier(intval($projectUid));
+        }
+
+        if (!$project) {
+            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail');
+
+            if (key_exists('donation', $getParams)) {
+                $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
+            } else {
+                // Workground in relation to FormExt: Although we got this params here, the GP vars above delivers some crap
+                $donationUid = preg_replace('/[^0-9]/', '', $_GET['tx_hgondonation_detail']['donation']);
+            }
+
+            /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
+            $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
+            $project = $donation->getTxRkwprojectProject();
+
+        }
+
+        $this->view->assign('project', $project);
+    }
+
+
+
+    /**
+     * action authorList
+     *
+     * @return void
+     */
+    public function authorListAction()
+    {
+        $this->view->assign('authorList', $this->authorsRepository->findByUidList($this->settings['authorList']['authorUidList']));
     }
 }

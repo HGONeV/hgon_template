@@ -1,0 +1,144 @@
+
+renderingOptions:
+  submitButtonLabel: Absenden
+identifier: shop-Formular_1
+label: Shop-Formular
+type: Form
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: 'Kontaktformular:  {subject}'
+      recipientAddress: info@hgon.de
+      recipientName: 'HGON Geschäftsstelle'
+      senderAddress: '{email}'
+      senderName: '{name}'
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      translation:
+        language: ''
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToReceiver
+  -
+    options:
+      subject: 'HGON Kontaktformular:  {subject}'
+      recipientAddress: '{email}'
+      recipientName: '{name}'
+      senderAddress: info@hgon.de
+      senderName: 'HGON Geschäftstelle'
+      replyToAddress: info@hgon.de
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToSender
+  -
+    options:
+      message: 'Danke für die Nachricht. Wir melden uns schnellstmöglich zurück.'
+    identifier: Confirmation
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: ''
+      nextButtonLabel: 'Nachricht senden'
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        defaultValue: ''
+        identifier: name
+        label: Name
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Name
+            required: required
+            minlength: '3'
+            maxlength: '999'
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            options:
+              minimum: '3'
+              maximum: '999'
+            identifier: StringLength
+      -
+        defaultValue: ''
+        identifier: email
+        label: Email
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: 'Email address'
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-1
+        label: Telefon
+      -
+        defaultValue: ''
+        identifier: subject
+        label: Betreff
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: Betreff
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        identifier: message
+        label: Nachricht
+        type: Textarea
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: ''
+            required: required
+            minlength: '10'
+            maxlength: '9999'
+          elementDescription: 'Beachten Sie: Nicht alle Größen und Farben sind dauerhaft verfügbar. Bitte nenne direkt deine Größe und Farbwünsche.'
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            options:
+              minimum: '10'
+              maximum: '9999'
+            identifier: StringLength
+      -
+        type: Fieldset
+        identifier: fieldset-1
+        label: 'Ich habe Interesse an...'
+        renderables:
+          -
+            type: Checkbox
+            identifier: checkbox-1
+            label: '...einem HGON-Shirt (20 €)'
+          -
+            type: Checkbox
+            identifier: checkbox-2
+            label: '...einer HGON-Kappe (15 €)'
+          -
+            type: Checkbox
+            identifier: checkbox-3
+            label: '...einer HGON-Wintermütze (20 €)'

@@ -6,27 +6,17 @@
 <f:section name="Plaintext">
     <f:if condition="{pages}">
         <f:for each="{pages}" as="page">
-            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='{page.uid}-{webView}-{includeEditorials}' />">
+            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='{page.uid}-{webView}-false' />">
                 <f:then>
-                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
+                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-false" marker="{pagesOrder : pagesOrder}"/>
                 </f:then>
-
                 <f:else>
-                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}">
-                        <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}" isPlaintext="true">
-                            <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='{includeEditorials}' />" as="content" iteration="itemIterator">
-                                <f:if condition="{iterator.cycle} < {maxItemsPerTopic}">
-                                    <f:then>
-                                        <f:render partial="Default/Items/Default" section="Plaintext" arguments="{_all}" />\n\n
-                                    </f:then>
-                                    <f:else>
-                                        <f:if condition="{itemIterator.isLast}">
-                                            <f:render partial="Default/Items/More" section="Plaintext" arguments="{_all}" />\n\n
-                                        </f:if>
-                                    </f:else>
-                                </f:if>
+                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext="true" additionalIdentifier="{page.uid}-{webView}-false" marker="{pagesOrder : pagesOrder}">
+                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}" isPlaintext="true">
+                            <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='false' />" as="content" iteration="itemIterator">
+                                <f:render partial="Default/Items/Default" section="Plaintext" arguments="{_all}" />\n\n
                             </f:for>
-                        </rkwMailer:frontend.replaceLinksRedirect>
+                        </rkwMailer:frontend.replace.redirectLinks>
                     </rkwMailer:cache.setRenderCache>
                 </f:else>
             </f:if>
@@ -39,120 +29,36 @@
 <f:section name="Html">
     <f:if condition="{pages}">
 
-        <!-- Agenda -->
-        <f:render partial="Default/SpecialHtmlParts" section="part5" />
-        <div class="agenda" style="background:#F8F8F6;background-color:#F8F8F6;Margin:0px auto;max-width:670px;">
-            <table role="presentation" style="background:#F8F8F6;background-color:#F8F8F6;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
-                <tbody>
-                    <tr>
-                        <td style="direction:ltr;font-size:0px;padding:30px 15px;text-align:center;vertical-align:top;">
-                            <!--[if mso | IE]>
-                            <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+        <f:for each="{pages}" as="page" iteration="pageIterator">
 
-                                <tr>
+            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='{page.uid}-{webView}-false' />">
+                <f:then>
+                    <f:format.raw>
+                        <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-false" marker="{pagesOrder : pagesOrder}"/>
+                    </f:format.raw>
+                </f:then>
+                <f:else>
+                    <f:format.raw>
+                        <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-false" marker="{pagesOrder : pagesOrder}">
+                            <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
+                                <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='false' />" as="content" iteration="itemIterator">
+                                    <!-- normal -->
+                                    <f:if condition="{webView}">
+                                        <f:then>
+                                            <f:render partial="Items/Default" section="Html" arguments="{_all}" />
+                                        </f:then>
+                                        <f:else>
+                                            <f:render partial="Default/Items/Default" section="Html" arguments="{_all}" />
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
+                            </rkwMailer:frontend.replace.redirectLinks>
+                        </rkwMailer:cache.setRenderCache>
+                    </f:format.raw>
+                </f:else>
+            </f:if>
 
-                                    <td
-                                        class="" style="vertical-align:top;width:550px;"
-                                    >
-                            <![endif]-->
-                            <div class="mj-column-px-550 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                                <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
-                                    <tbody>
-                                        <tr>
-                                            <td class="uppercase" style="letter-spacing: .4px; text-transform: uppercase; font-size: 0px; padding: 0; word-break: break-word;" align="left">
-                                                <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
-                                                    <h3 style="margin: 0; font-weight: 600;">In diesem Newsletter</h3>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-size:0px;padding:0;padding-top:15px;word-break:break-word;" align="left">
-                                                <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:left;color:#212121;">
-                                                    <ul style="list-style-type:none; padding-left: 0; margin: 0;">
-                                                        <f:for each="{pages}" as="page" iteration="pageIterator">
-
-                                                            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='{page.uid}-{webView}-{includeEditorials}' />">
-                                                                <f:then>
-                                                                    <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}"/>
-                                                                </f:then>
-                                                                <f:else>
-                                                                    <f:format.raw>
-                                                                        <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-{includeEditorials}" marker="{pagesOrder : pagesOrder}">
-                                                                            <rkwMailer:frontend.replaceLinksRedirect queueMail="{queueMail}">
-
-                                                                                <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='{includeEditorials}' />" as="content" iteration="itemIterator">
-
-                                                                                    <f:if condition="{content.txRkwnewsletterIsEditorial}">
-                                                                                        <f:comment>
-                                                                                            <f:then>
-
-                                                                                                <!-- editorial -->
-                                                                                                <f:comment>
-
-                                                                                                    <!-- erstmal auskommentiert, weil die RkwNewsletter original files den alten typolink viewhelper nutzen-->
-                                                                                                    <f:render partial="Default/Items/Editorial" section="Html" arguments="{_all}" />
-
-                                                                                                </f:comment>
-
-                                                                                            </f:then>
-                                                                                        </f:comment>
-                                                                                        <f:else>
-
-                                                                                            <f:if condition="{itemIterator.cycle} < {maxItemsPerTopic}">
-                                                                                                <f:then>
-
-                                                                                                    <!-- normal xxx -->
-                                                                                                    <f:render partial="Default/Items/Default" section="Html" arguments="{_all}" />
-
-                                                                                                </f:then>
-                                                                                                <f:else>
-                                                                                                    <f:if condition="{itemIterator.isLast}">
-                                                                                                        <!-- more link -->
-                                                                                                        <tr>
-                                                                                                            <td style="padding: 16px 16px 0">
-                                                                                                                <f:render partial="Default/Items/More" section="Html" arguments="{_all}" />
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </f:if>
-                                                                                                </f:else>
-                                                                                            </f:if>
-                                                                                        </f:else>
-                                                                                    </f:if>
-                                                                                 </f:for>
-                                                                            </rkwMailer:frontend.replaceLinksRedirect>
-                                                                        </rkwMailer:cache.setRenderCache>
-                                                                    </f:format.raw>
-                                                                </f:else>
-                                                            </f:if>
-                                                        </f:for>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--[if mso | IE]>
-                            </td>
-
-                            </tr>
-
-                            </table>
-                            <![endif]-->
-                        </td>
-
-                    </tr>
-
-
-                </tbody>
-            </table>
-        </div>
-
+        </f:for>
     </f:if>
-
-
-
-
-
 
 </f:section>

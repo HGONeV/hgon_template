@@ -2,12 +2,9 @@
 // Global settings
 //############################################################################
 
-plugin.tx_rkwtemplate_config {
-    baseURL = http://hgon.local/
-}
 
 config {
-    baseURL = http://hgon.local/
+    baseURL = https://www.hgon.de/
 
     spamProtectEmailAddresses = 2
     spamProtectEmailAddresses_atSubst = (at)
@@ -65,16 +62,3 @@ config {
         htmlTag_setParams = lang="en" dir="ltr" class="no-js"
     }
 [global]
-
-[hostname = hgon.faesslerweb.de] || [globalString = IENV:HTTP_HOST = hgon.faesslerweb.de]
-    plugin.tx_rkwtemplate_config {
-        baseURL = http://hgon.faesslerweb.de/
-    }
-
-    config {
-        baseURL = http://hgon.faesslerweb.de/
-    }
-[global]
-
-
-

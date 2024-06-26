@@ -1,0 +1,75 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+    <f:if condition="{pages}">
+        <f:for each="{pages}" as="page" iteration="pageIterator">
+            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' isPlaintext='true' additionalIdentifier='{page.uid}-{webView}-true' />">
+                <f:then>
+                    <f:format.raw>
+                        <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}"/>
+                    </f:format.raw>
+                </f:then>
+                <f:else>
+                    <f:format.raw>
+                        <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='true' />" as="content" iteration="itemIterator">
+                            <f:if condition="{content.txRkwnewsletterIsEditorial}">
+                                <f:then>
+                                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" isPlaintext='true' additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}">
+                                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
+                                            <f:render partial="Default/Items/Editorial" section="Plaintext" arguments="{_all}" />
+                                        </rkwMailer:frontend.replace.redirectLinks>
+                                    </rkwMailer:cache.setRenderCache>
+                                </f:then>
+                            </f:if>
+                        </f:for>
+                    </f:format.raw>
+                </f:else>
+            </f:if>
+        </f:for>
+    </f:if>
+</f:section>
+
+
+
+<!-- HTML for all other items -->
+<f:section name="Html">
+
+    <f:if condition="{pages}">
+        <f:for each="{pages}" as="page" iteration="pageIterator">
+            <f:if condition="<rkwMailer:cache.hasRenderCache queueMail='{queueMail}' additionalIdentifier='{page.uid}-{webView}-true' />">
+                <f:then>
+                    <f:format.raw>
+                        <rkwMailer:cache.getRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}"/>
+                    </f:format.raw>
+                </f:then>
+                <f:else>
+                    <f:format.raw>
+                        <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' includeEditorials='true' />" as="content" iteration="itemIterator">
+                            <f:if condition="{content.txRkwnewsletterIsEditorial}">
+                                <f:then>
+                                    <rkwMailer:cache.setRenderCache queueMail="{queueMail}" additionalIdentifier="{page.uid}-{webView}-true" marker="{pagesOrder : pagesOrder}">
+                                        <rkwMailer:frontend.replace.redirectLinks queueMail="{queueMail}">
+                                            <!-- editorial -->
+                                            <f:if condition="{webView}">
+                                                <f:then>
+                                                    <f:render partial="Items/Editorial" section="Html" arguments="{_all}" />
+                                                </f:then>
+                                                <f:else>
+                                                    <f:render partial="Default/Items/Editorial" section="Html" arguments="{_all}" />
+                                                </f:else>
+                                            </f:if>
+                                        </rkwMailer:frontend.replace.redirectLinks>
+                                    </rkwMailer:cache.setRenderCache>
+                                </f:then>
+                            </f:if>
+                        </f:for>
+                    </f:format.raw>
+                </f:else>
+            </f:if>
+
+        </f:for>
+    </f:if>
+
+</f:section>

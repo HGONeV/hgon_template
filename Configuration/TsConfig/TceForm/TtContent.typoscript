@@ -4,8 +4,8 @@ TCEFORM {
         # adjustments for change to FCS (use "textmedia" instead of "text", "textpic", "image" etc)
         # and remove anything, what  we don't needed (actually)
         CType {
-            removeItems = header, text, textpic, image, bullets, table, multimedia, media, mailform, search, login, menu, shortcut, html, script, splash, div
-            #removeItems = text, textpic, image, media
+            removeItems = header, text, textpic, image, bullets, table, multimedia, media, mailform, search, login, menu, shortcut, script, splash, div
+            #removeItems = text, textpic, image, media, html
         }
 
         imageorient {
@@ -47,6 +47,11 @@ TCEFORM {
                 61 = Slider: Fotoshow
                 65 = Fotoshow (Lightbox Gallerie)
                 70 = Zitat (ohne Bild)
+                75 = Kacheln klein (3 Bilder)
+                76 = Kacheln mittel (2 Bilder)
+                77 = Kacheln groß (1 Bild)
+                80 = Zentrierter Text
+                85 = Teammitglied-Box (Bild + Text)
 
             }
 

@@ -53,7 +53,7 @@ page.10 {
         50 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
         50 {
             special = directory
-            special.value.data = leveluid : -1
+            special.value.data = leveluid : -2
             levels = 2
             as = menuSubPage
         }

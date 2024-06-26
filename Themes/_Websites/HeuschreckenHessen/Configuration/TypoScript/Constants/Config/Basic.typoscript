@@ -1,0 +1,35 @@
+// ############################################################################
+// Global paths
+// ############################################################################
+globalWebsiteConfig {
+	templatePaths {
+		default {
+			# private
+			#layouts = EXT:hgon_template/Themes/_Websites/HeuschreckenHessen/Resources/Private/Page/Layouts/
+			#partials = EXT:hgon_template/Themes/_Websites/HeuschreckenHessen/Resources/Private/Page/Partials/
+			#templates = EXT:hgon_template/Themes/_Websites/HeuschreckenHessen/Resources/Private/Page/Templates/
+
+            #logos = EXT:hgon_template/Themes/_Websites/HeuschreckenHessen/Resources/Public/Logos
+		}
+
+	}
+
+	// IMPORTANT: With / at the end for ClickEnlarge
+	baseUrl = https://www.heuschrecken-hessen.de/
+
+    website {
+        name = Rebhühner in Hessen
+        description = Hessische Gesellschaft für Ornithologie und Naturschutz e.V.
+
+        #logoFile = {$globalWebsiteConfig.templatePaths.default.logos}/logo-ak-libellen.png
+        #logoFileSmall = {$globalWebsiteConfig.templatePaths.default.logos}/logo-ak-libellen.png
+
+        email = info@heuschrecken-hessen.de
+
+        showMetaNav = 0
+        showJournal = 0
+        showMainFooter = 0
+    }
+
+
+}

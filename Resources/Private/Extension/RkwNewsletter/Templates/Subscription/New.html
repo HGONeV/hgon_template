@@ -37,20 +37,18 @@ Otherwise your changes will be overwritten the next time you save the extension 
         <f:render partial="FormErrors" arguments="{for:frontendUser}" />
 
         <h2>Newsletter Anmeldung</h2>
-
-        <f:comment>
-            <!-- Newsletter topics -->
-            <p class="v320-1"><strong><f:translate key="templates_subscription_new.topics" /></strong></p>
-            <f:render partial="Subscription/Topics" arguments="{_all}" />
-
-            <p class="v320-1">&nbsp;</p>
-        </f:comment>
+        <!-- Newsletter topics -->
+        <f:render partial="Subscription/Topics" arguments="{_all}" />
 
         <!-- User data -->
         <f:comment>
             <p class="v320-1"><strong><f:translate key="templates_subscription_new.userData" /></strong></p>
         </f:comment>
         <f:render partial="Subscription/User" arguments="{_all}" />
+
+        <p>
+            <f:render partial="Subscription/CaptchaElement" />
+        </p>
 
         <p class="form__field">
             <span class="checkbox-group">
@@ -79,6 +77,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                 </label>
             </span>
         </p>
+
         <p>
             <f:form.submit class="btn btn--primary btn--rounded" value='<f:translate key="templates_subscription_new.subscribe" />' />
         </p>

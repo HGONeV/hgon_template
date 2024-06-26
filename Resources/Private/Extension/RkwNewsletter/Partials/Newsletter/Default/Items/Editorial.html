@@ -1,0 +1,55 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext" >
+    <f:render partial="Default/Items/Editorial/Content" section="Plaintext" arguments="{_all}" />
+    <f:render partial="Default/Items/Editorial/Contact" section="Plaintext" arguments="{_all}" />
+</f:section>
+
+
+<!-- HTML for all other items -->
+<f:section name="Html">
+
+    <div class="intro" style="background:white;background-color:white;Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="background:white;background-color:white;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+                <tr>
+                    <td style="direction:ltr;font-size:0px;padding:50px 15px 30px;text-align:center;vertical-align:top;">
+                        <div class="mj-column-px-550 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td class="text" style="line-height: 26px; font-size: 0px; padding: 0; word-break: break-word;" align="left">
+                                            <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+
+                                                <f:if condition="{webView}">
+                                                    <f:then>
+                                                        <!-- Content -->
+                                                        <f:render partial="Items/Editorial/Content" section="Html" arguments="{_all}" />
+                                                        <!-- Contact -->
+                                                        <f:render partial="Items/Editorial/Contact" section="Html" arguments="{_all}" />
+                                                    </f:then>
+                                                    <f:else>
+                                                        <!-- Content -->
+                                                        <f:render partial="Default/Items/Editorial/Content" section="Html" arguments="{_all}" />
+                                                        <!-- Contact -->
+                                                        <f:render partial="Default/Items/Editorial/Contact" section="Html" arguments="{_all}" />
+                                                    </f:else>
+                                                </f:if>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</f:section>
+
+

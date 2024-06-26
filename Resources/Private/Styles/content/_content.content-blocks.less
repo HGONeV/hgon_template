@@ -1,0 +1,70 @@
+/**! ==================================================
+ * CONTENT/Block
+ *  content block elements
+ * ================================================== */
+.content {
+  width:100%;
+  margin:0 auto;
+  display: flex;
+  max-width: @layout-max-width;
+  margin-top: 2*@gap;
+  margin-bottom: 2*@gap;
+  @media @mq-smalldesk {
+    justify-content: space-between;
+  }
+  @media @mq-medium {
+    flex-wrap: wrap;
+  }
+  .article, .sidebar {
+    padding: @gap;
+  }
+  &.content--boxed {
+    max-width: ~"calc( @{layout-max-width} + @{gap} + @{gap} )";
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+    background-color: @color-white;
+    position: relative;
+    z-index: 1;
+    align-items: stretch;
+    flex-wrap: wrap;
+    @media @mq-1280 {
+      box-shadow: none;
+    }
+    @media @mq-smalldesk {
+      justify-content: space-between;
+    }
+    .sidebar {
+      padding: 2*@gap;
+      @media @mq-1280 {
+        padding: @gap;
+      }
+    }
+
+    .article {
+      padding: 2*@gap;
+      @media @mq-1280 {
+        padding: 2*@gap @gap;
+      }
+    }
+    .main__nav {
+      min-width: 100%;
+      margin-bottom: 0;
+      padding-top: @gap;
+    }
+
+    .sidebar {
+      background-color: @color-light;
+    }
+  }
+  .content__article {
+    padding: 2*@gap!important;
+
+    @media @mq-smalldesk {
+      padding: @gap!important;
+    }
+  }
+  .content__nav {
+   text-align: center;
+   width: 100%;
+  }
+
+}

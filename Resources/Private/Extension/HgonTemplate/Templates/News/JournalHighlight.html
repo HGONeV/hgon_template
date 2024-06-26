@@ -1,33 +1,97 @@
-<article class="box box--floated box--floated-right / mb-8">
-    <div class="box__inner">
-        <div class="flex-container space-between no-padding">
+<f:if condition="{settings.journalHighlight.imageLeft}">
+    <f:then>
+        <article class="box box--floated box--floated-right / mb-8">
+            <div class="box__inner">
+                <div class="flex-container space-between no-padding">
 
-            <f:comment><!-- If a news element is selected via flexform, use it as main item --></f:comment>
-            <f:if condition="{newsManualSelect}">
-                <f:then>
-                    <f:render section="mainArticle" arguments="{news: newsManualSelect}" />
-                </f:then>
-                <f:else>
-                    <f:then>
-                        <f:for each="{newsList}" as="news" iteration="iter">
-                            <f:if condition="{iter.isFirst}">
-                                <f:render section="mainArticle" arguments="{news: news}" />
-                            </f:if>
-                        </f:for>
-                    </f:then>
-                </f:else>
-            </f:if>
+                    <f:comment><!-- If a news element is selected via flexform, use it as main item --></f:comment>
+                    <f:if condition="{newsManualSelect}">
+                        <f:then>
+                            <f:render section="mainArticleImageLeft" arguments="{news: newsManualSelect}" />
+                        </f:then>
+                        <f:else>
+                            <f:then>
+                                <f:for each="{newsList}" as="news" iteration="iter">
+                                    <f:if condition="{iter.isFirst}">
+                                        <f:render section="mainArticleImageLeft" arguments="{news: news}" />
+                                    </f:if>
+                                </f:for>
+                            </f:then>
+                        </f:else>
+                    </f:if>
 
 
-            <div class="flex-item c-4 pl-2">
-                <footer class="box__footer mt-2">
-                    <ul class="menu menu--list">
-                        <div id="c30" class="frame frame-default frame-type-menu_sitemap_news frame-layout-50">
-                            <header>
+                    <f:if condition="{newsList}">
+                        <div class="flex-item c-4 pl-2">
+                            <footer class="box__footer mt-2">
                                 <h6 class="headline">
                                     <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.furtherContent" />
                                 </h6>
-                            </header>
+                                <ul class="menu menu--list">
+                                    <f:for each="{newsList}" as="news" iteration="iter">
+                                        <f:comment><!-- If a news element is selected via flexform, list all other items --></f:comment>
+                                        <f:if condition="{newsManualSelect}">
+                                            <f:then>
+                                                <f:if condition="{iter.cycle} < 4">
+                                                    <li>
+                                                        <f:link.page class="link link--goto" pageUid="{settings.news.detailPid}" additionalParams="{tx_news_pi1:{news:news,controller:'News',action:'detail'}}">
+                                                            {news.title}
+                                                        </f:link.page>
+                                                    </li>
+                                                </f:if>
+                                            </f:then>
+                                            <f:else>
+                                                <f:comment><!-- If there is no news selected via flexform, don't show first item (it's already shown above) --></f:comment>
+                                                <f:if condition="{iter.isFirst}">
+                                                    <f:else>
+                                                        <f:if condition="{iter.cycle} < 5">
+                                                            <li>
+                                                                <f:link.page class="link link--goto" pageUid="{settings.news.detailPid}" additionalParams="{tx_news_pi1:{news:news,controller:'News',action:'detail'}}">
+                                                                    {news.title}
+                                                                </f:link.page>
+                                                            </li>
+                                                        </f:if>
+                                                    </f:else>
+                                                </f:if>
+                                            </f:else>
+                                        </f:if>
+                                    </f:for>
+                                </ul>
+                            </footer>
+                        </div>
+                    </f:if>
+                </div>
+            </div>
+        </article>
+    </f:then>
+    <f:else>
+
+        <article class="box box--floated box--floated-left / mb-8">
+            <div class="box__inner pr-5">
+
+                <f:comment><!-- If a news element is selected via flexform, use it as main item --></f:comment>
+                <f:if condition="{newsManualSelect}">
+                    <f:then>
+                        <f:render section="mainArticleImageRight" arguments="{news: newsManualSelect}" />
+                    </f:then>
+                    <f:else>
+                        <f:then>
+                            <f:for each="{newsList}" as="news" iteration="iter">
+                                <f:if condition="{iter.isFirst}">
+                                    <f:render section="mainArticleImageRight" arguments="{news: news}" />
+                                </f:if>
+                            </f:for>
+                        </f:then>
+                    </f:else>
+                </f:if>
+
+
+                <f:if condition="{newsList}">
+                    <footer class="box__footer mt-2">
+                        <h6>
+                            <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.furtherContent" />
+                        </h6>
+                        <ul class="menu menu--inline">
                             <f:for each="{newsList}" as="news" iteration="iter">
                                 <f:comment><!-- If a news element is selected via flexform, list all other items --></f:comment>
                                 <f:if condition="{newsManualSelect}">
@@ -56,16 +120,22 @@
                                     </f:else>
                                 </f:if>
                             </f:for>
-                        </div>
-                    </ul>
-                </footer>
+                        </ul>
+                    </footer>
+                </f:if>
+
+
             </div>
-        </div>
-    </div>
-</article>
+        </article>
+
+    </f:else>
+</f:if>
 
 
-<f:section name="mainArticle">
+
+
+
+<f:section name="mainArticleImageLeft">
     <div class="flex-item c-8">
         <picture class="box__image">
            <f:for each="{news.falMedia}" as="mediaElement" iteration="iterator">
@@ -122,5 +192,63 @@
                 </f:link.page>
             </p>
         </div>
+    </div>
+</f:section>
+
+
+<f:section name="mainArticleImageRight">
+    <picture class="box__image">
+        <f:for each="{news.falMedia}" as="mediaElement" iteration="iterator">
+            <f:if condition="{iterator.isFirst}">
+                <f:if condition="{mediaElement.originalResource.type} == 2">
+                    <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="<f:uri.image src='{mediaElement.uid}' treatIdAsReference='1' absolute='true' cropVariant='4to3' />">
+                    <source media="(max-width: 37.5em)" srcset="<f:uri.image src='{mediaElement.uid}' treatIdAsReference='1' absolute='true' cropVariant='4to3' />">
+                    <f:image src="{mediaElement.uid}" treatIdAsReference="1" title="{mediaElement.title}" alt="{mediaElement.alternative}" cropVariant='4to3'  width="500" height="400" />
+                </f:if>
+            </f:if>
+        </f:for>
+    </picture>
+    <header class="box__header">
+        <h2>
+                        <span class="badge badge--secondary">
+                    <f:translate key="tx_hgontemplate_page_partials_layout.newstype.{news.type}" />
+                    <f:comment>
+                        <f:for each="{news.categories}" as="category" iteration="iterator">
+                            <f:if condition="{iterator.isFirst}">
+                                {category.title}
+                            </f:if>
+                        </f:for>
+                    </f:comment>
+                    <span class="is-hidden">: </span>
+                </span>
+
+            <f:for each="{news.categories}" as="category" iteration="iterator">
+                     <span class="badge badge--secondary">
+                        {category.title}
+                        <span class="is-hidden">: </span>
+                    </span>
+            </f:for>
+
+            <span class="h2 headline">{news.title}</span>
+        </h2>
+    </header>
+    <div class="box__content">
+        <p>
+            <f:format.crop maxCharacters="500">
+                <f:if condition="{news.teaser}">
+                    <f:then>
+                        <f:format.html>{news.teaser}</f:format.html>
+                    </f:then>
+                    <f:else>
+                        <f:format.html>{news.text}</f:format.html>
+                    </f:else>
+                </f:if>
+            </f:format.crop>
+        </p>
+        <p>
+            <f:link.page class="btn btn--primary btn--rounded" pageUid="{settings.news.detailPid}" additionalParams="{tx_news_pi1:{news:news, controller: 'News', action: 'detail'}}">
+                <f:translate key="tx_hgontemplate_templates_standard_journalHighlight.readMore" />
+            </f:link.page>
+        </p>
     </div>
 </f:section>

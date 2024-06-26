@@ -3,6 +3,17 @@ defined('TYPO3_MODE') || die('Access denied.');
 
 $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['hgon_default'] = 'EXT:hgon_template/Configuration/Yaml/RTE/HgonDefault.yaml';
 
+/*
+// locallang override FE
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_newsletter/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwnewsletter.xlf';
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_events/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwevents.xlf';
+
+// locallang override BE
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwauthors_db.xlf';
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_basics/Resources/Private/Language/locallang_db.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwbasics_db.xlf';
+*/
+
+
 call_user_func(
     function($extKey)
     {
@@ -167,6 +178,30 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonTemplate',
+            'ProjectPartner',
+            [
+                'Standard' => 'projectPartner'
+            ],
+            // non-cacheable actions
+            [
+                'Standard' => 'projectPartner'
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonTemplate',
+            'AuthorList',
+            [
+                'Standard' => 'authorList'
+            ],
+            // non-cacheable actions
+            [
+                'Standard' => 'authorList'
+            ]
+        );
+
         // ***************
         // NEWS
         // ***************
@@ -208,6 +243,31 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonTemplate',
+            'Header',
+            [
+                'News' => 'header'
+            ],
+            // non-cacheable actions
+            [
+                'News' => 'header'
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonTemplate',
+            'Sidebar',
+            [
+                'News' => 'sidebar'
+            ],
+            // non-cacheable actions
+            [
+                'News' => 'sidebar'
+            ]
+        );
+
+
 
 
         // ***************
@@ -225,6 +285,52 @@ call_user_func(
                 'Article' => 'showArticleFromPages, newOrder, createOrder'
             ]
         );
+
+
+
+        /* TEST
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwEvents',
+            'Reservation',
+            [
+                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
+            ],
+            // non-cacheable actions
+            [
+                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
+            ]
+        );*/
+
+
+        // ***************
+        // RkwEvents (we need a extra plugin for reservations)
+        // -> we can't create a simple marker with controller and actions for eventReservation. Throws an error in relation of the multiple use of controller / actions / plugins on the same page
+        // ***************
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwEvents',
+            'Reservation',
+            [
+                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
+            ],
+            // non-cacheable actions
+            [
+                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwEvents',
+            'Upcoming',
+            array(
+                'Event' => 'upcoming'
+            ),
+            // non-cacheable actions
+            array(
+                'Event' => 'upcoming'
+            )
+        );
+
 
         // caching
         if( !is_array($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] ) ) {
@@ -257,71 +363,6 @@ call_user_func(
 
         // for content slide
         $GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ',subtitle,tx_rkwbasics_article_image,tx_hgontemplate_contactperson,';
-
-        /*
-        // add to InstallTool options (otherwise the RkwEvents ajax calls will not work)
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[action]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[controller]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[event]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[filter]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[filter][time]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[filter][documentType]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[filter][workGroup]';
-
-        // @toDo: Notwendig weil [FE][pageNotFoundOnCHashError] = true
-        // -> ABER: Das muss doch auch anders gehen. Man kann doch unmöglich immer jedes Formularfeld hier ein- bzw nachtragen...
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][event]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][salutation]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][firstName]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][lastName]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][email]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][company]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][address]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][zip]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][city]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[newEventReservation][remark]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[terms]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_pi1[privacy]';
-
-        // new plugin
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[action]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[controller]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[event]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][event]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][salutation]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][firstName]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][lastName]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][email]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][company]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][address]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][zip]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][city]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[newEventReservation][remark]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[terms]';
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'][] = 'tx_rkwevents_rkweventsreservation[privacy]';
-        */
-
-        /*
-        // caching
-        if( !is_array($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] ) ) {
-            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] = array();
-        }
-        // Hier ist der entscheidende Punkt! Es ist der Cache von Variablen gesetzt!
-        if( !isset($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['frontend'] ) ) {
-            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['frontend'] = 'TYPO3\\CMS\\Core\\Cache\\Frontend\\VariableFrontend';
-        }
-
-        if( !isset($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['groups'] ) ) {
-            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['groups'] = array('pages');
-        }
-        */
-
-        /*
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['encodeSpURL_postProc'][] = 'EXT:extkey/Classes/Hooks/RealurlEncoding.php:In2code\Extkey\Hooks\RealurlEncoding->convert';
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['realurl']['decodeSpURL_preProc'][] = 'EXT:extkey/Classes/Hooks/RealurlDecoding.php:In2code\Extkey\Hooks\RealurlDecoding->convert';
-        */
 
         // FormFramework Hooks
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterBuildingFinished']['1575298962'] = HGON\HgonTemplate\Hooks\FormFramework\AfterBuildingFinishedHook::class;

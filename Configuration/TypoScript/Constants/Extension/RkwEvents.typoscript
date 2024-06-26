@@ -32,7 +32,7 @@ plugin.tx_rkwevents {
         reservationPid = 64
 
         # cat=plugin.tx_rkwevents; type=integer; label=PID for create new FeUser
-        storagePidFeUser =
+        storagePidFeUser = 270
 
         # cat=plugin.tx_rkwevents; type=integer; label=PID for terms and conditions (AGB)
         termsPid =
@@ -79,14 +79,13 @@ plugin.tx_rkwevents {
         # cat=plugin.tx_rkwevents; type=integer; label=PageNum for AJAX-requests (reservation)
         ajaxTypeNumReservation = 1565014148
 
+        # cat=plugin.tx_rkwevents; type=integer; label=show pagination for work group
+        showWorkGroupPagination = 1
 
         mandatoryFields {
 
             // cat=plugin.tx_rkwevents; type=string; label=Mandatory fields for registration of main person. Comma separated lists with property names (e.g. salutation, firstName, lastName, address, zip, city, email)
             eventReservationMainPerson = salutation, firstName, lastName, email, address, zip, city
-
-            // cat=plugin.tx_rkwevents; type=string; label=Mandatory fields for registration of additional persons. Comma separated lists with property names (e.g. salutation, firstName, lastName, address, zip, city, email)
-            eventReservationAdditionalPersons = salutation, firstName, lastName,
         }
 
         mail {

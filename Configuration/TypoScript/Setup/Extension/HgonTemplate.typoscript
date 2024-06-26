@@ -5,6 +5,9 @@
 config.tx_extbase {
 
     objects {
+        RKW\RkwBasics\UserFunctions\PageNotFound {
+            className = HGON\HgonTemplate\UserFunctions\PageNotFound
+        }
         RKW\RkwEvents\Controller\EventController {
             className = HGON\HgonTemplate\Controller\EventController
         }
@@ -14,12 +17,32 @@ config.tx_extbase {
         RKW\RkwEvents\Controller\EventReservationController {
             className = HGON\HgonTemplate\Controller\EventReservationController
         }
-        RKW\RkwNewsletter\Controller\SubscriptionController {
-            className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
+        RKW\RkwEvents\Validation\Validator\EventReservationValidator {
+            className = HGON\HgonTemplate\Validation\Validator\EventReservationValidator
+        }
+        RKW\RkwEvents\Helper\DivUtility {
+            className = HGON\HgonTemplate\Helper\DivUtility
+        }
+        #RKW\RkwNewsletter\Controller\SubscriptionController {
+        #    className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
+        #}
+        #RKW\RkwNewsletter\Controller\ReleaseController {
+        #    className = HGON\HgonTemplate\Controller\RkwNewsletter\ReleaseController
+        #}
+        RKW\RkwNewsletter\Domain\Model\Newsletter {
+            className = HGON\HgonTemplate\Domain\Model\Newsletter
+        }
+        RKW\RkwNewsletter\Domain\Model\TtContent {
+            className = HGON\HgonTemplate\Domain\Model\TtContent
+        }
+        RKW\RkwRegistration\Service\RkwMailService {
+            className = HGON\HgonTemplate\Service\RkwMailService
         }
         GeorgRinger\News\Controller\NewsController {
             className = HGON\HgonTemplate\Controller\NewsController
         }
+
+
     }
 
     persistence {
@@ -85,9 +108,23 @@ config.tx_extbase {
                 }
             }
 
+            HGON\HgonTemplate\Domain\Model\EventReservation {
+                mapping {
+                    tableName = tx_rkwevents_domain_model_eventreservation
+                    recordType =
+                }
+            }
+
             HGON\HgonTemplate\Domain\Model\DocumentType {
                 mapping {
                     tableName = tx_rkwbasics_domain_model_documenttype
+                    recordType =
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\Newsletter {
+                mapping {
+                    tableName = tx_rkwnewsletter_domain_model_newsletter
                     recordType =
                 }
             }
@@ -103,6 +140,13 @@ config.tx_extbase {
                 mapping {
                     tableName = tx_hgonpayment_domain_model_article
                     recordType =
+                }
+            }
+
+            HGON\HgonTemplate\Domain\Model\TtContent {
+                mapping {
+                    recordType =
+                    tableName = tt_content
                 }
             }
 

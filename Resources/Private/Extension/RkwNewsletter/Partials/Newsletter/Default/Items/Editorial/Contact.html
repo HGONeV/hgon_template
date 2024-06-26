@@ -1,0 +1,110 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+{namespace rkwAuthors=RKW\RkwAuthors\ViewHelpers}
+{namespace hgonTemplate=HGON\HgonTemplate\ViewHelpers}
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+    <f:if condition="{content.txRkwnewsletterAuthors}">
+        <f:for each="{content.txRkwnewsletterAuthors}" as="author" iteration="iteratorAuthor">
+            <f:if condition="{iteratorAuthor.isFirst}">
+                <hgonTemplate:GetCombinedName author='{author}'/> - {author.functionTitle}
+            </f:if>
+        </f:for>
+    </f:if>
+</f:section>
+
+
+<!-- HTML for the first item-->
+<f:section name="Html">
+
+    <f:if condition="{content.txRkwnewsletterAuthors}">
+
+        <f:for each="{content.txRkwnewsletterAuthors}" as="author" iteration="iteratorAuthor">
+            <f:if condition="{iteratorAuthor.isFirst}">
+
+                <f:comment><!-- Author image --></f:comment>
+
+                <div style="background:white;background-color:white;Margin:0px auto;max-width:670px;">
+                    <table role="presentation" style="background:white;background-color:white;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+                        <tbody>
+                        <tr>
+                            <td style="direction:ltr;font-size:0px;padding:0 15px;text-align:center;vertical-align:top;">
+
+                                <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody>
+                                        <tr>
+                                            <td style="vertical-align:top;padding:30px 15px 0;">
+                                                <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                    <tbody><tr>
+                                                        <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+                                                            <table role="presentation" style="border-collapse:collapse;border-spacing:0px;" cellspacing="0" cellpadding="0" border="0">
+                                                                <tbody>
+                                                                <tr>
+
+                                                                    <f:if condition="{author.imageBoxes}">
+                                                                        <td style="width:80px;">
+                                                                            <f:image image="{author.imageBoxes}" treatIdAsReference="true" absolute="false" alt="<hgonTemplate:GetCombinedName author='{author}'/>" width="80"  />
+                                                                        </td>
+                                                                    </f:if>
+
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody></table>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <f:comment><!-- Author name and function --></f:comment>
+
+                <div class="signature" style="background:white;background-color:white;Margin:0px auto;max-width:670px;">
+                    <table role="presentation" style="background:white;background-color:white;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+                        <tbody>
+                            <tr>
+                                <td style="direction:ltr;font-size:0px;padding:0 15px 30px;text-align:center;vertical-align:top;">
+
+                                    <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:100%;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                            <tr>
+                                                <td style="vertical-align:middle;padding:0 15px;">
+                                                    <table role="presentation" style="" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                        <tbody><tr>
+                                                            <td style="font-size:0px;padding:0;word-break:break-word;" align="center">
+                                                                <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:center;color:#212121;">
+                                                                    <p style="line-height: 20px; font-size: 14px;"><strong style="font-weight: 600;"><hgonTemplate:GetCombinedName author='{author}'/> </strong><br>{author.functionTitle}</p>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </f:if>
+        </f:for>
+    </f:if>
+
+
+</f:section>
+
+
+

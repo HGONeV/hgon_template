@@ -25,6 +25,9 @@ page {
 		// Nur auf den Druck-Seiten!
 		// file30 = {$globalWebsiteConfig.templatePaths.default.styles}/print.css
 		// file30.media = screen,print
+
+        file50 = {$globalWebsiteConfig.templatePaths.default.styles}/splide-sea-green.min.css
+        file50.media = screen
 	}
 
 	//===============================================================
@@ -75,6 +78,8 @@ page {
 		//file15 = {$globalWebsiteConfig.templatePaths.default.scripts}/libs/jquery-ui.js
 
 		//file20 = {$globalWebsiteConfig.templatePaths.default.scripts}/libs/responsive-tables.js
+
+        file60 = {$globalWebsiteConfig.templatePaths.default.scripts}/splide.min.js
 	}
 
 }

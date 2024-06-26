@@ -1,0 +1,10 @@
+plugin.tx_rkwbasics {
+    settings {
+        pageNotFoundConfig {
+            _DEFAULT {
+                fallbackPid = 349
+                defaultDomain = libellen-hessen.de
+            }
+        }
+    }
+}

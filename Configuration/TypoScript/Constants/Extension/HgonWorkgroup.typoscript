@@ -1,4 +1,8 @@
 plugin.tx_hgonworkgroup {
+    view {
+        # this is for using the contactPerson partial
+        partialRootPath = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/
+    }
     persistence {
         storagePid = 42
     }
@@ -7,6 +11,9 @@ plugin.tx_hgonworkgroup {
         //showPid = 43
         # currently showPid == listPid, because of Template trouble. So we want just use the standard template
         # (showPid is still set for plugin handling, even if listPid and showPid the same at the moment)
-        showPid = 8
+        showPid = 265
+        news {
+            showPid = 62
+        }
     }
 }

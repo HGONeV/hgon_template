@@ -1,0 +1,29 @@
+
+<f:if condition="{project.partnerLogos}">
+
+    <div class="section partner">
+        <header class="section__header">
+            <h2>Unsere Partner</h2>
+        </header>
+        <div class="flex-container space-between gutter valign-stretch">
+            <f:for each="{project.partnerLogos}" as="partnerLogo">
+                <div class="flex-item c-4">
+                    <f:if condition="{partnerLogo.originalResource.properties.link}">
+                        <f:then>
+                            <f:link.typolink parameter="{partnerLogo.originalResource.properties.link}" class="gallery-item partner-link">
+                                <f:image src="{partnerLogo.uid}" treatIdAsReference="1" title="{partnerLogo.title}" width="300" />
+                            </f:link.typolink>
+                        </f:then>
+                        <f:else>
+                            <f:image src="{partnerLogo.uid}" treatIdAsReference="1" title="{partnerLogo.title}" width="300" />
+                        </f:else>
+                    </f:if>
+                </div>
+
+            </f:for>
+        </div>
+    </div>
+
+
+
+</f:if>

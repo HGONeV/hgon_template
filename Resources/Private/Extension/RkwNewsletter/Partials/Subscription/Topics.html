@@ -1,5 +1,44 @@
 {namespace rkwNewsletter=RKW\RkwNewsletter\ViewHelpers}
 
+
+<p class="form__field">
+    <span class="checkbox-group">
+         <f:for each="{newsletterList}" as="newsletter" iteration="newsletterIterator">
+             <f:if condition="{newsletter.txHgontemplateIsInternal}">
+                 <f:else>
+                     <f:if condition="<rkwNewsletter:IsNewsletterSubscriptionAllowed frontendUser='{frontendUser}' newsletter='{newsletter}' />">
+                        <f:for each="{newsletter.topic}" as="topic" iteration="topicIterator">
+                            <f:if condition="{topic.isSpecial} == 0">
+
+                                <label class="checkbox">
+                                        <span class="checkbox__input">
+                                            <f:if condition="{topicList}">
+                                                <f:then>
+                                                    <f:form.checkbox id="topics[{newsletter.uid}{topicIterator.index}]" name="topics[{newsletter.uid}{topicIterator.index}]" value="{topic.uid}" checked="<rkwNewsletter:IsTopicInList topicList='{topicList}' topic='{topic}' />" />
+                                                </f:then>
+                                                <f:else>
+                                                     <f:form.checkbox id="topics[{newsletter.uid}{topicIterator.index}]" name="topics[{newsletter.uid}{topicIterator.index}]" value="{topic.uid}" checked="<rkwNewsletter:IsTopicSubscribed frontendUser='{frontendUser}' topic='{topic}' />" />
+                                                </f:else>
+                                            </f:if>
+                                            <label for="topics[{newsletter.uid}{topicIterator.index}]"></label>
+                                        </span>
+                                        <span class="checkbox__label">
+                                           {topic.name}
+                                        </span>
+                                </label>
+
+                            </f:if>
+                        </f:for>
+                    </f:if>
+                 </f:else>
+             </f:if>
+
+        </f:for>
+    </span>
+</p>
+
+
+<f:comment>
 <table class="v320-1">
     <f:for each="{newsletterList}" as="newsletter" iteration="newsletterIterator">
         <f:if condition="<rkwNewsletter:IsNewsletterSubscriptionAllowed frontendUser='{frontendUser}' newsletter='{newsletter}' />">
@@ -31,7 +70,7 @@
     </f:for>
 </table>
 
-
+</f:comment>
 
 
 

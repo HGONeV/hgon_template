@@ -3,16 +3,13 @@
 
 <f:if condition="{event.onlineEvent} == 0">
     <f:then>
-        <f:if condition="<rkw:and and1='{event.longitude}' and2='{event.latitude}' />">
-
+        <f:if condition="<rkw:and and1='{event.place.longitude}' and2='{event.place.latitude}' />">
             <!-- show Google-map if geo-data is set -->
             <f:then>
-                <picture>
-                    <f:format.raw>
-                        <!-- Google Maps API -->
-                        <rkwGeo:maps longitude='{event.longitude}' latitude="{event.latitude}" />
-                    </f:format.raw>
-                </picture>
+                <f:format.raw>
+                    <!-- Google Maps API -->
+                    <rkwGeo:maps longitude='{event.place.longitude}' latitude="{event.place.latitude}" />
+                </f:format.raw>
             </f:then>
             <f:else>
                 <f:format.raw>

@@ -81,8 +81,10 @@ CREATE TABLE tx_hgonpayment_domain_model_article (
 #
 CREATE TABLE tx_news_domain_model_news (
 
+    tx_rkwproject_project int(11) unsigned DEFAULT '0',
 	tx_hgontemplate_type int(11) unsigned DEFAULT '0' NOT NULL,
-	tx_rkwproject_project int(11) unsigned DEFAULT '0',
+	tx_hgontemplate_youtube_video_id varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_header_image int(11) unsigned NOT NULL default '0',
 
 );
 
@@ -107,5 +109,99 @@ CREATE TABLE tx_rkwevents_domain_model_event (
 # Table structure for table 'tx_rkwevents_domain_model_eventreservation'
 #
 CREATE TABLE tx_rkwevents_domain_model_eventreservation (
-	tx_hgontemplate_eventculinary int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_eventculinary varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_eventcosts varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_paymenttype int(11) unsigned DEFAULT '0' NOT NULL,
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter (
+    tx_hgontemplate_is_internal int(11) unsigned DEFAULT '0' NOT NULL,
+
+	tx_hgontemplate_news_select int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_news_count int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_news_list int(11) DEFAULT '0' NOT NULL,
+
+	tx_hgontemplate_article_select int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_article_count int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_article_list int(11) DEFAULT '0' NOT NULL,
+
+	tx_hgontemplate_event_select int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_event_count int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_event_list int(11) DEFAULT '0' NOT NULL,
+
+	tx_hgontemplate_donation_select int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_donation_count int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_donation_list int(11) DEFAULT '0' NOT NULL,
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_news_mm'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_news_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_article_mm'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_article_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_event_mm'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_event_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+#
+# Table structure for table 'tx_rkwnewsletter_domain_model_newsletter_donation_mm'
+#
+CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_donation_mm (
+	uid_local int(11) DEFAULT '0' NOT NULL,
+	uid_foreign int(11) DEFAULT '0' NOT NULL,
+	sorting int(11) DEFAULT '0' NOT NULL,
+	sorting_foreign int(11) DEFAULT '0' NOT NULL,
+	KEY uid_local (uid_local),
+	KEY uid_foreign (uid_foreign)
+);
+
+
+#
+# Table structure for table 'tx_rkwprojects_domain_model_projects'
+#
+CREATE TABLE tx_rkwprojects_domain_model_projects (
+    tx_hgontemplate_bank_header varchar(255) DEFAULT '' NOT NULL,
+    tx_hgontemplate_bank_institute varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_bank_iban varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_bank_bic varchar(255) DEFAULT '' NOT NULL,
+);
+
+
+
+#
+# Table structure for table 'tx_rkwauthors_domain_model_authors'
+#
+CREATE TABLE tx_rkwauthors_domain_model_authors (
+  tx_hgontemplate_short_description varchar(255) DEFAULT '' NOT NULL,
+  tx_hgontemplate_longer_description text NOT NULL,
 );

@@ -1,0 +1,11 @@
+h2 {
+    margin-bottom: 0;
+}
+
+.footer .footer__form.form--plain {
+    margin-top: 0;
+}
+
+.footer .footer__bottom {
+    margin-top: 6em;
+}

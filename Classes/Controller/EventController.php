@@ -58,7 +58,7 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
     {
         $listItemsPerView = intval($this->settings['itemsPerPage']) ? intval($this->settings['itemsPerPage']) : 10;
 
-        // first: Show standard evens
+        // first: Show standard events
         parent::listAction();
 
         // Fix: The parent listAction pre-fills the filter with a "project" entry. This is disturbing the ajax call
@@ -68,18 +68,32 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
         $hgonWorkGroupSettings = self::getSettings('HgonWorkgroup', ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         // get event list with one additional counter (check for further elements)
         $workGroupEventList = $this->eventRepository->findNotFinishedOrderAsc($listItemsPerView + 1, $hgonWorkGroupSettings, true)->toArray();
+
+        /*
         $showMoreLink = false;
         if ($listItemsPerView < count($workGroupEventList)) {
             $showMoreLink = true;
             // kill additional counter-item
             array_pop($workGroupEventList);
+
+            // if pagination for work groups is disabled - don't show more link
+            if (!$this->settings['showWorkGroupPagination']) {
+                $showMoreLink = false;
+            }
         }
+        */
+
+        // do not paginate workGroupEvents except its explicit wanted
+        if (!$this->settings['showWorkGroupPagination']) {
+            $this->view->assign('showMoreLink', false);
+        }
+
         $this->view->assign('workGroupEventList', $workGroupEventList);
         // filter options
         $this->view->assign('documentTypeList', $this->documentTypeRepository->findAllByTypeAndVisibility('events', false));
         $this->view->assign('workGroupList', $this->workGroupRepository->findAll());
         $this->view->assign('timeArrayList', EventHelper::createMonthListArray());
-        $this->view->assign('showMoreLink', $showMoreLink);
+        //$this->view->assign('showMoreLink', $showMoreLink);
     }
 
 
@@ -91,7 +105,7 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
      * @return void
      * @ignorevalidation $event
      */
-    public function showAction(\RKW\RkwEvents\Domain\Model\Event $event)
+    public function showAction(\RKW\RkwEvents\Domain\Model\Event $event = null)
     {
         // for list view within show
         $this->settings['itemsPerPage'] = 5;
@@ -101,8 +115,40 @@ class EventController extends \RKW\RkwEvents\Controller\EventController
         $this->view->assign('noGrouping', true);
         $this->view->assign('eventToExclude', $event);
 
+        // Get related workGroup to event
+        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
+        $txHgonWorkgroupEventRepository = $objectManager->get(\HGON\HgonWorkgroup\Domain\Repository\EventRepository::class);
+        /** @var \HGON\HgonWorkgroup\Domain\Model\Event $eventWorkgroup */
+        $eventWorkgroup = $txHgonWorkgroupEventRepository->findByUid($event->getUid());
+        if ($eventWorkgroup->getTxHgonWorkgroup()->count()) {
+            $this->view->assign('relatedWorkgroup', $eventWorkgroup->getTxHgonWorkgroup());
+        } elseif ($eventWorkgroup->getTxHgonWorkgroupStdevent()->count()) {
+            $this->view->assign('relatedWorkgroup', $eventWorkgroup->getTxHgonWorkgroupStdevent());
+        }
+        if ($txHgonWorkGroupSettings = self::getSettings('Hgonworkgroup')) {
+            $this->view->assign('txHgonWorkgroupShowPid', $txHgonWorkGroupSettings['showPid']);
+        }
+
+
         // get standard show action
         parent::showAction($event);
+    }
+
+
+
+    /**
+     * action upcoming
+     * returns upcoming events
+     *
+     * @return void
+     */
+    public function upcomingAction()
+    {
+
+        $this->view->assignMultiple(array(
+            'sortedEventList' => $this->eventRepository->findUpcoming(),
+            'showPid' => $this->settings['showPid']
+        ));
     }
 
 

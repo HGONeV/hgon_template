@@ -1,0 +1,88 @@
+/**! ==================================================
+ * LAYOUT/Footer
+ * reusable footer module
+ * ================================================== */
+.footer {
+  position:relative;
+  overflow: hidden;
+  background-color: @color-primary;
+  color: @color-white;
+  padding-top: 4*@gap;
+  @media @mq-smalldesk {
+    padding-top: 3*@gap;
+  }
+
+  &, p, li, li a, h6 {
+    .font-size(14);
+    color: @color-white;
+    letter-spacing: .5px;
+  }
+
+  h6 {
+    font-weight: @font-weight-bold;
+    @media @mq-mobile {
+      .font-size(16);
+    }
+  }
+
+  .footer__content {
+    .flex-container {
+      padding-left: .5*@gap;
+      padding-right: .5*@gap;
+
+      .flex-item {
+        padding-left: .5*@gap!important;
+        padding-right: .5*@gap!important;
+        padding-top: 0!important;
+        padding-bottom: 0!important;
+
+        @media @mq-medium {
+          padding-top: @gap!important;
+          padding-bottom: @gap!important;
+          width: 50%;
+
+          &:first-child {
+            padding-top: 0!important;
+          }
+          &:last-child {
+            padding-bottom: 0!important;
+          }
+        }
+        @media @mq-mobile {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .footer__bottom {
+    background-color: darken( @color-primary, 10% );
+    padding: @gap 0;
+    margin-top: 6*@gap;
+    @media @mq-smalldesk {
+      margin-top: 3*@gap;
+      .flex-item { text-align: center!important; }
+      .menu { margin-top: @gap; }
+    }
+    p {
+      margin: 0;
+    }
+  }
+  .footer__logo {
+    background-color: @color-white;
+    display: inline-block;
+    padding: 1.5*@gap @gap;
+    box-shadow: 0 20px 40px rgba(0,0,0, .15);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    @media @mq-smalldesk {
+      display: none;
+    }
+  }
+  .footer__form.form--plain {
+     margin-top: 3*@gap;
+  }
+}

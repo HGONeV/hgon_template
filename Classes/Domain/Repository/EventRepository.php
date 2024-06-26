@@ -65,7 +65,16 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
             $constraints[] = $query->greaterThan('txHgonWorkgroupWgevent', 0);
         } else {
             // is standard-event
-            $constraints[] = $query->greaterThan('txHgonWorkgroupStdevent', 0);
+            // Fix for problem: Events without no workGroup does not show. Issue: They either no wgevent nor stdevent
+            // Solution: Show also if either stdEvent, or either no stdevent AND no wgevent
+            $constraints[] =
+                $query->logicalOr(
+                    $query->greaterThan('txHgonWorkgroupStdevent', 0),
+                    $query->logicalAnd(
+                        $query->equals('txHgonWorkgroupStdevent', 0),
+                        $query->equals('txHgonWorkgroupWgevent', 0)
+                    )
+                );
         }
 
         return $query->matching(
@@ -108,7 +117,13 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
         }
 
         // is standard-event
-        $constraints[] = $query->greaterThan('txHgonWorkgroupStdevent', 0);
+        $constraints[] = $query->logicalOr(
+            $query->greaterThan('txHgonWorkgroupStdevent', 0),
+            $query->logicalAnd(
+                $query->equals('txHgonWorkgroupStdevent', 0),
+                $query->equals('txHgonWorkgroupWgevent', 0)
+            )
+        );
 
         return $query->matching(
             $query->logicalAnd($constraints)
@@ -144,8 +159,12 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
         // if we are on a page > 1, we also fetch none item twice
         // we need this to figure out which date was the last for grouping!
         if ($page > 0) {
-            $offset--;
-            $limit++;
+            // workgroup list is counting another way
+            if (!$isWorkGroupEvent) {
+                $offset--;
+                $limit++;
+            }
+
         }
 
         $query = $this->createQuery();
@@ -171,7 +190,13 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
             }
         } else {
             // is standard-event
-            $constraints[] = $query->greaterThan('txHgonWorkgroupStdevent', 0);
+            $constraints[] = $query->logicalOr(
+                $query->greaterThan('txHgonWorkgroupStdevent', 0),
+                $query->logicalAnd(
+                    $query->equals('txHgonWorkgroupStdevent', 0),
+                    $query->equals('txHgonWorkgroupWgevent', 0)
+                )
+            );
             if ($filter['workGroup']) {
                 $constraints[] = $query->contains('txHgonWorkgroupStdevent', intval($filter['workGroup']));
             }
@@ -196,6 +221,70 @@ class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
         $result = $query->execute();
 
         return $result;
+        //===
+    }
+
+
+
+    /**
+     * Find a count of articles until a set max date
+     *
+     * @param integer
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     */
+    public function findByMaxDate($maxTimestamp, $count = 1)
+    {
+        $query = $this->createQuery();
+
+        $query->getQuerySettings()->setRespectStoragePage(false);
+
+        $query->matching(
+            $query->lessThanOrEqual('crdate', $maxTimestamp)
+        );
+
+        $query->setLimit($count);
+
+        return $query->execute();
+        //===
+    }
+
+
+
+    /**
+     * Returns upcoming events (no work group events!)
+     *
+     * @param int $limit
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     */
+    public function findUpcoming($limit = 3)
+    {
+        $query = $this->createQuery();
+
+        // set this flag for newsletter "GetEventRecordsViewHelper"
+        $query->getQuerySettings()->setRespectStoragePage(false);
+
+        return $query->matching(
+            $query->logicalAnd(
+                $query->logicalAnd(
+                    $query->logicalAnd(
+                        $query->logicalAnd(
+                            $query->greaterThanOrEqual('start', time()),
+                            $query->equals('txHgonWorkgroupStdevent', 1)
+                        ),
+                        $query->greaterThan('end', time())
+                    ),
+                    $query->logicalOr(
+                        $query->equals('onlineEvent', 0),
+                        $query->logicalAnd(
+                            $query->equals('onlineEvent', 1),
+                            $query->greaterThan('onlineEventAccessLink', 0)
+                        )
+                    )
+                )
+            ),
+            $query->setLimit(intval($limit))
+        )->execute();
         //===
     }
 }

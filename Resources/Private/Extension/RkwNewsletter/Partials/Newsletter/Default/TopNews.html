@@ -1,5 +1,6 @@
 {namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
 {namespace rkwNewsletter=RKW\RkwNewsletter\ViewHelpers}
+{namespace hgonTemplate=HGON\HgonTemplate\ViewHelpers}
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext" />
@@ -8,72 +9,130 @@
 <!-- HTML -->
 <f:section name="Html">
 
-    <f:if condition="<f:count>{pages}</f:count> > 1">
-        <tr>
-            <td style="padding: 0 16px;">
-                <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; font-family: 'Arial', sans-serif; font-size: 14px">
-                    <tr>
-                        <td style="height: 16px">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td >
-                            <table cellspacing="0" cellpadding="0" style="width: 100%; font-family: 'Arial', sans-serif; font-size: 14px">
-                                <tr>
-                                    <td style="width: 16px; height: 7px; background: #fff; vertical-align: top"><img src="###baseUrlImages###/corner-top-left.jpg" alt="" width="16" height="7" style="display: block" /></td>
-                                    <td style="background: #fff">&nbsp;</td>
-                                    <td style="width: 16px; height: 7px; background: #fff; text-align: right; vertical-align: top"><img src="###baseUrlImages###/corner-top-right.jpg" alt="" width="16" height="7" style="float: right; display: block" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0 16px; background: #fff" colspan="3">
-                                        <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; font-family: 'Arial', sans-serif; font-size: 14px; line-height: 16px">
-                                            <tr>
-                                                <td style="margin: 0; padding: 0 0 20px; color: #666; font-size: 24px; font-weight: 400; line-height:24px;">
-                                                    <rkwMailer:frontend.translate87 key="partials_newsletter_topNews.headline" languageKey="{queueRecipient.languageCode}" extensionName="rkwNewsletter" />
-                                                </td>
-                                            </tr>
+    <div class="agenda" style="background:#F8F8F6;background-color:#F8F8F6;Margin:0px auto;max-width:670px;">
+        <table role="presentation" style="background:#F8F8F6;background-color:#F8F8F6;width:100%;" cellspacing="0" cellpadding="0" border="0" align="center">
+            <tbody>
+            <tr>
+                <td style="direction:ltr;font-size:0px;padding:30px 15px;text-align:center;vertical-align:top;">
 
-                                            <f:for each="{pages}" as="page" iteration="pageIterator">
-                                                <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' limit='1' />" as="content" iteration="contentIterator">
-                                                    <f:if condition="{pageIterator.isLast}">
-                                                        <f:then>
-                                                            <tr>
-                                                                <td style="padding: 0;">
-                                                                    <a href="#topic-{page.txRkwnewsletterTopic.uid}" style="color: #333; line-height: 22px; font-weight: 400; text-decoration: none;">
-                                                                        <span style="text-transform: uppercase; color: {page.txRkwnewsletterTopic.primaryColor}; font-weight: 700;">{page.txRkwnewsletterTopic.name}</span><br>
-                                                                        &gt;&gt; {content.header}
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        </f:then>
-                                                        <f:else>
+                    <div class="mj-column-px-550 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table role="presentation" style="vertical-align:top;" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <tbody><tr>
+                                <td class="uppercase" style="letter-spacing: .4px; text-transform: uppercase; font-size: 0px; padding: 0; word-break: break-word;" align="left">
+                                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:13px;line-height:1;text-align:left;color:#212121;">
+                                        <h3 style="margin: 0; font-weight: 600;">In diesem Newsletter</h3>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:0px;padding:0;padding-top:15px;word-break:break-word;" align="left">
+                                    <div style="font-family:'Source Sans Pro', Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:left;color:#212121;">
+                                        <ul style="list-style-type:none; padding-left: 0; margin: 0;">
 
-                                                            <tr>
-                                                                <td style="padding: 0 0 13px 0;">
-                                                                    <a href="#topic-{page.txRkwnewsletterTopic.uid}" style="color: #333; line-height: 22px; font-weight: 400; text-decoration: none;">
-                                                                        <span style="text-transform: uppercase; color: {page.txRkwnewsletterTopic.primaryColor}; font-weight: 700;">{page.txRkwnewsletterTopic.name}</span><br>
-                                                                        &gt;&gt; {content.header}
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        </f:else>
-                                                    </f:if>
+                                            <f:for each="{pages}" as="page">
+                                                <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' limit='10' />" as="content" iteration="contentIterator">
+                                                    <li style="line-height: 24px; margin-bottom: 10px;"><a href="<rkwMailer:frontend.link action='show' controller='WebView' extensionName='rkwNewsletter' pluginName='Webview' absolute='true' arguments='{issue: issue, pagesOrder: \'---pagesOrder---\'}' section='topic-{page.txRkwnewsletterTopic.uid}' noCacheHash='true' pageType='{pageTypeMore}'/>"  style="color: #869733; text-decoration: none;"># {content.header}</a></li>
                                                 </f:for>
                                             </f:for>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 16px; height: 7px; background: #fff; vertical-align: bottom"><img src="###baseUrlImages###/corner-bottom-left.jpg" alt="" width="16" height="7" style="display: block" /></td>
-                                    <td style="background: #fff">&nbsp;</td>
-                                    <td style="width: 16px; height: 7px; background: #fff; text-align: right; vertical-align: bottom"><img src="###baseUrlImages###/corner-bottom-right.jpg" alt="" width="16" height="7" style="float: right; display: block" /></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
 
-    </f:if>
+                                            <f:if condition="<f:count><hgonTemplate:newsletter.getNewsRecords issue='{issue}' /></f:count>">
+                                                <li style="line-height: 24px; margin-bottom: 10px;"><a href="<rkwMailer:frontend.link action='show' controller='WebView' extensionName='rkwNewsletter' pluginName='Webview' absolute='true' arguments='{issue: issue, pagesOrder: \'---pagesOrder---\'}' section='news-anchor' noCacheHash='true' pageType='{pageTypeMore}'/>"  style="color: #869733; text-decoration: none;"># Aktuelle Meldungen</a></li>
+                                            </f:if>
+
+                                            <f:if condition="<f:count><hgonTemplate:newsletter.getArticleRecords issue='{issue}' /></f:count>">
+                                                <li style="line-height: 24px; margin-bottom: 10px;"><a href="<rkwMailer:frontend.link action='show' controller='WebView' extensionName='rkwNewsletter' pluginName='Webview' absolute='true' arguments='{issue: issue, pagesOrder: \'---pagesOrder---\'}' section='article-anchor' noCacheHash='true' pageType='{pageTypeMore}'/>"  style="color: #869733; text-decoration: none;"># Empfehlungen</a></li>
+                                            </f:if>
+
+                                            <f:if condition="<f:count><hgonTemplate:newsletter.getEventRecords issue='{issue}' /></f:count>">
+                                                <li style="line-height: 24px; margin-bottom: 10px;"><a href="<rkwMailer:frontend.link action='show' controller='WebView' extensionName='rkwNewsletter' pluginName='Webview' absolute='true' arguments='{issue: issue, pagesOrder: \'---pagesOrder---\'}' section='event-anchor' noCacheHash='true' pageType='{pageTypeMore}'/>"  style="color: #869733; text-decoration: none;"># Bevorstehende Termine</a></li>
+                                            </f:if>
+
+                                            <f:if condition="<f:count><hgonTemplate:newsletter.getDonationRecords issue='{issue}' /></f:count>">
+                                                <li style="line-height: 24px; margin-bottom: 10px;"><a href="<rkwMailer:frontend.link action='show' controller='WebView' extensionName='rkwNewsletter' pluginName='Webview' absolute='true' arguments='{issue: issue, pagesOrder: \'---pagesOrder---\'}' section='project-anchor' noCacheHash='true' pageType='{pageTypeMore}'/>"  style="color: #869733; text-decoration: none;"># Projekte im Blickpunkt</a></li>
+                                            </f:if>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <f:comment>
+        <!-- original RKW stuff -->
+        <f:if condition="<f:count>{pages}</f:count> > 1">
+            <tr>
+                <td style="padding: 0 16px;">
+                    <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; font-family: 'Arial', sans-serif; font-size: 14px">
+                        <tr>
+                            <td style="height: 16px">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <table cellspacing="0" cellpadding="0" style="width: 100%; font-family: 'Arial', sans-serif; font-size: 14px">
+                                    <tr>
+                                        <td style="width: 16px; height: 7px; background: #fff; vertical-align: top"><img src="###baseUrlImages###/corner-top-left.jpg" alt="" width="16" height="7" style="display: block" /></td>
+                                        <td style="background: #fff">&nbsp;</td>
+                                        <td style="width: 16px; height: 7px; background: #fff; text-align: right; vertical-align: top"><img src="###baseUrlImages###/corner-top-right.jpg" alt="" width="16" height="7" style="float: right; display: block" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 16px; background: #fff" colspan="3">
+                                            <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; font-family: 'Arial', sans-serif; font-size: 14px; line-height: 16px">
+                                                <tr>
+                                                    <td style="margin: 0; padding: 0 0 20px; color: #666; font-size: 24px; font-weight: 400; line-height:24px;">
+                                                        <rkwMailer:frontend.translate key="partials_newsletter_topNews.headline" languageKey="{queueRecipient.languageCode}" extensionName="rkwNewsletter" />
+                                                    </td>
+                                                </tr>
+
+                                                <f:for each="{pages}" as="page" iteration="pageIterator">
+                                                    <f:for each="<rkwNewsletter:getNewsletterContents issue='{issue}' page='{page}' limit='1' />" as="content" iteration="contentIterator">
+                                                        <f:if condition="{pageIterator.isLast}">
+                                                            <f:then>
+                                                                <tr>
+                                                                    <td style="padding: 0;">
+                                                                        <a href="#topic-{page.txRkwnewsletterTopic.uid}" style="color: #333; line-height: 22px; font-weight: 400; text-decoration: none;">
+                                                                            <span style="text-transform: uppercase; color: {page.txRkwnewsletterTopic.primaryColor}; font-weight: 700;">{page.txRkwnewsletterTopic.name}</span><br>
+                                                                            &gt;&gt; {content.header}
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </f:then>
+                                                            <f:else>
+                                                                <tr>
+                                                                    <td style="padding: 0 0 13px 0;">
+                                                                        <a href="#topic-{page.txRkwnewsletterTopic.uid}" style="color: #333; line-height: 22px; font-weight: 400; text-decoration: none;">
+                                                                            <span style="text-transform: uppercase; color: {page.txRkwnewsletterTopic.primaryColor}; font-weight: 700;">{page.txRkwnewsletterTopic.name}</span><br>
+                                                                            &gt;&gt; {content.header}
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </f:else>
+                                                        </f:if>
+                                                    </f:for>
+                                                </f:for>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 16px; height: 7px; background: #fff; vertical-align: bottom"><img src="###baseUrlImages###/corner-bottom-left.jpg" alt="" width="16" height="7" style="display: block" /></td>
+                                        <td style="background: #fff">&nbsp;</td>
+                                        <td style="width: 16px; height: 7px; background: #fff; text-align: right; vertical-align: bottom"><img src="###baseUrlImages###/corner-bottom-right.jpg" alt="" width="16" height="7" style="float: right; display: block" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </f:if>
+    </f:comment>
 
 </f:section>

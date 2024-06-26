@@ -1,0 +1,25 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+{content.header}\n
+<f:format.stripTags>
+    <rkwMailer:frontend.replace.rteLinks plaintextFormat="true">
+        <f:format.raw>
+            <rkwMailer:plaintextLineBreaks keepLineBreaks="true">{content.bodytext}</rkwMailer:plaintextLineBreaks>
+        </f:format.raw>
+    </rkwMailer:frontend.replace.rteLinks>
+</f:format.stripTags>\n
+</f:section>
+
+
+<!-- HTML  -->
+<f:section name="Html">
+
+    <h3 style="line-height: 30px; font-size: 24px; margin: 0; padding: 0; font-weight: 600;">
+        {content.header}
+    </h3>
+    <f:format.html parseFuncTSPath="lib.parseFunc_RTE"><rkwMailer:frontend.rteLinks ><f:format.raw>{content.bodytext}</f:format.raw></rkwMailer:frontend.rteLinks></f:format.html>
+
+
+</f:section>

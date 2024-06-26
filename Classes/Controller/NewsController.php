@@ -46,6 +46,14 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     protected $sysCategoryRepository = null;
 
     /**
+     * donationRepository
+     *
+     * @var \HGON\HgonDonation\Domain\Repository\DonationRepository
+     * @inject
+     */
+    protected $donationRepository = null;
+
+    /**
      * showRelatedSidebarAction
      */
     public function showRelatedSidebarAction()
@@ -67,11 +75,29 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             }
         }
 
+        // Else: on donation detail: Use Project category
+        if (!$categories) {
+            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail');
+            $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
+            /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
+            $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
+            if ($donation) {
+                if ($donation->getTxRkwprojectProject()) {
+                    if ($donation->getTxRkwprojectProject()->getSysCategory()->count()) {
+                        $categories = $donation->getTxRkwprojectProject()->getSysCategory();
+                    }
+                }
+            }
+        }
+
+
         // Else: Get categories of pages
-        /** @var \HGON\HgonTemplate\Domain\Model\Pages $pages */
-        $pages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
-        if (count($pages->getCategories())) {
-            $categories = $pages->getCategories();
+        if (!$categories) {
+            /** @var \HGON\HgonTemplate\Domain\Model\Pages $pages */
+            $pages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
+            if (count($pages->getCategories())) {
+                $categories = $pages->getCategories();
+            }
         }
 
 
@@ -179,7 +205,24 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             foreach ($newsList as $news) {
                 /** @var \HGON\HgonTemplate\Domain\Model\SysCategory $category */
                 foreach ($news->getCategories() as $category) {
-                    $categoryList[$category->getUid()] = $category;
+
+                    // some logic: Show only selected category and children (if a category is selected)
+                    if (
+                        // get all top categories (OR) categories and their direct children
+                        (
+                            !$sysCategory
+                            && $category->getParentcategory()->getUid() == $this->settings['journal']['parentCategoryUid']
+                        )
+                        ||
+                        ($sysCategory
+                        && (
+                            $category->getUid() == $sysCategory->getUid()
+                            || $category->getParentcategory()->getUid() == $sysCategory->getUid()
+                        ))
+                    ) {
+                        $categoryList[$category->getUid()] = $category;
+                    }
+
                 }
             }
             $templateDataArray['sysCategoryList'] = $categoryList;
@@ -189,8 +232,9 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $templateDataArray['pageTypeAjax'] = $this->settings['journal']['ajaxTypeNum'];
         $templateDataArray['pageNumber'] = $pageNumber;
 
+
         if (count($templateDataArray['journalRowList'])) {
-            $templateDataArray['showMoreLink'] = $this->newsRepository->findByFilter($sysCategory, [], [], $pageNumber, 9999)->count() > $pageNumber * intval($this->settings['journal']['itemsPerPage']) ? true : false;
+            $templateDataArray['showMoreLink'] = $this->newsRepository->findByFilter($sysCategory, [], [], 1, 9999)->count() > $pageNumber * intval($this->settings['journal']['itemsPerPage']) ? true : false;
         } else {
             $templateDataArray['showMoreLink'] = false;
         }
@@ -234,6 +278,49 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $this->view->assignMultiple($templateDataArray);
         }
 
+    }
+
+
+
+    /**
+     * action header
+     * Template helper
+     *
+     * @return void
+     */
+    public function headerAction()
+    {
+
+        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_news_pi1');
+
+        $newsUid = preg_replace('/[^0-9]/', '', $getParams['news']);
+        $news = $this->newsRepository->findByIdentifier(filter_var($newsUid, FILTER_SANITIZE_NUMBER_INT));
+
+        if ($news) {
+            $this->view->assign('newsItem', $news);
+        }
+    }
+
+
+
+    /**
+     * action sidebar
+     * Template helper
+     *
+     * @return void
+     */
+    public function sidebarAction()
+    {
+
+        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_news_pi1');
+
+        $newsUid = preg_replace('/[^0-9]/', '', $getParams['news']);
+        $news = $this->newsRepository->findByIdentifier(filter_var($newsUid, FILTER_SANITIZE_NUMBER_INT));
+
+        if ($news) {
+            $this->view->assign('newsItem', $news);
+            //$this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
+        }
     }
 
 

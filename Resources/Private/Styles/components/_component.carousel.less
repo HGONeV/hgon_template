@@ -1,0 +1,68 @@
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+
+  @media @mq-narrow {
+    padding: 0 @gap;
+  }
+
+  .carousel__item {
+    .card--shadow {
+      margin: @gap @gap 1.5*@gap;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15)
+    }
+  }
+
+
+}
+
+#carousel-testimonials-mw {
+  margin-left: -2*@gap;
+  margin-right: -2*@gap;
+}
+#carousel-testimonials-iw {
+  position: relative;
+    &::after, &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 48px;
+      height: 100%;
+      z-index: 2;
+
+      @media @mq-narrow {
+        display: none;
+      }
+    }
+
+    &::after {
+      right: -30px;
+      background: linear-gradient(to right, rgba(237,239,224,0) 0%, rgba(237,239,224,1) 75%);
+    }
+
+    &::before {
+      left: -30px;
+      background: linear-gradient(to left, rgba(237,239,224,0) 0%, rgba(237,239,224,1) 75%);
+    }
+
+    @media @mq-narrow {
+
+      .card {
+        .card__content {
+          display: flex;
+          flex-direction: column-reverse;
+          blockquote {
+            padding-left: 0;
+          }
+        }
+
+        .card__image-aside {
+          flex-shrink: 0;
+          margin-top: @gap;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+}

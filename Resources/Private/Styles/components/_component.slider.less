@@ -1,0 +1,341 @@
+/**! ==================================================
+ * COMPONENTS/Slider
+ * reusable slider module
+ * ================================================== */
+.slider {
+  position:relative;
+  overflow:hidden;
+  height:680px;
+  background-color:white;
+
+  @media @mq-smalldesk {
+    height:560px;
+  }
+
+  @media @mq-medium {
+    height:480px;
+  }
+
+  &--small {
+    height: 480px;
+    margin: @gap*2 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media @mq-smalldesk {
+      height:420px;
+    }
+
+    @media @mq-narrow {
+      height:380px;
+    }
+
+    @media @mq-mobile {
+      height:240px;
+    }
+  }
+
+  .slider__items {
+    position: relative;
+    height: calc( 100% - 48px );
+  }
+
+  .slider__item {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    img {
+      object-fit: cover;
+      font-family: 'object-fit: cover;';
+      height: 100%;
+      width: 100%;
+    }
+
+    figcaption {
+      position: absolute;
+      bottom: 0;
+      padding: 30px 12px 12px 12px;
+      font-size: 16px;
+      width: 100%;
+      color: white;
+      background: linear-gradient(
+        0deg,
+        rgb(68, 68, 68) 0%,
+        rgba(68, 68, 68, 0.738) 19%,
+        rgba(68, 68, 68, 0.541) 34%,
+        rgba(68, 68, 68, 0.382) 47%,
+        rgba(68, 68, 68, 0.278) 56.5%,
+        rgba(68, 68, 68, 0.194) 65%,
+        rgba(68, 68, 68, 0.126) 73%,
+        rgba(68, 68, 68, 0.075) 80.2%,
+        rgba(68, 68, 68, 0.042) 86.1%,
+        rgba(68, 68, 68, 0.021) 91%,
+        rgba(68, 68, 68, 0.008) 95.2%,
+        rgba(68, 68, 68, 0.002) 98.2%,
+        rgba(68, 68, 68, 0) 100% );
+
+      &:empty{
+        display: none;
+      }
+    }
+
+    &__inner {
+      background-color: rgba(255,255,255,.8);
+      padding: 2*@gap;
+      max-width: 600px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) translateX(100%);
+      right: 55%;
+      @media @mq-smalldesk {
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        right: auto;
+        max-width: 80%;
+        width: 100%;
+      }
+      @media @mq-narrow {
+        padding: @gap;
+      }
+    }
+  }
+
+  .slider__bg-image{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+  }
+
+  .slider__item-title {
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:100%;
+    max-width:680px;
+    transform:translate(-50%, -50%);
+    text-align:center;
+    color:white;
+    z-index:@zindex-1;
+
+    @media @mq-medium {
+      max-width:600px;
+    }
+
+    @media @mq-narrow {
+      max-width:400px;
+    }
+
+    @media @mq-mobile {
+      max-width:280px;
+    }
+
+    .slider__item-headline {
+      margin-bottom:@gap025;
+      .font-size(@h1);
+
+      @media @mq-medium {
+        .font-size(@h1-medium);
+      }
+
+      @media @mq-mobile {
+        margin-bottom:@gap05;
+        .font-size(@h1-mobile);
+      }
+    }
+
+    p {
+      .font-size(@p-lead);
+
+      @media @mq-narrow {
+        .font-size(@p);
+      }
+
+      @media @mq-mobile {
+        .font-size(@p-small);
+      }
+    }
+  }
+
+  .slider__layer {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:fade(@color-black, 25%);
+  }
+
+  .slide__next, .slide__prev {
+    position:absolute;
+    top:50%;
+    width:42px;
+    height:42px;
+    border-radius:100%;
+    background:white;
+    z-index:5;
+    margin-top:-21px;
+    transition:200ms ease-out;
+
+    @media @mq-mobile {
+      width:32px;
+      height:32px;
+    }
+
+    &:after {
+      position:absolute;
+      top:100%;
+      width:0;
+      height:0;
+      margin-top:-27px;
+      padding:4px;
+      content:"";
+      border:solid @color-text;
+      border-width: 0 2px 2px 0;
+      pointer-events:none;
+
+      @media @mq-mobile {
+        margin-top:-22px;
+      }
+    }
+  }
+
+  .slide__next {
+    right:@gap15;
+
+    &:hover:not(.is-disabled) {
+      transform:translateX(3px);
+    }
+
+    &:after {
+      left:14px;
+      transform:rotate(-45deg);
+
+      @media @mq-mobile {
+        left:10px;
+      }
+    }
+
+    @media @mq-narrow {
+      right:@gap1;
+    }
+
+    @media @mq-mobile {
+      right:@gap025;
+    }
+  }
+
+  .slide__prev {
+    left:@gap15;
+
+    &:hover:not(.is-disabled) {
+      transform:translateX(-3px);
+    }
+
+    &:after {
+      right:14px;
+      transform:rotate(135deg);
+
+      @media @mq-mobile {
+        right:10px;
+      }
+    }
+
+    @media @mq-narrow {
+      left:@gap1;
+    }
+
+    @media @mq-mobile {
+      left:@gap025;
+    }
+  }
+
+  .slider__counter {
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    padding:2px 4px 3px;
+    background-color:@color-black;
+    color:white;
+    font-weight:@font-weight-light;
+    .font-size(14);
+
+    span {
+      display:inline-block;
+      margin:0 3px;
+    }
+  }
+
+  .slider__pills {
+    list-style-type: none;
+    position:absolute;
+    bottom:@gap15;
+    left:50%;
+    transform:translateX(-50%);
+    padding: 0;
+    margin: 0;
+    z-index: 99;
+
+    li {
+      display:inline-block;
+      margin:0 3px;
+      border-radius: 50%;
+      background-color: white;
+      height: 12px;
+      width:  12px;
+      opacity: .6;
+      transition: @duration @ease;
+      text-indent: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &.is-active {
+        opacity: 1;
+      }
+
+      a {
+        display: block;
+      }
+    }
+  }
+
+  &[data-autoheight="true"] {
+    .slider__item {
+      height: auto;
+      .slider__item-title {
+        position: relative;
+        top: 0;
+        transform: translateX(-50%);
+        padding:@gap45;
+      }
+    }
+  }
+}
+
+.slider--flex {
+  .slide__next, .slide__prev {
+
+  }
+  .slider__item-title {
+    position:relative;
+    align-self: center;
+    top:auto;
+    left:auto;
+    right:auto;
+    transform: none;
+  }
+}

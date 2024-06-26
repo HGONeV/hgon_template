@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-04-07T16:19:42Z" product-name="hgon_template">
+		<header/>
+		<body>
+
+            <!-- subscriptionController -->
+            <trans-unit id="subscriptionController.message.optInCreated">
+               <source>An e-mail has been send to you. Please click the link in the e-mail to confirm your request.</source>
+               <target><![CDATA[Fast geschafft! Eine E-Mail mit einem Bestätigungslink ist auf dem Weg zu Ihnen. Sollten Sie innerhalb der nächsten 2-3 Minuten keine E-Mail von uns erhalten, prüfen Sie Ihren Spam-Filter. Selbstverständlich steht Ihnen aber auch unser <a href="mailto:info@hgon.de">Support</a> bei Problemen jederzeit gerne zur Verfügung.]]></target>
+            </trans-unit>
+
+            <trans-unit id="rkwMailService.subject.optInRequest">
+                <source>Confirmation for HGON Newsletter</source>
+                <target>Bestätigungslink für HGON Newsletter</target>
+            </trans-unit>
+
+            <trans-unit id="templates_email_optInRequest.text1">
+				<source>thank you for your interest in the newsletters of the HGON. We will be happy to send you future news on the following topics by e-mail:</source>
+				<target>vielen Dank für Ihr Interesse an den Newslettern des HGON. Gerne senden wir Ihnen künftig aktuelle Meldungen zu den folgenden Themen per E-Mail zu:</target>
+			</trans-unit>
+
+            <trans-unit id="templates_email_optInRequest.textOptIn">
+				<source>Please click here to confirm your subscription.</source>
+				<target>Bitte klicken Sie hier, um das Abonnement zu bestätigen.</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

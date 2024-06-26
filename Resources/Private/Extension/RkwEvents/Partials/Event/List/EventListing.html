@@ -1,3 +1,4 @@
+{namespace rkw=RKW\RkwEvents\ViewHelpers}
 <f:if condition="<f:count>{sortedEventList}</f:count>">
     <f:then>
         <f:for each="{sortedEventList}" as="eventsInYear" iteration="year">
@@ -39,12 +40,14 @@
         </f:for>
     </f:then>
     <f:else>
-
-        <div class="no-search-results first-letter-normal content content-box">
-            <div class="csc-default csc-element-n1">
-                <p><strong><f:translate key="tx_rkwevents_fluid.templates_event_list.noEvent" extensionName="RkwEvents" /></strong></p>
+        <f:comment><!-- do not show following lines, if there are results, but we stop to show after date xyz --></f:comment>
+        <f:if condition="{page} < 1">
+            <div class="no-search-results first-letter-normal content content-box">
+                <div class="csc-default csc-element-n1">
+                    <p><strong><f:translate key="tx_rkwevents_fluid.templates_event_list.noEvent" extensionName="RkwEvents" /></strong></p>
+                </div>
             </div>
-        </div>
+        </f:if>
 
         <f:if condition="{noGrouping}">
             <f:else>

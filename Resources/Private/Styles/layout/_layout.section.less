@@ -1,0 +1,39 @@
+/**! ==================================================
+ * LAYOUT/Section
+ * reusable section module
+ * ================================================== */
+.section {
+  position:relative;
+  .section__header {
+    padding-top: 4*@gap;
+    @media @mq-medium {
+      padding-top: 3*@gap;
+    }
+    @media @mq-mobile {
+      padding-top: 2*@gap;
+    }
+    &.section__header--small + .section__content {
+      padding-top: 0;
+    }
+    &.section__header--small p:last-child {
+      margin-bottom: @gap!important;
+    }
+  }
+  .section__content {
+    padding-top: 3*@gap;
+    padding-bottom: 3*@gap;
+    @media @mq-mobile {
+      padding-top: 2*@gap;
+      padding-bottom: 2*@gap;
+    }
+  }
+  .section__footer {
+    padding-bottom: 4*@gap;
+    @media @mq-medium {
+      padding-bottom: 3*@gap;
+    }
+    @media @mq-mobile {
+      padding-bottom: 2*@gap;
+    }
+  }
+}

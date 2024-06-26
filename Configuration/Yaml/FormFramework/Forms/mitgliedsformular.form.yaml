@@ -1,6 +1,6 @@
 
 renderingOptions:
-  submitButtonLabel: Submit
+  submitButtonLabel: Absenden
 identifier: mitgliedsformular
 label: Mitgliedsformular
 type: Form
@@ -8,9 +8,9 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Your message: {subject}'
-      recipientAddress: your.company@example.com
-      recipientName: 'Your Company name'
+      subject: 'HGON Mitgliedsantrag für  {singleselect-1} {subject} '
+      recipientAddress: info@hgon.de
+      recipientName: 'HGON Geschäftstelle'
       senderAddress: '{email}'
       senderName: '{name}'
       replyToAddress: ''
@@ -20,7 +20,32 @@ finishers:
       attachUploads: true
       translation:
         language: ''
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
     identifier: EmailToReceiver
+  -
+    options:
+      subject: 'HGON Mitgliedsantrag für  {singleselect-1} {subject} '
+      recipientAddress: '{email}'
+      recipientName: '{name} {subject}'
+      senderAddress: info@hgon.de
+      senderName: 'HGON Geschäftstelle'
+      replyToAddress: ''
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      partialRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+      layoutRootPaths:
+        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+    identifier: EmailToSender
+  -
+    options:
+      message: 'Vielen Dank für das Vertrauen. Wir melden uns umgehend. '
+    identifier: Confirmation
 renderables:
   -
     renderingOptions:
@@ -37,24 +62,22 @@ renderables:
             Ordentliches: '...ordentliches Mitglied (Schnuppermitgliedschaft erster Jahresbeitrag 40 EUR, dann: 65 EUR)'
             Familie: '...Familie (Jahresbeitrag 80 EUR)'
             Ermäßigt: '...Mitglied zum ermäßigten Beitrag (Schüler, Studenten, Azubis etc. gegen Nachweis, Jahresbeitrag 20 EUR)'
-          fluidAdditionalAttributes: {  }
         type: RadioButton
         identifier: radiobutton-1
         label: 'Ja, ich will mehr Natur für Hessen und trete der HGON bei als...'
       -
         properties:
           options:
-            Apfelbrand: 'Eine Flasche edler Apfelbrand aus einem HGON-Obstwiesenprojekt'
             T-Shirt: 'Ein HGON-T-Shirt, Größe:'
             Kappe: 'Eine HGON-Kappe'
             Spende: 'Ich spende mein Begrüßungsgeschenk'
-          fluidAdditionalAttributes: {  }
         type: RadioButton
         identifier: radiobutton-2
         label: 'Mein Begrüßungsgeschenk:'
       -
         properties:
           options:
+            SS: S
             M: M
             L: L
             XL: XL
@@ -100,6 +123,7 @@ renderables:
               options:
                 Herr: Herr
                 Frau: Frau
+                Divers: Divers
                 Familie: Familie
               fluidAdditionalAttributes:
                 required: required

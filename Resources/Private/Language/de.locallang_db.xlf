@@ -5,8 +5,8 @@
 		<body>
 		    <!-- MODEL -->
 		    <trans-unit id="tx_hgontemplate_domain_model_didyouknow">
-                <source>Did you know?</source>
-                <target>Wussen Sie schon?</target>
+                <source>HGON Template: Did you know?</source>
+                <target>HGON Template: Wussen Sie schon?</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_didyouknow.title">
                 <source>Title</source>
@@ -23,8 +23,8 @@
 
 
             <trans-unit id="tx_hgontemplate_domain_model_article">
-                <source>Article</source>
-                <target>Artikel</target>
+                <source>HGON Template: Article</source>
+                <target>HGON Template: Artikel</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_article.title">
                 <source>Title</source>
@@ -53,8 +53,8 @@
 
 
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary">
-                <source>Events culinary</source>
-                <target>Speisen</target>
+                <source>RKW Events: Events culinary</source>
+                <target>RKW Events: Speisen</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary.title">
                 <source>Title</source>
@@ -74,9 +74,29 @@
             </trans-unit>
 
 
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventcosts">
+                <source>Events Costs</source>
+                <target>Kosten für die Veranstaltung</target>
+            </trans-unit>
             <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary">
                 <source>Events Culinary</source>
                 <target>Veranstaltungs-Speisen</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype">
+                <source>Payment type</source>
+                <target>Zahlungsart</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.0">
+                <source>Please choose</source>
+                <target>Bitte wählen</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.1">
+                <source>Locally</source>
+                <target>Vor Ort (Barzahlung)</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
+                <source>PayPal</source>
+                <target>PayPal</target>
             </trans-unit>
 
 
@@ -94,7 +114,7 @@
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_article">
                 <source>Shown shop article</source>
-                <target>Angezeigter Shop-Artikel</target>
+                <target>Angezeigter Shop-Artikel (Nur sichtbar, wenn auf der Seite das Plugin "HGON: Generiert Vorschau für Geschwisterseiten" ausgewählt ist)</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_pages.pleaseChoose">
                 <source>--- Please choose ---</source>
@@ -112,16 +132,177 @@
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_type.1">
                 <source>Press</source>
-                <target>Pressemitteilungyp</target>
+                <target>Pressemitteilung</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2">
                 <source>Project</source>
-                <target>Projektvorstellung</target>
+                <target>Projektmeldung</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_youtube_video_id">
+                <source>YouTube Video ID</source>
+                <target>YouTube Video ID</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_header_image">
+                <source>Header image</source>
+                <target>Header Image (optional - ersetzt Standardbild)</target>
             </trans-unit>
 
             <trans-unit id="tx_hgontemplate_domain_model_news.tx_rkwproject_project">
                 <source>Project</source>
                 <target>Projekt</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.news">
+                <source>News</source>
+                <target>Neuigkeiten</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.article">
+                <source>Article</source>
+                <target>Artikel</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.events">
+                <source>Events</source>
+                <target>Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.donation">
+                <source>Donation</source>
+                <target>Spenden</target>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_is_internal">
+                <source>Internal newsletter</source>
+                <target>Interner Newsletter (kann nicht über die Website abonniert werden)</target>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select">
+                <source>News select</source>
+                <target>Art der Newsausgabe</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.none">
+                <source>Don't show anything</source>
+                <target>Keine Neuigkeiten anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.automatic">
+                <source>Automatic</source>
+                <target>Zeige aktuellste News automatisch an</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_select.manualSelect">
+                <source>Manual select</source>
+                <target>Manuelle Auswahl</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_count">
+                <source>Count</source>
+                <target>Anzahl angezeigter Newsmeldungen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_news_list">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select">
+                <source>Article select</source>
+                <target>Art der Artikelausgabe</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.none">
+                <source>Don't show anything</source>
+                <target>Keine Artikel anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.automatic">
+                <source>Automatic</source>
+                <target>Zeige aktuellste Artikel automatisch an</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_select.manualSelect">
+                <source>Manual select</source>
+                <target>Manuelle Auswahl</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_count">
+                <source>Count</source>
+                <target>Anzahl angezeigter Artikel</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_article_list">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select">
+                <source>Event select</source>
+                <target>Art der Veranstaltungsausgabe</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.none">
+                <source>Don't show anything</source>
+                <target>Keine Veranstaltungen anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.automatic">
+                <source>Automatic</source>
+                <target>Zeige aktuellste Veranstaltungen automatisch an</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_select.manualSelect">
+                <source>Manual select</source>
+                <target>Manuelle Auswahl</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_count">
+                <source>Count</source>
+                <target>Anzahl angezeigter Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_event_list">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select">
+                <source>Donation select</source>
+                <target>Art der Spendenausgabe</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.none">
+                <source>Don't show anything</source>
+                <target>Keine Spenden anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.automatic">
+                <source>Automatic</source>
+                <target>Zeige aktuellste Spenden automatisch an</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_select.manualSelect">
+                <source>Manual select</source>
+                <target>Manuelle Auswahl</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_count">
+                <source>Count</source>
+                <target>Anzahl angezeigter Spenden</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_newsletter.tx_hgontemplate_donation_list">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_header">
+                <source>Bank header</source>
+                <target>Bank Überschrift (z.B. "Spendenkonto HGON Fledermausbahnhof")</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_institute">
+                <source>Bank institute</source>
+                <target>Bank Institut (z.B. "Sparkasse Marburg-Biedenkopf")</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_iban">
+                <source>Bank IBAN</source>
+                <target>Bank IBAN</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_project.tx_hgontemplate_bank_bic">
+                <source>Bank BIC</source>
+                <target>Bank BIC</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_hgontemplate_domain_model_authors.tx_hgontemplate_short_description">
+                <source>Short description</source>
+                <target>Beschreibung kurz (wird für Team-Mitglieder Plugin verwendet)</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_authors.tx_hgontemplate_longer_description">
+                <source>Longer description</source>
+                <target>Beschreibung lang (wird für Team-Mitglieder Plugin verwendet)</target>
             </trans-unit>
 
 
@@ -131,9 +312,13 @@
                 <source>Journal Highlight</source>
                 <target>Journal Highlight</target>
             </trans-unit>
-            <trans-unit id="flexform.journalHighlight.pid">
-                <source>Page ID</source>
-                <target>Seite auswählen</target>
+            <trans-unit id="flexform.journalHighlight.newsUid">
+                <source>News UID</source>
+                <target>News auswählen</target>
+            </trans-unit>
+            <trans-unit id="flexform.journalHighlight.imageLeft">
+                 <source>Left justified</source>
+                 <target>Bild linksbündig (ansonsten rechtsbündig, wenn nicht selektiert)</target>
             </trans-unit>
 
             <trans-unit id="flexform.pageHighlight.sheetTitle">
@@ -143,6 +328,10 @@
             <trans-unit id="flexform.pageHighlight.pid">
                 <source>Page ID</source>
                 <target>Seite auswählen</target>
+            </trans-unit>
+            <trans-unit id="flexform.pageHighlight.imageLeft">
+                <source>Left justified</source>
+                <target>Bild linksbündig (ansonsten rechtsbündig, wenn nicht selektiert)</target>
             </trans-unit>
 
              <trans-unit id="flexform.randomAuthor.sheetTitle">
@@ -246,6 +435,25 @@
                <source>Good reason 6</source>
                <target>Guter Grund 6 (Optional)</target>
             </trans-unit>
+            <trans-unit id="flexform.projectPartner.sheetTitle">
+               <source>Project</source>
+               <target>Projektauswahl (Optional)</target>
+            </trans-unit>
+            <trans-unit id="flexform.projectPartner.projectUid">
+               <source>Project</source>
+               <target>Projekt</target>
+            </trans-unit>
+
+
+            <trans-unit id="flexform.authorList.sheetTitle">
+                <source>Author list</source>
+                <target>Ansprechpartner Liste</target>
+            </trans-unit>
+            <trans-unit id="flexform.authorList.authorUidList">
+                <source>Author list</source>
+                <target>Ansprechpartner auswählen</target>
+            </trans-unit>
+
         </body>
 	</file>
 </xliff>

@@ -1,3 +1,26 @@
+/* removing opacity from header images */
+.main__header--image .picture::after {
+    opacity: 0 !important;
+}
+
+/* styling captcha from sr_freecap */
+img.tx-srfreecap-image {
+    margin-left: 0;
+    margin-top: 10px;
+}
+
+.tx-srfreecap-cant-read {
+    width: 50%;
+    margin-top: 10px;
+}
+
+
+
+/* FIX: by any reason a color-bg-cta-Element (yellow sidebar) overwrites all other color-bg-cta elements */
+/* so we create a simple alternative class */
+.color-bg-cta-2 {background-color:#fadc40}
+
+
 /* Overwrite helllicht maps padding (we're not using an iframe) */
 .map {padding-top: 0;}
 
@@ -57,12 +80,23 @@ textarea.f3-form-error {
     border-right: 3px solid #FF5252;
 }
 
+.typo3-messages .message-error {
+    color: red;
+}
 
+ .typo3-messages {
+     color: #000;
+ }
 
-/* Pseudo-fix for header-images: Maybe the css is not the real problem */
+ li.alert {
+     list-style: none;
+ }
+
+/* Pseudo-fix for header-images: Maybe the css is not the real problem
 .main .main__header--image .picture img {
     width: 100%;
 }
+*/
 
 /* Fix: For not using a class in img tag itself (would need some additional partials) */
 aside.color-bg-tertiary img {
@@ -113,4 +147,14 @@ form.form fieldset p label {
 ul.news-downloads {
     list-style: none;
     padding-left: 0;
+}
+
+/* as example: used in /hgon_template/Resources/Private/Extension/RkwMailer/Templates/Link/Redirect.html */
+section.section.helper .section__header {
+    padding-top: 0;
+}
+
+/* for centered content */
+.frame-layout-80 {
+    width: 100%;
 }

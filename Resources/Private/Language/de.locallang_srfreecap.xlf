@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-04-07T16:19:42Z" product-name="sr_freecap">
+		<header/>
+		<body>
+
+           <trans-unit id="9221561048" xml:space="preserve">
+                <source>Please enter the word or number as it appears in the image. The entered value was incorrect.</source>
+                <target>Da fehlt noch was. Bitte füllen sie das Captcha aus.</target>
+            </trans-unit>
+
+		</body>
+	</file>
+</xliff>

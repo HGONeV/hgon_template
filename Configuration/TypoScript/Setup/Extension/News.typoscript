@@ -1,4 +1,4 @@
-# Add types "Pressemitteilung" and "Projektvorstellung" to tx_news
+# Add types "Pressemitteilung" and "Projektmeldung" to tx_news
 # (and overwrite types "internal link" and "external link"
 /*
 config.tx_extbase.persistence.classes {
@@ -44,5 +44,10 @@ plugin.tx_news {
     }
     settings {
         listPid = {$plugin.tx_news.settings.listPid}
+
+        detail {
+            errorHandling = showStandaloneTemplate,EXT:hgon_template/Resources/Private/Extension/News/Templates/News/DetailNotFound.html,404
+
+        }
     }
 }

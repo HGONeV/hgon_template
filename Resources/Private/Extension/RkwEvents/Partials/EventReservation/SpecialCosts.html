@@ -1,47 +1,62 @@
 {namespace rkw=RKW\RkwEvents\ViewHelpers}
 {namespace rkwRegistration=RKW\RkwRegistration\ViewHelpers}
 
-<f:comment><!-- Nicht gebraucht. Enthält zudem den logisches Fehler, dass die Kosten-Arten als entweder oder eingebaut sind. Radio-Buttons mit mehrfachauswahl wäre natürlich korrekt --></f:comment>
-<f:comment>
-    <f:if condition="{event.costsReg} || {event.costsRed}">
-        <label class="checkbox">
-                        <span class="checkbox__input">
-                            <f:form.checkbox class="input input-radio" checked="TRUE" id="event-costs" name="costs" disabled="true" value="1" />
-                            <label for="event-costs"></label>
-                        </span>
+<f:if condition="{event.costsReg}">
+
+    <p>Teilnahmegebühr</p>
+    <span class="form-group">
+        <f:if condition="{event.costsRed}" >
+
+            <label class="checkbox">
+                <span class="checkbox__input">
+                    <f:form.radio id="txHgontemplateEventcostsRed" class="input input-radio" property="txHgontemplateEventcosts" name="txHgontemplateEventcosts" value="red" />
+                    <label for="txHgontemplateEventcostsRed"></label>
+                </span>
+                <span class="checkbox__label">
+                    Reduziert (Ich bin Vereinsmitglied):
+                    <b>
+                        <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
+                            {event.costsRed}
+                        </f:format.currency>
+                    </b>
+                </span>
+            </label>
+        </f:if>
+
+        <f:if condition="{event.costsReg}" >
+            <label class="checkbox">
+            <span class="checkbox__input">
+                <f:form.radio id="txHgontemplateEventcostsReg" class="input input-radio" checked="TRUE" property="txHgontemplateEventcosts" name="txHgontemplateEventcosts" value="reg" />
+                <label for="txHgontemplateEventcostsReg"></label>
+            </span>
             <span class="checkbox__label">
-                            Teilnahmegebühr:
-                            <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
-                                <f:if condition="{event.costsReg}">
-                                    <f:then>
-                                        {event.costsReg}
-                                    </f:then>
-                                    <f:else>
-                                        <f:if condition="{event.costsRed}">
-                                            {event.costsRed}
-                                        </f:if>
-                                    </f:else>
-                                </f:if>
-                            </f:format.currency>
-                        </span>
-        </label>
-    </f:if>
-</f:comment>
+                Regulär:
+                <b>
+                    <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">
+                        {event.costsReg}
+                    </f:format.currency>
+                </b>
+            </span>
+            </label>
+        </f:if>
+    </span>
+</f:if>
+
 
 <!-- culinary options -->
 <f:if condition="<f:count>{event.txHgontemplateEventCulinary}</f:count>">
-    <p>Mahlzeiten mitbuchen und anschließend direkt mit PayPal bezahlen</p>
+    <p>Optional mitbuchen</p>
     <p class="form__field">
         <span class="checkbox-group">
             <f:for each="{event.txHgontemplateEventCulinary}" as="culinary" iteration="iter">
                 <label class="checkbox">
                     <span class="checkbox__input">
-                        <f:form.checkbox class="input input-radio" id="culinary{culinary.uid}" property="txHgontemplateEventculinary.{iter.index}" value="{culinary.uid}" name="txHgontemplateEventculinary.{iter.index}" />
+                        <f:form.checkbox class="input input-radio" id="culinary{culinary.uid}" property="txHgontemplateEventculinary.{iter.index}" value="{culinary.uid}" />
                         <label for="culinary{culinary.uid}"></label>
                     </span>
                     <span class="checkbox__label" title="<f:format.stripTags>{culinary.description}</f:format.stripTags>">
-                        {culinary.title}: <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{culinary.price}</f:format.currency>
-                        (<f:format.date format="d.m.Y">{culinary.date}</f:format.date>)
+                        {culinary.title}: <b><f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€" prependCurrency="false">{culinary.price}</f:format.currency></b>
+                        <f:if condition="{culinary.date}">(<f:format.date format="d.m.Y">{culinary.date}</f:format.date>)</f:if>
                     </span>
                 </label>
             </f:for>
@@ -49,7 +64,48 @@
     </p>
 </f:if>
 
+<!-- how to pay options -->
 
+<f:if condition="{event.costsReg} || <f:count>{event.txHgontemplateEventCulinary}</f:count>">
 
+    <f:comment>
+        <p>Bezahlart (falls hier aufgeführte Kosten anfallen)</p>
+    </f:comment>
 
+    <p>
+        Bitte überweisen Sie den entsprechenden Betrag (nach Wahl: Buffet, Bus, Mittagssnack) auf folgendes Konto:
+    </p>
+    <p>
+        Sparkasse Oberhessen<br/>
+        <strong>IBAN:</strong> DE44 5185 0079 0085 0039 68<br/>
+        <strong>Verwendungszweck:</strong> Tagung, Name
+    </p>
+    <p>
+        <strong><u>Eine Barzahlung vor Ort ist leider nicht möglich.</u></strong>
+    </p>
+
+    <f:comment>
+        <div class="form-group radio-group inputs-list">
+            <label class="radio" for="txHgontemplatePaymenttype1">
+                <span class="radio__input">
+                    <f:form.radio id="txHgontemplatePaymenttype1" class="input input-radio form-check-input" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="1" />
+                    <label for="txHgontemplatePaymenttype1"></label>
+                </span>
+                <span class="checkbox__label">
+                    Vor Ort am Tag der Veranstaltung
+                </span>
+            </label>
+            <br />
+            <label class="radio" for="txHgontemplatePaymenttype2">
+            <span class="radio__input">
+                <f:form.radio id="txHgontemplatePaymenttype2" class="input input-radio" checked="TRUE" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="2" />
+                <label for="txHgontemplatePaymenttype2"></label>
+            </span>
+            <span class="checkbox__label">
+                Jetzt direkt mit PayPal bezahlen
+            </span>
+            </label>
+        </div>
+    </f:comment>
+</f:if>
 
