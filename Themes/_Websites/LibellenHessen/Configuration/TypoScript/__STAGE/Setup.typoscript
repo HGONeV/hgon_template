@@ -19,18 +19,12 @@ page.10.dataProcessing {
 
 plugin.tx_hgonspecies {
     settings {
-        parentCategoryUid = 61
+        parentCategoryUid = 72
         listPid = 356
         listCatPid = 357
         showPid = 369
     }
 }
 
-plugin.tx_hgonspecies_list {
-    settings {
-        parentCategoryUid = 61
-        listPid = 356
-        listCatPid = 357
-        showPid = 369
-    }
-}
+plugin.tx_hgonspecies_list < plugin.tx_hgonspecies
+plugin.tx_hgonspecies_show < plugin.tx_hgonspecies
