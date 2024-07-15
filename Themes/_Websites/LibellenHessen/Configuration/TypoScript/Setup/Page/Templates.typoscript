@@ -16,5 +16,9 @@ page {
 			30 = EXT:hgon_template/Themes/_Websites/LibellenHessen/Resources/Private/Page/Templates/
 		}
 
+        variables {
+            relatedNews >
+        }
+
 	}
 }
