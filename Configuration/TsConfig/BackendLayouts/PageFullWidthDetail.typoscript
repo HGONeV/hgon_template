@@ -5,8 +5,8 @@
 mod {
 	web_layout {
 		BackendLayouts {
-			pageFullWidth {
-				title = Bild-Header, Eispaltig (Spezial für Plugin-Spezial)
+			pageFullWidthDetail {
+				title = Eispaltig (Arten Detailseite)
 				#icon = EXT:hgon_template/Resources/Public/Icons/BackendLayouts/default.svg
 				config {
 					backend_layout {

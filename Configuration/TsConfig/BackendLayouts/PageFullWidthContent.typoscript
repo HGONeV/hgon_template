@@ -1,0 +1,30 @@
+#############
+# Default
+#############
+
+mod {
+	web_layout {
+		BackendLayouts {
+			pageFullWidthContent {
+				title = Eispaltig (Arten)
+				#icon = EXT:hgon_template/Resources/Public/Icons/BackendLayouts/default.svg
+				config {
+					backend_layout {
+						colCount = 1
+						rowCount = 1
+						rows {
+							1 {
+								columns {
+									1 {
+										name = LLL:EXT:hgon_template/Resources/Private/Language/BackendLayouts.xlf:content.content
+										colPos = 0
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

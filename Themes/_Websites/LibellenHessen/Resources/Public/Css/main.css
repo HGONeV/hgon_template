@@ -9,3 +9,14 @@ h2 {
 .footer .footer__bottom {
     margin-top: 6em;
 }
+
+
+#tx-hgonspecies .gallery__image {
+    width: 50%;
+    margin: 0;
+    padding-right: 1.5em;
+}
+
+#tx-hgonspecies .gallery__image:first-child:last-child {
+    width: 100%;
+}
