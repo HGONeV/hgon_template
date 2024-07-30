@@ -317,11 +317,13 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
 
                 /** @var \HGON\HgonPayment\Api\PayPalApi $payPalApi */
                 $payPalApi = $this->objectManager->get('HGON\\HgonPayment\\Api\\PayPalApi');
+
                 $result = $payPalApi->createPayment($basket);
 
                 // extract approval_url
                 $approvalUrlArray = $result->links;
                 $approvalUrl = $approvalUrlArray[1]->href;
+
             }
         }
         // HGON EDIT END
@@ -380,8 +382,8 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
     public function endAction($event, $approvalUrl = '')
     {
 
-
         if ($approvalUrl) {
+            $this->view->assign('basket', $GLOBALS['TSFE']->fe_user->getKey('ses','hgon_payment_basket'));
             $this->view->assign('approvalUrl', $approvalUrl);
         }
 

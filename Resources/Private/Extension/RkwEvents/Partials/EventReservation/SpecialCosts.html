@@ -68,10 +68,15 @@
 
 <f:if condition="{event.costsReg} || <f:count>{event.txHgontemplateEventCulinary}</f:count>">
 
+    <p>
+        Bitte nutzen Sie für anfallende Kosten die elektronische Bezahlmöglichkeit, dass Ihnen <strong><u>nach dem Abschicken des Formulars</u></strong> angezeigt wird.
+    </p>
+
     <f:comment>
         <p>Bezahlart (falls hier aufgeführte Kosten anfallen)</p>
     </f:comment>
 
+    <f:comment>
     <p>
         Bitte überweisen Sie den entsprechenden Betrag (nach Wahl: Buffet, Bus, Mittagssnack) auf folgendes Konto:
     </p>
@@ -80,6 +85,8 @@
         <strong>IBAN:</strong> DE44 5185 0079 0085 0039 68<br/>
         <strong>Verwendungszweck:</strong> Tagung, Name
     </p>
+    </f:comment>
+
     <p>
         <strong><u>Eine Barzahlung vor Ort ist leider nicht möglich.</u></strong>
     </p>
@@ -107,5 +114,8 @@
             </label>
         </div>
     </f:comment>
+
+    <f:form.hidden id="txHgontemplatePaymenttype2" class="input input-radio" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="2" />
+
 </f:if>
 

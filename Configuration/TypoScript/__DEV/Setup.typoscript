@@ -21,6 +21,12 @@ module.tx_rkwmailer {
     }
 }
 
+plugin.tx_hgonpayment {
+    settings {
+        orderPid = 91
+    }
+}
+
 
 plugin.tx_hgonworkgroup_list {
     settings {

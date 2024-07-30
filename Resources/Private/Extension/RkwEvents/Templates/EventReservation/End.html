@@ -16,8 +16,10 @@
 </f:flashMessages>
 
 <f:if condition="{approvalUrl}">
-    <br>
-    <p>Schließen Sie außerdem JETZT den Zahlungsvorgang ab:</p>
+
+
+
+    <p>Bezahlen Sie nachfolgend direkt den Betrag in Höhe von <strong><u><f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="€">{basket.total}</f:format.currency></u></strong>:</p>
     <f:render partial="PayPal/PaymentWall" arguments="{_all}" />
 </f:if>
 
