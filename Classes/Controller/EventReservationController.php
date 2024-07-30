@@ -6,6 +6,8 @@ use RKW\RkwEvents\Helper\DivUtility;
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Validation\Validator\ConjunctionValidator;
+use TYPO3\CMS\Extbase\Validation\Validator\GenericObjectValidator;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -97,6 +99,32 @@ class EventReservationController extends \RKW\RkwEvents\Controller\EventReservat
         if ($this->arguments->hasArgument('newEventReservation')) {
 
             $request = $this->request->getArguments();
+
+            // START Subproberty workaround
+            // validation issue of relation (newEventReservation.event.department.mainPage Der angegebene Wert ist leer.)
+            $conjunctionValidator = $this->arguments->getArgument('newEventReservation')->getValidator();
+            //get all validators for argument
+            foreach ($conjunctionValidator->getValidators() as $validator) {
+                if ($validator instanceof ConjunctionValidator) {
+                    foreach ($validator->getValidators() as $validators) {
+                        //get all validators for property
+                        if ($validators instanceof GenericObjectValidator) {
+                            foreach ($validators->getPropertyValidators('event') as $propertyValidator) {
+                                //remove only standard validator
+                                if ($propertyValidator instanceof ConjunctionValidator) {
+                                    foreach ($propertyValidator->getValidators() as $valid) {
+                                        $propertyValidator->removeValidator($valid);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // END Subproberty workaround
+
+
+
             // always: Filter empty elements
             if (
                 $request['newEventReservation']

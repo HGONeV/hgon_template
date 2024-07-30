@@ -1,11 +1,11 @@
-config.baseURL = http://hgon-libellen.rkw.local/
+config.baseURL = https://hgon-libellen.ddev.site:8443/
 
 plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {
             _DEFAULT {
                 fallbackPid = 88
-                defaultDomain = hgon-libellen.rkw.local
+                defaultDomain = hgon-libellen.ddev.site:8443/
             }
         }
     }
@@ -24,8 +24,8 @@ plugin.tx_hgonspecies {
     settings {
         parentCategoryUid = 10
         listPid = 89
-        listCatPid = 90
-        showPid = 91
+        #listCatPid = 90
+        showPid = 90
     }
 }
 plugin.tx_hgonspecies_list < plugin.tx_hgonspecies

@@ -6,7 +6,7 @@ mod {
 	web_layout {
 		BackendLayouts {
 			pageFullWidthContent {
-				title = Eispaltig (Arten)
+				title = Einspaltig (Arten)
 				#icon = EXT:hgon_template/Resources/Public/Icons/BackendLayouts/default.svg
 				config {
 					backend_layout {
