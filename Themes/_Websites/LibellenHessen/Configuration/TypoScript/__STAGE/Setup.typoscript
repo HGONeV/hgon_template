@@ -18,6 +18,9 @@ page.10.dataProcessing {
 
 
 plugin.tx_hgonspecies {
+    persistence {
+        storagePid = 371
+    }
     settings {
         parentCategoryUid = 72
         listPid = 356
