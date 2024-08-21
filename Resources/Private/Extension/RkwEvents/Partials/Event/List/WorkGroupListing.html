@@ -1,4 +1,4 @@
-<div class="flex-container space-between gutter / mt-1" id="tx-rkwevents-grid-section-workgroup">
+
     <f:if condition="<f:count>{workGroupEventList}</f:count>">
         <f:then>
             <f:for each="{workGroupEventList}" as="event">
@@ -16,4 +16,3 @@
 
     <!-- lazy loading / load more box -->
     <f:render partial="Event/List/MoreLink" arguments="{isWorkGroupEvent: 1, showMoreLink: showMoreLink, filter: filter, pageMore: pageMore, archive: archive, ajaxTypeNum: ajaxTypeNum}" />
-</div>

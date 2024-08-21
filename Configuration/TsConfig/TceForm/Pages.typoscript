@@ -33,7 +33,7 @@ TCEFORM {
         #costs_red.disabled = 1
         #costs_red_condition.disabled = 1
         #costs_tax.disabled = 1
-        online_event.disabled = 1
+        #online_event.disabled = 1
         sheet.disabled = 1
         sheet_records.disabled = 1
         reg_single.disabled = 1

@@ -50,7 +50,16 @@ Otherwise your changes will be overwritten the next time you save the extension 
                                     </tr>
                                     <tr>
                                         <th>Wo:</th>
-                                        <td>{event.place.address}, {event.place.zip} {event.place.city}</td>
+                                        <td>
+                                        <f:if condition="{event.onlineEvent}">
+                                            <f:then>
+                                                Online
+                                            </f:then>
+                                            <f:else>
+                                                {event.place.address}, {event.place.zip} {event.place.city}
+                                            </f:else>
+                                        </f:if>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Art:</th>
