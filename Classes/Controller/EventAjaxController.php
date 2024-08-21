@@ -146,6 +146,7 @@ class EventAjaxController extends \RKW\RkwEvents\Controller\AjaxController
                 $replacements['pageMore'] = $page + 1;
                 $replacements['page'] = $page;
                 $replacements['isWorkGroup'] = true;
+                $replacements['showPid'] = intval($this->settings['showPid']);
                 $jsonHelper->setHtml(
                     'tx-rkwevents-grid-section-workgroup',
                     $replacements,
