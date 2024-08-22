@@ -74,11 +74,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
                                                         {event.costsReg}
                                                     </f:format.currency>
                                                     <f:if condition="{event.costsRed}">
-                                                        (HGON-Mitglieder:
-                                                        <f:format.currency currencySign="€">
-                                                            {event.costsRed}
-                                                        </f:format.currency>
-                                                        )
+                                                        (<f:if condition="{event.costsRedCondition}"><f:then>{event.costsRedCondition}: </f:then><f:else>Reduziert: </f:else></f:if><f:format.currency currencySign="€">{event.costsRed}</f:format.currency>)
                                                     </f:if>
                                                 </f:then>
                                                 <f:else>
