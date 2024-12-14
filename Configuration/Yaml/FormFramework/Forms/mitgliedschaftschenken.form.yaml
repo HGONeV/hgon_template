@@ -87,6 +87,21 @@ renderables:
       -
         properties:
           options:
+            '-': '-'
+            'Farbe egal': 'Farbe egal'
+            Dunkelgrün: Dunkelgrün
+            Weinrot: Weinrot
+            Hellgrau: Hellgrau
+            Dunkelgrau: Dunkelgrau
+            Olive: Olive
+            Dunkelblau: Dunkelblau
+            'Blau (Navy)': 'Blau (Navy)'
+        type: SingleSelect
+        identifier: singleselect-2
+        label: 'T-Shirt Farbe'
+      -
+        properties:
+          options:
             '1 Jahr (endet automatisch)': '1 Jahr (endet automatisch)'
             'unbefristet (endet bei Kündigung)': 'unbefristet (endet bei Kündigung)'
         type: RadioButton

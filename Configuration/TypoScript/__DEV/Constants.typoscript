@@ -6,6 +6,7 @@ plugin.tx_hgondonation {
 
 plugin.tx_hgonpayment {
     settings {
+        #orderPid = 77
         api {
             # Muss leider sein: Unkorrekte URL, weil PayPal hier ein .local nicht akzeptiert und Fehler wirft
             cancelUrl = http://stage.hgon.de/mitmachen

@@ -21,6 +21,12 @@ module.tx_rkwmailer {
     }
 }
 
+plugin.tx_hgonpayment {
+    settings {
+        orderPid = 378
+    }
+}
+
 plugin.tx_hgonspecies {
     persistence {
         storagePid = 375

@@ -70,6 +70,7 @@ renderables:
           options:
             T-Shirt: 'Ein HGON-T-Shirt, Größe:'
             Kappe: 'Eine HGON-Kappe'
+            'Eine Flasche Apfelschnaps': 'Eine Flasche Apfelschnaps'
             Spende: 'Ich spende mein Begrüßungsgeschenk'
         type: RadioButton
         identifier: radiobutton-2
@@ -77,13 +78,29 @@ renderables:
       -
         properties:
           options:
-            SS: S
+            S: S
             M: M
             L: L
             XL: XL
         type: RadioButton
         identifier: radiobutton-3
         label: 'T-Shirt Größe'
+      -
+        properties:
+          options:
+            '-': '-'
+            'Farbe egal': 'Farbe egal'
+            Dunkelgrün: Dunkelgrün
+            Weinrot: Weinrot
+            Hellgrau: Hellgrau
+            Dunkelgrau: Dunkelgrau
+            Olive: Olive
+            Dunkelblau: Dunkelblau
+            'Blau (Navy)': 'Blau (Navy)'
+          elementDescription: 'Ist die ausgewählte Farbe in der Größe nicht verfügbar, wählen wir eine Alternative aus.'
+        type: SingleSelect
+        identifier: singleselect-2
+        label: 'T-Shirt Farbe'
       -
         type: Fieldset
         identifier: fieldset-1

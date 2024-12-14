@@ -23,7 +23,7 @@ module.tx_rkwmailer {
 
 plugin.tx_hgonpayment {
     settings {
-        orderPid = 91
+        orderPid = 77
     }
 }
 

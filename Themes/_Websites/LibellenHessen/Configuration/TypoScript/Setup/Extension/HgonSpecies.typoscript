@@ -1,0 +1,13 @@
+plugin.tx_hgonspecies {
+    persistence {
+        storagePid = 419
+    }
+    settings {
+        parentCategoryUid = 63
+        listPid = 373
+        showPid = 420
+    }
+}
+
+plugin.tx_hgonspecies_list < plugin.tx_hgonspecies
+plugin.tx_hgonspecies_show < plugin.tx_hgonspecies

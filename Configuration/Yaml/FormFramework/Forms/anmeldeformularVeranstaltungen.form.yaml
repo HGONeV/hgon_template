@@ -1,0 +1,124 @@
+
+renderingOptions:
+  submitButtonLabel: 'JETZT ANMELDEN'
+type: Form
+identifier: anmeldeformularVeranstaltungen
+label: Anmeldung
+prototypeName: standard
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Neue Seite'
+    type: Page
+    identifier: page-1
+    label: Step
+    renderables:
+      -
+        properties:
+          options:
+            Herr: Herr
+            Frau: Frau
+            Diverse: Diverse
+          fluidAdditionalAttributes:
+            required: required
+        type: SingleSelect
+        identifier: singleselect-1
+        label: Anrede
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-1
+        label: Vorname
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-2
+        label: Nachname
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-3
+        label: E-Mail
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-4
+        label: Firma
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-5
+        label: Adresse
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-6
+        label: PLZ
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-7
+        label: Ort
+      -
+        defaultValue: ''
+        type: Textarea
+        identifier: textarea-8
+        label: 'Bemerkungen & Fragen'
+        properties:
+          elementDescription: 'Machen Sie hier ergänzende Angaben zu Ihrer Reservierung.'
+      -
+        type: Checkbox
+        identifier: checkbox-1
+        label: ''
+        validators:
+          -
+            identifier: NotEmpty
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          elementDescription: 'Ich akzeptiere die Nutzungsbedingungen. Insbesondere bin ich damit einverstanden, dass die HGON im Rahmen der Veranstaltung gemachte Foto- und Videoaufnahmen für Zwecke der Veranstaltungsberichterstattung und der allgemeinen Öffentlichkeitsarbeit in verschiedenen Medien veröffentlicht. '
+      -
+        type: Checkbox
+        identifier: checkbox-2
+        label: ''
+        validators:
+          -
+            identifier: NotEmpty
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          elementDescription: 'Ja, ich stimme zu, dass die HGON meine persönlichen Daten zum oben genannten Zweck, sowie zur Erzeugung eines kostenlosen Nutzerkontos verwendet. Ferner habe ich die erweiterten Hinweise in der Datenschutzerklärung gelesen und bin damit einverstanden. Diese Einwilligung kann jederzeit widerrufen werden. '
