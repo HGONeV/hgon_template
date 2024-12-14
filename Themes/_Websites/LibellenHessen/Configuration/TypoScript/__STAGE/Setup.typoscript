@@ -24,7 +24,6 @@ plugin.tx_hgonspecies {
     settings {
         parentCategoryUid = 72
         listPid = 356
-        listCatPid = 357
         showPid = 369
     }
 }
