@@ -68,15 +68,7 @@
 
 <f:if condition="{event.costsReg} || <f:count>{event.txHgontemplateEventCulinary}</f:count>">
 
-    <p>
-        Bitte nutzen Sie für anfallende Kosten die elektronische Bezahlmöglichkeit, dass Ihnen <strong><u>nach dem Abschicken des Formulars</u></strong> angezeigt wird.
-    </p>
-
-    <f:comment>
-        <p>Bezahlart (falls hier aufgeführte Kosten anfallen)</p>
-    </f:comment>
-
-    <f:comment>
+    <f:comment><!-- OLD --></f:comment>
     <p>
         Bitte überweisen Sie den entsprechenden Betrag (nach Wahl: Buffet, Bus, Mittagssnack) auf folgendes Konto:
     </p>
@@ -85,13 +77,24 @@
         <strong>IBAN:</strong> DE44 5185 0079 0085 0039 68<br/>
         <strong>Verwendungszweck:</strong> Tagung, Name
     </p>
+
+    <f:comment><!-- NEW (solution waits for authorisation) --></f:comment>
+    <f:comment>
+        <p>
+            Bitte nutzen Sie für anfallende Kosten die elektronische Bezahlmöglichkeit, dass Ihnen <strong><u>nach dem Abschicken des Formulars</u></strong> angezeigt wird.
+        </p>
+
+        <p>
+            <strong><u>Eine Barzahlung vor Ort ist leider nicht möglich.</u></strong>
+        </p>
+
+        <f:form.hidden id="txHgontemplatePaymenttype2" class="input input-radio" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="2" />
     </f:comment>
 
-    <p>
-        <strong><u>Eine Barzahlung vor Ort ist leider nicht möglich.</u></strong>
-    </p>
 
+    <f:comment><!-- DEPRECATED stuff. But keep it as backup if HGON want this choice-solution again --></f:comment>
     <f:comment>
+        <p>Bezahlart (falls hier aufgeführte Kosten anfallen)</p>
         <div class="form-group radio-group inputs-list">
             <label class="radio" for="txHgontemplatePaymenttype1">
                 <span class="radio__input">
@@ -108,14 +111,11 @@
                 <f:form.radio id="txHgontemplatePaymenttype2" class="input input-radio" checked="TRUE" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="2" />
                 <label for="txHgontemplatePaymenttype2"></label>
             </span>
-            <span class="checkbox__label">
+                <span class="checkbox__label">
                 Jetzt direkt mit PayPal bezahlen
             </span>
             </label>
         </div>
     </f:comment>
-
-    <f:form.hidden id="txHgontemplatePaymenttype2" class="input input-radio" property="txHgontemplatePaymenttype" name="txHgontemplatePaymenttype" value="2" />
-
 </f:if>
 
