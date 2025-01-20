@@ -3,6 +3,8 @@
 page = PAGE
 page {
 
+	shortcutIcon = EXT:hgon_template/Themes/_Websites/LibellenHessen/Resources/Public/Images/favicon.ico
+
 	10 = FLUIDTEMPLATE
 	10 {
 		# Template paths
