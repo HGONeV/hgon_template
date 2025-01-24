@@ -36,7 +36,7 @@ $tempPagesColumns = array(
 
     // re-add after removing in RkwBasics for TYPO3 >= 8
     'tx_rkwbasics_article_image' => [
-        'exclude' => 0,
+        'exclude' => 1,
         'label' => 'LLL:EXT:rkw_basics/Resources/Private/Language/locallang_db.xlf:tx_rkwbasics_domain_model_pages.tx_rkwbasics_article_image',
 
         'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
