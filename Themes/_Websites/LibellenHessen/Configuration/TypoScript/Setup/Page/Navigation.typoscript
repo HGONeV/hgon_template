@@ -4,4 +4,8 @@ page.10 {
         20 >
 
     }
+    variables {
+        // remove "prev" + "next" pagination from pages footer
+        readMoreNav >
+    }
 }
