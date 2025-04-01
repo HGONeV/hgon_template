@@ -5,11 +5,11 @@
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-<vh:frontend.translate key="templates_email_confirmationReservationUser.headline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" arguments="{0 : frontendUser.firstName, 1: frontendUser.lastName}" />
+<vh:frontend.translate key="templates_email_confirmationReservationUser.headline" languageKey="de" extensionName="rkwEvents" arguments="{0 : frontendUser.firstName, 1: frontendUser.lastName}" />
 
 vielen Dank für Ihre Anmeldung zu einer Veranstaltung der HGON.
-<vh:frontend.translate key="templates_email_confirmationReservationUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
-<f:if condition="{reservation.event.costsReg}"><vh:frontend.translate key="templates_email_confirmationReservationUser.billing" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" /></f:if>
+<vh:frontend.translate key="templates_email_confirmationReservationUser.text2" languageKey="de" extensionName="rkwEvents" />
+<f:if condition="{reservation.event.costsReg}"><vh:frontend.translate key="templates_email_confirmationReservationUser.billing" languageKey="de" extensionName="rkwEvents" /></f:if>
 
 <f:render partial="Email/Details" section="Plaintext" arguments="{reservation: reservation, frontendUser: frontendUser, language:frontendUser.txRkwregistrationLanguageKey, showPid: showPid, isRegistered : 1}"/>
 
@@ -17,14 +17,14 @@ vielen Dank für Ihre Anmeldung zu einer Veranstaltung der HGON.
 
 <!-- HTML -->
 <f:section name="Html">
-	<h1><vh:frontend.translate key="templates_email_confirmationReservationUser.headline" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" arguments="{0 : frontendUser.firstName, 1: frontendUser.lastName}" /></h1>
+	<h1><vh:frontend.translate key="templates_email_confirmationReservationUser.headline" languageKey="de" extensionName="rkwEvents" arguments="{0 : frontendUser.firstName, 1: frontendUser.lastName}" /></h1>
 	<p>
 		vielen Dank für Ihre Anmeldung zu einer Veranstaltung der HGON.<br>
-		<vh:frontend.translate key="templates_email_confirmationReservationUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+		<vh:frontend.translate key="templates_email_confirmationReservationUser.text2" languageKey="de" extensionName="rkwEvents" />
 	</p>
 	<f:if condition="{reservation.event.costsReg}">
 		<p>
-			<vh:frontend.translate key="templates_email_confirmationReservationUser.billing" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwEvents" />
+			<vh:frontend.translate key="templates_email_confirmationReservationUser.billing" languageKey="de" extensionName="rkwEvents" />
 		</p>
 	</f:if>
 

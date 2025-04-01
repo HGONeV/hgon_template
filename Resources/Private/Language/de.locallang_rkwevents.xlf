@@ -4,6 +4,12 @@
 		<header/>
 		<body>
 
+			<!-- EventReservationController -->
+			<trans-unit id="eventReservationController.message.reservationCreated">
+				<source>Reservation successfully created.</source>
+				<target>Die Anmeldung an die Veranstaltung ist nun abgeschlossen. Sie erhalten in Kürze eine Bestätigung per E-Mail.</target>
+			</trans-unit>
+
             <!-- Templates/Email/OptInReservationUser.html -->
             <trans-unit id="templates_email_optInReservationUser.text1">
                 <source>thank you for your interest.</source>

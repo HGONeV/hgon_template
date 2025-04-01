@@ -4,7 +4,7 @@ plugin.tx_rkwbasics {
     settings {
         pageNotFoundConfig {
             _DEFAULT {
-                fallbackPid = 88
+                fallbackPid = 81
                 defaultDomain = hgon-libellen.ddev.site:8443/
             }
         }
@@ -12,20 +12,20 @@ plugin.tx_rkwbasics {
 }
 
 page.10.dataProcessing {
-    10.special.value = 80
-    35.special.value = 33
+    10.special.value = 78
+    #35.special.value = 33
 }
 
 
 plugin.tx_hgonspecies {
     persistence {
-        storagePid = 78
+        storagePid = 83
     }
     settings {
         parentCategoryUid = 10
-        listPid = 89
+        listPid = 85
         #listCatPid = 90
-        showPid = 90
+        showPid = 86
     }
 }
 plugin.tx_hgonspecies_list < plugin.tx_hgonspecies
