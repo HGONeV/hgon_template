@@ -1,4 +1,5 @@
 {namespace rkw=RKW\RkwEvents\ViewHelpers}
+{namespace hgonTemplate=HGON\HgonTemplate\ViewHelpers}
 
 
 <f:if condition="{isReservationPage}">
@@ -9,9 +10,21 @@
                     <f:then>
                         <f:if condition="{event.extRegLink}">
                             <f:then>
-                                <f:link.external uri="{event.extRegLink}" class="btn btn--primary btn--rounded" target="_blank" rel="nofollow">
-                                    <span><f:translate key="tx_rkwevents_fluid.partials_event_registration.externalLink" /></span>
-                                </f:link.external>
+                                <f:if condition="<hgonTemplate:isValidEmailAddress emailAddress='{event.extRegLink}' />">
+                                    <f:then>
+                                        <!-- external email -->
+                                        <f:link.email class="btn btn--primary btn--rounded" email="{event.extRegLink}">
+                                            <span>Jetzt anmelden</span>
+                                        </f:link.email>
+                                    </f:then>
+                                    <f:else>
+                                        <!-- external link -->
+                                        <f:link.external uri="{event.extRegLink}" class="btn btn--primary btn--rounded" target="_blank" rel="nofollow">
+                                            <span><f:translate key="tx_rkwevents_fluid.partials_event_registration.externalLink" /></span>
+                                        </f:link.external>
+                                    </f:else>
+                                </f:if>
+
                             </f:then>
                             <f:else>
                                 <f:if condition="{settings.disableInternalRegistration}">
