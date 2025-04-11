@@ -12,6 +12,23 @@
 
   &.card--border {
     border:3px solid @color-tertiary;
+
+    &:not(.card-plain) {
+		padding-bottom: 90px;
+		@media @mq-medium {
+			padding-bottom: 0;
+		}
+		.card__footer {
+			position: absolute;
+			bottom: @gap;
+
+			@media @mq-medium {
+				position: static;
+				bottom: auto;
+				padding-top: @gap;
+			}
+		}
+    }
     .card__image, .card__bgimage {
       margin-left: -3px;
       margin-right: -3px;
