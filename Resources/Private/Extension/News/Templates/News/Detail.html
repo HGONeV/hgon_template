@@ -67,15 +67,6 @@
                     </div>
                     <n:renderMedia news="{newsItem}" imgClass="img-responsive" videoClass="video-wrapper" audioClass="audio-wrapper">
 
-                        <f:if condition="{newsItem.teaser}">
-                            <!-- teaser -->
-                            <p>
-                                <strong>
-                                    <f:format.html>{newsItem.teaser}</f:format.html>
-                                </strong>
-                            </p>
-                        </f:if>
-
                         <f:if condition="{newsItem.contentElements}">
                             <!-- content elements -->
                             <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>
