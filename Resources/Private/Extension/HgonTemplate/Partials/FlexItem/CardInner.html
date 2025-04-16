@@ -3,7 +3,7 @@
     <f:if condition="{image} && {type} == 'c-4'">
         <f:then>
             <f:comment><!-- if c4: Always border --></f:comment>
-            <article class="card {f:if(condition: '{type} == \'c-4\'', then: 'card--border')} {f:if(condition: '{image}', else: 'card-plain')}">
+            <article class="card {f:if(condition: '{type} == \'c-4\'', then: 'card--border card--fixed-footer')} {f:if(condition: '{image}', else: 'card-plain')}">
         </f:then>
         <f:else>
             <f:if condition="{image}">
