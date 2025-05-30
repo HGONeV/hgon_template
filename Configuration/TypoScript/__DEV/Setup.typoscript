@@ -40,3 +40,18 @@ plugin.tx_hgonworkgroup {
 }
 
 txHgondonationBecomeMember.10.select.uidInList = 191
+
+
+plugin.tx_hgonspecies {
+    persistence {
+        storagePid = 88
+    }
+    settings {
+        parentCategoryUid = 16
+        listPid = 89
+        #listCatPid = 90
+        showPid = 90
+    }
+}
+plugin.tx_hgonspecies_list < plugin.tx_hgonspecies
+plugin.tx_hgonspecies_show < plugin.tx_hgonspecies

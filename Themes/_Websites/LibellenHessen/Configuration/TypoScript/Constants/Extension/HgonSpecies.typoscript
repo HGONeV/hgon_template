@@ -1,0 +1,14 @@
+/*
+plugin.tx_hgonspecies {
+    persistence {
+        storagePid = 83
+    }
+    settings {
+        parentCategoryUid = 10
+        listPid = 85
+        #listCatPid = 90
+        showPid = 86
+    }
+}
+
+*/

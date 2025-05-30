@@ -1,0 +1,22 @@
+// workgroup: Override variables on detail view
+[globalVar = TSFE:id = {$plugin.tx_hgonspecies.settings.showPid}]
+
+    config.noPageTitle = 2
+
+    # override page title
+    lib.pageTitle = RECORDS
+    lib.pageTitle {
+        tables = tx_hgonspecies_domain_model_species
+        source.data = GP:tx_hgonspecies_show|species
+        source.intval = 1
+        conf.tx_hgonspecies_domain_model_species = TEXT
+        conf.tx_hgonspecies_domain_model_species {
+            field = name
+            htmlSpecialChars = 1
+        }
+        wrap = <title>|</title>
+    }
+    page.headerData.1 >
+    page.headerData.1 < lib.pageTitle
+
+[global]
