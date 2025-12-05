@@ -6,7 +6,6 @@ plugin.tx_hgondonation {
 
 plugin.tx_hgonpayment {
     settings {
-        #orderPid = 77
         api {
             # Muss leider sein: Unkorrekte URL, weil PayPal hier ein .local nicht akzeptiert und Fehler wirft
             cancelUrl = http://stage.hgon.de/mitmachen
@@ -26,7 +25,7 @@ module.tx_rkwmailer {
         counterPixelPid = 97
 
         # URL for hard-links in templates
-        baseUrl = http://hgon.rkw.local
+        baseUrl = https://hgon-relaunch.ddev.site:8443
     }
 }
 
