@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class ArrayReadByKeyViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class ArrayReadByKeyViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * Imports php function rand
@@ -35,7 +35,6 @@ class ArrayReadByKeyViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
     public function render($array, $key)
     {
         return array($array[$key]);
-        //===
     }
 
 

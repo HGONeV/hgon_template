@@ -21,7 +21,7 @@ namespace HGON\HgonTemplate\ViewHelpers\Php;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class RandViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class RandViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * Imports php function rand
@@ -34,7 +34,6 @@ class RandViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
     public function render($min, $max)
     {
         return $min || $max ? rand ($min, $max) : rand();
-        //===
     }
 
 

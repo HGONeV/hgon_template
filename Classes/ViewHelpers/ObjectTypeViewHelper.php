@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class ObjectTypeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class ObjectTypeViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * returns the last element of the namespace (e.g. "Pages", or "SysCategory")
@@ -35,11 +35,10 @@ class ObjectTypeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
     {
         if (is_array($object)) {
             return "array";
-            //===
         }
 
-        return end(GeneralUtility::trimExplode('\\', get_class($object), true));
-        //===
+        $array = GeneralUtility::trimExplode('\\', get_class($object), true);
+        return end($array);
     }
 
 

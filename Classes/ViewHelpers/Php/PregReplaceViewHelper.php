@@ -21,7 +21,7 @@ namespace HGON\HgonTemplate\ViewHelpers\Php;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class PregReplaceViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class PregReplaceViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * Imports php function preg_match
@@ -35,7 +35,6 @@ class PregReplaceViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
     public function render($pattern, $replacement, $subject)
     {
         return preg_replace("/$pattern/", $replacement, strip_tags($subject));
-        //===
     }
 
 

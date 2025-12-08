@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class IterateKeyWithSessionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class IterateKeyWithSessionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * Imports php function rand
@@ -51,7 +51,6 @@ class IterateKeyWithSessionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\A
             }
         }
         return $GLOBALS['TSFE']->fe_user->getKey('ses', $uniqueName);
-        //===
     }
 
 

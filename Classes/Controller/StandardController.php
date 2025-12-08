@@ -11,6 +11,8 @@ namespace HGON\HgonTemplate\Controller;
  *  (c) 2018 Maximilian Fäßler <maximilian@faesslerweb.de>, Fäßler Web UG
  *
  ***/
+
+use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -20,68 +22,100 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
-     * pagesRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\PagesRepository
-     * @inject
      */
-    protected $pagesRepository = null;
+    protected $pagesRepository;
 
     /**
-     * authorsRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\AuthorsRepository
-     * @inject
      */
-    protected $authorsRepository = null;
+    protected $authorsRepository;
 
     /**
-     * eventRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\EventRepository
-     * @inject
      */
-    protected $eventRepository = null;
+    protected $eventRepository;
 
     /**
-     * newsRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\NewsRepository
-     * @inject
      */
-    protected $newsRepository = null;
+    protected $newsRepository;
 
     /**
-     * sysCategoryRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository
-     * @inject
      */
-    protected $sysCategoryRepository = null;
+    protected $sysCategoryRepository;
 
     /**
-     * didYouKnowRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository
-     * @inject
      */
-    protected $didYouKnowRepository = null;
+    protected $didYouKnowRepository;
 
     /**
-     * projectsRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\ProjectsRepository
-     * @inject
      */
-    protected $projectsRepository = null;
+    protected $projectsRepository;
 
     /**
-     * donationRepository
-     *
      * @var \HGON\HgonDonation\Domain\Repository\DonationRepository
-     * @inject
      */
-    protected $donationRepository = null;
+    protected $donationRepository;
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
+     */
+    public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void {
+        $this->pagesRepository = $pagesRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository
+     */
+    public function injectAuthorsRepository(\HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository): void {
+        $this->authorsRepository = $authorsRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\EventRepository $eventRepository
+     */
+    public function injectEventRepository(\HGON\HgonTemplate\Domain\Repository\EventRepository $eventRepository): void {
+        $this->eventRepository = $eventRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository
+     */
+    public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void {
+        $this->newsRepository = $newsRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository
+     */
+    public function injectSysCategoryRepository(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository): void {
+        $this->sysCategoryRepository = $sysCategoryRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository
+     */
+    public function injectDidYouKnowRepository(\HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository): void {
+        $this->didYouKnowRepository = $didYouKnowRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\ProjectsRepository $projectsRepository
+     */
+    public function injectProjectsRepository(\HGON\HgonTemplate\Domain\Repository\ProjectsRepository $projectsRepository): void {
+        $this->projectsRepository = $projectsRepository;
+    }
+
+    /**
+     * @param \HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository
+     */
+    public function injectDonationRepository(\HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository): void {
+        $this->donationRepository = $donationRepository;
+    }
 
     /**
      * cacheManager
@@ -94,13 +128,6 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer
      */
     protected $cObj;
-
-
-    public function initializeAction()
-    {
-      //  $this->cacheManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Cache\\CacheManager')->getCache("hgon_template");
-      //  $this->cObj = $this->configurationManager->getContentObject();
-    }
 
 
     /**
@@ -171,8 +198,12 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function sidebarContactPersonAction()
     {
         // get PageRepository and rootline
-        $repository = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
-        $rootlinePages = $repository->getRootLine(intval($GLOBALS['TSFE']->id));
+        $context = GeneralUtility::makeInstance(Context::class);
+        $pageId  = (int)$context->getPropertyFromAspect('frontend.page', 'id');
+
+        // RootlineUtility verwenden statt PageRepository::getRootLine()
+        $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $pageId);
+        $rootlinePages   = $rootlineUtility->get();
 
         // fo through all pages and take the one that has a match in the corresponsing field
         $pid = intval($GLOBALS['TSFE']->id);
@@ -184,7 +215,6 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             ) {
                 $pid = intval($values['uid']);
                 break;
-                //===
             }
         }
 

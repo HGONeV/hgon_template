@@ -42,7 +42,7 @@ class News extends \GeorgRinger\News\Domain\Model\News
      * txHgontemplateHeaderImage
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $txHgontemplateHeaderImage = null;
 

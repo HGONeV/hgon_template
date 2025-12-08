@@ -26,44 +26,53 @@ use HGON\HgonTemplate\Domain\Model\SysCategory;
 class Journal implements \TYPO3\CMS\Core\SingletonInterface
 {
     /**
-     * pagesRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\PagesRepository
-     * @inject
      */
-    protected $pagesRepository = null;
+    protected $pagesRepository;
 
     /**
-     * authorsRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\AuthorsRepository
-     * @inject
      */
-    protected $authorsRepository = null;
+    protected $authorsRepository;
 
     /**
-     * projectsRepository
-     *
-     * @var \HGON\HgonTemplate\Domain\Repository\ProjectsRepository
-     * @inject
-
-    protected $projectsRepository = null;*/
-
-    /**
-     * sysCategoryRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository
-     * @inject
      */
-    protected $sysCategoryRepository = null;
+    protected $sysCategoryRepository;
 
     /**
-     * eventRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\EventRepository
-     * @inject
      */
-    protected $eventRepository = null;
+    protected $eventRepository;
+
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
+     */
+    public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void {
+        $this->pagesRepository = $pagesRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository
+     */
+    public function injectAuthorsRepository(\HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository): void {
+        $this->authorsRepository = $authorsRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository
+     */
+    public function injectSysCategoryRepository(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository): void {
+        $this->sysCategoryRepository = $sysCategoryRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\EventRepository $eventRepository
+     */
+    public function injectEventRepository(\HGON\HgonTemplate\Domain\Repository\EventRepository $eventRepository): void {
+        $this->eventRepository = $eventRepository;
+    }
 
     /**
      * getPagesList

@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class CreateRowsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class CreateRowsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * create rows (for automatical handling if we need c4, c6, c8 or c12 boxes for the last items)
@@ -71,7 +71,6 @@ class CreateRowsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
         } while (count($mergedList));
 
         return $newList;
-        //===
     }
 
 

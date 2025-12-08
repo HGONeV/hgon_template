@@ -42,11 +42,9 @@ class DivUtility extends \RKW\RkwEvents\Helper\DivUtility
         $availableSeats = $event->getSeats() - $countConfirmedReservations;
         if ($availableSeats >= $countEventReservationsWithAddPersons) {
             return true;
-            //===
         }
 
         return false;
-        //===
     }
 
 
@@ -66,7 +64,6 @@ class DivUtility extends \RKW\RkwEvents\Helper\DivUtility
         }
 
         return $reservations;
-        //===
     }
 
 
@@ -83,6 +80,5 @@ class DivUtility extends \RKW\RkwEvents\Helper\DivUtility
         // original function throws errors because workshops not included and not countable
 
         return false;
-        //===
     }
 }

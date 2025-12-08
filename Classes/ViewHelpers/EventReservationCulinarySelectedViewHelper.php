@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class EventReservationCulinarySelectedViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class EventReservationCulinarySelectedViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
      * Checks on form validation error which checkbox was checked
@@ -36,18 +36,15 @@ class EventReservationCulinarySelectedViewHelper extends \TYPO3\CMS\Fluid\Core\V
     {
         if (!$culinaryList) {
             return false;
-            //===
         }
 
         foreach ($culinaryList as $culinary) {
             if ($culinary->getUid() == $currentCulinaryUid) {
                 return true;
-                //===
             }
         }
 
         return false;
-        //===
     }
 
 

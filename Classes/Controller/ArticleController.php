@@ -22,13 +22,28 @@ use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 class ArticleController extends \GeorgRinger\News\Controller\NewsController
 {
     /**
-     * pagesRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\PagesRepository
-     * @inject
      */
-    protected $pagesRepository = null;
+    protected $pagesRepository;
 
+    /**
+     * @var \TYPO3\CMS\Core\Session\UserSession
+     */
+    protected $session;
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
+     */
+    public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void {
+        $this->pagesRepository = $pagesRepository;
+    }
+
+    /**
+     * @param \TYPO3\CMS\Core\Session\UserSession $session
+     */
+    public function injectUserSession(\TYPO3\CMS\Core\Session\UserSession $session): void {
+        $this->session = $session;
+    }
 
 
     /**
@@ -70,14 +85,13 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
         $article->setQuantity(1);
 
         /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */
-        $basket = $this->objectManager->get('HGON\\HgonPayment\\Domain\\Model\\Basket');
+        $basket = $this->objectManager->get(\HGON\HgonPayment\Domain\Model\Basket::class);
         $basket->addArticle($article);
 
-        $GLOBALS['TSFE']->fe_user->setKey('ses', 'hgon_payment_basket', $basket);
-        $GLOBALS['TSFE']->storeSessionData();
+        $this->session->set('hgon_payment_basket', $basket);
 
         /** @var \HGON\HgonPayment\Api\PayPalApi $payPalApi */
-        $payPalApi = $this->objectManager->get('HGON\\HgonPayment\\Api\\PayPalApi');
+        $payPalApi = $this->objectManager->get(\HGON\HgonPayment\Api\PayPalApi::class);
 
         // this var is a relict from the Donation action (where something other than paypalplus is possible)
         $isPayPalPlus = true;
@@ -92,7 +106,7 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
 
         // get JSON helper
         /** @var \RKW\RkwBasics\Helper\Json $jsonHelper */
-        $jsonHelper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwBasics\\Helper\\Json');
+        $jsonHelper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\RKW\RkwBasics\Helper\Json::class);
         // get new list
         $replacements = array (
             'approvalUrl' => $isPayPalPlus ? $approvalUrl[1]->href : $approvalUrl[0]->href,
@@ -108,6 +122,5 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
 
         print (string) $jsonHelper;
         exit();
-        //===
     }
 }

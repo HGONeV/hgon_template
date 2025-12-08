@@ -22,36 +22,52 @@ use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 class NewsController extends \GeorgRinger\News\Controller\NewsController
 {
     /**
-     * pagesRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\PagesRepository
-     * @inject
      */
-    protected $pagesRepository = null;
+    protected $pagesRepository;
 
     /**
-     * newsRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\NewsRepository
-     * @inject
      */
-    protected $newsRepository = null;
+    protected $newsRepository;
 
     /**
-     * sysCategoryRepository
-     *
      * @var \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository
-     * @inject
      */
-    protected $sysCategoryRepository = null;
+    protected $sysCategoryRepository;
 
     /**
-     * donationRepository
-     *
      * @var \HGON\HgonDonation\Domain\Repository\DonationRepository
-     * @inject
      */
-    protected $donationRepository = null;
+    protected $donationRepository;
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
+     */
+    public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void {
+        $this->pagesRepository = $pagesRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository
+     */
+    public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void {
+        $this->newsRepository = $newsRepository;
+    }
+
+    /**
+     * @param \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository
+     */
+    public function injectSysCategoryRepository(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository): void {
+        $this->sysCategoryRepository = $sysCategoryRepository;
+    }
+
+    /**
+     * @param \HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository
+     */
+    public function injectDonationRepository(\HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository): void {
+        $this->donationRepository = $donationRepository;
+    }
 
     /**
      * showRelatedSidebarAction
@@ -123,7 +139,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $mainNews = $this->newsRepository->findByIdentifier(intval($this->settings['journalHighlight']['newsUid']));
         $this->view->assign('newsManualSelect', $mainNews);
         $this->view->assign('newsList', $this->newsRepository->findAllExceptCurrent($mainNews));
-
     }
 
 
@@ -246,7 +261,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
             // get JSON helper
             /** @var \RKW\RkwBasics\Helper\Json $jsonHelper */
-            $jsonHelper = GeneralUtility::makeInstance('RKW\\RkwBasics\\Helper\\Json');
+            $jsonHelper = GeneralUtility::makeInstance(\RKW\RkwBasics\Helper\Json::class);
 
             // ajax context: Set settings manually
             $templateDataArray['settings'] = $this->settings;
@@ -272,7 +287,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
             print (string)$jsonHelper;
             exit();
-            //===
 
         } else {
             $this->view->assignMultiple($templateDataArray);
@@ -335,7 +349,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     protected static function getSettings($extension = 'News', $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
         return Common::getTyposcriptConfiguration($extension, $which);
-        //===
     }
 
 }

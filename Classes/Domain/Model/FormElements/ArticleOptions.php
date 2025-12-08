@@ -34,12 +34,11 @@ class ArticleOptions extends GenericFormElement
 {
     public function setProperty(string $key, $value)
     {
-       // if ($key === 'articleUid') {
-            $this->setProperty('options', $this->getOptions());
-            //return;
-       // }
+        // deprecated since 9.5
+        //$this->setProperty('options', $this->getOptions());
 
-     //   parent::setProperty($key, $value);
+        // reicht das als Lösung?
+        $this->options[$key] = $value;
     }
 
     protected function getOptions() : array

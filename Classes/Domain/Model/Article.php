@@ -37,7 +37,7 @@ class Article extends \HGON\HgonPayment\Domain\Model\Article
      * txHgontemplateImage
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $txHgontemplateImage = null;
 

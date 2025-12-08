@@ -44,6 +44,5 @@ class Event implements \TYPO3\CMS\Core\SingletonInterface
         }
 
         return $resultArray;
-        //===
     }
 }
