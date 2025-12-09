@@ -146,35 +146,10 @@ call_user_func(
             'HGON: Bestellung (Artikel)'
         );
 
-
-        // ***************
-        // RKW Events
-        // ***************
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.RkwEvents',
-            'Upcoming',
-            'RKW Events: Zeigt bevorstehende Veranstaltungen'
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.RkwEvents',
-            'Reservation',
-            'RKW Events: Angepasstes Reservierungs-Plugin (HGON)'
-        );
-
     },
     $_EXTKEY
 );
 
-
-// locallang override FE
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_newsletter/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwnewsletter.xlf';
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_events/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwevents.xlf';
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:sr_freecap/Resources/Private/Language/locallang.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_srfreecap.xlf';
-
-// locallang override BE
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_authors/Resources/Private/Language/locallang_db.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwauthors_db.xlf';
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['locallangXMLOverride']['EXT:rkw_basics/Resources/Private/Language/locallang_db.xlf'][] = 'EXT:hgon_template/Resources/Private/Language/locallang_rkwbasics_db.xlf';
 
 
 
