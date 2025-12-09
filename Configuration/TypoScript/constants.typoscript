@@ -1,16 +1,5 @@
 # Extensions
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pb_social/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:sr_freecap//Configuration/TypoScript/constants.txt">
-
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_basics/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_authors/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_events/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_geolocation/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_mailer/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_projects/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_registration/Configuration/TypoScript/constants.txt">
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_newsletter/Configuration/TypoScript/constants.txt">
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_donation/Configuration/TypoScript/constants.typoscript">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_workgroup/Configuration/TypoScript/constants.typoscript">

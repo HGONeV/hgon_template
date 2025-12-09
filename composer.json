@@ -13,16 +13,16 @@
     },
     "autoload": {
         "psr-4": {
-            "HGON\\HgonTemplate\\": "Classes"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "HGON\\HgonTemplate\\Tests\\": "Tests"
+            "HGON\\HgonTemplate\\": "Classes/"
         }
     },
     "replace": {
         "hgon_template": "self.version",
         "typo3-ter/hgon-template": "self.version"
-    }
+    },
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "hgon_template"
+		}
+	}
 }

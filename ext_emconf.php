@@ -21,7 +21,7 @@ $EM_CONF[$_EXTKEY] = [
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '13.4.4',
+    'version' => '13.4.5',
     'constraints' => [
         'depends' => [
             'typo3' => '7.6.0-13.4.99',
@@ -29,5 +29,10 @@ $EM_CONF[$_EXTKEY] = [
         ],
         'conflicts' => [],
         'suggests' => [],
+    ],
+    'autoload' => [
+        'psr-4' => [
+            'HGON\\HgonTemplate\\' => 'Classes',
+        ],
     ],
 ];
