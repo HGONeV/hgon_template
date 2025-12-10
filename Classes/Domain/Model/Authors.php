@@ -23,7 +23,7 @@ namespace HGON\HgonTemplate\Domain\Model;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Authors extends \RKW\RkwAuthors\Domain\Model\Authors
+class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
      * txHgontemplateShortDescription

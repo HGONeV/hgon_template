@@ -22,7 +22,7 @@ namespace HGON\HgonTemplate\Domain\Model;
  * @package RKW_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class SysCategory extends \RKW\RkwBasics\Domain\Model\Category
+class SysCategory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
 

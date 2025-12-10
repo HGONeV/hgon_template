@@ -24,14 +24,29 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 class IsValidEmailAddressViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+
+        $this->registerArgument(
+            'emailAddress',
+            'string',
+            'Email address to validate',
+            true
+        );
+    }
+
     /**
      * @param string $emailAddress
      *
      * @return integer
      */
-    public function render(string $emailAddress)
+    public function render(): bool
     {
-        return filter_var($emailAddress, FILTER_VALIDATE_EMAIL);
+        $email = trim((string)$this->arguments['emailAddress']);
+
+        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
 

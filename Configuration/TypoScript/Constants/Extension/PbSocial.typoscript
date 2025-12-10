@@ -1,7 +1,0 @@
-plugin.tx_pbsocial {
-    view {
-        templateRootPath = EXT:hgon_template/Resources/Private/Extension/PbSocial/Templates/
-        partialRootPath = EXT:hgon_template/Resources/Private/Extension/PbSocial/Partials/
-        layoutRootPath = EXT:hgon_template/Resources/Private/Extension/PbSocial/Layouts/
-    }
-}

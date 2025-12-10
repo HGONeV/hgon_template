@@ -61,25 +61,6 @@
                 </f:if>
             </f:if>
 
-            <f:if condition="{isJournalPage}">
-                <f:if condition="{iter.cycle} == 6">
-                    <f:then>
-                        <div class="flex-item c-12">
-                            <f:comment><!-- Upcoming events --></f:comment>
-                            <f:cObject typoscriptObjectPath="page.10.variables.rkwEventsUpcomingEvents" />
-                        </div>
-                    </f:then>
-                    <f:else>
-                        <f:if condition="{iter.isLast} && <f:count>{journalRowList}</f:count> < 6">
-                            <div class="flex-item c-12">
-                                <f:comment><!-- Upcoming events --></f:comment>
-                                <f:cObject typoscriptObjectPath="page.10.variables.rkwEventsUpcomingEvents" />
-                            </div>
-                        </f:if>
-                    </f:else>
-                </f:if>
-            </f:if>
-
             <f:if condition="{iter.cycle} > 6">
                 <f:render partial="FlexItem/CardStandard" section="News" arguments="{news: news, type: 'c-4'}" />
             </f:if>

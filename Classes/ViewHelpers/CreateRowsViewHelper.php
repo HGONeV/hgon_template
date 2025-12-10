@@ -25,6 +25,35 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CreateRowsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+
+        $this->registerArgument(
+            'list',
+            'mixed',
+            'List of items or list of lists (arrays/QueryResult/ObjectStorage)',
+            true
+        );
+
+        $this->registerArgument(
+            'itemsPerRow',
+            'int',
+            'Number of items per row',
+            false,
+            3
+        );
+
+        $this->registerArgument(
+            'shuffle',
+            'bool',
+            'Whether to shuffle the merged list before creating rows',
+            false,
+            false
+        );
+    }
+
     /**
      * create rows (for automatical handling if we need c4, c6, c8 or c12 boxes for the last items)
      * -> we can calculate the html item-type, if we know, how many items we have in a row
@@ -35,40 +64,55 @@ class CreateRowsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVie
      *
      * @return array
      */
-    public function render($list, $itemsPerRow = 3, $shuffle = false)
+    public function render(): array
     {
+        $list        = $this->arguments['list'];
+        $itemsPerRow = (int)$this->arguments['itemsPerRow'];
+        $shuffle     = (bool)$this->arguments['shuffle'];
+
+        // falls jemand nur eine einzelne Liste übergibt, in ein Array packen
+        if (!is_array($list)) {
+            $list = [$list];
+        }
+
         // merge possible list-arrays
         $mergedList = [];
         foreach (array_filter($list) as $singleList) {
-            if (
-                $singleList instanceof \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
-                || $singleList instanceof \TYPO3\CMS\Extbase\Persistence\ObjectStorage
-            ) {
+            if ($singleList instanceof QueryResult || $singleList instanceof ObjectStorage) {
                 $singleList = $singleList->toArray();
             }
+
             if (!is_array($singleList)) {
                 $singleList = [$singleList];
             }
+
             $mergedList = array_merge($mergedList, $singleList);
 
-            // shuffle results if wanted
+            // shuffle results if wanted (Originalverhalten beibehalten)
             if ($shuffle) {
                 shuffle($mergedList);
             }
         }
 
+        if ($itemsPerRow <= 0) {
+            // Schutz vor Division durch 0 / Endlosschleifen
+            return [$mergedList];
+        }
+
         // create new list with rows in wished length (default: 3 items per row)
         $newList = [];
         $i = 0;
+
         do {
-            if (count($mergedList) > $itemsPerRow) {
+            $remaining = count($mergedList);
+            if ($remaining > $itemsPerRow) {
                 $newList[$i] = array_splice($mergedList, 0, $itemsPerRow);
             } else {
                 // put last elements into array
-                $newList[$i] = array_splice($mergedList, 0, count($mergedList));
+                $newList[$i] = array_splice($mergedList, 0, $remaining);
             }
             $i++;
-        } while (count($mergedList));
+        } while (count($mergedList) > 0);
 
         return $newList;
     }

@@ -22,16 +22,8 @@ namespace HGON\HgonTemplate\Domain\Model;
  * @package RKW_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Pages extends \RKW\RkwBasics\Domain\Model\Pages
+class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
-    /**
-     * txRkwprojectsProjectUid
-     *
-     * @var \RKW\RkwProjects\Domain\Model\Projects
-     */
-    protected $txRkwprojectsProjectUid = null;
-
     /**
      * SysCategory
      *
@@ -49,7 +41,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
     /**
      * txHgontemplateContactperson
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwAuthors\Domain\Model\Authors>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\Authors>
      */
     protected $txHgontemplateContactperson = null;
 
@@ -82,27 +74,6 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
     {
         $this->subPages = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txHgontemplateContactperson = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-    }
-
-    /**
-     * Returns the txRkwprojectsProjectUid
-     *
-     * @return \RKW\RkwProjects\Domain\Model\Projects $txRkwprojectsProjectUid
-     */
-    public function getTxRkwprojectsProjectUid()
-    {
-        return $this->txRkwprojectsProjectUid;
-    }
-
-    /**
-     * Sets the txRkwprojectsProjectUid
-     *
-     * @param \RKW\RkwProjects\Domain\Model\Projects $txRkwprojectsProjectUid
-     * @return void
-     */
-    public function setTxRkwprojectsProjectUid(\RKW\RkwProjects\Domain\Model\Projects $txRkwprojectsProjectUid)
-    {
-        $this->txRkwprojectsProjectUid = $txRkwprojectsProjectUid;
     }
 
 
@@ -205,10 +176,10 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
     /**
      * Adds a Authors
      *
-     * @param \RKW\RkwAuthors\Domain\Model\Authors $txHgontemplateContactperson
+     * @param \HGON\HgonTemplate\Domain\Model\Authors $txHgontemplateContactperson
      * @return void
      */
-    public function addTxHgontemplateContactperson(\RKW\RkwAuthors\Domain\Model\Authors $txHgontemplateContactperson)
+    public function addTxHgontemplateContactperson(\HGON\HgonTemplate\Domain\Model\Authors $txHgontemplateContactperson)
     {
         $this->txHgontemplateContactperson->attach($txHgontemplateContactperson);
     }
@@ -216,10 +187,10 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
     /**
      * Removes a Authors
      *
-     * @param \RKW\RkwAuthors\Domain\Model\Authors $txHgontemplateContactpersonToRemove The Authors to be removed
+     * @param \HGON\HgonTemplate\Domain\Model\Authors $txHgontemplateContactpersonToRemove The Authors to be removed
      * @return void
      */
-    public function removeTxHgontemplateContactperson(\RKW\RkwAuthors\Domain\Model\Authors $txHgontemplateContactperson)
+    public function removeTxHgontemplateContactperson(\HGON\HgonTemplate\Domain\Model\Authors $txHgontemplateContactperson)
     {
         $this->txHgontemplateContactperson->detach($txHgontemplateContactperson);
     }
@@ -227,7 +198,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
     /**
      * Returns the txHgontemplateContactperson
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwAuthors\Domain\Model\Authors> $txHgontemplateContactperson
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\Authors> $txHgontemplateContactperson
      */
     public function getTxHgontemplateContactperson()
     {
@@ -237,7 +208,7 @@ class Pages extends \RKW\RkwBasics\Domain\Model\Pages
     /**
      * Sets the txHgontemplateContactperson
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\RKW\RkwAuthors\Domain\Model\Authors> $txHgontemplateContactperson
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\Authors> $txHgontemplateContactperson
      * @return void
      */
     public function setTxHgontemplateContactperson(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $txHgontemplateContactperson)

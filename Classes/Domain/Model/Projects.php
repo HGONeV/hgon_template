@@ -24,7 +24,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Projects extends \RKW\RkwProjects\Domain\Model\Projects
+class Projects extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
      * txHgontemplateBankHeader

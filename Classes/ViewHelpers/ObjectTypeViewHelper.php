@@ -24,6 +24,19 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ObjectTypeViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+
+        $this->registerArgument(
+            'object',
+            'mixed',
+            'The object whose type should be returned',
+            true
+        );
+    }
+
     /**
      * returns the last element of the namespace (e.g. "Pages", or "SysCategory")
      *
@@ -31,14 +44,24 @@ class ObjectTypeViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVie
      *
      * @return string
      */
-    public function render($object)
+    public function render(): string
     {
+        $object = $this->arguments['object'];
+
+        // Array?
         if (is_array($object)) {
-            return "array";
+            return 'array';
         }
 
-        $array = GeneralUtility::trimExplode('\\', get_class($object), true);
-        return end($array);
+        // Kein Objekt → "unknown"
+        if (!is_object($object)) {
+            return 'unknown';
+        }
+
+        // Klassennamen in Teile splitten
+        $parts = GeneralUtility::trimExplode('\\', get_class($object), true);
+
+        return end($parts) ?: 'unknown';
     }
 
 

@@ -24,7 +24,7 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class AuthorsRepository extends \RKW\RkwAuthors\Domain\Repository\AuthorsRepository
+class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     /**
      * Find by multiple uids

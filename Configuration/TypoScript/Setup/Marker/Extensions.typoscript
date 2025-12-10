@@ -99,64 +99,6 @@ page {
             }
 
 
-
-            //=================================================================
-            // Show upcoming events
-            //=================================================================
-            rkwEventsUpcomingEvents = USER
-            rkwEventsUpcomingEvents {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-                extensionName = RkwEvents
-                pluginName = Upcoming
-                vendorName = RKW
-                controller = Event
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Event {
-                        1 = upcoming
-                    }
-                }
-
-                view =< plugin.tx_rkwevents.view
-                persistence =< plugin.tx_rkwevents.persistence
-                settings =< plugin.tx_rkwevents.settings
-            }
-
-
-
-            //=================================================================
-            // Event reservation form
-            // We can't use RkwEvents for it (multiple plugin on one page problems)
-            //=================================================================
-            rkwEventsReservation = USER
-            rkwEventsReservation {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-                extensionName = RkwEvents
-                pluginName = Reservation
-                vendorName = RKW
-                controller = EventReservation
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    EventReservation {
-                        1 = new
-                        2 = create
-                        3 = update
-                        4 = delete
-                        5 = remove
-                        6 = optIn
-                        7 = edit
-                        8 = end
-                        9 = createAlternative
-                    }
-                }
-
-                view =< plugin.tx_rkwevents.view
-                persistence =< plugin.tx_rkwevents.persistence
-                settings =< plugin.tx_rkwevents.settings
-            }
-
-
-
             //=================================================================
             // Donate time form
             //=================================================================
@@ -299,58 +241,6 @@ page {
                 persistence =< plugin.tx_hgondonation.persistence
                 settings =< plugin.tx_hgondonation.settings
             }
-
-
-
-            //=================================================================
-            // PbSocialTwitter
-            //=================================================================
-            pbSocialTwitter = USER
-            pbSocialTwitter {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-                extensionName = PbSocial
-                pluginName = Socialfeed
-                vendorName = PlusB
-                controller = Item
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Item {
-                        1 = showSocialFeed
-                    }
-                }
-
-                view =< plugin.tx_pbsocial.view
-                persistence =< plugin.tx_pbsocial.persistence
-                settings =< plugin.tx_pbsocial.settings
-            }
-
-
-
-            //=================================================================
-            // add googleMaps to event view
-            //=================================================================
-            eventMaps = USER
-            eventMaps {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-                extensionName = RkwEvents
-                pluginName = Eventmaps
-                vendorName = RKW
-                controller = Event
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Event {
-                        1 = maps
-                    }
-                }
-
-                view =< plugin.tx_rkwevents.view
-                persistence =< plugin.tx_rkwevents.persistence
-                settings =< plugin.tx_rkwevents.settings
-
-                stdWrap.wrap = <picture class="article-picture">|</picture>
-
-            }
-
 
 
             //=================================================================

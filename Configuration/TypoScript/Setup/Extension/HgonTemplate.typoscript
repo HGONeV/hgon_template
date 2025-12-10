@@ -4,47 +4,6 @@
 
 config.tx_extbase {
 
-    objects {
-        RKW\RkwBasics\UserFunctions\PageNotFound {
-            className = HGON\HgonTemplate\UserFunctions\PageNotFound
-        }
-        RKW\RkwEvents\Controller\EventController {
-            className = HGON\HgonTemplate\Controller\EventController
-        }
-        RKW\RkwEvents\Controller\AjaxController {
-            className = HGON\HgonTemplate\Controller\EventAjaxController
-        }
-        RKW\RkwEvents\Controller\EventReservationController {
-            className = HGON\HgonTemplate\Controller\EventReservationController
-        }
-        RKW\RkwEvents\Validation\Validator\EventReservationValidator {
-            className = HGON\HgonTemplate\Validation\Validator\EventReservationValidator
-        }
-        RKW\RkwEvents\Helper\DivUtility {
-            className = HGON\HgonTemplate\Helper\DivUtility
-        }
-        #RKW\RkwNewsletter\Controller\SubscriptionController {
-        #    className = HGON\HgonTemplate\Controller\RkwNewsletter\SubscriptionController
-        #}
-        #RKW\RkwNewsletter\Controller\ReleaseController {
-        #    className = HGON\HgonTemplate\Controller\RkwNewsletter\ReleaseController
-        #}
-        RKW\RkwNewsletter\Domain\Model\Newsletter {
-            className = HGON\HgonTemplate\Domain\Model\Newsletter
-        }
-        RKW\RkwNewsletter\Domain\Model\TtContent {
-            className = HGON\HgonTemplate\Domain\Model\TtContent
-        }
-        RKW\RkwRegistration\Service\RkwMailService {
-            className = HGON\HgonTemplate\Service\RkwMailService
-        }
-        GeorgRinger\News\Controller\NewsController {
-            className = HGON\HgonTemplate\Controller\NewsController
-        }
-
-
-    }
-
     persistence {
         classes {
 

@@ -12,6 +12,7 @@ namespace HGON\HgonTemplate\Controller;
  *
  ***/
 
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -30,11 +31,6 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @var \HGON\HgonTemplate\Domain\Repository\AuthorsRepository
      */
     protected $authorsRepository;
-
-    /**
-     * @var \HGON\HgonTemplate\Domain\Repository\EventRepository
-     */
-    protected $eventRepository;
 
     /**
      * @var \HGON\HgonTemplate\Domain\Repository\NewsRepository
@@ -73,13 +69,6 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function injectAuthorsRepository(\HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository): void {
         $this->authorsRepository = $authorsRepository;
-    }
-
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\EventRepository $eventRepository
-     */
-    public function injectEventRepository(\HGON\HgonTemplate\Domain\Repository\EventRepository $eventRepository): void {
-        $this->eventRepository = $eventRepository;
     }
 
     /**
@@ -197,6 +186,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     */
     public function sidebarContactPersonAction()
     {
+        // erst ab v10 kompatibel
+        /*
         // get PageRepository and rootline
         $context = GeneralUtility::makeInstance(Context::class);
         $pageId  = (int)$context->getPropertyFromAspect('frontend.page', 'id');
@@ -227,6 +218,7 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 }
             }
         }
+        */
     }
 
 
@@ -398,10 +390,10 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * action projectPartner
      *
      *
-     * @param \RKW\RkwProjects\Domain\Model\Projects $project
+     * @param mixed $project
      * @return void
      */
-    public function projectPartnerAction(\RKW\RkwProjects\Domain\Model\Projects $project = null)
+    public function projectPartnerAction($project = null)
     {
         // if set via flexform: Override in any case
         if ($this->settings['projectPartner']['projectUid']) {

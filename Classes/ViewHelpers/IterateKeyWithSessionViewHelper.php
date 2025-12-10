@@ -25,32 +25,63 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 class IterateKeyWithSessionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
     /**
-     * Imports php function rand
-     *
-     * @param integer $total
-     * @param string $uniqueName
-     *
-     * @return integer
+     * Dieser ViewHelper gibt nur einen Integer zurück – kein Child-Content.
      */
-    public function render($total, $uniqueName)
+    public function initializeArguments(): void
     {
-        // Initial: Set start value
-        if (!$GLOBALS['TSFE']->fe_user->getKey('ses', $uniqueName)) {
-            // image array starts with 1
-            $GLOBALS['TSFE']->fe_user->setKey('ses', $uniqueName, 1);
+        parent::initializeArguments();
 
-            // Else: Increase (and maybe reset) value and return
-        } else {
-            if ($GLOBALS['TSFE']->fe_user->getKey('ses', $uniqueName) < $total) {
-                // increase
-                $GLOBALS['TSFE']->fe_user->setKey('ses', $uniqueName, $GLOBALS['TSFE']->fe_user->getKey('ses', $uniqueName) + 1);
-            } else {
-                // restart from beginning
-                // image array starts with 1
-                $GLOBALS['TSFE']->fe_user->setKey('ses', $uniqueName, 1);
-            }
+        $this->registerArgument(
+            'total',
+            'int',
+            'Total number of items to iterate over',
+            true
+        );
+
+        $this->registerArgument(
+            'uniqueName',
+            'string',
+            'Unique session key name',
+            true
+        );
+    }
+
+
+    /**
+     * @return int
+     */
+    public function render(): int
+    {
+        $total = (int)$this->arguments['total'];
+        $uniqueName = (string)$this->arguments['uniqueName'];
+
+        /** @var FrontendUserAuthentication|null $feUser */
+        $feUser = $GLOBALS['TSFE']->fe_user ?? null;
+
+        if (!$feUser instanceof FrontendUserAuthentication || $total <= 0) {
+            // Fallback – im Zweifel lieber 0 zurückgeben
+            return 0;
         }
-        return $GLOBALS['TSFE']->fe_user->getKey('ses', $uniqueName);
+
+        // aktuellen Wert aus der Session holen
+        $current = (int)($feUser->getKey('ses', $uniqueName) ?: 0);
+
+        if ($current < 1) {
+            // Startwert
+            $current = 1;
+        } elseif ($current < $total) {
+            // hochzählen
+            $current++;
+        } else {
+            // zurück auf Anfang
+            $current = 1;
+        }
+
+        $feUser->setKey('ses', $uniqueName, $current);
+        // optional: Session speichern, falls du auf Nummer sicher gehen willst
+        $feUser->storeSessionData();
+
+        return $current;
     }
 
 

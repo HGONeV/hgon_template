@@ -24,6 +24,26 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 class EventReservationCulinarySelectedViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+
+        $this->registerArgument(
+            'currentCulinaryUid',
+            'int',
+            'UID we search for in the list',
+            true
+        );
+
+        $this->registerArgument(
+            'culinaryList',
+            'array',
+            'Array of objects each having getUid()',
+            false,
+            []
+        );
+    }
+
     /**
      * Checks on form validation error which checkbox was checked
      *
@@ -32,15 +52,20 @@ class EventReservationCulinarySelectedViewHelper extends \TYPO3Fluid\Fluid\Core\
      *
      * @return bool
      */
-    public function render($currentCulinaryUid, $culinaryList = [])
+    public function render(): bool
     {
-        if (!$culinaryList) {
+        $currentUid   = (int)$this->arguments['currentCulinaryUid'];
+        $culinaryList = $this->arguments['culinaryList'] ?? [];
+
+        if (empty($culinaryList)) {
             return false;
         }
 
         foreach ($culinaryList as $culinary) {
-            if ($culinary->getUid() == $currentCulinaryUid) {
-                return true;
+            if (is_object($culinary) && method_exists($culinary, 'getUid')) {
+                if ((int)$culinary->getUid() === $currentUid) {
+                    return true;
+                }
             }
         }
 

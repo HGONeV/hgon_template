@@ -26,7 +26,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package RKW_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class PagesRepository extends \RKW\RkwBasics\Domain\Repository\PagesRepository
+class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     /**
      * Find by PID (and exclude given element)

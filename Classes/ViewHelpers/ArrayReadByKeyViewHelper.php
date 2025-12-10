@@ -24,18 +24,37 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 class ArrayReadByKeyViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-    /**
-     * Imports php function rand
-     *
-     * @param array $array
-     * @param integer $key
-     *
-     * @return array
-     */
-    public function render($array, $key)
+    public function initializeArguments(): void
     {
-        return array($array[$key]);
+        parent::initializeArguments();
+
+        $this->registerArgument(
+            'array',
+            'array',
+            'Array from which a value should be read',
+            true
+        );
+
+        $this->registerArgument(
+            'key',
+            'int',
+            'Index/key to read from the array',
+            true
+        );
     }
 
+    /**
+     * @return array
+     */
+    public function render(): array
+    {
+        $array = $this->arguments['array'];
+        $key   = $this->arguments['key'];
 
+        if (!is_array($array) || !array_key_exists($key, $array)) {
+            return [];
+        }
+
+        return [$array[$key]];
+    }
 }

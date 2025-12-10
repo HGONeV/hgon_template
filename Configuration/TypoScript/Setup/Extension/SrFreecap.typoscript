@@ -1,7 +1,0 @@
-plugin.tx_srfreecap {
-    settings {
-        # cat=plugin.tx_srfreecap/enable/03; type=boolean; label= Accessible output: If enabled, the CAPTCHA will include an audio version.
-        accessibleOutput = 1
-    }
-
-}

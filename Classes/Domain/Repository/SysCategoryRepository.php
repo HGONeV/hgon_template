@@ -22,7 +22,7 @@ namespace HGON\HgonTemplate\Domain\Repository;
  * @package RKW_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class SysCategoryRepository extends \RKW\RkwBasics\Domain\Repository\CategoryRepository
+class SysCategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
 }

@@ -278,50 +278,6 @@ call_user_func(
 
 
 
-        /* TEST
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'RKW.RkwEvents',
-            'Reservation',
-            [
-                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
-            ],
-            // non-cacheable actions
-            [
-                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
-            ]
-        );*/
-
-
-        // ***************
-        // RkwEvents (we need a extra plugin for reservations)
-        // -> we can't create a simple marker with controller and actions for eventReservation. Throws an error in relation of the multiple use of controller / actions / plugins on the same page
-        // ***************
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'RKW.RkwEvents',
-            'Reservation',
-            [
-                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
-            ],
-            // non-cacheable actions
-            [
-                'EventReservation' => 'new, create, createAlternative, update, delete, remove, optIn, edit, end',
-            ]
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'RKW.RkwEvents',
-            'Upcoming',
-            array(
-                'Event' => 'upcoming'
-            ),
-            // non-cacheable actions
-            array(
-                'Event' => 'upcoming'
-            )
-        );
-
-
         // caching
         if( !is_array($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] ) ) {
             $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] = array();
