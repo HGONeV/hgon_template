@@ -14,7 +14,7 @@ namespace HGON\HgonTemplate\Controller;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-use \RKW\RkwBasics\Helper\Common;
+use \HGON\HgonTemplate\Utility\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 /**
  * ArticleController

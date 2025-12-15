@@ -22,7 +22,7 @@ namespace HGON\HgonTemplate\Domain\Model;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class News extends \GeorgRinger\News\Domain\Model\News
+class News extends \GeorgRinger\News\Domain\Model\NewsDefault
 {
     /**
      * txHgontemplateYoutubeVideoId

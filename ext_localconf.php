@@ -314,14 +314,14 @@ call_user_func(
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterBuildingFinished']['1575298962'] = HGON\HgonTemplate\Hooks\FormFramework\AfterBuildingFinishedHook::class;
 
     },
-    $_EXTKEY
+    'hgon_template'
 );
 
 /**
  * Page TSconfig
  */
 $pageTSconfig = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl(
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY)
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('hgon_template')
     . 'Configuration/TsConfig/TsConfig.typoscript'
 );
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig($pageTSconfig);

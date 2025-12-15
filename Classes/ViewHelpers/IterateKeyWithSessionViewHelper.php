@@ -12,7 +12,9 @@ namespace HGON\HgonTemplate\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Core\Session\SessionManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
  * IterateKeyWithSessionViewHelper
@@ -52,36 +54,61 @@ class IterateKeyWithSessionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\
      */
     public function render(): int
     {
-        $total = (int)$this->arguments['total'];
-        $uniqueName = (string)$this->arguments['uniqueName'];
+        $total = (int)($this->arguments['total'] ?? 0);
+        $uniqueName = (string)($this->arguments['uniqueName'] ?? '');
 
-        /** @var FrontendUserAuthentication|null $feUser */
-        $feUser = $GLOBALS['TSFE']->fe_user ?? null;
-
-        if (!$feUser instanceof FrontendUserAuthentication || $total <= 0) {
-            // Fallback – im Zweifel lieber 0 zurückgeben
+        if ($total <= 0 || $uniqueName === '') {
             return 0;
         }
 
-        // aktuellen Wert aus der Session holen
+        // TYPO3 10.4: TSFE ist noch verfügbar (wenn auch "legacy"), aber storeSessionData() ist weg.
+        /** @var FrontendUserAuthentication|null $feUser */
+        $feUser = $GLOBALS['TSFE']->fe_user ?? null;
+
+        if (!$feUser instanceof FrontendUserAuthentication) {
+            // Kein FE-Context / kein FE-User-Objekt -> sauberer Fallback
+            return 0;
+        }
+
         $current = (int)($feUser->getKey('ses', $uniqueName) ?: 0);
 
         if ($current < 1) {
-            // Startwert
             $current = 1;
         } elseif ($current < $total) {
-            // hochzählen
             $current++;
         } else {
-            // zurück auf Anfang
             $current = 1;
         }
 
         $feUser->setKey('ses', $uniqueName, $current);
-        // optional: Session speichern, falls du auf Nummer sicher gehen willst
-        $feUser->storeSessionData();
+
+        // In TYPO3 10 wird die FE-Session normalerweise am Ende des Requests persistiert.
+        // Wenn du in deiner konkreten Nutzung "sofort" persistieren musst (z.B. Redirect),
+        // kannst du das explizit über den SessionManager tun:
+        $this->persistFrontendUserSessionIfPossible($feUser);
 
         return $current;
+    }
+
+    /**
+     * TYPO3 10.4 kompatibel, ohne storeSessionData().
+     * "Vorausdenkender" Teil: Persistierung über SessionManager statt TSFE-Methoden.
+     */
+    protected function persistFrontendUserSessionIfPossible(FrontendUserAuthentication $feUser): void
+    {
+        // In manchen Situationen gibt es noch keine Session (oder sie ist nicht initialisiert)
+        if (!method_exists($feUser, 'getSession')) {
+            return;
+        }
+
+        $session = $feUser->getSession();
+        if ($session === null) {
+            return;
+        }
+
+        /** @var SessionManager $sessionManager */
+        $sessionManager = GeneralUtility::makeInstance(SessionManager::class);
+        $sessionManager->updateSession($session);
     }
 
 

@@ -2,7 +2,7 @@
 
 namespace HGON\HgonTemplate\Service;
 
-use \RKW\RkwBasics\Helper\Common;
+use \HGON\HgonTemplate\Utility\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
