@@ -11,11 +11,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'PageHighlight',
             [
-                'Standard' => 'pageHighlight'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'pageHighlight'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'pageHighlight'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'pageHighlight'
             ]
         );
 
@@ -23,11 +23,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'RandomAuthor',
             [
-                'Standard' => 'randomAuthor'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'randomAuthor'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'randomAuthor'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'randomAuthor'
             ]
         );
 
@@ -36,11 +36,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'ProjectTeaser',
             [
-                'Standard' => 'projectTeaser'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'projectTeaser'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'projectTeaser'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'projectTeaser'
             ]
         );
         */
@@ -49,11 +49,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'SidebarContactPerson',
             [
-                'Standard' => 'sidebarContactPerson'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'sidebarContactPerson'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'sidebarContactPerson'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'sidebarContactPerson'
             ]
         );
 
@@ -61,11 +61,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'SiblingPagesOverview',
             [
-                'Standard' => 'siblingPagesOverview'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'siblingPagesOverview'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'siblingPagesOverview'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'siblingPagesOverview'
             ]
         );
 
@@ -73,11 +73,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'ChildrenPagesOverview',
             [
-                'Standard' => 'childrenPagesOverview'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'childrenPagesOverview'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'childrenPagesOverview'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'childrenPagesOverview'
             ]
         );
 
@@ -85,11 +85,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'PageSlider',
             [
-                'Standard' => 'pageSlider'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'pageSlider'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'pageSlider'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'pageSlider'
             ]
         );
 
@@ -97,11 +97,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'DonationForm',
             [
-                'Standard' => 'donationForm'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'donationForm'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'donationForm'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'donationForm'
             ]
         );
 
@@ -111,11 +111,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'SupportOptions',
             [
-                'Standard' => 'supportOptions'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptions'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'supportOptions'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptions'
             ]
         );
 
@@ -123,11 +123,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'SupportOptionsLight',
             [
-                'Standard' => 'supportOptionsLight'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptionsLight'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'supportOptionsLight'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptionsLight'
             ]
         );
         */
@@ -136,11 +136,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'SixReasons',
             [
-                'Standard' => 'sixReasons'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'sixReasons'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'sixReasons'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'sixReasons'
             ]
         );
 
@@ -148,11 +148,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'DidYouKnow',
             [
-                'Standard' => 'didYouKnow'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'didYouKnow'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'didYouKnow'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'didYouKnow'
             ]
         );
 
@@ -160,11 +160,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'Maps',
             [
-                'Standard' => 'maps'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'maps'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'maps'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'maps'
             ]
         );
 
@@ -172,11 +172,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'ProjectPartner',
             [
-                'Standard' => 'projectPartner'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'projectPartner'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'projectPartner'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'projectPartner'
             ]
         );
 
@@ -184,11 +184,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'AuthorList',
             [
-                'Standard' => 'authorList'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'authorList'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'authorList'
+                \HGON\HgonTemplate\Controller\StandardController::class => 'authorList'
             ]
         );
 
@@ -200,11 +200,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'ShowRelatedSidebar',
             [
-                'News' => 'showRelatedSidebar'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'showRelatedSidebar'
             ],
             // non-cacheable actions
             [
-                'News' => 'showRelatedSidebar'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'showRelatedSidebar'
             ]
         );
 
@@ -212,11 +212,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'JournalHighlight',
             [
-                'News' => 'journalHighlight'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'journalHighlight'
             ],
             // non-cacheable actions
             [
-                'News' => 'journalHighlight'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'journalHighlight'
             ]
         );
 
@@ -225,11 +225,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'Journal',
             [
-                'News' => 'journal'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'journal'
             ],
             // non-cacheable actions
             [
-                'News' => 'journal'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'journal'
             ]
         );
 
@@ -237,11 +237,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'Header',
             [
-                'News' => 'header'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'header'
             ],
             // non-cacheable actions
             [
-                'News' => 'header'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'header'
             ]
         );
 
@@ -249,11 +249,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'Sidebar',
             [
-                'News' => 'sidebar'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'sidebar'
             ],
             // non-cacheable actions
             [
-                'News' => 'sidebar'
+                \HGON\HgonTemplate\Controller\NewsController::class => 'sidebar'
             ]
         );
 
@@ -268,11 +268,11 @@ call_user_func(
             'HGON.HgonTemplate',
             'ShowArticleFromPages',
             [
-                'Article' => 'showArticleFromPages, newOrder, createOrder'
+                \HGON\HgonTemplate\Controller\ArticleController::class => 'showArticleFromPages, newOrder, createOrder'
             ],
             // non-cacheable actions
             [
-                'Article' => 'showArticleFromPages, newOrder, createOrder'
+                \HGON\HgonTemplate\Controller\ArticleController::class => 'showArticleFromPages, newOrder, createOrder'
             ]
         );
 
@@ -283,7 +283,7 @@ call_user_func(
             $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] = array();
         }
         if( !isset($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['frontend'] ) ) {
-            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['frontend'] = 'TYPO3\\CMS\\Core\\Cache\\Frontend\\VariableFrontend';
+            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class;
         }
         if( !isset($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['options'] ) ) {
             $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['options'] = array('defaultLifetime' => 3600);
@@ -299,7 +299,7 @@ call_user_func(
             // levels with higher severity (ERROR, CRITICAL, EMERGENCY)
             \TYPO3\CMS\Core\Log\LogLevel::WARNING => array(
                 // add a FileWriter
-                'TYPO3\\CMS\\Core\\Log\\Writer\\FileWriter' => array(
+                \TYPO3\CMS\Core\Log\Writer\FileWriter::class => array(
                     // configuration for the writer
                     'logFile' => 'typo3temp/logs/tx_hgontemplate.log'
                 )

@@ -85,31 +85,9 @@ class IterateKeyWithSessionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\
         // In TYPO3 10 wird die FE-Session normalerweise am Ende des Requests persistiert.
         // Wenn du in deiner konkreten Nutzung "sofort" persistieren musst (z.B. Redirect),
         // kannst du das explizit über den SessionManager tun:
-        $this->persistFrontendUserSessionIfPossible($feUser);
+
 
         return $current;
     }
-
-    /**
-     * TYPO3 10.4 kompatibel, ohne storeSessionData().
-     * "Vorausdenkender" Teil: Persistierung über SessionManager statt TSFE-Methoden.
-     */
-    protected function persistFrontendUserSessionIfPossible(FrontendUserAuthentication $feUser): void
-    {
-        // In manchen Situationen gibt es noch keine Session (oder sie ist nicht initialisiert)
-        if (!method_exists($feUser, 'getSession')) {
-            return;
-        }
-
-        $session = $feUser->getSession();
-        if ($session === null) {
-            return;
-        }
-
-        /** @var SessionManager $sessionManager */
-        $sessionManager = GeneralUtility::makeInstance(SessionManager::class);
-        $sessionManager->updateSession($session);
-    }
-
 
 }

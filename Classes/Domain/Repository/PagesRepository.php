@@ -127,7 +127,7 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         // 1. get string with all pageUids
         $pagesListArray = [];
         $depth = 999999;
-        $queryGenerator = GeneralUtility::makeInstance( 'TYPO3\\CMS\\Core\\Database\\QueryGenerator' );
+        $queryGenerator = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\QueryGenerator::class);
         foreach ($parentPagesList as $parentPages) {
             $pagesListArray[] = $queryGenerator->getTreeList($parentPages->getUid(), $depth, 0, 1);
         }

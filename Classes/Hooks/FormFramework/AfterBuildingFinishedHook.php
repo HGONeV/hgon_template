@@ -27,9 +27,9 @@ class AfterBuildingFinishedHook
             // if we're on donation detail page, edit subject
             if ($renderable->getIdentifier() === 'subject') {
 
-                $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+                $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
                 /** @var \HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository */
-                $donationRepository = $objectManager->get('HGON\\HgonDonation\\Domain\\Repository\\DonationRepository');
+                $donationRepository = $objectManager->get(\HGON\HgonDonation\Domain\Repository\DonationRepository::class);
                 $donation = $donationRepository->findByUid(intval($data['donation']));
                 $renderable->setDefaultValue($donation->getTitle());
             }

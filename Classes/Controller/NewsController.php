@@ -93,8 +93,9 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         // Else: on donation detail: Use Project category
         if (!$categories) {
-            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail');
-            $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
+            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail') ?? [];
+            $donationParam = (string)($getParams['donation'] ?? '');
+            $donationUid = (int)preg_replace('/\D+/', '', $donationParam);
             /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
             $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
             if ($donation) {

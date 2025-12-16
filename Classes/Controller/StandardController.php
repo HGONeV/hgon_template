@@ -355,9 +355,13 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function didYouKnowAction(\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null)
     {
         if (!$sysCategory) {
-            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgontemplate_journal');
-            $sysCategoryUid = preg_replace('/[^0-9]/', '', $getParams['sysCategory']);
-            $sysCategory = $this->sysCategoryRepository->findByIdentifier($sysCategoryUid);
+            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgontemplate_journal') ?? [];
+            $sysCategoryParam = (string)($getParams['sysCategory'] ?? '');
+            $sysCategoryUid = (int)preg_replace('/\D+/', '', $sysCategoryParam);
+
+            if ($sysCategoryUid > 0) {
+                $sysCategory = $this->sysCategoryRepository->findByIdentifier($sysCategoryUid);
+            }
         }
 
         // add "didYouKnow" random (check for category-entry. Else take something)
