@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  HGON\HgonTemplate\:
+    resource: '../Classes/*'
+
+  # ~ means use default config
+  HGON\HgonTemplate\Domain\Repository\NewsRepository: ~
+
+  GeorgRinger\News\Domain\Repository\NewsRepository:
+    alias: HGON\HgonTemplate\Domain\Repository\NewsRepository

@@ -27,9 +27,9 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     protected $pagesRepository;
 
     /**
-     * @var \HGON\HgonTemplate\Domain\Repository\NewsRepository
+     *  \HGON\HgonTemplate\Domain\Repository\NewsRepository
      */
-    protected $newsRepository;
+    //protected $newsRepository;
 
     /**
      * @var \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository
@@ -49,11 +49,11 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     }
 
     /**
-     * @param \HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository
+     *  \HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository
      */
-    public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void {
-        $this->newsRepository = $newsRepository;
-    }
+//    public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void {
+//        $this->newsRepository = $newsRepository;
+//    }
 
     /**
      * @param \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository
@@ -125,6 +125,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $this->view->assign('newsList', $this->newsRepository->findAll()->getQuery()->setLimit(5)->execute());
         }
         $this->view->assign('settingsHgonTemplate', self::getSettings('HgonTemplate'));
+
+        return $this->htmlResponse();
     }
 
 
@@ -132,7 +134,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     /**
      * action journalHighlight
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function journalHighlightAction()
     {
@@ -140,6 +142,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $mainNews = $this->newsRepository->findByIdentifier(intval($this->settings['journalHighlight']['newsUid']));
         $this->view->assign('newsManualSelect', $mainNews);
         $this->view->assign('newsList', $this->newsRepository->findAllExceptCurrent($mainNews));
+
+        return $this->htmlResponse();
     }
 
 
@@ -150,7 +154,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      *
      * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
      * @param integer $pageNumber
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function journalAction(\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null, $pageNumber = 0)
     {
@@ -293,6 +297,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $this->view->assignMultiple($templateDataArray);
         }
 
+        return $this->htmlResponse();
+
     }
 
 
@@ -301,7 +307,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      * action header
      * Template helper
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function headerAction()
     {
@@ -314,6 +320,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         if ($news) {
             $this->view->assign('newsItem', $news);
         }
+
+        return $this->htmlResponse();
     }
 
 
@@ -322,7 +330,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      * action sidebar
      * Template helper
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function sidebarAction()
     {
@@ -336,6 +344,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $this->view->assign('newsItem', $news);
             //$this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
         }
+
+        return $this->htmlResponse();
     }
 
 

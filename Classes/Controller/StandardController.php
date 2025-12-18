@@ -122,12 +122,14 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action pageHighlight
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function pageHighlightAction()
     {
         $this->view->assign('pages', $this->pagesRepository->findByIdentifier(intval($this->settings['pageHighlight']['pid'])));
         $this->view->assign('subPagesList', $this->pagesRepository->findByPid(intval($this->settings['pageHighlight']['pid'])));
+
+        return $this->htmlResponse();
     }
 
 
@@ -136,13 +138,15 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * action randomAuthor
      * shows a random author (from RkwAuthors)
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function randomAuthorAction()
     {
         //$authorsList = $this->authorsRepository->findAll();
         $authorsList = $this->authorsRepository->findByUidList($this->settings['randomAuthor']['authorUidList']);
         $this->view->assign('author', $authorsList[rand(0, count($authorsList) - 1)]);
+
+        return $this->htmlResponse();
     }
 
 
@@ -182,8 +186,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * Shows author which is contact person of the current project
      *
-     * @return void
-    */
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function sidebarContactPersonAction()
     {
         // erst ab v10 kompatibel
@@ -219,6 +223,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             }
         }
         */
+
+        return $this->htmlResponse();
     }
 
 
@@ -226,7 +232,7 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * Shows a project overview of sibling pages
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function siblingPagesOverviewAction()
     {
@@ -248,6 +254,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         // Return Sibling-Pages with subPages to view
         $this->view->assign('pagesList', $siblingPagesList);
+
+        return $this->htmlResponse();
     }
 
 
@@ -255,7 +263,7 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * Shows a project overview of children pages
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function childrenPagesOverviewAction()
     {
@@ -265,12 +273,15 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $childrenPagesList = [];
 
         $subPagesList = $this->pagesRepository->findByPid($currentPages->getUid());
+
         foreach ($subPagesList as $subPages) {
             $childrenPagesList[] = $subPages;
         }
 
         // Return Sibling-Pages with subPages to view
         $this->view->assign('pagesList', $childrenPagesList);
+
+        return $this->htmlResponse();
     }
 
 
@@ -278,11 +289,13 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action pageSlider
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function pageSliderAction()
     {
         $this->view->assign('pagesList', $this->pagesRepository->findByUidList($this->settings['pageSlider']['pidList']));
+
+        return $this->htmlResponse();
     }
 
 
@@ -336,11 +349,13 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action sixReasons
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function sixReasonsAction()
     {
         // do nothing else (output of flexform content)
+
+        return $this->htmlResponse();
     }
 
 
@@ -350,7 +365,7 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      *
      * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function didYouKnowAction(\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null)
     {
@@ -373,6 +388,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             $didYouKnowList = $this->didYouKnowRepository->findAll();
         }
         $this->view->assign('didYouKnow', $didYouKnowList[rand(0, count($didYouKnowList) - 1)]);
+
+        return $this->htmlResponse();
     }
 
 
@@ -380,12 +397,14 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action maps
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function mapsAction()
     {
         // showMapsPidList (if current PID is registered in $this->settings['showMapsPidList'])
         $this->view->assign('showMaps', in_array(intval($GLOBALS['TSFE']->id), GeneralUtility::trimExplode(',', $this->settings['showMapsPidList'])));
+
+        return $this->htmlResponse();
     }
 
 
@@ -395,7 +414,7 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      *
      *
      * @param mixed $project
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function projectPartnerAction($project = null)
     {
@@ -428,6 +447,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         }
 
         $this->view->assign('project', $project);
+
+        return $this->htmlResponse();
     }
 
 
@@ -435,10 +456,12 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action authorList
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function authorListAction()
     {
         $this->view->assign('authorList', $this->authorsRepository->findByUidList($this->settings['authorList']['authorUidList']));
+
+        return $this->htmlResponse();
     }
 }

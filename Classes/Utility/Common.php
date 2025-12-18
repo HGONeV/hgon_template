@@ -42,24 +42,34 @@ class Common
         string $extension = '',
         string $type = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
     ): array {
+        /** @var ConfigurationManagerInterface $configurationManager */
+        $configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
 
-        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ObjectManager::class);
+        $settings = $configurationManager->getConfiguration($type, $extension);
 
-        /** @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManager $configurationManager */
-        $configurationManager = $objectManager->get(ConfigurationManagerInterface::class);
+        return is_array($settings) ? $settings : [];
+    }
 
-        // load configuration
-        if ($configurationManager) {
-            $settings = $configurationManager->getConfiguration($type, $extension);
-            if (
-                ($settings)
-                && (is_array($settings))
-            ) {
-                return $settings;
+
+    /**
+     * @return int[]
+     */
+    public static function normalizeToUidArray(iterable $items): array
+    {
+        $uids = [];
+
+        foreach ($items as $item) {
+            if (is_object($item) && method_exists($item, 'getUid')) {
+                $uid = (int)$item->getUid();
+                if ($uid > 0) {
+                    $uids[] = $uid;
+                }
+            } elseif (is_numeric($item)) {
+                $uids[] = (int)$item;
             }
         }
 
-        return [];
+        return array_values(array_unique($uids));
     }
 
 

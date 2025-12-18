@@ -8,6 +8,11 @@ namespace HGON\HgonTemplate\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use HGON\HgonTemplate\Utility\Common;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
@@ -21,13 +26,12 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
 
     public function initializeObject()
     {
-        /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
-        $querySettings = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
-        // go for $defaultQuerySettings = $this->createQuery()->getQuerySettings(); if you want to make use of the TS persistence.storagePid with defaultQuerySettings(), see #51529 for details
+        $querySettings = $this->createQuery()->getQuerySettings();
 
-        // don't add the pid constraint
-        $querySettings->setRespectStoragePage(false);
-        $this->setDefaultQuerySettings($querySettings);
+        if ($querySettings instanceof Typo3QuerySettings) {
+            $querySettings->setRespectStoragePage(false);
+            $this->setDefaultQuerySettings($querySettings);
+        }
     }
 
     /**
@@ -56,52 +60,86 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
      * @param integer $limit
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findByFilter($sysCategoryList = [], $workgroupList = [], $excludedNews = [], $pageNumber = 1, $limit = 5)
-    {
-        // if single item is given, prepare for "in"-Query
+    public function findByFilter(
+        $sysCategoryList = [],
+        array $workgroupList = [],
+        array $excludedNews = [],
+        int $pageNumber = 1,
+        int $limit = 5
+    ): QueryResultInterface {
+        // Single SysCategory -> array
         if ($sysCategoryList instanceof \HGON\HgonTemplate\Domain\Model\SysCategory) {
             $sysCategoryList = [$sysCategoryList];
+        }
+
+        // Normalize categories: allow objects OR ints
+        if (is_array($sysCategoryList) && $sysCategoryList !== []) {
+            $sysCategoryList = array_values(array_filter(array_map(
+                static function ($item) {
+                    if ($item instanceof \HGON\HgonTemplate\Domain\Model\SysCategory) {
+                        return (int)$item->getUid();
+                    }
+                    if (is_numeric($item)) {
+                        return (int)$item;
+                    }
+                    return null;
+                },
+                $sysCategoryList
+            ), static fn($v) => $v !== null && $v > 0));
+        } else {
+            $sysCategoryList = [];
+        }
+
+        // Normalize excludedNews to ints
+        if ($excludedNews !== []) {
+            $excludedNews = array_values(array_filter(array_map(
+                static fn($v) => is_numeric($v) ? (int)$v : null,
+                $excludedNews
+            ), static fn($v) => $v !== null && $v > 0));
         }
 
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
 
         // Offset
-        $offset = ((intval($pageNumber) - 1) * $limit);
-        if ($pageNumber <= 1) {
-            $offset = 0;
-        }
-        // For offset issue on limit 1
-        if ($pageNumber > 1 && $limit == 1) {
-            $offset -= 1;
+        $offset = max(0, ($pageNumber - 1) * $limit);
+        if ($pageNumber > 1 && $limit === 1) {
+            $offset = max(0, $offset - 1);
         }
 
         $constraints = [];
-        if ($sysCategoryList) {
+
+        if ($sysCategoryList !== []) {
             $constraints[] = $query->in('categories.uid', $sysCategoryList);
         }
 
-        if ($workgroupList) {
-            $constraints[] = $query->contains('txHgonWorkgroup', $workgroupList);
+        if ($workgroupList !== []) {
+            $workgroupConstraints = [];
+            foreach ($workgroupList as $wg) {
+                $workgroupConstraints[] = $query->contains('txHgonWorkgroup', $wg);
+            }
+            if ($workgroupConstraints !== []) {
+                $constraints[] = $query->logicalOr(...$workgroupConstraints);
+            }
         }
 
-        if ($excludedNews) {
-            $constraints[] = $query->logicalNot($query->in('uid', $excludedNews));
+        if ($excludedNews !== []) {
+            $constraints[] = $query->logicalNot(
+                $query->in('uid', $excludedNews)
+            );
         }
 
-        // build query
-        if ($sysCategoryList || $workgroupList || $excludedNews) {
-            $query->matching($query->logicalAnd($constraints));
+        if ($constraints !== []) {
+            $query->matching(
+                count($constraints) === 1 ? $constraints[0] : $query->logicalAnd(...$constraints)
+            );
         }
 
         $query->setLimit($limit);
         $query->setOffset($offset);
 
         return $query->execute();
-        //===
-
     }
-
 
 
     /**
@@ -110,30 +148,40 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage|array $sysCategoryList
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage|array $excludeNewsList
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @throws InvalidQueryException
      */
-    public function findByCategories($sysCategoryList = [], $excludeNewsList = [])
-    {
+    public function findByCategories(
+        iterable $sysCategoryList = [],
+        iterable $excludeNewsList = []
+    ) {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
+
         $constraints = [];
 
-        if ($sysCategoryList) {
-            $constraints[] = $query->in('categories.uid', $sysCategoryList);
+        $categoryUids = Common::normalizeToUidArray($sysCategoryList);
+        if ($categoryUids !== []) {
+            $constraints[] = $query->in('categories.uid', $categoryUids);
         }
 
-
-        if ($excludeNewsList) {
-            $constraints[] = $query->logicalNot($query->in('uid', $excludeNewsList));
+        $excludeUids = Common::normalizeToUidArray($excludeNewsList);
+        if ($excludeUids !== []) {
+            $constraints[] = $query->logicalNot(
+                $query->in('uid', $excludeUids)
+            );
         }
 
-        if ($sysCategoryList || $excludeNewsList) {
-            $query->matching($query->logicalAnd($constraints));
+        if ($constraints !== []) {
+            $query->matching(
+                count($constraints) === 1
+                    ? $constraints[0]
+                    : $query->logicalAnd(...$constraints)
+            );
         }
 
         $query->setLimit(10);
 
         return $query->execute();
-        //===
     }
 
 

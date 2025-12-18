@@ -51,13 +51,15 @@ globalWebsiteConfig {
 
         logoFile = {$globalWebsiteConfig.templatePaths.default.logos}/logo-hgon.svg
         logoFileSmall = {$globalWebsiteConfig.templatePaths.default.logos}/logo-hgon-small.svg
+      #  logoFile = EXT:hgon_template/Resources/Public/Logos/logo-hgon.svg
+      #  logoFileSmall = EXT:hgon_template/Resources/Public/Logos/logo-hgon-small.svg
         #logoOffcanvasFile = {$globalWebsiteConfig.templatePaths.default.logos}/logo-offcanvas.png
         #logoOffcanvasIconOnlyFile = {$globalWebsiteConfig.templatePaths.default.logos}/logo-offcanvas-icon.png
         #logoBrokenLinkFile = {$globalWebsiteConfig.templatePaths.default.logos}/broken-link.png
 
         #socialMedia = 1
 
-        twitter = https://twitter.com/HGON_eV/
+        #twitter = https://twitter.com/HGON_eV/
         youtube = https://youtube.com/channel/UCPDDmNoVRKYFUXYEsITpYiw
         facebook = https://facebook.com/hgon.de/
         instagram = https://www.instagram.com/hgon_ev/

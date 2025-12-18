@@ -1,7 +1,5 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
-	die ('Access denied.');
-}
+defined('TYPO3') or die("Access denied.");
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_hgontemplate_domain_model_didyouknow', 'EXT:hgon_template/Resources/Private/Language/locallang_csh_tx_hgontemplate_domain_model_didyouknow.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_hgontemplate_domain_model_didyouknow');

@@ -1,7 +1,8 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
-}
+defined('TYPO3') or die("Access denied.");
+
+
+$ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 
 // fix: https://github.com/georgringer/news/issues/1072
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['config']['default'] = '';

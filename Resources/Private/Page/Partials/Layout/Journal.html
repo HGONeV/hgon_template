@@ -10,5 +10,5 @@
         </div>
     </header>
 
-    <f:format.html parseFuncTSPath="">{journal}</f:format.html>
+    {journal -> f:format.raw()}
 </f:if>

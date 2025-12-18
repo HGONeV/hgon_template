@@ -9,7 +9,7 @@
     </f:section>
 
     <header class="main__header main__header--image">
-        <f:format.html parseFuncTSPath="">{newsHeader}</f:format.html>
+        {newsHeader -> f:format.raw()}
     </header>
 
     <div class="main__content">
@@ -18,7 +18,7 @@
                 <f:cObject typoscriptObjectPath="lib.content.render" data="{colPos:0}" />
             </article>
             <div class="sidebar sidebar--boxed">
-                <f:format.html parseFuncTSPath="">{newsSidebar}</f:format.html>
+                {newsSidebar -> f:format.raw()}
                 <f:comment>
                     <!-- Plugin -->
                     <f:render partial="Layout/Sidebar" arguments="{_all}" />

@@ -1,5 +1,8 @@
 <?php
-defined('TYPO3_MODE') || die('Access denied.');
+
+use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
+
+defined('TYPO3') or die("Access denied.");
 
 $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['hgon_default'] = 'EXT:hgon_template/Configuration/Yaml/RTE/HgonDefault.yaml';
 
@@ -8,7 +11,7 @@ call_user_func(
     function($extKey)
     {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'PageHighlight',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'pageHighlight'
@@ -20,7 +23,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'RandomAuthor',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'randomAuthor'
@@ -33,7 +36,7 @@ call_user_func(
 
         /*
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'ProjectTeaser',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'projectTeaser'
@@ -46,7 +49,7 @@ call_user_func(
         */
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'SidebarContactPerson',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'sidebarContactPerson'
@@ -58,7 +61,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'SiblingPagesOverview',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'siblingPagesOverview'
@@ -70,7 +73,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'ChildrenPagesOverview',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'childrenPagesOverview'
@@ -82,7 +85,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'PageSlider',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'pageSlider'
@@ -94,7 +97,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'DonationForm',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'donationForm'
@@ -108,7 +111,7 @@ call_user_func(
         /*
          * -> Moved to HGON Donation
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'SupportOptions',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptions'
@@ -120,7 +123,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'SupportOptionsLight',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptionsLight'
@@ -133,7 +136,7 @@ call_user_func(
         */
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'SixReasons',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'sixReasons'
@@ -145,7 +148,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'DidYouKnow',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'didYouKnow'
@@ -157,7 +160,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'Maps',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'maps'
@@ -169,7 +172,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'ProjectPartner',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'projectPartner'
@@ -181,7 +184,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'AuthorList',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'authorList'
@@ -197,7 +200,7 @@ call_user_func(
         // ***************
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'ShowRelatedSidebar',
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'showRelatedSidebar'
@@ -209,7 +212,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'JournalHighlight',
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'journalHighlight'
@@ -222,7 +225,7 @@ call_user_func(
 
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'Journal',
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'journal'
@@ -234,7 +237,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'Header',
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'header'
@@ -246,7 +249,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'Sidebar',
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'sidebar'
@@ -265,7 +268,7 @@ call_user_func(
         // ***************
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'ShowArticleFromPages',
             [
                 \HGON\HgonTemplate\Controller\ArticleController::class => 'showArticleFromPages, newOrder, createOrder'
@@ -279,18 +282,14 @@ call_user_func(
 
 
         // caching
-        if( !is_array($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] ) ) {
-            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey] = array();
+        $cacheConfigurations =& $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'];
+        if (!isset($cacheConfigurations[$extKey]) || !is_array($cacheConfigurations[$extKey])) {
+            $cacheConfigurations[$extKey] = [];
         }
-        if( !isset($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['frontend'] ) ) {
-            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['frontend'] = \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class;
-        }
-        if( !isset($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['options'] ) ) {
-            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['options'] = array('defaultLifetime' => 3600);
-        }
-        if( !isset($GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['groups'] ) ) {
-            $GLOBALS['TYPO3_CONF_VARS'] ['SYS']['caching']['cacheConfigurations'][$extKey]['groups'] = array('pages');
-        }
+        $cacheConfigurations[$extKey]['frontend'] ??= VariableFrontend::class;
+        $cacheConfigurations[$extKey]['options'] ??= ['defaultLifetime' => 3600];
+        $cacheConfigurations[$extKey]['groups'] ??= ['pages'];
+
 
         // set logger
         $GLOBALS['TYPO3_CONF_VARS']['LOG']['RKW']['RkwBasics']['writerConfiguration'] = array(
@@ -301,7 +300,7 @@ call_user_func(
                 // add a FileWriter
                 \TYPO3\CMS\Core\Log\Writer\FileWriter::class => array(
                     // configuration for the writer
-                    'logFile' => 'typo3temp/logs/tx_hgontemplate.log'
+                    'logFile' => 'var/log/tx_hgontemplate.log'
                 )
             ),
         );

@@ -106,7 +106,7 @@
                     <h6>{data.header}</h6>
                 </header>
                 <div class="aside__content">
-                    <f:format.html>{data.bodytext}</f:format.html>
+                    <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
                 </div>
             </aside>
         </f:case>
@@ -118,7 +118,7 @@
                     <h6>{data.header}</h6>
                 </header>
                 <div class="aside__content">
-                    <f:format.html>{data.bodytext}</f:format.html>
+                    <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
                 </div>
             </aside>
         </f:case>
@@ -225,7 +225,7 @@
         <f:case value="61">
 
             <f:if condition="{gallery.position.vertical} == 'below'">
-                <f:format.html>{data.bodytext}</f:format.html>
+                <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
             </f:if>
 
             <div class="slider slider--small js-slider" data-slide="0">
@@ -292,7 +292,7 @@
             </f:comment>
 
             <f:if condition="{gallery.position.vertical} != 'below'">
-                <f:format.html>{data.bodytext}</f:format.html>
+                <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
             </f:if>
         </f:case>
 
@@ -300,7 +300,7 @@
         <f:case value="65">
 
             <f:if condition="{gallery.position.vertical} == 'below'">
-                <f:format.html>{data.bodytext}</f:format.html>
+                <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
             </f:if>
 
             <f:if condition="{gallery.rows}">
@@ -351,7 +351,7 @@
             </f:if>
 
             <f:if condition="{gallery.position.vertical} != 'below'">
-                <f:format.html>{data.bodytext}</f:format.html>
+                <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
             </f:if>
         </f:case>
 
@@ -613,7 +613,7 @@
                             <f:if condition="{gallery.position.noWrap}">
                                 <f:render partial="Header/All" arguments="{_all}" />
                             </f:if>
-                            <f:format.html>{data.bodytext}</f:format.html>
+                            <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
                         </div>
                     </f:then>
                     <f:else>

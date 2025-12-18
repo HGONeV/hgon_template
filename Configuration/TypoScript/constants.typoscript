@@ -1,4 +1,26 @@
 # Extensions
+
+# Extensions
+@import 'EXT:news/Configuration/TypoScript/constants.typoscript'
+
+@import 'EXT:hgon_donation/Configuration/TypoScript/constants.typoscript'
+@import 'EXT:hgon_workgroup/Configuration/TypoScript/constants.typoscript'
+@import 'EXT:hgon_payment/Configuration/TypoScript/constants.typoscript'
+@import 'EXT:hgon_species/Configuration/TypoScript/constants.typoscript'
+
+@import 'EXT:hgon_template/Configuration/TypoScript/Constants/Config/*.typoscript'
+@import 'EXT:hgon_template/Configuration/TypoScript/Constants/Extension/*.typoscript'
+
+# Environments
+[applicationContext == "Development/Local"]
+    @import 'EXT:hgon_template/Configuration/TypoScript/__DEV/Constants.typoscript'
+[end]
+
+[applicationContext == "Production/Staging"]
+    @import 'EXT:hgon_template/Configuration/TypoScript/__STAGE/Constants.typoscript'
+[end]
+
+/*
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TypoScript/constants.txt">
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_donation/Configuration/TypoScript/constants.typoscript">
@@ -17,3 +39,4 @@
 [applicationContext = Production/Staging]
     <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Constants.typoscript">
 [end]
+*/

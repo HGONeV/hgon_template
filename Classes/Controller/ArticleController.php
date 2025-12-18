@@ -11,6 +11,8 @@ namespace HGON\HgonTemplate\Controller;
  *  (c) 2018 Maximilian Fäßler <maximilian@faesslerweb.de>, Fäßler Web UG
  *
  ***/
+
+use HGON\HgonPayment\Session\BasketSessionService;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -26,10 +28,6 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
      */
     protected $pagesRepository;
 
-    /**
-     * @var \TYPO3\CMS\Core\Session\UserSession
-     */
-    protected $session;
 
     /**
      * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
@@ -38,24 +36,38 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
         $this->pagesRepository = $pagesRepository;
     }
 
-    /**
-     * @param \TYPO3\CMS\Core\Session\UserSession $session
-     */
-    public function injectUserSession(\TYPO3\CMS\Core\Session\UserSession $session): void {
-        $this->session = $session;
+    public function __construct(
+        private readonly BasketSessionService $basketSessionService
+    ) {
+
     }
+
+    public function addToBasketAction(): void
+    {
+        $basket = $this->basketSessionService->getBasket();
+        // ... basket anpassen ...
+        // $this->basketSessionService->setBasket($basket);
+    }
+
+    public function clearBasketAction(): void
+    {
+        $this->basketSessionService->clearBasket();
+    }
+
 
 
     /**
      * action showArticleFromPages
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function showArticleFromPagesAction()
     {
         /** @var \HGON\HgonTemplate\Domain\Model\Pages $pages */
         $pages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
         $this->view->assign('article', $pages->getTxHgontemplateArticle());
+
+        return $this->htmlResponse();
     }
 
 
@@ -64,11 +76,13 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
      * action newOrder
      *
      * @param \HGON\HgonTemplate\Domain\Model\Article $article
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function newOrderAction(\HGON\HgonTemplate\Domain\Model\Article $article)
     {
         $this->view->assign('article', $article);
+
+        return $this->htmlResponse();
     }
 
 

@@ -20,25 +20,19 @@
                 <f:render partial="Layout/Social" arguments="{_all}" />
             </article>
             <div class="sidebar">
-                <f:format.html parseFuncTSPath="">
-                    <f:render partial="Navigation/GoToOverview" arguments="{_all}" />
-                </f:format.html>
+                <f:render partial="Navigation/GoToOverview" arguments="{_all}" />
 
                 <f:render partial="Navigation/SubPageSingle" arguments="{_all}" />
 
                 <f:render partial="Layout/Sidebar" arguments="{_all}" />
 
-                <f:format.html parseFuncTSPath="">
-                    {relatedNews}
-                </f:format.html>
+                {relatedNews -> f:format.raw()}
 
-                <f:format.html parseFuncTSPath="">
-                    {donationProject}
-                </f:format.html>
+                {donationProject -> f:format.raw()}
             </div>
         </div>
         <f:comment><!-- read more nav --></f:comment>
-        <f:format.html parseFuncTSPath="">{readMoreNav}</f:format.html>
+        {readMoreNav -> f:format.raw()}
     </div>
 
     <f:render partial="Layout/MainFooter" arguments="{_all}" />

@@ -1,7 +1,33 @@
 # Extensions
+@import 'EXT:news/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:hgon_donation/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:hgon_workgroup/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:hgon_payment/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:hgon_species/Configuration/TypoScript/setup.typoscript'
+
+@import 'EXT:hgon_template/Configuration/TypoScript/Setup/Config/*.typoscript'
+@import 'EXT:hgon_template/Configuration/TypoScript/Setup/Extension/*.typoscript'
+@import 'EXT:hgon_template/Configuration/TypoScript/Setup/Include/*.typoscript'
+@import 'EXT:hgon_template/Configuration/TypoScript/Setup/Marker/*.typoscript'
+@import 'EXT:hgon_template/Configuration/TypoScript/Setup/Page/*.typoscript'
+@import 'EXT:hgon_template/Configuration/TypoScript/Setup/Lib/*.typoscript'
+
+# Environments
+[applicationContext == "Development/Local"]
+    @import 'EXT:hgon_template/Configuration/TypoScript/__DEV/Setup.typoscript'
+[end]
+
+[applicationContext == "Production/Staging"]
+    @import 'EXT:hgon_template/Configuration/TypoScript/__STAGE/Setup.typoscript'
+[end]
+
+
+/*
+
+# Extensions
 #<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_template/Configuration/TypoScript/_Core/setup.ts">
 
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TypoScript/setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TypoScript/setup.typoscript">
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_donation/Configuration/TypoScript/setup.typoscript">
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_workgroup/Configuration/TypoScript/setup.typoscript">
@@ -18,9 +44,10 @@
 
 # Environments
 [applicationContext == "Development/Local"]
-    <INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/Setup.typoscript">
-[GLOBAL]
+<INCLUDE_TYPOSCRIPT: source="FILE:./__DEV/Setup.typoscript">
+[end]
 
 [applicationContext = Production/Staging]
-    <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Setup.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Setup.typoscript">
 [global]
+*/

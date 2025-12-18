@@ -1,5 +1,3 @@
-<f:format.html parseFuncTSPath="">
-    {sidebarContactPerson}
-    {sidebar}
-    {sidebarInherit}
-</f:format.html>
+{sidebarContactPerson -> f:format.raw()}
+{sidebar -> f:format.raw()}
+{sidebarInherit -> f:format.raw()}

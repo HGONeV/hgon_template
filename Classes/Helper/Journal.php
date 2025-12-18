@@ -19,6 +19,9 @@ use HGON\HgonTemplate\Domain\Model\SysCategory;
  * Journal
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
+ *
+ * @deprecated For what this class is for?
+ *
  * @copyright HGON
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
@@ -40,10 +43,7 @@ class Journal implements \TYPO3\CMS\Core\SingletonInterface
      */
     protected $sysCategoryRepository;
 
-    /**
-     * @var \HGON\HgonTemplate\Domain\Repository\EventRepository
-     */
-    protected $eventRepository;
+
 
 
     /**
@@ -67,12 +67,7 @@ class Journal implements \TYPO3\CMS\Core\SingletonInterface
         $this->sysCategoryRepository = $sysCategoryRepository;
     }
 
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\EventRepository $eventRepository
-     */
-    public function injectEventRepository(\HGON\HgonTemplate\Domain\Repository\EventRepository $eventRepository): void {
-        $this->eventRepository = $eventRepository;
-    }
+
 
     /**
      * getPagesList

@@ -16,10 +16,6 @@
         <section id="content" class="section / pt-2 pb-5">
             <div class="wrap">
                 <f:cObject typoscriptObjectPath="lib.content.render" data="{colPos:1}" />
-
-                <f:comment><!-- Upcoming events -->
-                <f:format.html parseFuncTSPath="">{rkwEventsUpcomingEvents}</f:format.html>
-                </f:comment>
             </div>
         </section>
 
@@ -28,7 +24,7 @@
         </section>
 
         <f:comment><!-- Breaker --></f:comment>
-        <f:format.html parseFuncTSPath="">{breakerWorkgroupSearch}</f:format.html>
+        {breakerWorkgroupSearch -> f:format.raw()}
 
         <section class="section">
             <f:cObject typoscriptObjectPath="lib.content.render" data="{colPos:2}" />

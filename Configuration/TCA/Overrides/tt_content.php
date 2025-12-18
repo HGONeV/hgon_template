@@ -1,77 +1,77 @@
 <?php
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') or die("Access denied.");
 
 call_user_func(
     function (string $extKey) {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'PageHighlight',
             'HGON: Seiten-Highlight'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'RandomAuthor',
             'HGON: Zufälliger HGON-Autor mit Zitat'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'SiblingPagesOverview',
             'HGON: Generiert Vorschau für Geschwisterseiten'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'ChildrenPagesOverview',
             'HGON: Generiert Vorschau für Unterseiten'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'PageSlider',
             'HGON: Slider Projekte (Seiten)'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'DonationForm',
             'HGON: Spendenformular'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'ContactForm',
             'HGON: Kontaktformular'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'SixReasons',
             'HGON: Sechs Gründe'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'DidYouKnow',
             'HGON: Wussten Sie schon?'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'Maps',
             'HGON: Zeigt HGON auf GoogleMaps'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'ProjectPartner',
             'HGON: Zeigt Projekt-Partner'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'HGON.HgonTemplate',
+            $extKey,
             'AuthorList',
             'HGON: Teammitglieder (Liste)'
         );

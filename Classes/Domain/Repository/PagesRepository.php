@@ -28,6 +28,19 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
+    public function initializeObject(): void
+    {
+        /** @var Typo3QuerySettings $querySettings */
+        $querySettings = $this->createQuery()->getQuerySettings();
+        $querySettings->setRespectStoragePage(false);
+
+        // optional, je nach Setup:
+        // $querySettings->setRespectSysLanguage(false);
+
+        $this->setDefaultQuerySettings($querySettings);
+    }
+
+
     /**
      * Find by PID (and exclude given element)
      *
@@ -47,7 +60,6 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         );
 
         return $query->execute();
-        //===
     }
 
 
@@ -65,7 +77,6 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         );
 
         return $query->execute();
-        //===
     }
 
 
@@ -108,7 +119,6 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         );
 
         return $query->execute();
-        //===
     }
 
 
@@ -174,7 +184,6 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->setOffset($offset);
 
         return $query->execute();
-        //===
     }
 
 
@@ -201,7 +210,6 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         }
 
         return $resultList;
-        //===
     }
 
 }

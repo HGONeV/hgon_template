@@ -1,7 +1,7 @@
 {
     "name": "hgon/hgon-template",
     "type": "typo3-cms-extension",
-    "description": "",
+    "description": "HGON base extension for templates and extension overrides",
     "authors": [
         {
             "name": "Maximilian Fäßler",
