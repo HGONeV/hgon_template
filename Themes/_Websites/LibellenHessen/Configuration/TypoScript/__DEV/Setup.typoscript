@@ -1,4 +1,4 @@
-config.baseURL = https://hgon-libellen.ddev.site:8443/
+config.base = https://hgon-libellen.ddev.site:8443/
 
 plugin.tx_rkwbasics {
     settings {

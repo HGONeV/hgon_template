@@ -3,38 +3,17 @@
     <f:if condition="{data.header_layout} != 100">
         <f:if condition="{data.header} || {data.subheader} || {data.date}">
             <f:switch expression="{data.header_layout}">
-
-                <f:comment>
-                    <f:case value="14">
-                    </f:case>
-
-                    <f:case value="20">
-                        <h2>
-                            <f:render section="HeaderBody" arguments="{_all}"/>
-                        </h2>
-                    </f:case>
-
-                    <f:case value="21">
-                        <h3 class="headline">
-                            <f:render section="HeaderBody" arguments="{_all}"/>
-                        </h3>
-                    </f:case>
-
-                    <f:case value="30">
-                        <q>
-                            <f:render section="HeaderBody" arguments="{_all}"/>
-                        </q>
-                    </f:case>
-                </f:comment>
-
                 <f:defaultCase>
                     <header>
-                        <f:render section="HeaderBody" arguments="{_all}"/>
+                        <f:render section="HeaderBody" arguments="{_all}" />
                     </header>
                 </f:defaultCase>
             </f:switch>
         </f:if>
     </f:if>
+
+
+
 
 </html>
 

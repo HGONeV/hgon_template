@@ -1,1 +1,1 @@
-<INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_template/Configuration/TsConfig/TsConfig.typoscript">
+@import 'EXT:hgon_template/Configuration/TsConfig/TsConfig.typoscript'

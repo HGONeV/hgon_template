@@ -13,6 +13,8 @@ namespace HGON\HgonTemplate\ViewHelpers\Php;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * RandViewHelper
  *
@@ -21,20 +23,36 @@ namespace HGON\HgonTemplate\ViewHelpers\Php;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class RandViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
+final class RandViewHelper extends AbstractViewHelper
 {
-    /**
-     * Imports php function rand
-     *
-     * @param integer $min
-     * @param integer $max
-     *
-     * @return integer
-     */
-    public function render($min, $max)
+    public function initializeArguments(): void
     {
-        return $min || $max ? rand ($min, $max) : rand();
+        $this->registerArgument(
+            'min',
+            'int',
+            'Minimum value',
+            false,
+            null
+        );
+
+        $this->registerArgument(
+            'max',
+            'int',
+            'Maximum value',
+            false,
+            null
+        );
     }
 
+    public function render(): int
+    {
+        $min = $this->arguments['min'];
+        $max = $this->arguments['max'];
 
+        if ($min !== null && $max !== null) {
+            return random_int($min, $max);
+        }
+
+        return random_int(PHP_INT_MIN, PHP_INT_MAX);
+    }
 }

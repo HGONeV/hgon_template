@@ -193,7 +193,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
      * @param \HGON\HgonTemplate\Domain\Model\News $news
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
-    public function findAllExceptCurrent(\HGON\HgonTemplate\Domain\Model\News $news = null)
+    public function findAllExceptCurrent(?\HGON\HgonTemplate\Domain\Model\News $news = null)
     {
         $query = $this->createQuery();
 

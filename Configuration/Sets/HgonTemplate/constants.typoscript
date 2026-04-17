@@ -1,0 +1,12 @@
+@import 'EXT:hgon_template/Configuration/TypoScript/constants.typoscript'
+
+plugin.tx_sfeventmgt {
+    view {
+        templateRootPath = {$sf_event_mgt.view.templateRootPath}
+        partialRootPath = {$sf_event_mgt.view.partialRootPath}
+        layoutRootPath = {$sf_event_mgt.view.layoutRootPath}
+    }
+}
+
+plugin.tx_sfeventmgt_pieventdetail < plugin.tx_sfeventmgt
+plugin.tx_sfeventmgt_pieventlist < plugin.tx_sfeventmgt

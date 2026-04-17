@@ -1,4 +1,4 @@
-config.baseURL = http://stage.hgon.de
+config.base = http://stage.hgon.de
 
 plugin.tx_rkwbasics {
     settings {

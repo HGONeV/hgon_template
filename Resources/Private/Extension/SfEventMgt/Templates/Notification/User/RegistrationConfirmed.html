@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:hgon="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<p>Hallo {registration.firstname} {registration.lastname},</p>
+
+<f:if condition="{event.enablePayment}">
+    <f:then>
+        <f:if condition="{registration.paymentmethod} == 'transfer'">
+            <f:then>
+                <p>vielen Dank für Ihre Anmeldung. Bitte schließen Sie die Anmeldung noch mit der Überweisung des Teilnahmebetrags ab:</p>
+            </f:then>
+            <f:else>
+                <f:if condition="{registration.paymentmethod} == 'paypal'">
+                    <f:then>
+                        <f:if condition="{registration.paid}">
+                            <f:then>
+                                <p>vielen Dank, Ihre PayPal-Zahlung ist eingegangen. Ihre Anmeldung für folgende Veranstaltung ist damit vollständig abgeschlossen:</p>
+                            </f:then>
+                            <f:else>
+                                <p>vielen Dank für Ihre Anmeldung. Bitte schließen Sie die Anmeldung noch mit der PayPal-Zahlung ab:</p>
+                            </f:else>
+                        </f:if>
+                    </f:then>
+                    <f:else>
+                        <p>vielen Dank, Ihre Anmeldung für folgende Veranstaltung ist bei uns eingegangen:</p>
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+    </f:then>
+    <f:else>
+        <p>vielen Dank, Ihre Anmeldung für folgende Veranstaltung ist bestätigt:</p>
+    </f:else>
+</f:if>
+
+<f:render partial="Notification/PaymentSummary" arguments="{event: event, registration: registration, settings: settings}" />
+
+<f:render partial="Notification/EventSummary" arguments="{event: event}" />
+<f:render partial="Notification/RegistrationSummary" arguments="{registration: registration}" />
+<f:render partial="Notification/RegistrationAddons" arguments="{registration: registration, event: event}" />
+
+<f:render partial="Notification/CancellationLink" arguments="{event: event, registration: registration, cancelAction: cancelAction, hmac: hmac}" />
+<f:render partial="Notification/OrganisatorContact" arguments="{event: event}" />
+
+<p>Freundliche Grüße</p>
+<f:format.html>{settings.notification.senderSignature}</f:format.html>
+
+</html>

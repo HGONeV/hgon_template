@@ -8,9 +8,8 @@ page {
             //=================================================================
             // Template breaker shows workgroup-search-form
             //=================================================================
-            breakerWorkgroupSearch = USER
+            breakerWorkgroupSearch = EXTBASEPLUGIN
             breakerWorkgroupSearch {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonWorkgroup
                 pluginName = Search
                 vendorName = HGON
@@ -32,9 +31,8 @@ page {
             //=================================================================
             // Sidebar: Show overview (sub-pages) of sibling pages
             //=================================================================
-            siblingPagesOverview = USER
+            siblingPagesOverview = EXTBASEPLUGIN
             siblingPagesOverview {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = SiblingPagesOverview
                 vendorName = HGON
@@ -56,9 +54,8 @@ page {
             //=================================================================
             // Sidebar: Show contactPerson of project
             //=================================================================
-            sidebarContactPerson = USER
+            sidebarContactPerson = EXTBASEPLUGIN
             sidebarContactPerson {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = SidebarContactPerson
                 vendorName = HGON
@@ -79,9 +76,8 @@ page {
             //=================================================================
             // Journal Overview
             //=================================================================
-            journal = USER
+            journal = EXTBASEPLUGIN
             journal {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = Journal
                 vendorName = HGON
@@ -97,39 +93,11 @@ page {
                 persistence =< plugin.tx_hgontemplate.persistence
                 settings =< plugin.tx_hgontemplate.settings
             }
-
-
-            //=================================================================
-            // Donate time form
-            //=================================================================
-            hgonDonateTime = USER
-            hgonDonateTime {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-                extensionName = HgonDonation
-                pluginName = Donate
-                vendorName = HGON
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Standard {
-                        #10 = newDonationTime
-                        20 = listDonationTime
-                        30 = createDonationTime
-                    }
-                }
-
-                view =< plugin.tx_hgondonation_donate.view
-                persistence =< plugin.tx_hgondonation_donate.persistence
-                settings =< plugin.tx_hgondonation_donate.settings
-            }
-
-
-
             //=================================================================
             // Show related sidebar (news)
             //=================================================================
-            relatedNews = USER
+            relatedNews = EXTBASEPLUGIN
             relatedNews {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = ShowRelatedSidebar
                 vendorName = HGON
@@ -151,9 +119,8 @@ page {
             //=================================================================
             // didYouKnow
             //=================================================================
-            didYouKnow = USER
+            didYouKnow = EXTBASEPLUGIN
             didYouKnow {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = DidYouKnow
                 vendorName = HGON
@@ -175,9 +142,8 @@ page {
             //=================================================================
             // maps (shows hgon headquarter place on googleMaps - nothing else)
             //=================================================================
-            maps = USER
+            maps = EXTBASEPLUGIN
             maps {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = Maps
                 vendorName = HGON
@@ -199,9 +165,8 @@ page {
             //=================================================================
             // Bank account sidebar plugin
             //=================================================================
-            bankAccountSidebar = USER
+            bankAccountSidebar = EXTBASEPLUGIN
             bankAccountSidebar {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonDonation
                 pluginName = BankAccountSidebar
                 vendorName = HGON
@@ -218,37 +183,11 @@ page {
                 settings =< plugin.tx_hgondonation.settings
             }
 
-
-
-            //=================================================================
-            // Project donation options
-            //=================================================================
-            donationProject = USER
-            donationProject {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-                extensionName = HgonDonation
-                pluginName = DonationProject
-                vendorName = HGON
-                controller = Donation
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Donation {
-                        1 = donationProject
-                    }
-                }
-
-                view =< plugin.tx_hgondonation.view
-                persistence =< plugin.tx_hgondonation.persistence
-                settings =< plugin.tx_hgondonation.settings
-            }
-
-
             //=================================================================
             // Show Article (tp-info feature)
             //=================================================================
-            showArticleFromPages = USER
+            showArticleFromPages = EXTBASEPLUGIN
             showArticleFromPages {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = ShowArticleFromPages
                 vendorName = HGON
@@ -259,30 +198,6 @@ page {
                         1 = showArticleFromPages
                         2 = newOrder
                         3 = createOrder
-                    }
-                }
-
-                view =< plugin.tx_hgontemplate.view
-                persistence =< plugin.tx_hgontemplate.persistence
-                settings =< plugin.tx_hgontemplate.settings
-            }
-
-
-
-            //=================================================================
-            // Show project partner
-            //=================================================================
-            showProjectPartner = USER
-            showProjectPartner {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-                extensionName = HgonTemplate
-                pluginName = ProjectPartner
-                vendorName = HGON
-                controller = Standard
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Standard {
-                        1 = projectPartner
                     }
                 }
 

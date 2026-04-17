@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<h3>Anmeldedaten</h3>
+<ul>
+    <li>Anmeldenummer: {registration.uid}</li>
+    <li>Bestätigung: <f:if condition="{registration.confirmed}"><f:then>bestätigt</f:then><f:else>offen</f:else></f:if></li>
+    <li>Zahlung: <f:if condition="{registration.paid}"><f:then>bezahlt</f:then><f:else>offen</f:else></f:if></li>
+    <li>Warteliste: <f:if condition="{registration.waitlist}"><f:then>ja</f:then><f:else>nein</f:else></f:if></li>
+    <li>Angemeldete Personen: {registration.amountOfRegistrations}</li>
+    <f:if condition="{registration.priceOption}">
+        <li>Gebuchte Kategorie: {registration.priceOption.title}</li>
+    </f:if>
+    <li>Anrede: {registration.gender}</li>
+    <li>Vorname: {registration.firstname}</li>
+    <li>Nachname: {registration.lastname}</li>
+    <li>Adresse: {registration.address}</li>
+    <li>PLZ: {registration.zip}</li>
+    <li>Ort: {registration.city}</li>
+    <li>Land: {registration.country}</li>
+    <li>E-Mail: <a href="mailto:{registration.email}">{registration.email}</a></li>
+    <li>Telefon: {registration.phone}</li>
+    <f:if condition="{registration.dateOfBirth}">
+        <li>Geburtsdatum: {f:format.date(date: registration.dateOfBirth, format: '%d.%m.%Y')}</li>
+    </f:if>
+    <li>Hinweise: {registration.notes}</li>
+    <f:if condition="{event.enablePayment}">
+        <li>Preis: {registration.price -> f:format.currency(decimalSeparator: ',', thousandsSeparator: '.', decimals: 2, currencySign: event.currency, prependCurrency: false)}</li>
+        <li>Zahlungsart: {registration.paymentmethod}</li>
+        <li>Zahlungsreferenz: {registration.paymentReference}</li>
+    </f:if>
+</ul>
+
+<f:render partial="Notification/RegistrationAddons" arguments="{registration: registration, event: event}" />
+
+<h3>Anmeldefelder</h3>
+<f:render partial="Notification/RegistrationFields" arguments="{registration: registration}"/>
+
+</html>

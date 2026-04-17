@@ -1,4 +1,4 @@
-config.baseURL = http://hgon-heuschrecken.rkw.local/
+config.base = http://hgon-heuschrecken.rkw.local/
 
 plugin.tx_rkwbasics {
     settings {

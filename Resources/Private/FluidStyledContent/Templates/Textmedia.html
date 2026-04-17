@@ -1,7 +1,11 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-{namespace hgon=HGON\HgonTemplate\ViewHelpers}
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hgon="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
 <f:layout name="Default" />
 
+<f:comment>
     <f:section name="Header">
         <f:switch expression="{data.layout}">
             <f:case value="30"></f:case>
@@ -16,6 +20,16 @@
             </f:defaultCase>
         </f:switch>
     </f:section>
+</f:comment>
+
+
+<f:section name="Header">
+    <f:if condition="{data.layout} != 30 && {data.layout} != 40 && {data.layout} != 42 && {data.layout} != 55 && {data.layout} != 70">
+        <f:if condition="{gallery.position.noWrap} != 1">
+            <f:render partial="Header/All" arguments="{_all}" />
+        </f:if>
+    </f:if>
+</f:section>
 
 <f:section name="Main">
     <f:switch expression="{data.layout}">

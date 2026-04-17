@@ -1,17 +1,15 @@
 <?php
 defined('TYPO3') or die();
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_hgontemplate_domain_model_eventculinary', 'EXT:hgon_template/Resources/Private/Language/locallang_csh_tx_hgontemplate_domain_model_eventculinary.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_hgontemplate_domain_model_eventculinary');
 $GLOBALS['TCA']['tx_hgontemplate_domain_model_eventculinary'] = [
 	'ctrl' => [
 	    'hideTable' => true,
 		'title'	=> 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_eventculinary',
 		'label' => 'title',
 		'label_alt' => 'description',
+        'rootLevel' => 0,
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => true,
 
 		'languageField' => 'sys_language_uid',
@@ -32,18 +30,11 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_eventculinary'] = [
 	],
 	'columns' => [
 
-		'sys_language_uid' => [
-			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectSingle',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => [
-					['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
-					['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0]
-                ],
+        'sys_language_uid' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
+            'config' => [
+                'type' => 'language',
             ],
         ],
 		'l10n_parent' => [
@@ -52,8 +43,11 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_eventculinary'] = [
 			'config' => [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
-				'items' => [
-					['', 0],
+                'items' => [
+                    [
+                        'label' => '',
+                        'value' => 0,
+                    ],
                 ],
 				'foreign_table' => 'tx_hgontemplate_domain_model_eventculinary',
 				'foreign_table_where' => 'AND tx_hgontemplate_domain_model_eventculinary.pid=###CURRENT_PID### AND tx_hgontemplate_domain_model_eventculinary.sys_language_uid IN (-1,0)',
@@ -89,7 +83,8 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_eventculinary'] = [
                 'type' => 'text',
                 'cols' => 40,
                 'rows' => 15,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true
             ],
         ],
         'price' => [
@@ -104,9 +99,7 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_eventculinary'] = [
         'date' => [
             'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_eventculinary.date',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
             ],
         ],
         'event' => array(

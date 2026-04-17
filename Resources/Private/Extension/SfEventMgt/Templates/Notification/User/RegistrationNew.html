@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:hgon="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<p>Hallo {registration.firstname} {registration.lastname},</p>
+<p>wir haben Ihre Anmeldung erhalten. Bitte bestätigen Sie Ihre Anmeldung über den folgenden Link, damit wir den Platz für Sie vormerken können:</p>
+<p>
+    <a href="{f:uri.action(action: confirmAction, arguments: {reguid: registration.uid, hmac: hmac}, absolute: true, controller: 'Event', extensionName: 'sfeventmgt', pluginName: 'Pieventregistration')}">Anmeldung bestätigen</a>
+</p>
+<f:render partial="Notification/EventSummary" arguments="{event: event}" />
+<f:render partial="Notification/RegistrationSummary" arguments="{registration: registration}" />
+<f:render partial="Notification/RegistrationAddons" arguments="{registration: registration, event: event}" />
+<f:if condition="{event.enablePayment}">
+    <f:if condition="{registration.paymentmethod} == 'paypal'">
+        <p>Wenn Sie PayPal als Zahlungsart gewählt haben, nutzen Sie den Bestätigungslink bitte innerhalb einer Stunde. Nach der Bestätigung werden Sie zu PayPal weitergeleitet. Ihre Anmeldung ist erst vollständig abgeschlossen, wenn die Zahlung dort erfolgreich durchgeführt wurde.</p>
+    </f:if>
+</f:if>
+<f:render partial="Notification/CancellationLink" arguments="{event: event, registration: registration, cancelAction: cancelAction, hmac: hmac}" />
+<f:render partial="Notification/OrganisatorContact" arguments="{event: event}" />
+<p>Bitte beachten Sie: Der Bestätigungslink ist bis zum {f:format.date(date: registration.confirmationUntil, format: '%d.%m.%Y - %H:%M')} gültig. Nach Ablauf dieser Frist ist eine Bestätigung über diesen Link nicht mehr möglich.</p>
+<p>Freundliche Grüße</p>
+<f:format.html>{settings.notification.senderSignature}</f:format.html>
+
+</html>

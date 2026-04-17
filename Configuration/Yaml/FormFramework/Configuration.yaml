@@ -18,11 +18,11 @@ TYPO3:
                   100: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Partials/'
                   110: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Custom/Partials/'
                   # currently does not work for emails: https://wiki.sebkln.de/doku.php?id=typo3:form
-                  #120: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+                  #120: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
                 layoutRootPaths:
                   100: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Layouts/'
                   # currently does not work for emails: https://wiki.sebkln.de/doku.php?id=typo3:form
-                  #110: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+                  #110: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
                 translation:
                   translationFile:
                     # Default translation file for the frontend:

@@ -1,4 +1,7 @@
 <?php
+
+use TYPO3\CMS\Core\Resource\File;
+
 defined('TYPO3') or die("Access denied.");
 
 
@@ -25,10 +28,22 @@ $tempPagesColumns = [
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.0', 0],
-                ['LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.1', 1],
-                ['LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2', 2],
-                ['--- Bitte wählen ---', ''],
+                [
+                    'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.0',
+                    'value' => 0,
+                ],
+                [
+                    'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.1',
+                    'value' => 1,
+                ],
+                [
+                    'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_type.2',
+                    'value' => 2,
+                ],
+                [
+                    'label' => '--- Bitte wählen ---',
+                    'value' => '',
+                ],
             ],
             'fieldWizard' => [
                 'selectIcons' => [
@@ -52,43 +67,24 @@ $tempPagesColumns = [
             'eval' => 'trim'
         ],
     ],
-
-    'tx_rkwproject_project' => [
-        'exclude' => true,
-        'label' => 'LLL:EXT:rkw_events/Resources/Private/Language/locallang_db.xlf:tx_rkwevents_domain_model_event.project',
-        'config' => [
-            'type' => 'select',
-            'renderType' => 'selectMultipleSideBySide',
-            'foreign_table' => 'tx_rkwprojects_domain_model_projects',
-            'foreign_table_where' => 'AND ((\'###PAGE_TSCONFIG_IDLIST###\' <> \'0\' AND FIND_IN_SET(tx_rkwprojects_domain_model_projects.pid,\'###PAGE_TSCONFIG_IDLIST###\')) OR (\'###PAGE_TSCONFIG_IDLIST###\' = \'0\')) AND tx_rkwprojects_domain_model_projects.sys_language_uid = ###REC_FIELD_sys_language_uid### ORDER BY tx_rkwprojects_domain_model_projects.short_name ASC',
-            'maxitems'      => 1,
-            'minitems'      => 1,
-            'size'          => 5,
-        ],
-        'displayCond' => 'FIELD:tx_hgontemplate_type:=:2',
-    ],
-
     'tx_hgontemplate_header_image' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_news.tx_hgontemplate_header_image',
-        'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-            'image',
-            array(
-                'minitems' => 0,
-                'maxitems' => 1,
-                'overrideChildTca' => [
-                    'types' => [
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                            'showitem' => '
-                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                    --palette--;;filePalette'
-                        ],
+        'config' => [
+            'type' => 'file',
+            'allowed' => 'jpg,jpeg,png,gif',
+            'minitems' => 0,
+            'maxitems' => 1,
+            'overrideChildTca' => [
+                'types' => [
+                    File::FILETYPE_IMAGE => [
+                        'showitem' => '
+                        --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                        --palette--;;filePalette',
                     ],
                 ],
-            ),
-            'jpg, jpeg, png, gif'
-        ),
-
+            ],
+        ],
     ],
 
 ];
@@ -97,12 +93,7 @@ $tempPagesColumns = [
     'tx_news_domain_model_news',
     $tempPagesColumns
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-    'tx_news_domain_model_news',
-    'tx_hgontemplate_type,tx_rkwproject_project',
-    '',
-    'before:title'
-);
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tx_news_domain_model_news', 'tx_hgontemplate_type', '', 'before:title');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'tx_news_domain_model_news',
     'tx_hgontemplate_header_image,tx_hgontemplate_youtube_video_id',
@@ -112,7 +103,7 @@ $tempPagesColumns = [
 
 $GLOBALS['TCA']['tx_news_domain_model_news']['types']['0'] = [
     'showitem' => '
-    --palette--;;paletteCore,tx_hgontemplate_type,tx_rkwproject_project,title,--palette--;;paletteSlug,teaser,
+    --palette--;;paletteCore,tx_hgontemplate_type,title,--palette--;;paletteSlug,teaser,
     datetime,
     bodytext,
     --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.media,

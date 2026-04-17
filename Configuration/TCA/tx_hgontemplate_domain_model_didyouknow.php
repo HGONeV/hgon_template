@@ -1,18 +1,15 @@
 <?php
 defined('TYPO3') or die("Access denied.");
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_hgontemplate_domain_model_didyouknow', 'EXT:hgon_template/Resources/Private/Language/locallang_csh_tx_hgontemplate_domain_model_didyouknow.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_hgontemplate_domain_model_didyouknow');
 $GLOBALS['TCA']['tx_hgontemplate_domain_model_didyouknow'] = [
 	'ctrl' => [
 		'title'	=> 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_didyouknow',
 		'label' => 'description',
 		'label_alt' => 'title',
+        'rootLevel' => 0,
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
-		'cruser_id' => 'cruser_id',
 		'dividers2tabs' => TRUE,
-
 		'languageField' => 'sys_language_uid',
 		'transOrigPointerField' => 'l10n_parent',
 		'transOrigDiffSourceField' => 'l10n_diffsource',
@@ -31,18 +28,11 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_didyouknow'] = [
 	],
 	'columns' => [
 
-		'sys_language_uid' => [
-			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectSingle',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => [
-					['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
-					['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0]
-                ],
+        'sys_language_uid' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
+            'config' => [
+                'type' => 'language',
             ],
         ],
 		'l10n_parent' => [
@@ -51,8 +41,11 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_didyouknow'] = [
 			'config' => [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
-				'items' => [
-					['', 0],
+                'items' => [
+                    [
+                        'label' => '',
+                        'value' => 0,
+                    ],
                 ],
 				'foreign_table' => 'tx_hgontemplate_domain_model_didyouknow',
 				'foreign_table_where' => 'AND tx_hgontemplate_domain_model_didyouknow.pid=###CURRENT_PID### AND tx_hgontemplate_domain_model_didyouknow.sys_language_uid IN (-1,0)',
@@ -95,7 +88,8 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_didyouknow'] = [
                 ],
                 'cols' => 40,
                 'rows' => 15,
-                'eval' => 'trim,required',
+                'eval' => 'trim',
+                'required' => true
             ],
         ],
 		'sys_category' => [

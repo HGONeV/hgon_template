@@ -1,5 +1,5 @@
 // workgroup: Override variables on detail view
-[globalVar = TSFE:id = {$plugin.tx_hgonspecies.settings.showPid}]
+[page["uid"] == 434]
 
     config.noPageTitle = 2
 
@@ -19,4 +19,4 @@
     page.headerData.1 >
     page.headerData.1 < lib.pageTitle
 
-[global]
+[end]

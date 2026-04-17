@@ -229,10 +229,10 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the txHgontemplateArticle
      *
-     * @param \HGON\HgonTemplate\Domain\Model\Projects $txHgontemplateArticle
+     * @param \HGON\HgonTemplate\Domain\Model\Article $txHgontemplateArticle
      * @return void
      */
-    public function setTxHgontemplateArticle(\HGON\HgonTemplate\Domain\Model\Projects $txHgontemplateArticle)
+    public function setTxHgontemplateArticle(\HGON\HgonTemplate\Domain\Model\Article $txHgontemplateArticle)
     {
         $this->txHgontemplateArticle = $txHgontemplateArticle;
     }

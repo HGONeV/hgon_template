@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "typo3/cms-core": "^9.5 || ^10.4 || ^11.5 || ^12.4 || ^13.4"
+        "typo3/cms-core": "^9.5 || ^10.4 || ^11.5 || ^12.4 || ^13.4",
+        "derhansen/sf_event_mgt": "^8.1"
     },
     "autoload": {
         "psr-4": {

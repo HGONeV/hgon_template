@@ -1,4 +1,7 @@
 <?php
+
+use TYPO3\CMS\Core\Resource\File;
+
 defined('TYPO3') or die("Access denied.");
 
 $tempPagesColumns = [
@@ -14,34 +17,29 @@ $tempPagesColumns = [
     'tx_hgontemplate_image' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_article.image',
-        'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-            'image',
-            array(
-                'minitems' => 1,
-                'maxitems' => 1,
-                'overrideChildTca' => [
-                    'types' => [
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                            'showitem' => '
-                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                    --palette--;;filePalette'
-                        ],
+        'config' => [
+            'type' => 'file',
+            'allowed' => 'jpg,jpeg,png,gif',
+            'minitems' => 1,
+            'maxitems' => 1,
+            'overrideChildTca' => [
+                'types' => [
+                    File::FILETYPE_IMAGE => [
+                        'showitem' => '
+                        --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                        --palette--;;filePalette',
                     ],
                 ],
-            ),
-            'jpg, jpeg, png, gif'
-        ),
-
+            ],
+        ],
     ],
     'tx_hgontemplate_link' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_article.link',
         'config' => [
-            'type' => 'input',
-            'renderType' => 'inputLink',
+            'type' => 'link',
             'size' => 50,
             'eval' => 'trim',
-            'softref' => 'typolink',
             'fieldControl' => [
                 'linkPopup' => [
                     'options' => [

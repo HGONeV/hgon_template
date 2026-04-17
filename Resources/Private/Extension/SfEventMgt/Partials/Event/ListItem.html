@@ -1,0 +1,71 @@
+<div class="flex-item c-4" itemscope="itemscope" itemtype="https://schema.org/Event">
+    <f:if condition="{event.firstListViewImage}">
+        <f:then>
+            <article class="card card--border card--fixed-footer">
+                <picture class="card__image">
+                    <f:if condition="{settings.detailPid}">
+                        <f:then>
+                            <f:link.action action="detail" controller="Event" pageUid="{settings.detailPid}" arguments="{event: event}" title="{event.title}">
+                                <f:image image="{event.firstListViewImage}" alt="{event.title}" width="395c" height="300c" />
+                            </f:link.action>
+                        </f:then>
+                        <f:else>
+                            <f:link.action action="detail" controller="Event" arguments="{event: event}" title="{event.title}">
+                                <f:image image="{event.firstListViewImage}" alt="{event.title}" width="395c" height="300c" />
+                            </f:link.action>
+                        </f:else>
+                    </f:if>
+                </picture>
+        </f:then>
+        <f:else>
+            <article class="card card-plain card--border">
+        </f:else>
+    </f:if>
+    <div class="card__inner">
+        <header class="card__header">
+            <f:if condition="{event.categories}">
+                <f:for each="{event.categories}" as="category">
+                    <span class="badge badge--secondary">{category.title}<span class="is-hidden">: </span></span>
+                </f:for>
+            </f:if>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
+                <time class="tagline" itemprop="startDate" datetime="{f:format.date(date: event.startdate, format: 'Y.m.d')} ">
+                    <f:format.date format="d.m.Y">{event.startdate}</f:format.date>
+                </time>
+                <f:if condition="{event.topEvent}">
+                    <span class="badge badge--secondary">Top!</span>
+                </f:if>
+            </div>
+            <h3 class="headline" itemprop="name">{event.title}</h3>
+        </header>
+        <div class="card__content">
+            <f:if condition="{event.teaser}">
+                <f:then>
+                    <f:format.crop maxCharacters="250">
+                        <f:format.html>{event.teaser}</f:format.html>
+                    </f:format.crop>
+                </f:then>
+                <f:else>
+                    <f:format.crop maxCharacters="250">
+                        <f:format.html>{event.description}</f:format.html>
+                    </f:format.crop>
+                </f:else>
+            </f:if>
+        </div>
+        <footer class="card__footer">
+            <f:if condition="{settings.detailPid}">
+                <f:then>
+                    <f:link.action action="detail" controller="Event" pageUid="{settings.detailPid}" arguments="{event: event}" class="btn btn--rounded btn--tertiary" title="{event.title}">
+                        <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" extensionName="HgonTemplate" />
+                    </f:link.action>
+                </f:then>
+                <f:else>
+                    <f:link.action action="detail" controller="Event" arguments="{event: event}" class="btn btn--rounded btn--tertiary" title="{event.title}">
+                        <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" extensionName="HgonTemplate" />
+                    </f:link.action>
+                </f:else>
+            </f:if>
+        </footer>
+    </div>
+    </article>
+</div>

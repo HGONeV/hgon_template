@@ -1,6 +1,9 @@
-{namespace hgon=HGON\HgonTemplate\ViewHelpers}
-<f:if condition="{author}">
-
-    <f:render partial="ContactPerson" arguments="{_all}" />
-
-</f:if>
+<div
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hgon="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+    <f:if condition="{author}">
+        <f:render partial="ContactPerson" arguments="{_all}" />
+    </f:if>
+</div>

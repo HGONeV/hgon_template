@@ -12,9 +12,6 @@ namespace HGON\HgonTemplate\Controller;
  *
  ***/
 
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Utility\RootlineUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -22,88 +19,53 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-    /**
-     * @var \HGON\HgonTemplate\Domain\Repository\PagesRepository
-     */
-    protected $pagesRepository;
+    protected \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository;
 
-    /**
-     * @var \HGON\HgonTemplate\Domain\Repository\AuthorsRepository
-     */
-    protected $authorsRepository;
+    protected \HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository;
 
-    /**
-     * @var \HGON\HgonTemplate\Domain\Repository\NewsRepository
-     */
-    protected $newsRepository;
+    protected \HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository;
 
-    /**
-     * @var \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository
-     */
-    protected $sysCategoryRepository;
+    protected \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository;
 
-    /**
-     * @var \HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository
-     */
-    protected $didYouKnowRepository;
+    protected \HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository;
 
-    /**
-     * @var \HGON\HgonTemplate\Domain\Repository\ProjectsRepository
-     */
-    protected $projectsRepository;
+    public function __construct(
+        ?\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository = null,
+        ?\HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository = null,
+        ?\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository = null,
+        ?\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository = null,
+        ?\HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository = null
+    ) {
+        $this->pagesRepository = $pagesRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\PagesRepository::class);
+        $this->authorsRepository = $authorsRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\AuthorsRepository::class);
+        $this->newsRepository = $newsRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\NewsRepository::class);
+        $this->sysCategoryRepository = $sysCategoryRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository::class);
+        $this->didYouKnowRepository = $didYouKnowRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository::class);
+    }
 
-    /**
-     * @var \HGON\HgonDonation\Domain\Repository\DonationRepository
-     */
-    protected $donationRepository;
-
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
-     */
-    public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void {
+    public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void
+    {
         $this->pagesRepository = $pagesRepository;
     }
 
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository
-     */
-    public function injectAuthorsRepository(\HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository): void {
+    public function injectAuthorsRepository(\HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository): void
+    {
         $this->authorsRepository = $authorsRepository;
     }
 
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository
-     */
-    public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void {
+    public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void
+    {
         $this->newsRepository = $newsRepository;
     }
 
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository
-     */
-    public function injectSysCategoryRepository(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository): void {
+    public function injectSysCategoryRepository(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository): void
+    {
         $this->sysCategoryRepository = $sysCategoryRepository;
     }
 
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository
-     */
-    public function injectDidYouKnowRepository(\HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository): void {
+    public function injectDidYouKnowRepository(\HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository): void
+    {
         $this->didYouKnowRepository = $didYouKnowRepository;
-    }
-
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\ProjectsRepository $projectsRepository
-     */
-    public function injectProjectsRepository(\HGON\HgonTemplate\Domain\Repository\ProjectsRepository $projectsRepository): void {
-        $this->projectsRepository = $projectsRepository;
-    }
-
-    /**
-     * @param \HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository
-     */
-    public function injectDonationRepository(\HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository): void {
-        $this->donationRepository = $donationRepository;
     }
 
     /**
@@ -148,40 +110,6 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
         return $this->htmlResponse();
     }
-
-
-
-    /**
-     * action projectTeaser
-     *
-     * @return void
-     */ /*
-    public function projectTeaserAction()
-    {
-        /*
-        // if shuffle, just select three entries
-        if ($this->settings['projectTeaser']['random']) {
-            $projectList = $this->projectsRepository->findAll()->toArray();
-            shuffle($projectList);
-            $projectList = array_slice($projectList, 0, 3, true);
-        } else {
-            $projectList = $this->projectsRepository->findByUidList($this->settings['projectTeaser']['projectUidList']);
-        }
-
-        // ugly function, because we don't have pages objects (we got typolinks)
-        /** @var \HGON\HgonTemplate\Domain\Model\Projects $project
-        foreach ($projectList as $project) {
-            if ($project->getProjectPid()) {
-                $explodedLink = GeneralUtility::trimExplode('=', $project->getProjectPid());
-                $project->setPages($this->pagesRepository->findByIdentifier(intval(end($explodedLink))));
-            }
-        }
-
-        $this->view->assign('projectList', $projectList);
-
-    }*/
-
-
 
     /**
      * Shows author which is contact person of the current project
@@ -237,7 +165,9 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function siblingPagesOverviewAction()
     {
         /** @var \HGON\HgonTemplate\Domain\Model\Pages $currentPages */
-        $currentPages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
+        $currentPages = $this->pagesRepository->findByIdentifier(
+            (int)($this->request->getAttribute('frontend.page.information')?->getId() ?? 0)
+        );
 
         // Get sibling pages of current PageUid
         $siblingPagesList = $this->pagesRepository->findByPagesExcludeCurrent($currentPages);
@@ -268,7 +198,9 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function childrenPagesOverviewAction()
     {
         /** @var \HGON\HgonTemplate\Domain\Model\Pages $currentPages */
-        $currentPages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
+        $currentPages = $this->pagesRepository->findByIdentifier(
+            (int)($this->request->getAttribute('frontend.page.information')?->getId() ?? 0)
+        );
 
         $childrenPagesList = [];
 
@@ -367,10 +299,10 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function didYouKnowAction(\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null)
+    public function didYouKnowAction(?\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null)
     {
         if (!$sysCategory) {
-            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgontemplate_journal') ?? [];
+            $getParams = $this->request->getQueryParams()['tx_hgontemplate_journal'] ?? [];
             $sysCategoryParam = (string)($getParams['sysCategory'] ?? '');
             $sysCategoryUid = (int)preg_replace('/\D+/', '', $sysCategoryParam);
 
@@ -402,56 +334,21 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function mapsAction()
     {
         // showMapsPidList (if current PID is registered in $this->settings['showMapsPidList'])
-        $this->view->assign('showMaps', in_array(intval($GLOBALS['TSFE']->id), GeneralUtility::trimExplode(',', $this->settings['showMapsPidList'])));
+        $pageId = (int)($this->request
+            ->getAttribute('frontend.page.information')
+            ?->getId() ?? 0);
+
+        $this->view->assign(
+            'showMaps',
+            in_array(
+                $pageId,
+                GeneralUtility::intExplode(',', (string)($this->settings['showMapsPidList'] ?? '')),
+                true
+            )
+        );
 
         return $this->htmlResponse();
     }
-
-
-
-    /**
-     * action projectPartner
-     *
-     *
-     * @param mixed $project
-     * @return \Psr\Http\Message\ResponseInterface
-     */
-    public function projectPartnerAction($project = null)
-    {
-        // if set via flexform: Override in any case
-        if ($this->settings['projectPartner']['projectUid']) {
-            $projectUid = intval($this->settings['projectPartner']['projectUid']);
-            $project = $this->projectsRepository->findByIdentifier($projectUid);
-        }
-
-        if (!$project) {
-            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgontemplate_project');
-            $projectUid = preg_replace('/[^0-9]/', '', $getParams['project']);
-            $project = $this->projectsRepository->findByIdentifier(intval($projectUid));
-        }
-
-        if (!$project) {
-            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail');
-
-            if (key_exists('donation', $getParams)) {
-                $donationUid = preg_replace('/[^0-9]/', '', $getParams['donation']);
-            } else {
-                // Workground in relation to FormExt: Although we got this params here, the GP vars above delivers some crap
-                $donationUid = preg_replace('/[^0-9]/', '', $_GET['tx_hgondonation_detail']['donation']);
-            }
-
-            /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
-            $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
-            $project = $donation->getTxRkwprojectProject();
-
-        }
-
-        $this->view->assign('project', $project);
-
-        return $this->htmlResponse();
-    }
-
-
 
     /**
      * action authorList

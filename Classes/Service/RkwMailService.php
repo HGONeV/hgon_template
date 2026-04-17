@@ -68,7 +68,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function handleRegisterUserEvent(\RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser, $plaintextPassword, \RKW\RkwRegistration\Domain\Model\Registration $registration = null)
+    public function handleRegisterUserEvent(\RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser, $plaintextPassword, ?\RKW\RkwRegistration\Domain\Model\Registration $registration = null)
     {
         // simply do nothing! Service is actually not needed
 

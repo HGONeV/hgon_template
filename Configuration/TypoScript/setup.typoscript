@@ -1,5 +1,7 @@
 # Extensions
 @import 'EXT:news/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:sf_event_mgt/Configuration/TypoScript/setup.typoscript'
+
 @import 'EXT:hgon_donation/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:hgon_workgroup/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:hgon_payment/Configuration/TypoScript/setup.typoscript'
@@ -49,5 +51,5 @@
 
 [applicationContext = Production/Staging]
 <INCLUDE_TYPOSCRIPT: source="FILE:./__STAGE/Setup.typoscript">
-[global]
+[end]
 */

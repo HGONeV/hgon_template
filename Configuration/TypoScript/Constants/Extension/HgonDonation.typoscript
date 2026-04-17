@@ -10,7 +10,6 @@ plugin.tx_hgondonation {
         listPid = 11
         showPid = 65
         donationFormPid = 80
-        donationTimeFormPid = 272
         becomeMemberFormPid = 78
         backendUserContactPerson = 8
         bankAccount {

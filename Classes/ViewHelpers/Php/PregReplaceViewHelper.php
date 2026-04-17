@@ -13,6 +13,8 @@ namespace HGON\HgonTemplate\ViewHelpers\Php;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * PregReplaceViewHelper
  *
@@ -21,21 +23,40 @@ namespace HGON\HgonTemplate\ViewHelpers\Php;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class PregReplaceViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
+final class PregReplaceViewHelper extends AbstractViewHelper
 {
-    /**
-     * Imports php function preg_match
-     *
-     * @param mixed $pattern
-     * @param mixed $replacement
-     * @param mixed $subject
-     *
-     * @return mixed
-     */
-    public function render($pattern, $replacement, $subject)
+    public function initializeArguments(): void
     {
-        return preg_replace("/$pattern/", $replacement, strip_tags($subject));
+        $this->registerArgument(
+            'pattern',
+            'string',
+            'PCRE pattern without delimiters',
+            true
+        );
+
+        $this->registerArgument(
+            'replacement',
+            'string',
+            'Replacement string',
+            true
+        );
+
+        $this->registerArgument(
+            'subject',
+            'string',
+            'Input string',
+            true
+        );
     }
 
+    public function render(): string
+    {
+        $pattern = '/' . $this->arguments['pattern'] . '/';
 
+        return (string)preg_replace(
+            $pattern,
+            $this->arguments['replacement'],
+            strip_tags($this->arguments['subject'])
+        );
+    }
 }

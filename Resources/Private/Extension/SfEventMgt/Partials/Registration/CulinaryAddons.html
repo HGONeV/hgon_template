@@ -1,0 +1,43 @@
+<f:if condition="{eventCulinarySelections}">
+    <div class="form__field event-registration-row event-registration-row--culinary">
+        <label class="label">
+            <f:translate key="tx_hgontemplate.sfeventmgt.registration.culinary" extensionName="hgon_template" />
+        </label>
+
+        <div class="event-registration-culinary-options" data-culinary-max="{eventCulinaryMaxQuantity}">
+            <f:for each="{eventCulinarySelections}" as="culinary">
+                <div class="event-registration-culinary-option">
+                    <div class="event-registration-culinary-option__content">
+                        <strong>{culinary.title}</strong>
+                        <f:if condition="{culinary.description}">
+                            <br>{culinary.description}
+                        </f:if>
+                        <br>
+                        <f:format.currency decimalSeparator="," thousandsSeparator="." decimals="2" currencySign="{event.currency}" prependCurrency="false">{culinary.unitPrice}</f:format.currency>
+                        <f:if condition="{culinary.date}">
+                            <span> · <f:format.date format="d.m.Y H:i">{culinary.date}</f:format.date> <f:translate key="tx_hgontemplate.sfeventmgt.timeSuffix" extensionName="hgon_template" /></span>
+                        </f:if>
+                    </div>
+                    <div class="event-registration-culinary-option__counter">
+                        <button type="button" class="culinary-counter-button btn btn--rounded btn--tertiary" data-counter-decrement>-</button>
+                        <input
+                            class="culinary-counter-input input"
+                            id="culinary-{culinary.uid}"
+                            type="number"
+                            min="0"
+                            max="{eventCulinaryMaxQuantity}"
+                            step="1"
+                            inputmode="numeric"
+                            name="tx_sfeventmgt_pieventregistration[culinaryQuantities][{culinary.uid}]"
+                            value="{culinary.quantity}"
+                            data-counter-input
+                        />
+                        <button type="button" class="culinary-counter-button btn btn--rounded btn--tertiary" data-counter-increment>+</button>
+                    </div>
+                </div>
+            </f:for>
+        </div>
+
+        <f:render partial="FormErrors" arguments="{field: 'culinaryQuantities'}"/>
+    </div>
+</f:if>

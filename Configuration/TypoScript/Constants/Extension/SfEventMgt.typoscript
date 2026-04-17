@@ -1,0 +1,61 @@
+plugin.tx_sfeventmgt {
+    view {
+        # cat=plugin.tx_sfeventmgt//a; type=string; label=Template root path
+        templateRootPath = EXT:hgon_template/Resources/Private/Extension/SfEventMgt/Templates/
+        # cat=plugin.tx_sfeventmgt//a; type=string; label=Partial root path
+        partialRootPath = EXT:hgon_template/Resources/Private/Extension/SfEventMgt/Partials/
+        # cat=plugin.tx_sfeventmgt//a; type=string; label=Layout root path
+        layoutRootPath = EXT:hgon_template/Resources/Private/Extension/SfEventMgt/Layouts/
+    }
+    settings {
+        # cat=plugin.tx_sfeventmgt//a; type=int; label=PID of sf_event_mgt payment plugin page
+        paymentPid = 553
+        registration {
+            linkTermsAndConditions = 35
+            captcha {
+                enabled = 1
+                type = hCaptcha
+                hCaptcha {
+                    publicKey =
+                    privateKey =
+                }
+            }
+        }
+        notification {
+            senderEmail = info@hgon.de
+            senderName = HGON e.V.
+            senderSignature = <p>HGON e.V.</p>
+            replyToEmail = info@hgon.de
+            adminEmail = info@hgon.de
+            registrationNew {
+                userSubject = Ihre Anmeldung: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+                adminSubject = Neue unbestätigte Anmeldung: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+            }
+            registrationWaitlistNew {
+                userSubject = Ihre Anmeldung zur Warteliste: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+                adminSubject = Neue unbestätigte Wartelisten-Anmeldung: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+            }
+            registrationConfirmed {
+                userSubject = Ihre Anmeldung zur Veranstaltung: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+                adminSubject = Anmeldung bestätigt: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+            }
+            registrationWaitlistConfirmed {
+                userSubject = Ihre Anmeldung zur Warteliste ist bestätigt: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+                adminSubject = Wartelisten-Anmeldung bestätigt: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+            }
+            registrationCancelled {
+                userSubject = Ihre Anmeldung wurde storniert: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+                adminSubject = Anmeldung storniert: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+            }
+            registrationWaitlistMoveUp {
+                userSubject = Sie sind von der Warteliste nachgerückt: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+                adminSubject = Wartelisten-Anmeldung nachgerückt: {event.startdate -> f:format.date(format: '%d.%m.%Y')} - {event.title}
+            }
+        }
+    }
+}
+
+plugin.tx_sfeventmgt_pieventdetail < plugin.tx_sfeventmgt
+plugin.tx_sfeventmgt_pieventlist < plugin.tx_sfeventmgt
+plugin.tx_sfeventmgt_pieventregistration < plugin.tx_sfeventmgt
+plugin.tx_sfeventmgt_pipayment < plugin.tx_sfeventmgt

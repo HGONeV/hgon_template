@@ -19,52 +19,32 @@ page {
 
         10 = COA
         10 {
-
-            // Zusatzklasse je nach gewähltem Layout ausgeben
-            // Dabei Vererbungsfeld berücksichtigen !
-            10 = COA
+            // Zusatzklasse je nach effektivem Backend-Layout
+            10 = TEXT
             10 {
-
-                // Fall 1: Wenn kein Layout gesetzt ODER wenn explizit das default-Layout gewählt wurde
-                // (layout < 2 bzw. felayout_next_level < 2)
-                // -- > 1 wird zu default gezählt, weil ist aktive Auswahl des default-layouts!
-                10 = TEXT
-                10 {
-
-                    value = default
-
-                    if.value.field = layout
-                    if.isGreaterThan = 2
-                    if.isGreaterThan.if.value.data = levelfield:-2,backend_layout_next_level,slide
-                    if.isGreaterThan.if.isGreaterThan = 2
+                data = levelfield:-1,backend_layout,slide
+                ifEmpty = default
+                stdWrap.replacement {
+                    10 {
+                        search = pagets__
+                        replace =
+                    }
                 }
+                noTrimWrap = |tmpl-| |
+            }
 
-                // Fall 2: Layout- Feld als Klasse setzen
-                // aber nur, wenn es > 1 ist (1 wird ignoriert, weil ist aktive Auswahl des default-layouts!)
-                20 = TEXT
-                20 {
-
-                    field = backend_layout
-
-                    if.value.field = backend_layout
-                    if.isLessThan = 1
+            // Zusatzklasse je nach Page-Template / pagelayout
+            20 = TEXT
+            20 {
+                data = pagelayout
+                ifEmpty = pagets__default
+                stdWrap.replacement {
+                    10 {
+                        search = pagets__
+                        replace =
+                    }
                 }
-
-                // Fall 3: Layoutvererbungs- Feld als Klasse setzen
-                // aber nur, wenn es > 1 ist UND layout nicht gesetzt
-                30 = TEXT
-                30 {
-
-                    data = levelfield:-2,backend_layout_next_level,slide
-
-                    if.value.data = levelfield:-2,backend_layout_next_level,slide
-                    if.isLessThan = 1
-                    if.isLessThan.if.isFalse = layout
-
-                }
-
-                stdWrap.split.token = defaultpagets__
-                stdWrap.noTrimWrap = | tmpl-||
+                noTrimWrap = |tmpl-| |
             }
 
             wrap = class="|"
@@ -164,9 +144,8 @@ page {
             //=================================================================
             // add workgroup header to workgroup view
             //=================================================================
-            workGroupHeader = USER
+            workGroupHeader = EXTBASEPLUGIN
             workGroupHeader {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonWorkgroup
                 pluginName = Header
                 vendorName = HGON
@@ -186,9 +165,8 @@ page {
             //=================================================================
             // add workgroup sidebar to workgroup view
             //=================================================================
-            workGroupSidebar = USER
+            workGroupSidebar = EXTBASEPLUGIN
             workGroupSidebar {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonWorkgroup
                 pluginName = Sidebar
                 vendorName = HGON
@@ -209,9 +187,8 @@ page {
             //=================================================================
             // add news header to news view
             //=================================================================
-            newsHeader = USER
+            newsHeader = EXTBASEPLUGIN
             newsHeader {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = Header
                 vendorName = HGON
@@ -231,9 +208,8 @@ page {
             //=================================================================
             // add news sidebar to news view
             //=================================================================
-            newsSidebar = USER
+            newsSidebar = EXTBASEPLUGIN
             newsSidebar {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonTemplate
                 pluginName = Sidebar
                 vendorName = HGON
@@ -253,9 +229,8 @@ page {
             //=================================================================
             // add donation header to donation view
             //=================================================================
-            donationHeader = USER
+            donationHeader = EXTBASEPLUGIN
             donationHeader {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonDonation
                 pluginName = Header
                 vendorName = HGON
@@ -275,9 +250,8 @@ page {
             //=================================================================
             // add donation sidebar to donation view
             //=================================================================
-            donationSidebar = USER
+            donationSidebar = EXTBASEPLUGIN
             donationSidebar {
-                userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
                 extensionName = HgonDonation
                 pluginName = Sidebar
                 vendorName = HGON
@@ -294,7 +268,48 @@ page {
                 settings =< plugin.tx_hgondonation.settings
             }
 
-		}
+            //=================================================================
+            // add event header to sf_event_mgt detail view
+            //=================================================================
+            eventHeader = EXTBASEPLUGIN
+            eventHeader {
+                extensionName = SfEventMgt
+                pluginName = Pieventdetail
+                vendorName = DERHANSEN
+                controller = Event
+                switchableControllerActions {
+                    Event {
+                        1 = detail
+                    }
+                }
+
+                view =< plugin.tx_sfeventmgt.view
+                persistence =< plugin.tx_sfeventmgt.persistence
+                settings =< plugin.tx_sfeventmgt.settings
+                settings.renderMode = header
+            }
+
+            //=================================================================
+            // add event sidebar to sf_event_mgt detail view
+            //=================================================================
+            eventSidebar = EXTBASEPLUGIN
+            eventSidebar {
+                extensionName = SfEventMgt
+                pluginName = Pieventdetail
+                vendorName = DERHANSEN
+                controller = Event
+                switchableControllerActions {
+                    Event {
+                        1 = detail
+                    }
+                }
+
+                view =< plugin.tx_sfeventmgt.view
+                persistence =< plugin.tx_sfeventmgt.persistence
+                settings =< plugin.tx_sfeventmgt.settings
+                settings.renderMode = sidebar
+            }
+
+        }
 	}
 }
-

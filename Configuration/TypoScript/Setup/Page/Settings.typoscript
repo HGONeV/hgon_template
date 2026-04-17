@@ -20,7 +20,6 @@ page {
             #socialMedia = {$globalWebsiteConfig.socialMedia}
 
             # social media marker
-            twitter = {$globalWebsiteConfig.website.twitter}
             youtube = {$globalWebsiteConfig.website.youtube}
             facebook = {$globalWebsiteConfig.website.facebook}
             instagram = {$globalWebsiteConfig.website.instagram}

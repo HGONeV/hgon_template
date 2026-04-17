@@ -1,6 +1,8 @@
 <?php
 namespace HGON\HgonTemplate\Domain\Repository;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***
  *
  * This file is part of the "HGON WorkGroup" Extension for TYPO3 CMS.
@@ -27,7 +29,7 @@ class WorkGroupRepository extends \HGON\HgonWorkgroup\Domain\Repository\WorkGrou
         // @toDo: used as workaround (findAll does not work otherwise for Events filter)
 
         /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
-        $querySettings = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
+        $querySettings = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings::class);
 
         // don't add the pid constraint
         $querySettings->setRespectStoragePage(FALSE);

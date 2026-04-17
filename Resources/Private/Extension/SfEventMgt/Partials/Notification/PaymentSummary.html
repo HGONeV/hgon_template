@@ -1,0 +1,69 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{event.enablePayment}">
+    <h3>Zahlung</h3>
+    <p>
+        <strong>Betrag:</strong> {registration.price -> f:format.currency(decimalSeparator: ',', thousandsSeparator: '.', decimals: 2, currencySign: event.currency, prependCurrency: false)}<br>
+        <strong>Anmeldenummer:</strong> {registration.uid}<br>
+        <f:if condition="{registration.priceOption}">
+            <strong>Gebuchte Kategorie:</strong> {registration.priceOption.title}<br>
+        </f:if>
+        <strong>Zahlungsart:</strong>
+        <f:if condition="{registration.paymentmethod} == 'transfer'">
+            <f:then>Überweisung</f:then>
+            <f:else>
+                <f:if condition="{registration.paymentmethod} == 'paypal'">
+                    <f:then>PayPal</f:then>
+                    <f:else>{registration.paymentmethod}</f:else>
+                </f:if>
+            </f:else>
+        </f:if><br>
+        <strong>Zahlungsstatus:</strong>
+        <f:if condition="{registration.paid}">
+            <f:then>bezahlt</f:then>
+            <f:else>offen</f:else>
+        </f:if><br>
+        <strong>Zahlungsreferenz:</strong>
+        <f:if condition="{registration.paymentReference}">
+            <f:then>{registration.paymentReference}</f:then>
+            <f:else>
+                <f:if condition="{registration.paymentmethod} == 'paypal'">
+                    <f:then>wird nach der PayPal-Zahlung vergeben</f:then>
+                    <f:else>HGON-EVENT-{event.uid}-{registration.uid}</f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+    </p>
+
+    <f:if condition="{registration.paymentmethod} == 'transfer'">
+        <p>
+            {settings.payment.bankAccount.bank}<br>
+            <strong>IBAN</strong> {settings.payment.bankAccount.iban}<br>
+            <strong>BIC</strong> {settings.payment.bankAccount.bic}
+        </p>
+        <p>
+            Bitte geben Sie als Verwendungszweck genau diesen Code an:<br>
+            <strong>
+                <f:if condition="{registration.paymentReference}">
+                    <f:then>{registration.paymentReference}</f:then>
+                    <f:else>HGON-EVENT-{event.uid}-{registration.uid}</f:else>
+                </f:if>
+            </strong>
+        </p>
+        <p>Damit können wir Ihre Zahlung eindeutig zuordnen. Ihre Anmeldung wird nach Zahlungseingang final bestätigt.</p>
+    </f:if>
+
+    <f:if condition="{registration.paymentmethod} == 'paypal'">
+        <f:if condition="{registration.paid}">
+            <f:then>
+                <p>Die PayPal-Zahlung ist eingegangen. Weitere Schritte sind nicht erforderlich.</p>
+            </f:then>
+            <f:else>
+                <p>Sobald die PayPal-Zahlung erfolgreich abgeschlossen ist, ist auch Ihre Anmeldung vollständig abgeschlossen.</p>
+            </f:else>
+        </f:if>
+    </f:if>
+</f:if>
+
+</html>

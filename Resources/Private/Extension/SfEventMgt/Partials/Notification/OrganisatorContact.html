@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{event.organisator}">
+    <h3>Kontakt</h3>
+    <p>
+        Bei Rückfragen wenden Sie sich bitte an
+        <strong>{event.organisator.name}</strong>.<br>
+        <f:if condition="{event.organisator.email}">
+            E-Mail: <a href="mailto:{event.organisator.email}">{event.organisator.email}</a><br>
+        </f:if>
+        <f:if condition="{event.organisator.phone}">
+            Telefon: {event.organisator.phone}<br>
+        </f:if>
+        <f:if condition="{event.organisator.link}">
+            <f:link.typolink parameter="{event.organisator.link}" absolute="true" target="_blank">Weitere Informationen zur Ansprechperson</f:link.typolink>
+        </f:if>
+    </p>
+</f:if>
+
+</html>

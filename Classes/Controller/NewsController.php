@@ -29,7 +29,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     /**
      *  \HGON\HgonTemplate\Domain\Repository\NewsRepository
      */
-    //protected $newsRepository;
+    // Intentionally not redeclared to keep compatibility with parent property.
 
     /**
      * @var \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository
@@ -51,9 +51,9 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     /**
      *  \HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository
      */
-//    public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void {
-//        $this->newsRepository = $newsRepository;
-//    }
+    public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void {
+        $this->newsRepository = $newsRepository;
+    }
 
     /**
      * @param \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository
@@ -78,32 +78,35 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $newsToExclude = [];
 
         // Get category of news, if news detail
-        $request = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_news_pi1');
-        if (!empty($request)) {
-            if (array_key_exists('news', $request)) {
-                $newsUid = intval($request['news']);
-                $news = $this->newsRepository->findByIdentifier($newsUid);
-                if (count($news->getCategories())) {
-                    $categories = $news->getCategories();
-                }
-                // except current news
+        $qp = $this->request->getQueryParams();
+
+        $request = $qp['tx_news_pi1'] ?? null;
+        if (is_array($request) && !empty($request['news'])) {
+            $newsUid = (int)$request['news'];
+
+            $news = $this->newsRepository->findByIdentifier($newsUid);
+            if ($news && $news->getCategories()->count() > 0) {
+                $categories = $news->getCategories();
+            }
+
+            // except current news
+            if ($news) {
                 $newsToExclude[] = $news;
             }
         }
 
         // Else: on donation detail: Use Project category
         if (!$categories) {
-            $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail') ?? [];
-            $donationParam = (string)($getParams['donation'] ?? '');
-            $donationUid = (int)preg_replace('/\D+/', '', $donationParam);
-            /** @var \HGON\HgonDonation\Domain\Model\Donation $donation */
-            $donation = $this->donationRepository->findByIdentifier(intval($donationUid));
-            if ($donation) {
-                if ($donation->getTxRkwprojectProject()) {
-                    if ($donation->getTxRkwprojectProject()->getSysCategory()->count()) {
-                        $categories = $donation->getTxRkwprojectProject()->getSysCategory();
-                    }
-                }
+            $getParams = $qp['tx_hgondonation_detail'] ?? [];
+            $getParams = is_array($getParams) ? $getParams : [];
+
+            $donationUid = (int)preg_replace('/\D+/', '', (string)($getParams['donation'] ?? ''));
+
+            /** @var \HGON\HgonDonation\Domain\Model\Donation|null $donation */
+            $donation = $donationUid > 0 ? $this->donationRepository->findByIdentifier($donationUid) : null;
+
+            if ($donation?->getTxRkwprojectProject()?->getSysCategory()?->count() > 0) {
+                $categories = $donation->getTxRkwprojectProject()->getSysCategory();
             }
         }
 
@@ -111,7 +114,9 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         // Else: Get categories of pages
         if (!$categories) {
             /** @var \HGON\HgonTemplate\Domain\Model\Pages $pages */
-            $pages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
+            $pages = $this->pagesRepository->findByIdentifier(
+                (int)($this->request->getAttribute('frontend.page.information')?->getId() ?? 0)
+            );
             if (count($pages->getCategories())) {
                 $categories = $pages->getCategories();
             }
@@ -156,25 +161,27 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      * @param integer $pageNumber
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function journalAction(\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null, $pageNumber = 0)
+    public function journalAction(?\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null, $pageNumber = 0)
     {
         // workaround for easy use on some further pages:
         // If it's not the journal page, try to grab the pages categories und show related news
         // Except a sysCategory is already set (pagination)
         $isJournalPage = true;
+        $pageId = (int)($this->request
+            ->getAttribute('frontend.page.information')
+            ?->getId() ?? 0);
+
         if (
-            (intval($this->settings['journal']['pageUid']) != intval($GLOBALS['TSFE']->id))
+            (int)($this->settings['journal']['pageUid'] ?? 0) !== $pageId
             && !$sysCategory
         ) {
             $isJournalPage = false;
-            /** @var \HGON\HgonTemplate\Domain\Model\Pages $pages */
-            $pages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
-            if (count($pages->getCategories())) {
-                foreach ($pages->getCategories() as $category) {
-                    $sysCategory = $category;
-                    // currently we work with just one category at once
-                    break;
-                }
+
+            /** @var \HGON\HgonTemplate\Domain\Model\Pages|null $pages */
+            $pages = $this->pagesRepository->findByIdentifier($pageId);
+            if ($pages && $pages->getCategories()->count() > 0) {
+                // aktuell nur eine Kategorie
+                $sysCategory = $pages->getCategories()->current();
             }
         }
         $templateDataArray['isJournalPage'] = $isJournalPage;
@@ -262,7 +269,10 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         // check for ajax context
         // WICHTIG: Aktuell findet nur bei der Paginierung ein Ajax-Request statt. NICHT bei der Kategorieauswahl!
         // -> Weil die Kategorie Teil der URL sein soll
-        if (GeneralUtility::_GP('type') == intval($this->settings['journal']['ajaxTypeNum'])) {
+        $ajaxTypeNum = (int)($this->settings['journal']['ajaxTypeNum'] ?? 0);
+        // "type" kommt bei TYPO3 als Query-Parameter (?type=123) rein:
+        $type = (int)($this->request->getQueryParams()['type'] ?? 0);
+        if ($type === $ajaxTypeNum) {
 
             // get JSON helper
             /** @var \RKW\RkwBasics\Helper\Json $jsonHelper */
@@ -311,13 +321,15 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      */
     public function headerAction()
     {
+        $getParams = $this->request->getQueryParams()['tx_news_pi1'] ?? [];
 
-        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_news_pi1');
+        $newsUid = (int)preg_replace('/\D+/', '', (string)($getParams['news'] ?? ''));
+        if ($newsUid <= 0) {
+            return $this->htmlResponse();
+        }
 
-        $newsUid = preg_replace('/[^0-9]/', '', $getParams['news']);
-        $news = $this->newsRepository->findByIdentifier(filter_var($newsUid, FILTER_SANITIZE_NUMBER_INT));
-
-        if ($news) {
+        $news = $this->newsRepository->findByIdentifier($newsUid);
+        if ($news !== null) {
             $this->view->assign('newsItem', $news);
         }
 
@@ -335,9 +347,9 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     public function sidebarAction()
     {
 
-        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_news_pi1');
+        $getParams = $this->request->getQueryParams()['tx_news_pi1'] ?? null;
 
-        $newsUid = preg_replace('/[^0-9]/', '', $getParams['news']);
+        $newsUid = (int)preg_replace('/\D+/', '', (string)($getParams['news'] ?? ''));
         $news = $this->newsRepository->findByIdentifier(filter_var($newsUid, FILTER_SANITIZE_NUMBER_INT));
 
         if ($news) {

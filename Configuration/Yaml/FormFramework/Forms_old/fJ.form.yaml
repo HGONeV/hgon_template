@@ -21,9 +21,9 @@ finishers:
       translation:
         language: ''
       partialRootPaths:
-        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+        150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
       layoutRootPaths:
-        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+        150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
     identifier: EmailToReceiver
   -
     options:
@@ -38,9 +38,9 @@ finishers:
       format: html
       attachUploads: true
       partialRootPaths:
-        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Partials/'
+        150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
       layoutRootPaths:
-        150: 'EXT:hgon_template/Resources/Private/Extension/RkwMailer/Layouts/'
+        150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
     identifier: EmailToSender
 renderables:
   -

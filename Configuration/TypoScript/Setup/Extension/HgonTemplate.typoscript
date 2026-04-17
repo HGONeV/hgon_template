@@ -52,14 +52,6 @@ config.tx_extbase {
                     recordType =
                 }
             }
-
-            HGON\HgonTemplate\Domain\Model\Projects {
-                mapping {
-                    tableName = tx_rkwprojects_domain_model_projects
-                    recordType =
-                }
-            }
-
             HGON\HgonTemplate\Domain\Model\Event {
                 mapping {
                     tableName = tx_rkwevents_domain_model_event
@@ -177,6 +169,30 @@ plugin.tx_hgontemplate {
 
 
 #===============================================================
+# Legacy list_type fallback (pre-migration)
+#===============================================================
+tt_content.list.20 {
+    hgontemplate_pagehighlight < tt_content.hgontemplate_pagehighlight
+    hgontemplate_randomauthor < tt_content.hgontemplate_randomauthor
+    hgontemplate_sidebarcontactperson < tt_content.hgontemplate_sidebarcontactperson
+    hgontemplate_siblingpagesoverview < tt_content.hgontemplate_siblingpagesoverview
+    hgontemplate_childrenpagesoverview < tt_content.hgontemplate_childrenpagesoverview
+    hgontemplate_pageslider < tt_content.hgontemplate_pageslider
+    hgontemplate_donationform < tt_content.hgontemplate_donationform
+    hgontemplate_sixreasons < tt_content.hgontemplate_sixreasons
+    hgontemplate_didyouknow < tt_content.hgontemplate_didyouknow
+    hgontemplate_maps < tt_content.hgontemplate_maps
+    hgontemplate_projectpartner < tt_content.hgontemplate_projectpartner
+    hgontemplate_authorlist < tt_content.hgontemplate_authorlist
+    hgontemplate_showrelatedsidebar < tt_content.hgontemplate_showrelatedsidebar
+    hgontemplate_journalhighlight < tt_content.hgontemplate_journalhighlight
+    hgontemplate_journal < tt_content.hgontemplate_journal
+    hgontemplate_header < tt_content.hgontemplate_header
+    hgontemplate_sidebar < tt_content.hgontemplate_sidebar
+    hgontemplate_showarticlefrompages < tt_content.hgontemplate_showarticlefrompages
+}
+
+#===============================================================
 # Ajax
 #===============================================================
 txHgontemplateJournalAjax = PAGE
@@ -193,23 +209,25 @@ txHgontemplateJournalAjax {
         no_cache = 0
     }
 
-    10 = USER_INT
+    10 = COA_INT
     10 {
-        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-        extensionName = HgonTemplate
-        pluginName = Journal
-        vendorName = HGON
-        switchableControllerActions {
+        10 = EXTBASEPLUGIN
+        10 {
+            extensionName = HgonTemplate
+            pluginName = Journal
+            vendorName = HGON
+            switchableControllerActions {
 
-            # Again: Controller-Name and Action
-            News {
-                10 = journal
+                # Again: Controller-Name and Action
+                News {
+                    10 = journal
+                }
             }
-        }
 
-        view < plugin.tx_hgontemplate.view
-        persistence < plugin.tx_hgontemplate.persistence
-        settings < plugin.tx_hgontemplate.settings
+            view < plugin.tx_hgontemplate.view
+            persistence < plugin.tx_hgontemplate.persistence
+            settings < plugin.tx_hgontemplate.settings
+        }
     }
 }
 
@@ -244,26 +262,26 @@ txHgontemplateFormExtension {
         }
     }
 
-    10 = USER_INT
+    10 = COA_INT
     10 {
-        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-        extensionName = Form
-        pluginName = Formframework
-        vendorName = TYPO3\CMS
-        switchableControllerActions {
+        10 = EXTBASEPLUGIN
+        10 {
+            extensionName = Form
+            pluginName = Formframework
+            vendorName = TYPO3\CMS
+            switchableControllerActions {
 
-            # Again: Controller-Name and Action
-            FormFrontend {
-                10 = perform
-                20 = render
+                # Again: Controller-Name and Action
+                FormFrontend {
+                    10 = perform
+                    20 = render
+                }
             }
-        }
 
-        view < plugin.tx_form.view
-        persistence < plugin.tx_form.persistence
-        settings < plugin.tx_form.settings
+            view < plugin.tx_form.view
+            persistence < plugin.tx_form.persistence
+            settings < plugin.tx_form.settings
+        }
     }
 }
 */
-
-

@@ -28,11 +28,6 @@ return [
     \HGON\HgonTemplate\Domain\Model\Authors::class => [
         'tableName' => 'tx_rkwauthors_domain_model_authors',
     ],
-
-    \HGON\HgonTemplate\Domain\Model\Projects::class => [
-        'tableName' => 'tx_rkwprojects_domain_model_projects',
-    ],
-
 //    \HGON\HgonTemplate\Domain\Model\Event::class => [
 //        'tableName' => 'tx_rkwevents_domain_model_event',
 //    ],
@@ -73,5 +68,4 @@ return [
         'recordType' => 0,
     ],
 ];
-
 

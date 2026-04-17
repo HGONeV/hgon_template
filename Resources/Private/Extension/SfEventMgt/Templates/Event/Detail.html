@@ -1,0 +1,322 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:e="http://typo3.org/ns/DERHANSEN/SfEventMgt/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+    <f:if condition="{event}">
+        <e:title pageTitle="{f:if(condition: event.metaTitle, then: event.metaTitle, else: event.title)}" />
+        <e:metaTag property="og:title" content="{f:if(condition: event.metaTitle, then: event.metaTitle, else: event.title)}" />
+        <e:metaTag name="description" content="{f:if(condition: event.metaDescription, then: event.metaDescription, else: event.teaser)}" />
+        <f:if condition="{event.firstDetailViewImage}">
+            <e:metaTag property="og:image" content="{f:uri.image(image: event.firstDetailViewImage, absolute: 1)}" />
+        </f:if>
+
+        <f:if condition="{settings.renderMode} == 'header'">
+            <f:then>
+                <picture class="picture">
+                    <f:if condition="{event.firstDetailViewImage}">
+                        <f:then>
+                            <source media="(min-width: 64.063em)" srcset="<f:uri.image image='{event.firstDetailViewImage}' absolute='true' cropVariant='14to5' width='1680c' height='600c' />">
+                            <source media="(min-width: 48.063em) and (max-width: 64em)" srcset="<f:uri.image image='{event.firstDetailViewImage}' absolute='true' cropVariant='14to5' width='1024c' height='350c' />">
+                            <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="<f:uri.image image='{event.firstDetailViewImage}' absolute='true' cropVariant='3to4' width='768c' height='350c' />">
+                            <source media="(max-width: 37.5em)" srcset="<f:uri.image image='{event.firstDetailViewImage}' absolute='true' cropVariant='3to4' width='600c' height='350c' />">
+                            <f:image image="{event.firstDetailViewImage}" width="1680" cropVariant="14to5" />
+                        </f:then>
+                        <f:else>
+                            <img src="<f:uri.image src='EXT:hgon_template/Resources/Public/Images/Placeholder/news_placeholder.jpeg' width='1680c' height='600c' />" width="1680" height="600" alt="" />
+                        </f:else>
+                    </f:if>
+                </picture>
+                <div class="wrap wrap--text / align-center">
+                    <h1>
+                        <span class="badge badge--dark">
+                            <f:cObject typoscriptObjectPath="page.10.variables.parentPageTitle" />
+                            <span class="is-hidden">: </span>
+                        </span>
+                        <span class="h1 headline">{event.title}</span>
+                    </h1>
+                </div>
+            </f:then>
+            <f:else>
+                <f:if condition="{settings.renderMode} == 'sidebar'">
+                    <f:then>
+                        <f:if condition="{settings.listPid}">
+                            <f:link.page class="link link--icon / float-right" pageUid="{settings.listPid}" title="Veranstaltungen">
+                                <svg class="icon icon--btn-left" width="18" height="18"><use xlink:href="#ui-arrow-left" /></svg>
+                                Zurück zur Übersicht
+                            </f:link.page>
+                        </f:if>
+
+			                        <f:if condition="{event.enableRegistration} || {event.registrationPossible} || {event.registrationStartdate} || {event.registrationDeadline}">
+			                            <aside class="aside aside--border color-bg-white">
+		                                <header class="aside__header">
+		                                    <h6>Teilnahme</h6>
+		                                </header>
+		                                <div class="aside__content">
+		                                    <f:if condition="{event.registrationPossible}">
+		                                        <f:then>
+		                                            <f:if condition="{settings.registrationPid}">
+		                                                <p>
+		                                                    <f:link.action action="registration" pageUid="{settings.registrationPid}" arguments="{event: event}" class="btn btn--rounded btn--tertiary">
+		                                                        Jetzt anmelden
+		                                                    </f:link.action>
+		                                                </p>
+		                                            </f:if>
+	                                        </f:then>
+	                                        <f:else>
+	                                            <p>
+	                                                <f:if condition="{event.registrationStartdate}">
+	                                                    <f:then>
+	                                                        <f:if condition="{event.registrationStartdate -> f:format.date(format: 'U')} > {f:format.date(date: 'now', format: 'U')}">
+	                                                            <f:then>
+	                                                                <f:translate key="tx_hgontemplate.sfeventmgt.registrationStart" extensionName="hgon_template" />
+	                                                                <f:format.date format="d.m.y">{event.registrationStartdate}</f:format.date>
+	                                                            </f:then>
+	                                                            <f:else>
+	                                                                <f:translate key="tx_hgontemplate.sfeventmgt.registrationClosed" extensionName="hgon_template" />
+	                                                            </f:else>
+	                                                        </f:if>
+	                                                    </f:then>
+	                                                    <f:else>
+	                                                        <f:translate key="tx_hgontemplate.sfeventmgt.registrationClosed" extensionName="hgon_template" />
+		                                                    </f:else>
+		                                                </f:if>
+		                                            </p>
+		                                        </f:else>
+		                                    </f:if>
+
+				                                </div>
+					                            </aside>
+				                        </f:if>
+
+		                        <aside class="aside aside--border color-bg-white">
+                            <header class="aside__header">
+                                <h6>Termin im Überblick</h6>
+                            </header>
+                            <div class="aside__content">
+                                <p>
+                                    <strong>Datum</strong><br />
+                                    <f:format.date format="d.m.Y H:i">{event.startdate}</f:format.date> <f:translate key="tx_hgontemplate.sfeventmgt.timeSuffix" extensionName="hgon_template" />
+                                    <f:if condition="{event.enddate}">
+                                        <br />bis <f:format.date format="d.m.Y H:i">{event.enddate}</f:format.date> <f:translate key="tx_hgontemplate.sfeventmgt.timeSuffix" extensionName="hgon_template" />
+	                                    </f:if>
+	                                </p>
+
+	                                <f:if condition="{event.registrationDeadline}">
+	                                    <p>
+	                                        <strong><f:translate key="tx_hgontemplate.sfeventmgt.registrationDeadline" extensionName="hgon_template" /></strong><br />
+	                                        <f:format.date format="d.m.Y H:i">{event.registrationDeadline}</f:format.date> <f:translate key="tx_hgontemplate.sfeventmgt.timeSuffix" extensionName="hgon_template" />
+	                                    </p>
+	                                </f:if>
+
+                                <p>
+                                    <strong>Kosten</strong><br />
+                                    <f:if condition="{event.currentPrice} == 0">
+                                        <f:then>Kostenlos</f:then>
+                                        <f:else>
+                                            <f:if condition="{event.activePriceOptions -> f:count()} > 1">
+                                                <f:translate key="tx_hgontemplate.sfeventmgt.priceStartingAt" extensionName="hgon_template" />
+                                            </f:if>
+                                            {event.currentPrice -> f:format.number(decimals: 2)} {event.currency}
+                                            <f:if condition="{event.taxRate} > 0">
+                                                <br />inkl. {event.taxRate -> f:format.number(decimals: 0)}% MwSt.
+                                            </f:if>
+	                                        </f:else>
+		                                    </f:if>
+		                                </p>
+
+	                                <f:if condition="{event.location}">
+                                    <p>
+                                        <strong>Ort</strong><br />
+                                        <f:format.raw>{event.location.fullAddress}</f:format.raw>
+                                        <f:if condition="{event.room}">
+                                            <br /><f:translate key="tx_sfeventmgt_domain_model_event.room" />: {event.room}
+                                        </f:if>
+                                    </p>
+                                    <f:if condition="{event.location.latitude} && {event.location.longitude}">
+                                        <p>
+                                            <a
+                                                href="https://www.google.com/maps?q={event.location.latitude},{event.location.longitude}&amp;output=embed"
+                                                data-featherlight="iframe"
+                                                data-featherlight-iframe-width="900"
+                                                data-featherlight-iframe-height="600"
+                                            >
+                                                <i class="fa fa-map-marker"></i>&nbsp;
+                                                <f:translate key="tx_hgontemplate.sfeventmgt.showMap" extensionName="hgon_template" />
+                                            </a>
+                                        </p>
+                                    </f:if>
+                                </f:if>
+
+	                                <f:if condition="{event.link}">
+	                                    <p>&nbsp;</p>
+	                                    <p>
+	                                        <f:link.typolink parameter="{event.link}" class="btn btn--rounded btn--tertiary">
+	                                            <f:translate key="tx_hgontemplate.sfeventmgt.externalLinkLabel" extensionName="hgon_template" />
+	                                        </f:link.typolink>
+	                                    </p>
+	                                </f:if>
+
+			                            </div>
+			                        </aside>
+
+                        <f:if condition="{event.organisator}">
+                            <aside class="aside aside--border color-bg-white">
+                                <header class="aside__header">
+                                    <h6>Kontakt</h6>
+                                </header>
+                                <div class="aside__content">
+                                    <p><strong>{event.organisator.name}</strong></p>
+                                    <f:if condition="{event.organisator.phone}">
+                                        <p>{event.organisator.phone}</p>
+                                    </f:if>
+                                    <f:if condition="{event.organisator.email}">
+                                        <p><f:link.email email="{event.organisator.email}" /></p>
+                                    </f:if>
+                                    <f:if condition="{event.organisator.link}">
+                                        <p><f:link.typolink parameter="{event.organisator.link}">Weitere Informationen</f:link.typolink></p>
+                                    </f:if>
+                                </div>
+                            </aside>
+                        </f:if>
+
+                        <f:if condition="{event.files}">
+                            <aside class="aside aside--border color-bg-white">
+                                <header class="aside__header">
+                                    <h6>Downloads</h6>
+                                </header>
+                                <div class="aside__content">
+                                    <ul class="news-downloads">
+	                                        <f:for each="{event.files}" as="file">
+	                                            <li>
+	                                                <i class="fa fa-download"></i>&nbsp;
+	                                                <span class="news-related-files-link">
+	                                                    <a href="{file.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank">
+	                                                        {f:if(condition: file.originalResource.title, then: file.originalResource.title, else: file.originalResource.name)}
+                                                    </a>
+                                                </span>
+                                                <span class="news-related-files-size">
+                                                    {file.originalResource.size -> f:format.bytes()}
+                                                </span>
+                                            </li>
+                                        </f:for>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </f:if>
+
+                        <f:if condition="{event.related}">
+                            <aside class="aside aside--border color-bg-white">
+                                <header class="aside__header">
+                                    <h6><f:translate key="tx_sfeventmgt_domain_model_event.related" /></h6>
+                                </header>
+                                <div class="aside__content">
+                                    <ul class="news-downloads">
+	                                        <f:for each="{event.related}" as="relatedEvent">
+	                                            <li>
+	                                                <i class="fa fa-link"></i>&nbsp;
+	                                                <span class="news-related-files-link">
+	                                                    <f:if condition="{settings.detailPid}">
+                                                        <f:then>
+                                                            <f:link.action action="detail" pageUid="{settings.detailPid}" arguments="{event: relatedEvent}">{relatedEvent.title}</f:link.action>
+                                                        </f:then>
+                                                        <f:else>
+                                                            <f:link.action action="detail" arguments="{event: relatedEvent}">{relatedEvent.title}</f:link.action>
+                                                        </f:else>
+                                                    </f:if>
+                                                </span>
+                                            </li>
+                                        </f:for>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </f:if>
+                    </f:then>
+                    <f:else>
+                        <div class="article__content">
+                            <f:if condition="{event.categories}">
+                                <f:for each="{event.categories}" as="category">
+                                    <span class="badge badge--secondary">{category.title}<span class="is-hidden">: </span></span>&nbsp;
+                                </f:for>
+                            </f:if>
+
+                            <h2 itemprop="name">{event.title}</h2>
+
+                            <div class="news-footer">
+                                <p>
+                                    <span class="news-list-date">
+                                        <time itemprop="startDate" datetime="{f:format.date(date: event.startdate, format: 'Y-m-d\\TH:i:sP')}">
+                                            <f:format.date format="d.m.Y H:i">{event.startdate}</f:format.date> <f:translate key="tx_hgontemplate.sfeventmgt.timeSuffix" extensionName="hgon_template" />
+                                        </time>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <f:if condition="{event.teaser}">
+                                <p><strong>{event.teaser}</strong></p>
+                            </f:if>
+
+                            <f:if condition="{event.description}">
+                                <f:format.html>{event.description}</f:format.html>
+                            </f:if>
+
+                            <f:if condition="{event.program}">
+                                <h3>Programm</h3>
+                                <f:format.html>{event.program}</f:format.html>
+                            </f:if>
+
+                            <f:if condition="{event.customText}">
+                                <h3>Weitere Informationen</h3>
+                                <f:format.html>{event.customText}</f:format.html>
+                            </f:if>
+
+                            <f:if condition="{event.additionalImage}">
+                                <h3><f:translate key="tx_hgontemplate.sfeventmgt.additionalImages" extensionName="hgon_template" /></h3>
+                                <section class="js-lightbox">
+                                    <div class="gallery">
+                                        <f:for each="{event.additionalImage}" as="media" iteration="imageIterator">
+                                            <div class="gallery__image">
+                                                <a class="js-open-lightbox" href="#" data-lightbox="lightbox-additional-gallery" data-index="{imageIterator.index}">
+                                                    <svg class="gallery__image-icon icon icon--24"><use xlink:href="#ui-fullscreen"></use></svg>
+                                                    <figure>
+                                                        <f:image image="{media}" alt="{event.title}" width="300px" />
+                                                    </figure>
+                                                </a>
+                                            </div>
+                                        </f:for>
+                                    </div>
+                                    <div id="lightbox-additional-gallery" class="lightbox" style="opacity: 0; visibility: hidden;">
+                                        <f:for each="{event.additionalImage}" as="media">
+                                            <picture class="picture / lightbox__img" style="visibility: hidden; opacity: 0;">
+                                                <f:image image="{media}" alt="{event.title}" />
+                                            </picture>
+                                        </f:for>
+
+                                        <div class="bar bar--bottom bar--fixed">
+                                            <div class="bar__icons bar__icons--right">
+                                                <a class="bar__icon js-close-lightbox" href=""><svg class="icon"><use xlink:href="#ui-close"></use></svg></a>
+                                                <a class="bar__icon js-lightbox-prev" href=""><svg class="icon"><use xlink:href="#ui-prev"></use></svg></a>
+                                                <a class="bar__icon js-lightbox-next" href=""><svg class="icon"><use xlink:href="#ui-next"></use></svg></a>
+                                            </div>
+                                            <div class="bar__icons bar__icons--left">
+                                                <div class="bar__text align-center">
+                                                    <span class="js-lightbox-counter">
+                                                        <span class="current__img">1</span> / <span class="max__img">2</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </f:if>
+                        </div>
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+    </f:if>
+</f:section>
+
+</html>

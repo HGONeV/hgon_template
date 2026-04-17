@@ -1,6 +1,9 @@
 <?php
 
 namespace HGON\HgonTemplate\Domain\Model;
+
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+
     /*
      * This file is part of the TYPO3 CMS project.
      *
@@ -32,18 +35,11 @@ class News extends \GeorgRinger\News\Domain\Model\NewsDefault
     protected $txHgontemplateYoutubeVideoId = '';
 
     /**
-     * txRkwprojectProject
-     *
-     * @var \HGON\HgonTemplate\Domain\Model\Projects
-     */
-    protected $txRkwprojectProject = null;
-
-    /**
      * txHgontemplateHeaderImage
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
+    #[Cascade(['value' => 'remove'])]
     protected $txHgontemplateHeaderImage = null;
 
     /**
@@ -60,27 +56,6 @@ class News extends \GeorgRinger\News\Domain\Model\NewsDefault
     public function setTxHgontemplateYoutubeVideoId($txHgontemplateYoutubeVideoId)
     {
         $this->txHgontemplateYoutubeVideoId = $txHgontemplateYoutubeVideoId;
-    }
-
-    /**
-     * Returns the txRkwprojectProject
-     *
-     * @return \HGON\HgonTemplate\Domain\Model\Projects
-     */
-    public function getTxRkwprojectProject()
-    {
-        return $this->txRkwprojectProject;
-    }
-
-    /**
-     * Sets the txRkwprojectProject
-     *
-     * @param \HGON\HgonTemplate\Domain\Model\Projects $txRkwprojectProject
-     * @return void
-     */
-    public function setTxRkwprojectProject(\HGON\HgonTemplate\Domain\Model\Projects $txRkwprojectProject)
-    {
-        $this->txRkwprojectProject = $txRkwprojectProject;
     }
 
     /**

@@ -1,4 +1,14 @@
 /* removing opacity from header images */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 .main__header--image .picture::after {
     opacity: 0 !important;
 }
@@ -149,7 +159,7 @@ ul.news-downloads {
     padding-left: 0;
 }
 
-/* as example: used in /hgon_template/Resources/Private/Extension/RkwMailer/Templates/Link/Redirect.html */
+/* as example: used in /hgon_template/Resources/Private/Extension/HgonTemplate/Templates/Mail/Link/Redirect.html */
 section.section.helper .section__header {
     padding-top: 0;
 }
@@ -157,4 +167,191 @@ section.section.helper .section__header {
 /* for centered content */
 .frame-layout-80 {
     width: 100%;
+}
+
+/* sf_event_mgt registration form */
+.event-registration-summary {
+    background: #f8f8f6;
+    border: 1px solid #efefef;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.event-registration-summary__rows {
+    display: grid;
+    gap: .75em;
+}
+
+.event-registration-summary__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5em;
+    padding-bottom: .75em;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.event-registration-summary__row:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.event-registration-summary__label {
+    color: #6f7163;
+    font-weight: 600;
+}
+
+.event-registration-summary__value {
+    text-align: right;
+}
+
+.form--event-registration {
+    background: #EDEFE0;
+    border: 1px solid #dfe3cf;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.form--event-registration fieldset {
+    background: #d9debe;
+    padding: 1.5em;
+    margin-bottom: 0;
+}
+
+.form--event-registration h3 {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+}
+
+.form--event-registration .form__field > .label,
+.form--event-registration .event-registration-row > .label {
+    font-weight: 400;
+}
+
+.form--event-registration .event-registration-row--choice .inputs-list,
+.form--event-registration .checkbox-group {
+    margin-top: .5em;
+    margin-bottom: 0;
+}
+
+.form--event-registration .event-registration-row--choice {
+    padding-bottom: 1em;
+}
+
+.form--event-registration .select-box,
+.form--event-registration .input,
+.form--event-registration .textarea,
+.form--event-registration .culinary-counter-input {
+    width: 100%;
+}
+
+.form--event-registration .field-errors {
+    float: none;
+    display: block;
+    margin-top: .35em;
+}
+
+.form--event-registration .field-errors .error {
+    display: block;
+}
+
+.event-registration-note {
+    margin-bottom: 1.5em;
+}
+
+.event-registration-culinary-options {
+    display: grid;
+    gap: .75em;
+    margin-top: .5em;
+}
+
+.event-registration-culinary-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5em;
+    padding: 1em;
+    border: 1px solid #efefef;
+    background: #fff;
+}
+
+.event-registration-culinary-option__content {
+    flex: 1 1 auto;
+    font-weight: 400;
+}
+
+.event-registration-culinary-option__content strong {
+    font-weight: 600;
+}
+
+.event-registration-culinary-option__counter {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    min-width: 220px;
+}
+
+.event-registration-culinary-option__counter .btn {
+    min-width: 46px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.event-registration-culinary-option__counter .input {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.event-registration-actions {
+    margin-top: 1.5em;
+}
+
+.form--event-registration .h-captcha,
+.form--event-registration iframe[src*="hcaptcha.com"] {
+    margin-top: 1.5em;
+}
+
+.event-registration-links {
+    display: flex;
+    gap: .75em;
+    flex-wrap: wrap;
+}
+
+.event-filter__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: .75em;
+}
+
+@media only screen and (max-width: 48em) {
+    .event-filter__actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
+
+.event-registration-links--top {
+    margin-bottom: 1.5em;
+}
+
+@media only screen and (max-width: 48em) {
+    .event-registration-summary__row,
+    .event-registration-culinary-option {
+        display: block;
+    }
+
+    .event-registration-summary__value {
+        display: block;
+        text-align: left;
+        margin-top: .25em;
+    }
+
+    .event-registration-culinary-option__counter {
+        margin-top: .75em;
+        min-width: 0;
+    }
+
+    .form--event-registration,
+    .form--event-registration fieldset {
+        padding: 1em;
+    }
 }

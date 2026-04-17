@@ -25,15 +25,13 @@
 		</f:then>
 		<f:else>
 
-            <f:case value="21">
-                <f:else>
-                    <a id="c{data.uid}"></a>
-                </f:else>
-            </f:case>
+            <f:if condition="{data.layout} == 21">
+                <a id="c{data.uid}"></a>
+            </f:if>
 
-			<f:if condition="{data._LOCALIZED_UID}">
-				<a id="c{data._LOCALIZED_UID}"></a>
-			</f:if>
+            <f:if condition="{data._LOCALIZED_UID}">
+                <a id="c{data._LOCALIZED_UID}"></a>
+            </f:if>
 			<f:if condition="{data.space_before_class}">
 				<div class="frame-space-before-{data.space_before_class}"></div>
 			</f:if>

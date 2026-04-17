@@ -1,0 +1,99 @@
+<div
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwEvents="http://typo3.org/ns/RKW/RkwEvents/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+    <f:section name="Internal">
+
+        <f:if condition="{contact.firstName} && {contact.lastName}">
+            <p>
+                <strong>Name:</strong>
+                <span>{contact.firstName} {contact.lastName}</span>
+            </p>
+        </f:if>
+
+        <f:if condition="{contact.email}">
+            <p>
+                <strong>E-Mail-Adresse:</strong>
+                <span>
+                    <f:link.email email="{contact.email}" />
+                </span>
+            </p>
+        </f:if>
+
+        <f:if condition="{contact.phone}">
+            <p>
+                <strong>Telefon:</strong>
+
+                <f:if condition="{contact.phone2}">
+                    <f:then>
+                        <span>
+                            <f:variable
+                                name="formattedPhone"
+                                value="{rkwEvents:getFormattedPhoneNumber(author: contact)}"
+                            />
+                            <a href="tel:{formattedPhone}">
+                                {formattedPhone}
+                            </a>
+                        </span>
+                    </f:then>
+                    <f:else>
+                        <span>
+                            <a href="tel:{contact.phone}">
+                                {contact.phone}
+                            </a>
+                        </span>
+                    </f:else>
+                </f:if>
+            </p>
+        </f:if>
+
+    </f:section>
+
+    <!-- ====================================================================== -->
+
+    <f:section name="External">
+
+        <f:if condition="{contact.firstName} && {contact.lastName}">
+            <p>
+                <strong>Name:</strong>
+                <span>{contact.firstName} {contact.lastName}</span>
+            </p>
+        </f:if>
+
+        <f:if condition="{contact.email}">
+            <p>
+                <strong>E-Mail-Adresse:</strong>
+                <span>
+                    <f:link.email email="{contact.email}" />
+                </span>
+            </p>
+        </f:if>
+
+        <f:if condition="{contact.phone}">
+            <p>
+                <strong>Telefon:</strong>
+
+                <f:if condition="{contact.phone2}">
+                    <f:then>
+                        <span>
+                            <a href="tel:{contact.phone2}">{contact.phone2}</a>
+                            /
+                            <a href="tel:{contact.phone}">{contact.phone}</a>
+                        </span>
+                    </f:then>
+                    <f:else>
+                        <span>
+                            <a href="tel:{contact.phone}">
+                                {contact.phone}
+                            </a>
+                        </span>
+                    </f:else>
+                </f:if>
+            </p>
+        </f:if>
+
+    </f:section>
+
+</div>

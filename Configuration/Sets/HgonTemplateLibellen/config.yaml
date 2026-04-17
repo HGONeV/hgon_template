@@ -1,0 +1,4 @@
+name: hgon/hgon-template-libellen
+label: 'HGON Template :: Theme Libellen'
+dependencies:
+  - hgon/hgon-template

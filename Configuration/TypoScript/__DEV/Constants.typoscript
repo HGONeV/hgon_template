@@ -36,6 +36,20 @@ plugin.tx_rkwregistration {
     }
 }
 
+# sf_event_mgt / hCaptcha
+# Official hCaptcha test keys for local development only
+plugin.tx_sfeventmgt {
+    settings {
+        registration {
+            captcha {
+                hCaptcha {
+                    publicKey = 10000000-ffff-ffff-ffff-000000000001
+                    privateKey = 0x0000000000000000000000000000000000000000
+                }
+            }
+        }
+    }
+}
 
 
 

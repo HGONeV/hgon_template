@@ -1,0 +1,109 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+    <f:if condition="{pagination}">
+        <f:then>
+            <f:if condition="{pagination.paginator.paginatedItems}">
+                <f:then>
+                    <div class="main__content">
+                        <section class="section">
+                            <div class="section__content">
+                                <f:render partial="Event/Filter" arguments="{pageData: pageData, requestEventType: requestEventType, requestDisplayMode: requestDisplayMode, requestTopEventRestriction: requestTopEventRestriction, requestPluginArgumentsDebug: requestPluginArgumentsDebug, overwriteDemandDebug: overwriteDemandDebug, eventDemandDebug: eventDemandDebug, requestMetaDebug: requestMetaDebug}" />
+                                <div class="flex-container space-between gutter valign-stretch" id="event-container">
+                                    <f:for each="{pagination.paginator.paginatedItems}" as="event">
+                                        <f:render partial="Event/ListItem" arguments="{event: event, settings: settings}" />
+                                    </f:for>
+                                </div>
+                            </div>
+                            <footer class="section__footer">
+                                <div class="wrap wrap--text / align-center">
+                                    <f:render partial="Event/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator, overwriteDemand: overwriteDemand, selectedEventType: requestEventType}" />
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="main__content">
+                        <section class="section">
+                            <div class="section__content">
+                                <f:render partial="Event/Filter" arguments="{pageData: pageData, requestEventType: requestEventType, requestDisplayMode: requestDisplayMode, requestTopEventRestriction: requestTopEventRestriction, requestPluginArgumentsDebug: requestPluginArgumentsDebug, overwriteDemandDebug: overwriteDemandDebug, eventDemandDebug: eventDemandDebug, requestMetaDebug: requestMetaDebug}" />
+                                <div class="flex-container space-between gutter valign-stretch">
+                                    <div class="flex-item c-12">
+                                        <article class="card card-plainfull">
+                                            <div class="card__inner">
+                                                <div class="flex-container">
+                                                    <div class="flex-item c-4">
+                                                        <header class="card__header">
+                                                            <h3 class="headline">Uuups!</h3>
+                                                        </header>
+                                                    </div>
+                                                    <div class="flex-item c-7">
+                                                        <div class="card__content">
+                                                            <p>Keine Veranstaltungen gefunden.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <f:if condition="{events}">
+                <f:then>
+                    <div class="main__content">
+                        <section class="section">
+                            <div class="section__content">
+                                <f:render partial="Event/Filter" arguments="{pageData: pageData, requestEventType: requestEventType, requestDisplayMode: requestDisplayMode, requestTopEventRestriction: requestTopEventRestriction, requestPluginArgumentsDebug: requestPluginArgumentsDebug, overwriteDemandDebug: overwriteDemandDebug, eventDemandDebug: eventDemandDebug, requestMetaDebug: requestMetaDebug}" />
+                                <div class="flex-container space-between gutter valign-stretch" id="event-container">
+                                    <f:for each="{events}" as="event">
+                                        <f:render partial="Event/ListItem" arguments="{event: event, settings: settings}" />
+                                    </f:for>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="main__content">
+                        <section class="section">
+                            <div class="section__content">
+                                <f:render partial="Event/Filter" arguments="{pageData: pageData, requestEventType: requestEventType, requestDisplayMode: requestDisplayMode, requestTopEventRestriction: requestTopEventRestriction, requestPluginArgumentsDebug: requestPluginArgumentsDebug, overwriteDemandDebug: overwriteDemandDebug, eventDemandDebug: eventDemandDebug, requestMetaDebug: requestMetaDebug}" />
+                                <div class="flex-container space-between gutter valign-stretch">
+                                    <div class="flex-item c-12">
+                                        <article class="card card-plainfull">
+                                            <div class="card__inner">
+                                                <div class="flex-container">
+                                                    <div class="flex-item c-4">
+                                                        <header class="card__header">
+                                                            <h3 class="headline">Uuups!</h3>
+                                                        </header>
+                                                    </div>
+                                                    <div class="flex-item c-7">
+                                                        <div class="card__content">
+                                                            <p>Keine Veranstaltungen gefunden.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+</f:section>
+
+</html>

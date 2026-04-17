@@ -67,6 +67,55 @@
                 <source>Yes, I agree that HGON will use my personal data for the above purpose and to create a free user account.  Furthermore, I have read and agree to the extended notes in the</source>
             </trans-unit>
 
+            <trans-unit id="registration.privacy.linkLabel">
+                <source>Privacy policy</source>
+            </trans-unit>
+
+            <trans-unit id="registration.form.heading">
+                <source>Register</source>
+            </trans-unit>
+            <trans-unit id="registration.form.validationError.title">
+                <source>The registration could not be submitted.</source>
+            </trans-unit>
+            <trans-unit id="registration.form.validationError.message">
+                <source>Please check the highlighted fields and add the missing information.</source>
+            </trans-unit>
+            <trans-unit id="registration.form.accepttc.validationError">
+                <source>Please accept the terms and conditions.</source>
+            </trans-unit>
+
+            <trans-unit id="registration.form.zip">
+                <source>ZIP code</source>
+            </trans-unit>
+
+            <trans-unit id="registration.price.vatLabel">
+                <source>incl. %s%% VAT</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.confirmRegistration.alreadyConfirmed.title">
+                <source>Registration already confirmed</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.confirmRegistration.alreadyConfirmed.message">
+                <source>Your registration has already been confirmed. No further action is required.</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registrationAlreadyExists.title">
+                <source>Registration already exists</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registrationAlreadyExists.message">
+                <source>There is already a reservation for this event with this email address.</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registrationPendingConfirmation.title">
+                <source>Registration received</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registrationPendingConfirmation.message">
+                <source>We have received your registration. Please confirm it using the link in the email we just sent you.</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.waitlistPendingConfirmation.title">
+                <source>Waitlist registration received</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.waitlistPendingConfirmation.message">
+                <source>We have received your waitlist registration. Please confirm it using the link in the email we just sent you.</source>
+            </trans-unit>
+
             <trans-unit id="tx_rkwevents_fluid.partials_eventReservation_formFieldsMaster.terms3">
                 <source>In particular, I agree that HGON may publish photographs and videos taken during the event in various media for the purposes of event reporting and general public relations work.</source>
             </trans-unit>
@@ -83,6 +132,55 @@
             </trans-unit>
             <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
                 <source>PayPal</source>
+            </trans-unit>
+
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registration.culinary">
+                <source>Book meals</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.timeSuffix">
+                <source>o'clock</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.priceStartingAt">
+                <source>from </source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.externalLinkLabel">
+                <source>More information</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.showMap">
+                <source>Show map</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.additionalImages">
+                <source>Images from the event</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registrationInfo">
+                <source>Registration</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registrationStart">
+                <source>Registration starts</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registrationDeadline">
+                <source>Registration deadline</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registrationClosed">
+                <source>Registration closed</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.cancelDeadline">
+                <source>Cancellation possible until</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registration.culinary.invalid">
+                <source>Invalid meal option selected.</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.registration.culinary.max">
+                <source>The quantity of a meal option may not exceed %s.</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.notification.addons">
+                <source>Booked meals</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.notification.addons.none">
+                <source>No meals booked.</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate.sfeventmgt.notification.addons.total">
+                <source>Total meals</source>
             </trans-unit>
 
         </body>

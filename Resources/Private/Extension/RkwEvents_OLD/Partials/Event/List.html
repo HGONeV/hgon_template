@@ -1,0 +1,18 @@
+<section
+    class="article article--fullwidth"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwEvents/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+    <h2>Veranstaltungen</h2>
+
+    <div id="tx-rkwevents-grid-section">
+        <f:render partial="Event/List/EventListing" arguments="{_all}" />
+    </div>
+</section>
+
+<!-- lazy loading / load more box -->
+<f:render partial="Event/List/MoreLink" arguments="{_all}" />
+
+<f:comment><!-- give more button on page bottom some space --></f:comment>
+<br />

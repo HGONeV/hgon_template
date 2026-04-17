@@ -65,6 +65,34 @@ CREATE TABLE tx_hgontemplate_domain_model_eventculinary (
 
 );
 
+#
+# Table structure for table 'tx_hgontemplate_domain_model_registrationaddon'
+#
+CREATE TABLE tx_hgontemplate_domain_model_registrationaddon (
+
+    uid int(11) NOT NULL auto_increment,
+    pid int(11) DEFAULT '0' NOT NULL,
+    tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+    crdate int(11) unsigned DEFAULT '0' NOT NULL,
+    deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+    sorting int(11) unsigned DEFAULT '0' NOT NULL,
+
+    registration int(11) unsigned DEFAULT '0' NOT NULL,
+    culinary int(11) unsigned DEFAULT '0' NOT NULL,
+    quantity int(11) unsigned DEFAULT '0' NOT NULL,
+    title varchar(255) DEFAULT '' NOT NULL,
+    description text,
+    unit_price decimal(10,2) DEFAULT '0.00' NOT NULL,
+    selected_date int(11) unsigned DEFAULT '0' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY registration (registration),
+    KEY culinary (culinary)
+
+);
+
 
 #
 # Table structure for table 'tx_hgonpayment_domain_model_article'
@@ -72,7 +100,7 @@ CREATE TABLE tx_hgontemplate_domain_model_eventculinary (
 CREATE TABLE tx_hgonpayment_domain_model_article (
 	tx_hgontemplate_subtitle varchar(255) DEFAULT '' NOT NULL,
 	tx_hgontemplate_image int(11) unsigned NOT NULL default '0',
-	tx_hgontemplate_link varchar(255) DEFAULT '' NOT NULL,
+	tx_hgontemplate_link varchar(255) DEFAULT '' NOT NULL
 );
 
 
@@ -81,11 +109,9 @@ CREATE TABLE tx_hgonpayment_domain_model_article (
 #
 CREATE TABLE tx_news_domain_model_news (
 
-    tx_rkwproject_project int(11) unsigned DEFAULT '0',
 	tx_hgontemplate_type int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_youtube_video_id varchar(255) DEFAULT '' NOT NULL,
-	tx_hgontemplate_header_image int(11) unsigned NOT NULL default '0',
-
+	tx_hgontemplate_header_image int(11) unsigned NOT NULL default '0'
 );
 
 
@@ -94,7 +120,7 @@ CREATE TABLE tx_news_domain_model_news (
 #
 CREATE TABLE pages (
 	tx_hgontemplate_contactperson int(11) unsigned DEFAULT '0' NOT NULL,
-	tx_hgontemplate_article int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_article int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 
@@ -102,7 +128,15 @@ CREATE TABLE pages (
 # Table structure for table 'tx_rkwevents_domain_model_event'
 #
 CREATE TABLE tx_rkwevents_domain_model_event (
-	tx_hgontemplate_eventculinary int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_eventculinary int(11) unsigned DEFAULT '0' NOT NULL
+);
+
+#
+# Table structure for table 'tx_sfeventmgt_domain_model_event'
+#
+CREATE TABLE tx_sfeventmgt_domain_model_event (
+    tx_hgontemplate_event_type varchar(32) DEFAULT 'standard' NOT NULL,
+    tx_hgontemplate_eventculinary int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
@@ -111,7 +145,7 @@ CREATE TABLE tx_rkwevents_domain_model_event (
 CREATE TABLE tx_rkwevents_domain_model_eventreservation (
 	tx_hgontemplate_eventculinary varchar(255) DEFAULT '' NOT NULL,
 	tx_hgontemplate_eventcosts varchar(255) DEFAULT '' NOT NULL,
-	tx_hgontemplate_paymenttype int(11) unsigned DEFAULT '0' NOT NULL,
+	tx_hgontemplate_paymenttype int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
@@ -134,7 +168,7 @@ CREATE TABLE tx_rkwnewsletter_domain_model_newsletter (
 
 	tx_hgontemplate_donation_select int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_donation_count int(11) unsigned DEFAULT '0' NOT NULL,
-	tx_hgontemplate_donation_list int(11) DEFAULT '0' NOT NULL,
+	tx_hgontemplate_donation_list int(11) DEFAULT '0' NOT NULL
 );
 
 #
@@ -184,24 +218,10 @@ CREATE TABLE tx_rkwnewsletter_domain_model_newsletter_donation_mm (
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
 );
-
-
-#
-# Table structure for table 'tx_rkwprojects_domain_model_projects'
-#
-CREATE TABLE tx_rkwprojects_domain_model_projects (
-    tx_hgontemplate_bank_header varchar(255) DEFAULT '' NOT NULL,
-    tx_hgontemplate_bank_institute varchar(255) DEFAULT '' NOT NULL,
-	tx_hgontemplate_bank_iban varchar(255) DEFAULT '' NOT NULL,
-	tx_hgontemplate_bank_bic varchar(255) DEFAULT '' NOT NULL,
-);
-
-
-
 #
 # Table structure for table 'tx_rkwauthors_domain_model_authors'
 #
 CREATE TABLE tx_rkwauthors_domain_model_authors (
   tx_hgontemplate_short_description varchar(255) DEFAULT '' NOT NULL,
-  tx_hgontemplate_longer_description text NOT NULL,
+  tx_hgontemplate_longer_description text NOT NULL
 );

@@ -23,35 +23,40 @@ use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class ArticleController extends \GeorgRinger\News\Controller\NewsController
 {
+    protected BasketSessionService $basketSessionService;
+
     /**
      * @var \HGON\HgonTemplate\Domain\Repository\PagesRepository
      */
-    protected $pagesRepository;
+    protected \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository;
 
+    public function __construct(
+        ?BasketSessionService $basketSessionService = null,
+        ?\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository = null
+    ) {
+        $this->basketSessionService = $basketSessionService ?? GeneralUtility::makeInstance(BasketSessionService::class);
+        $this->pagesRepository = $pagesRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\PagesRepository::class);
+    }
 
-    /**
-     * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
-     */
-    public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void {
+    public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void
+    {
         $this->pagesRepository = $pagesRepository;
     }
 
-    public function __construct(
-        private readonly BasketSessionService $basketSessionService
-    ) {
-
-    }
-
-    public function addToBasketAction(): void
+    public function addToBasketAction(): \Psr\Http\Message\ResponseInterface
     {
         $basket = $this->basketSessionService->getBasket();
         // ... basket anpassen ...
         // $this->basketSessionService->setBasket($basket);
+
+        return $this->htmlResponse();
     }
 
-    public function clearBasketAction(): void
+    public function clearBasketAction(): \Psr\Http\Message\ResponseInterface
     {
         $this->basketSessionService->clearBasket();
+
+        return $this->htmlResponse();
     }
 
 
@@ -64,7 +69,9 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
     public function showArticleFromPagesAction()
     {
         /** @var \HGON\HgonTemplate\Domain\Model\Pages $pages */
-        $pages = $this->pagesRepository->findByIdentifier(intval($GLOBALS['TSFE']->id));
+        $pages = $this->pagesRepository->findByIdentifier(
+            (int)($this->request->getAttribute('frontend.page.information')?->getId() ?? 0)
+        );
         $this->view->assign('article', $pages->getTxHgontemplateArticle());
 
         return $this->htmlResponse();
@@ -92,20 +99,20 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
      * action for donation money (PayPal)
      *
      * @param \HGON\HgonTemplate\Domain\Model\Article $article
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function createOrderAction(\HGON\HgonTemplate\Domain\Model\Article $article)
     {
         $article->setQuantity(1);
 
         /** @var \HGON\HgonPayment\Domain\Model\Basket $basket */
-        $basket = $this->objectManager->get(\HGON\HgonPayment\Domain\Model\Basket::class);
+        $basket = GeneralUtility::makeInstance(\HGON\HgonPayment\Domain\Model\Basket::class);
         $basket->addArticle($article);
 
-        $this->session->set('hgon_payment_basket', $basket);
+        $this->basketSessionService->setBasket($basket);
 
         /** @var \HGON\HgonPayment\Api\PayPalApi $payPalApi */
-        $payPalApi = $this->objectManager->get(\HGON\HgonPayment\Api\PayPalApi::class);
+        $payPalApi = GeneralUtility::makeInstance(\HGON\HgonPayment\Api\PayPalApi::class);
 
         // this var is a relict from the Donation action (where something other than paypalplus is possible)
         $isPayPalPlus = true;
@@ -136,5 +143,7 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
 
         print (string) $jsonHelper;
         exit();
+
+        return $this->htmlResponse();
     }
 }

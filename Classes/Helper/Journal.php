@@ -78,7 +78,7 @@ class Journal implements \TYPO3\CMS\Core\SingletonInterface
      * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
      * @return array
      */
-    public function getPagesList($settings, $pageNumber, SysCategory $sysCategory = null)
+    public function getPagesList($settings, $pageNumber, ?SysCategory $sysCategory = null)
     {
         $returnArray = [];
 
@@ -110,7 +110,7 @@ class Journal implements \TYPO3\CMS\Core\SingletonInterface
      * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
      * @return array
      */
-    public function createResultSet($settings, $pageNumber, SysCategory $sysCategory = null)
+    public function createResultSet($settings, $pageNumber, ?SysCategory $sysCategory = null)
     {
 
         // @toDo: Was könnte bei ExcludePages noch eingetragen werden?
@@ -228,29 +228,23 @@ class Journal implements \TYPO3\CMS\Core\SingletonInterface
 
     /**
      * addFlexItemC4
-     * Can be an event, author, or a tweet (social media)
+     * Can be an event or author.
      *
      * @return mixed
      */
     protected function addFlexItemC4()
     {
-        $rand = mt_rand(1, 3);
+        $rand = mt_rand(1, 2);
         if ($rand === 1) {
             // get event
             $eventList = $this->eventRepository->findAll()->toArray();
             return $eventList[rand(0, count($eventList) - 1)];
             //===
-        } elseif ($rand == 2) {
-            // get author
-            $authorList = $this->authorsRepository->findAll()->toArray();
-            return $authorList[rand(0, count($authorList) - 1)];
-            //===
         }
 
-        // Else: return a tweet
-        $tweet = new \stdClass();
-        $tweet->description = "This is not a tweet yet";
-        return $tweet;
+        // get author
+        $authorList = $this->authorsRepository->findAll()->toArray();
+        return $authorList[rand(0, count($authorList) - 1)];
     }
 
 

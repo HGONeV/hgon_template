@@ -2,6 +2,8 @@
 
 namespace HGON\HgonTemplate\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -37,8 +39,8 @@ class Article extends \HGON\HgonPayment\Domain\Model\Article
      * txHgontemplateImage
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
+    #[Cascade(['value' => 'remove'])]
     protected $txHgontemplateImage = null;
 
     /**

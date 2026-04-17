@@ -12,7 +12,10 @@ namespace HGON\HgonTemplate\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Session\SessionManager;
+use TYPO3\CMS\Core\Session\UserSession;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
@@ -61,16 +64,25 @@ class IterateKeyWithSessionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\
             return 0;
         }
 
-        // TYPO3 10.4: TSFE ist noch verfügbar (wenn auch "legacy"), aber storeSessionData() ist weg.
-        /** @var FrontendUserAuthentication|null $feUser */
-        $feUser = $GLOBALS['TSFE']->fe_user ?? null;
-
-        if (!$feUser instanceof FrontendUserAuthentication) {
-            // Kein FE-Context / kein FE-User-Objekt -> sauberer Fallback
+        /** @var ServerRequestInterface|null $request */
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        if (!$request instanceof ServerRequestInterface) {
             return 0;
         }
 
-        $current = (int)($feUser->getKey('ses', $uniqueName) ?: 0);
+        $feUser = $request->getAttribute('frontend.user');
+        if (!$feUser instanceof FrontendUserAuthentication) {
+            return 0;
+        }
+
+        /** @var UserSession|null $session */
+        $session = $request->getAttribute('frontend.user.session');
+        // Fallback, falls das Attribut in deinem Kontext nicht gesetzt ist:
+        if (!$session instanceof UserSession) {
+            $current = (int)($feUser->getKey('ses', $uniqueName) ?: 0);
+        } else {
+            $current = (int)($session->get($uniqueName) ?? 0);
+        }
 
         if ($current < 1) {
             $current = 1;
@@ -80,12 +92,11 @@ class IterateKeyWithSessionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\
             $current = 1;
         }
 
-        $feUser->setKey('ses', $uniqueName, $current);
-
-        // In TYPO3 10 wird die FE-Session normalerweise am Ende des Requests persistiert.
-        // Wenn du in deiner konkreten Nutzung "sofort" persistieren musst (z.B. Redirect),
-        // kannst du das explizit über den SessionManager tun:
-
+        if ($session instanceof UserSession) {
+            $session->set($uniqueName, $current);
+        } else {
+            $feUser->setKey('ses', $uniqueName, $current);
+        }
 
         return $current;
     }

@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<h3>Veranstaltung</h3>
+<p>
+    <strong>{event.title}</strong><br>
+    <f:if condition="{event.endsSameDay}">
+        <f:then>
+            {f:format.date(date: event.startdate, format: '%d.%m.%Y')} von {f:format.date(date: event.startdate, format: '%H:%M')} bis {f:format.date(date: event.enddate, format: '%H:%M')} Uhr
+        </f:then>
+        <f:else>
+            {f:format.date(date: event.startdate, format: '%d.%m.%Y - %H:%M')} Uhr bis {f:format.date(date: event.enddate, format: '%d.%m.%Y - %H:%M')} Uhr
+        </f:else>
+    </f:if>
+</p>
+
+<f:if condition="{event.location} || {event.room}">
+    <h3>Ort</h3>
+    <p>
+        <f:if condition="{event.location}">
+            <f:if condition="{event.location.fullAddress}">
+                <f:format.raw>{event.location.fullAddress}</f:format.raw><br>
+            </f:if>
+            <f:if condition="{event.location.link}">
+                <f:link.typolink parameter="{event.location.link}" absolute="true" target="_blank">Informationen zum Veranstaltungsort</f:link.typolink><br>
+            </f:if>
+        </f:if>
+        <f:if condition="{event.room}">
+            Raum/Treffpunkt: {event.room}
+        </f:if>
+    </p>
+</f:if>
+
+<f:if condition="{event.customText}">
+    <h3>Weitere Informationen</h3>
+    <f:format.html>{event.customText}</f:format.html>
+</f:if>
+
+<f:if condition="{event.program}">
+    <h3>Programm</h3>
+    <f:format.html>{event.program}</f:format.html>
+</f:if>
+
+<f:if condition="{event.link}">
+    <p><f:link.typolink parameter="{event.link}" absolute="true" target="_blank">Weitere Informationen zur Veranstaltung</f:link.typolink></p>
+</f:if>
+
+</html>

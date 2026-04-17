@@ -1,9 +1,10 @@
 <?php
 namespace HGON\HgonTemplate\Domain\Repository;
 
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
-use RKW\RkwBasics\Helper\QueryTypo3;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryHelper;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -17,6 +18,8 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+
 
 /**
  * Class PagesRepository
@@ -61,25 +64,6 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         return $query->execute();
     }
-
-
-
-    /**
-     * Find pages with projects
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
-     */
-    public function findAllWithProject()
-    {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->greaterThan('txRkwprojectsProject', 0)
-        );
-
-        return $query->execute();
-    }
-
-
 
     /**
      * Get pages with certain categories
@@ -134,56 +118,109 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function findTreeByParentPages($parentPagesList, $excludeParentPages = false, $pageNumber = 1, $limit = 8)
     {
-        // 1. get string with all pageUids
-        $pagesListArray = [];
-        $depth = 999999;
-        $queryGenerator = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\QueryGenerator::class);
-        foreach ($parentPagesList as $parentPages) {
-            $pagesListArray[] = $queryGenerator->getTreeList($parentPages->getUid(), $depth, 0, 1);
+        // 1) Parent UIDs normalisieren
+        $parentUids = [];
+        foreach ((array)$parentPagesList as $parentPage) {
+            if (is_object($parentPage) && method_exists($parentPage, 'getUid')) {
+                $parentUids[] = (int)$parentPage->getUid();
+            } elseif (is_numeric($parentPage)) {
+                $parentUids[] = (int)$parentPage;
+            }
         }
-        $pagesTreeList = implode(',', $pagesListArray);
+        $parentUids = array_values(array_unique(array_filter($parentUids)));
 
-        // 2. start query
+        if ($parentUids === []) {
+            return $this->createQuery()->matching($this->createQuery()->equals('uid', 0))->execute();
+        }
+
+        // 2) Subtree-Uids sammeln (inkl. Parent-Seiten)
+        $allUids = $this->collectDescendantPageUids($parentUids);
+
+        if ($excludeParentPages) {
+            $allUids = array_values(array_diff($allUids, $parentUids));
+        }
+
+        if ($allUids === []) {
+            return $this->createQuery()->matching($this->createQuery()->equals('uid', 0))->execute();
+        }
+
+        // 3) Extbase Query
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
 
-        // 3. Offset
-        $offset = ((intval($pageNumber) - 1) * $limit) + 1;
-        if ($pageNumber <= 1) {
-            $offset = 0;
-        }
+        // 4) Pagination (0-basiert)
+        $pageNumber = max(1, (int)$pageNumber);
+        $limit = max(1, (int)$limit);
+        $offset = ($pageNumber - 1) * $limit;
 
-        // 4. Query parts
-        $constraints = [];
-        $constraints[] = $query->logicalAnd(
-            $query->in('uid', explode(',', $pagesTreeList)),
-            $query->equals('doktype', 1)
-        );
+        // 5) Constraints
+        $constraints = [
+            $query->in('uid', $allUids),
+            $query->equals('doktype', 1),
+        ];
 
-        if ($excludeParentPages) {
-            if ($parentPagesList instanceof \HGON\HgonTemplate\Domain\Model\SysCategory) {
-                $parentPagesList = [$parentPagesList];
-            }
-            $constraints[] = $query->logicalNot(
-                $query->in('uid', $parentPagesList)
-            );
-        }
+        $query->matching($query->logicalAnd(...$constraints));
 
-        // 5. Build query
-        $query->matching($query->logicalAnd($constraints));
-
-        // Order by lastUpdate
-        $query->setOrderings(
-            array(
-                'lastUpdated' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
-                'tstamp' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING,
-            )
-        );
+        $query->setOrderings([
+            'lastUpdated' => QueryInterface::ORDER_DESCENDING,
+            'tstamp'      => QueryInterface::ORDER_DESCENDING,
+        ]);
 
         $query->setLimit($limit);
         $query->setOffset($offset);
 
         return $query->execute();
+    }
+
+    /**
+     * Liefert alle Descendant-Uids der übergebenen Root-Uids (inkl. Roots).
+     * TYPO3-13-kompatibler Ersatz für QueryGenerator->getTreeList().
+     */
+    private function collectDescendantPageUids(array $rootUids, int $maxDepth = 999999): array
+    {
+        $rootUids = array_values(array_unique(array_map('intval', $rootUids)));
+        $all = $rootUids;
+        $current = $rootUids;
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('pages');
+
+        for ($depth = 0; $depth < $maxDepth; $depth++) {
+            if ($current === []) {
+                break;
+            }
+
+            // chunks schützen vor zu langen IN()-Listen
+            $children = [];
+            foreach (array_chunk($current, 500) as $chunk) {
+                $qb = clone $queryBuilder;
+                $rows = $qb
+                    ->select('uid')
+                    ->from('pages')
+                    ->where(
+                        $qb->expr()->in(
+                            'pid',
+                            $qb->createNamedParameter($chunk, QueryHelper::PARAM_INT_ARRAY)
+                        )
+                    )
+                    ->executeQuery()
+                    ->fetchFirstColumn();
+
+                foreach ($rows as $uid) {
+                    $children[] = (int)$uid;
+                }
+            }
+
+            $children = array_values(array_unique(array_diff($children, $all)));
+            if ($children === []) {
+                break;
+            }
+
+            $all = array_merge($all, $children);
+            $current = $children;
+        }
+
+        return $all;
     }
 
 

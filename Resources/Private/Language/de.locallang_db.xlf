@@ -53,8 +53,8 @@
 
 
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary">
-                <source>RKW Events: Events culinary</source>
-                <target>RKW Events: Speisen</target>
+                <source>Meals</source>
+                <target>Speisen</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary.title">
                 <source>Title</source>
@@ -79,8 +79,8 @@
                 <target>Kosten für die Veranstaltung</target>
             </trans-unit>
             <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary">
-                <source>Events Culinary</source>
-                <target>Veranstaltungs-Speisen</target>
+                <source>Meals</source>
+                <target>Speisen</target>
             </trans-unit>
             <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype">
                 <source>Payment type</source>
@@ -97,6 +97,58 @@
             <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
                 <source>PayPal</source>
                 <target>PayPal</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type">
+                <source>Type</source>
+                <target>Typ</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type.standard">
+                <source>Standard</source>
+                <target>Standard</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type.workgroup">
+                <source>Workgroup meeting</source>
+                <target>Arbeitskreistreffen</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_eventculinary">
+                <source>Bookable meals</source>
+                <target>Buchbare Speisen</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.image">
+                <source>Title image</source>
+                <target>Titelbild</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.custom_text">
+                <source>Further information</source>
+                <target>Weitere Informationen</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tabs.hgon">
+                <source>HGON</source>
+                <target>HGON</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_registrationaddon">
+                <source>Registration add-on</source>
+                <target>Anmelde-Zusatzoption</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_registrationaddon.title">
+                <source>Title</source>
+                <target>Titel</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_registrationaddon.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_registrationaddon.quantity">
+                <source>Quantity</source>
+                <target>Menge</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_registrationaddon.unit_price">
+                <source>Unit price</source>
+                <target>Einzelpreis</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_registrationaddon.selected_date">
+                <source>Date</source>
+                <target>Datum</target>
             </trans-unit>
 
 

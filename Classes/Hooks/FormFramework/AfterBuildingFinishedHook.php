@@ -1,6 +1,9 @@
 <?php
 namespace HGON\HgonTemplate\Hooks\FormFramework;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface;
+use HGON\HgonDonation\Domain\Repository\DonationRepository;
 
 /**
  * Created by PhpStorm.
@@ -8,32 +11,30 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * Date: 02.12.19
  * Time: 16:04
  */
-class AfterBuildingFinishedHook
+final class AfterBuildingFinishedHook
 {
-    /**
-     * @param \TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface $renderable
-     * @return void
-     */
-    public function afterBuildingFinished(\TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface $renderable)
+    public function afterBuildingFinished(RenderableInterface $renderable): void
     {
+        /** @var ServerRequestInterface|null $request */
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
 
-        $data = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgondonation_detail');
+        $data = ($request?->getQueryParams()['tx_hgondonation_detail'] ?? null);
 
-        if (
-            is_array($data)
-            && array_key_exists('donation', $data)
-            && $data['donation']
-        ) {
-            // if we're on donation detail page, edit subject
-            if ($renderable->getIdentifier() === 'subject') {
+        if (!is_array($data) || empty($data['donation']) || $renderable->getIdentifier() !== 'subject') {
+            return;
+        }
 
-                $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
-                /** @var \HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository */
-                $donationRepository = $objectManager->get(\HGON\HgonDonation\Domain\Repository\DonationRepository::class);
-                $donation = $donationRepository->findByUid(intval($data['donation']));
-                $renderable->setDefaultValue($donation->getTitle());
-            }
+        $donationUid = (int)preg_replace('/\D+/', '', (string)$data['donation']);
+        if ($donationUid <= 0) {
+            return;
+        }
 
+        /** @var DonationRepository $donationRepository */
+        $donationRepository = GeneralUtility::makeInstance(DonationRepository::class);
+
+        $donation = $donationRepository->findByIdentifier($donationUid);
+        if ($donation !== null) {
+            $renderable->setDefaultValue($donation->getTitle());
         }
     }
 }

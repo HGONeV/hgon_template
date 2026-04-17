@@ -9,15 +9,6 @@
         Zurück zur Übersicht
     </f:link.page>
 
-    <f:if condition="{newsItem.txRkwprojectProject.projectPid}">
-        <aside class="aside">
-            <div class="aside__content">
-                <!-- Related links -->
-                <f:link.typolink class="btn btn--cta btn--rounded" parameter="{newsItem.txRkwprojectProject.projectPid}">Zum Projekt</f:link.typolink>
-            </div>
-        </aside>
-    </f:if>
-
     <f:if condition="{newsItem.relatedLinks}">
         <aside class="aside aside--border aside-helpactivities color-bg-white">
             <header class="aside__header">

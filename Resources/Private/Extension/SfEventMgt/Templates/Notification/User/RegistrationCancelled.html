@@ -1,0 +1,14 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<p>Hallo {registration.firstname} {registration.lastname},</p>
+<p>Ihre Anmeldung wurde storniert.</p>
+
+<f:render partial="Notification/EventSummary" arguments="{event: event}" />
+<f:render partial="Notification/RegistrationSummary" arguments="{registration: registration}" />
+<f:render partial="Notification/OrganisatorContact" arguments="{event: event}" />
+
+<p>Freundliche Grüße</p>
+<f:format.html>{settings.notification.senderSignature}</f:format.html>
+
+</html>

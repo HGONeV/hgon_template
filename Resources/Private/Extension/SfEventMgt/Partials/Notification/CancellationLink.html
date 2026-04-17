@@ -1,0 +1,15 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{event.cancellationPossible}">
+    <h3>Stornierung</h3>
+    <f:if condition="{event.cancelDeadline}">
+        <p>Eine Stornierung ist bis zum {f:format.date(date: event.cancelDeadline, format: '%d.%m.%Y - %H:%M')} Uhr möglich.</p>
+    </f:if>
+    <p>Wenn Sie Ihre Anmeldung stornieren möchten, öffnen Sie bitte den folgenden Link:</p>
+    <p>
+        <a href="{f:uri.action(action: cancelAction, arguments: {reguid: registration.uid, hmac: hmac}, absolute: true, controller: 'Event', extensionName: 'sfeventmgt', pluginName: 'Pieventregistration')}">Anmeldung stornieren</a>
+    </p>
+</f:if>
+
+</html>

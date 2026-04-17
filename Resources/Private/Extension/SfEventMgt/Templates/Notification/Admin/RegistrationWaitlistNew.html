@@ -1,0 +1,9 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<p>Es ist eine neue Anmeldung für die Warteliste eingegangen. Die Anmeldung ist noch nicht abgeschlossen, da die Person den Bestätigungslink noch öffnen muss.</p>
+
+<f:render partial="Notification/EventSummary" arguments="{event: event}" />
+<f:render partial="Notification/AdminRegistrationSummary" arguments="{event: event, registration: registration}" />
+
+</html>

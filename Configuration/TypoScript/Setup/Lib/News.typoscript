@@ -1,5 +1,5 @@
 // tx_news: Override variables on detail view
-[globalVar = TSFE:id = {$plugin.tx_news.settings.detailPid}]
+[page["uid"] == 62]
 
     config.noPageTitle = 2
 
@@ -89,4 +89,4 @@
     page.10.variables.pageTitleNews < lib.pageTitleAlt
 
 
-[global]
+[end]

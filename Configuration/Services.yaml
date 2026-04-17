@@ -1,14 +1,75 @@
 services:
   _defaults:
-    autowire: true
+    autowire: false
     autoconfigure: true
     public: false
 
-  HGON\HgonTemplate\:
-    resource: '../Classes/*'
+  HGON\HgonTemplate\Domain\Repository\:
+    resource: '../Classes/Domain/Repository/*'
+    autowire: true
+    autoconfigure: true
 
-  # ~ means use default config
-  HGON\HgonTemplate\Domain\Repository\NewsRepository: ~
+  HGON\HgonTemplate\Controller\:
+    resource: '../Classes/Controller/*'
+    autowire: true
+    autoconfigure: true
 
-  GeorgRinger\News\Domain\Repository\NewsRepository:
-    alias: HGON\HgonTemplate\Domain\Repository\NewsRepository
+  HGON\HgonTemplate\Service\:
+    resource: '../Classes/Service/*'
+    autowire: true
+    autoconfigure: true
+
+  DERHANSEN\SfEventMgt\Service\NotificationService:
+    class: HGON\HgonTemplate\Service\SfEventMgtNotificationService
+    autowire: true
+    autoconfigure: true
+
+  HGON\HgonTemplate\Updates\:
+    resource: '../Classes/Updates/*'
+
+  HGON\HgonTemplate\Updates\HgonTemplateTypoScriptConditionMigration:
+    tags:
+      - name: 'install.upgradewizard'
+        identifier: 'hgonTemplateTypoScriptConditionMigration'
+
+  HGON\HgonTemplate\EventListener\SfEventMgtListFilterVariablesListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'hgon-template/sfeventmgt-list-filter-variables'
+        event: DERHANSEN\SfEventMgt\Event\ModifyListViewVariablesEvent
+
+  HGON\HgonTemplate\EventListener\SfEventMgtRegistrationCulinaryVariablesListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'hgon-template/sfeventmgt-registration-culinary-variables'
+        event: DERHANSEN\SfEventMgt\Event\ModifyRegistrationViewVariablesEvent
+
+  HGON\HgonTemplate\EventListener\SfEventMgtRegistrationCulinaryValidationListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'hgon-template/sfeventmgt-registration-culinary-validation'
+        event: DERHANSEN\SfEventMgt\Event\ModifyRegistrationValidatorResultEvent
+
+  HGON\HgonTemplate\EventListener\SfEventMgtRegistrationCulinaryPriceListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'hgon-template/sfeventmgt-registration-culinary-price'
+        event: DERHANSEN\SfEventMgt\Event\ModifyRegistrationPriceEvent
+
+  HGON\HgonTemplate\EventListener\SfEventMgtRegistrationCulinaryPersistListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'hgon-template/sfeventmgt-registration-culinary-persist'
+        event: DERHANSEN\SfEventMgt\Event\AfterRegistrationSavedEvent
+
+  HGON\HgonTemplate\EventListener\SfEventMgtRegistrationCulinaryDependingRegistrationsListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'hgon-template/sfeventmgt-registration-culinary-depending-registrations'
+        event: DERHANSEN\SfEventMgt\Event\ModifyCreateDependingRegistrationsEvent

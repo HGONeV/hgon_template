@@ -1,0 +1,17 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<p>Hallo {registration.firstname} {registration.lastname},</p>
+<p>es ist ein Platz frei geworden. Ihre Anmeldung ist von der Warteliste nachgerückt.</p>
+
+<f:render partial="Notification/EventSummary" arguments="{event: event}" />
+<f:render partial="Notification/RegistrationSummary" arguments="{registration: registration}" />
+<f:render partial="Notification/RegistrationAddons" arguments="{registration: registration, event: event}" />
+<f:render partial="Notification/PaymentSummary" arguments="{event: event, registration: registration, settings: settings}" />
+<f:render partial="Notification/CancellationLink" arguments="{event: event, registration: registration, cancelAction: cancelAction, hmac: hmac}" />
+<f:render partial="Notification/OrganisatorContact" arguments="{event: event}" />
+
+<p>Freundliche Grüße</p>
+<f:format.html>{settings.notification.senderSignature}</f:format.html>
+
+</html>

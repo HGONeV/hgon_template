@@ -1,0 +1,4 @@
+name: hgon/hgon-template
+label: 'HGON Template'
+dependencies:
+  - derhansen/sf_event_mgt

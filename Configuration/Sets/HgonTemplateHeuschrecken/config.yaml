@@ -1,0 +1,4 @@
+name: hgon/hgon-template-heuschrecken
+label: 'HGON Template :: Theme Heuschrecken'
+dependencies:
+  - hgon/hgon-template

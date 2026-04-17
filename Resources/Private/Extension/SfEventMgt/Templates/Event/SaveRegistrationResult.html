@@ -1,0 +1,83 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+    <section class="section">
+        <div class="section__content">
+            <div class="flex-container space-between gutter valign-stretch">
+                <div class="flex-item c-12">
+                    <article class="card card-plainfull">
+                        <div class="card__inner">
+                            <div class="flex-container">
+                                <div class="flex-item c-4">
+                                    <header class="card__header">
+                                        <f:if condition="{messageKey} == 'event.message.registrationfailedemailnotunique'">
+                                            <f:then>
+                                                <h1 class="headline"><f:translate key="tx_hgontemplate.sfeventmgt.registrationAlreadyExists.title" extensionName="HgonTemplate" /></h1>
+                                            </f:then>
+                                            <f:else>
+                                                <f:if condition="{messageKey} == 'event.message.registrationsuccessful'">
+                                                    <f:then>
+                                                        <h1 class="headline"><f:translate key="tx_hgontemplate.sfeventmgt.registrationPendingConfirmation.title" extensionName="HgonTemplate" /></h1>
+                                                    </f:then>
+                                                    <f:else>
+                                                        <f:if condition="{messageKey} == 'event.message.registrationwaitlistsuccessful'">
+                                                            <f:then>
+                                                                <h1 class="headline"><f:translate key="tx_hgontemplate.sfeventmgt.waitlistPendingConfirmation.title" extensionName="HgonTemplate" /></h1>
+                                                            </f:then>
+                                                            <f:else>
+                                                                <h1 class="headline"><f:translate key="{titleKey}" /></h1>
+                                                            </f:else>
+                                                        </f:if>
+                                                    </f:else>
+                                                </f:if>
+                                            </f:else>
+                                        </f:if>
+                                    </header>
+                                </div>
+                                <div class="flex-item c-7">
+                                    <div class="card__content">
+                                        <f:if condition="{messageKey} == 'event.message.registrationfailedemailnotunique'">
+                                            <f:then>
+                                                <p><f:translate key="tx_hgontemplate.sfeventmgt.registrationAlreadyExists.message" extensionName="HgonTemplate" /></p>
+                                            </f:then>
+                                            <f:else>
+                                                <f:if condition="{messageKey} == 'event.message.registrationsuccessful'">
+                                                    <f:then>
+                                                        <p><f:translate key="tx_hgontemplate.sfeventmgt.registrationPendingConfirmation.message" extensionName="HgonTemplate" /></p>
+                                                    </f:then>
+                                                    <f:else>
+                                                        <f:if condition="{messageKey} == 'event.message.registrationwaitlistsuccessful'">
+                                                            <f:then>
+                                                                <p><f:translate key="tx_hgontemplate.sfeventmgt.waitlistPendingConfirmation.message" extensionName="HgonTemplate" /></p>
+                                                            </f:then>
+                                                            <f:else>
+                                                                <p>
+                                                                    <f:translate key="{messageKey}" />
+                                                                </p>
+                                                            </f:else>
+                                                        </f:if>
+                                                    </f:else>
+                                                </f:if>
+                                            </f:else>
+                                        </f:if>
+
+                                        <f:if condition="{settings.detailPid} && {event}">
+                                            <f:link.action action="detail" pageUid="{settings.detailPid}" arguments="{event: event}" class="link link--icon">
+                                                <svg class="icon icon--btn-left" width="18" height="18"><use xlink:href="#ui-arrow-left" /></svg>
+                                                <f:translate key="event.backDetailsText" />
+                                            </f:link.action>
+                                        </f:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+</f:section>
+
+</html>

@@ -1,10 +1,32 @@
 <?php
 
+use DERHANSEN\SfEventMgt\Controller\EventController;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 defined('TYPO3') or die("Access denied.");
 
 $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['hgon_default'] = 'EXT:hgon_template/Configuration/Yaml/RTE/HgonDefault.yaml';
+$GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths'][1727540190] = 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Templates/Mail/';
+$GLOBALS['TYPO3_CONF_VARS']['MAIL']['partialRootPaths'][1727540190] = 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/';
+$GLOBALS['TYPO3_CONF_VARS']['MAIL']['layoutRootPaths'][1727540190] = 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/';
+
+ExtensionManagementUtility::addPageTSConfig(
+    "@import 'EXT:hgon_template/Configuration/TsConfig/TsConfig.typoscript'"
+);
+
+ExtensionUtility::configurePlugin(
+    'SfEventMgt',
+    'Pieventlist',
+    [
+        EventController::class => ['list'],
+    ],
+    [
+        EventController::class => ['list'],
+    ],
+    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+);
 
 
 call_user_func(
@@ -19,7 +41,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'pageHighlight'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -31,22 +54,9 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'randomAuthor'
-            ]
-        );
-
-        /*
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            $extKey,
-            'ProjectTeaser',
-            [
-                \HGON\HgonTemplate\Controller\StandardController::class => 'projectTeaser'
             ],
-            // non-cacheable actions
-            [
-                \HGON\HgonTemplate\Controller\StandardController::class => 'projectTeaser'
-            ]
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
-        */
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             $extKey,
@@ -57,7 +67,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'sidebarContactPerson'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -69,7 +80,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'siblingPagesOverview'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -81,7 +93,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'childrenPagesOverview'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -93,7 +106,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'pageSlider'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -105,7 +119,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'donationForm'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         /*
@@ -119,7 +134,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptions'
-            ]
+            ],
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -131,7 +147,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptionsLight'
-            ]
+            ],
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
         */
 
@@ -144,7 +161,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'sixReasons'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -156,7 +174,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'didYouKnow'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -168,19 +187,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'maps'
-            ]
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            $extKey,
-            'ProjectPartner',
-            [
-                \HGON\HgonTemplate\Controller\StandardController::class => 'projectPartner'
             ],
-            // non-cacheable actions
-            [
-                \HGON\HgonTemplate\Controller\StandardController::class => 'projectPartner'
-            ]
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -192,7 +200,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'authorList'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         // ***************
@@ -208,7 +217,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'showRelatedSidebar'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -220,7 +230,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'journalHighlight'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
 
@@ -233,7 +244,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'journal'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -245,7 +257,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'header'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -257,7 +270,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\NewsController::class => 'sidebar'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
 
@@ -276,7 +290,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonTemplate\Controller\ArticleController::class => 'showArticleFromPages, newOrder, createOrder'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
 
@@ -305,24 +320,9 @@ call_user_func(
             ),
         );
 
-
-        // for content slide
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ',subtitle,tx_rkwbasics_article_image,tx_hgontemplate_contactperson,';
-
         // FormFramework Hooks
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterBuildingFinished']['1575298962'] = HGON\HgonTemplate\Hooks\FormFramework\AfterBuildingFinishedHook::class;
 
     },
     'hgon_template'
 );
-
-/**
- * Page TSconfig
- */
-$pageTSconfig = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl(
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('hgon_template')
-    . 'Configuration/TsConfig/TsConfig.typoscript'
-);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig($pageTSconfig);
-
-// <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_template/Configuration/TsConfig/TsConfig.typoscript">

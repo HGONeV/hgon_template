@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:e="http://typo3.org/ns/DERHANSEN/SfEventMgt/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="form__field event-registration-row event-registration-row--choice radio-field {e:validation.errorClass(registrationField: field)}">
+    <label class="label">
+        {field.title}
+        <e:registration.isRequiredField settings="{settings}" registrationField="{field}">
+            <span class="event-required">*</span>
+        </e:registration.isRequiredField>
+    </label>
+    <div class="inputs-list radio-group">
+        <f:for each="{field.settingsForOption}" as="option" iteration="i">
+            <label class="radio" for="{field.uid}-{i.cycle}">
+                <span class="radio__input">
+                    <f:form.radio id="{field.uid}-{i.cycle}" class="input input-radio" property="fields.{field.uid}" value="{option.value}" checked="{e:registration.field.prefillMultiValueField(registrationField: field, currentValue: option.value)}" />
+                    <label for="{field.uid}-{i.cycle}"></label>
+                </span>
+                <span class="checkbox__label">{option.label}</span>
+            </label>
+        </f:for>
+    </div>
+    <f:render partial="FormErrors" arguments="{field: 'registration.fields.{field.uid}'}" />
+</div>
+
+</html>

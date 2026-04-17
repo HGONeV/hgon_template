@@ -13,6 +13,8 @@ namespace HGON\HgonTemplate\ViewHelpers\Php;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * IntvalViewHelper
  *
@@ -21,19 +23,20 @@ namespace HGON\HgonTemplate\ViewHelpers\Php;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class IntvalViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
+final class IntvalViewHelper extends AbstractViewHelper
 {
-    /**
-     * Imports php function inval()
-     *
-     * @param mixed $value
-     *
-     * @return integer
-     */
-    public function render($value)
+    public function initializeArguments(): void
     {
-        return intval($value);
+        $this->registerArgument(
+            'value',
+            'mixed',
+            'Value to cast to int',
+            true
+        );
     }
 
-
+    public function render(): int
+    {
+        return (int)$this->arguments['value'];
+    }
 }

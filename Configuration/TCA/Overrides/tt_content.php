@@ -66,12 +66,6 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             $extKey,
-            'ProjectPartner',
-            'HGON: Zeigt Projekt-Partner'
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            $extKey,
             'AuthorList',
             'HGON: Teammitglieder (Liste)'
         );
@@ -118,60 +112,48 @@ call_user_func(
 
 
         //=================================================================
-        // Add Flexform
+        // Add Flexform (CType)
         //=================================================================
         $extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($extKey));
+        $addFlexForm = static function (string $pluginSignature, string $flexFormFile): void {
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+                $pluginSignature,
+                $flexFormFile,
+                $pluginSignature
+            );
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+                'tt_content',
+                'pi_flexform',
+                $pluginSignature,
+                'after:header'
+            );
+        };
 
         $pluginName = strtolower('JournalHighlight');
         $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/JournalHighlight.xml');
+        $addFlexForm($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/JournalHighlight.xml');
 
         $pluginName = strtolower('PageHighlight');
         $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/PageHighlight.xml');
+        $addFlexForm($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/PageHighlight.xml');
 
         $pluginName = strtolower('RandomAuthor');
         $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/RandomAuthor.xml');
-
-        $pluginName = strtolower('ProjectTeaser');
-        $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/ProjectTeaser.xml');
+        $addFlexForm($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/RandomAuthor.xml');
 
         $pluginName = strtolower('PageSlider');
         $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/PageSlider.xml');
-
-        $pluginName = strtolower('ProjectPartner');
-        $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/ProjectPartner.xml');
+        $addFlexForm($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/PageSlider.xml');
 
         $pluginName = strtolower('AuthorList');
         $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/AuthorList.xml');
+        $addFlexForm($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/AuthorList.xml');
 
         $pluginName = strtolower('SixReasons');
         $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/SixReasons.xml');
+        $addFlexForm($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/SixReasons.xml');
 
 
     },
     'hgon_template'
 );
-

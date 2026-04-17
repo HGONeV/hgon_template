@@ -2,6 +2,7 @@
 
 # Extensions
 @import 'EXT:news/Configuration/TypoScript/constants.typoscript'
+@import 'EXT:sf_event_mgt/Configuration/TypoScript/constants.typoscript'
 
 @import 'EXT:hgon_donation/Configuration/TypoScript/constants.typoscript'
 @import 'EXT:hgon_workgroup/Configuration/TypoScript/constants.typoscript'

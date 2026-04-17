@@ -1,0 +1,21 @@
+{namespace hgon=HGON\HgonTemplate\ViewHelpers}
+
+<f:variable name="addons" value="{hgon:registrationAddons(registration: registration)}" />
+
+<f:if condition="{addons}">
+    <p><strong><f:translate key="tx_hgontemplate.sfeventmgt.notification.addons" extensionName="hgon_template" /></strong></p>
+    <ul>
+        <f:for each="{addons}" as="addon">
+            <li>
+                {addon.quantity}x {addon.title}
+                <f:if condition="{addon.date}">
+                    (<f:format.date format="%d.%m.%Y">{addon.date}</f:format.date>)
+                </f:if>
+                <f:if condition="{addon.description}">
+                    - {addon.description}
+                </f:if>
+                - {addon.totalPrice -> f:format.currency(decimalSeparator: ',', thousandsSeparator: '.', decimals: 2, currencySign: event.currency, prependCurrency: false)}
+            </li>
+        </f:for>
+    </ul>
+</f:if>

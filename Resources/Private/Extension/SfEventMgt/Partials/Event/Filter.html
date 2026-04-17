@@ -1,0 +1,109 @@
+<section id="event-filter" class="article article--fullwidth / form">
+    <form action="{f:uri.page(pageUid: pageData.uid, section: 'event-filter')}" method="get" class="form">
+        <div class="flex-container space-between center-cross gutter">
+            <div class="flex-item c-4">
+                <p class="form__field">
+                    <label for="event-type-select">Typ</label>
+                    <span class="select-box">
+                        <select id="event-type-select" name="tx_sfeventmgt_pieventlist[eventType]">
+                            <f:if condition="{requestEventType} == ''">
+                                <f:then>
+                                    <option value="" selected="selected">Alle Typen</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="">Alle Typen</option>
+                                </f:else>
+                            </f:if>
+                            <f:if condition="{requestEventType} == 'standard'">
+                                <f:then>
+                                    <option value="standard" selected="selected">Standard</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="standard">Standard</option>
+                                </f:else>
+                            </f:if>
+                            <f:if condition="{requestEventType} == 'workgroup'">
+                                <f:then>
+                                    <option value="workgroup" selected="selected">Arbeitskreistreffen</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="workgroup">Arbeitskreistreffen</option>
+                                </f:else>
+                            </f:if>
+                        </select>
+                    </span>
+                </p>
+            </div>
+            <div class="flex-item c-4">
+                <p class="form__field">
+                    <label for="display-mode-select">Zeitraum</label>
+                    <span class="select-box">
+                        <select id="display-mode-select" name="tx_sfeventmgt_pieventlist[overwriteDemand][displayMode]">
+                            <f:if condition="{requestDisplayMode} == 'all'">
+                                <f:then>
+                                    <option value="all" selected="selected">Alle</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="all">Alle</option>
+                                </f:else>
+                            </f:if>
+                            <f:if condition="{requestDisplayMode} == 'future'">
+                                <f:then>
+                                    <option value="future" selected="selected">Kommende</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="future">Kommende</option>
+                                </f:else>
+                            </f:if>
+                            <f:if condition="{requestDisplayMode} == 'current_future'">
+                                <f:then>
+                                    <option value="current_future" selected="selected">Laufend und kommend</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="current_future">Laufend und kommend</option>
+                                </f:else>
+                            </f:if>
+                            <f:if condition="{requestDisplayMode} == 'past'">
+                                <f:then>
+                                    <option value="past" selected="selected">Vergangene</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="past">Vergangene</option>
+                                </f:else>
+                            </f:if>
+                        </select>
+                    </span>
+                </p>
+            </div>
+            <div class="flex-item c-4">
+                <p class="form__field">
+                    <label for="top-event-select">Top-Veranstaltungen</label>
+                    <span class="select-box">
+                        <select id="top-event-select" name="tx_sfeventmgt_pieventlist[overwriteDemand][topEventRestriction]">
+                            <f:if condition="{requestTopEventRestriction} == '0'">
+                                <f:then>
+                                    <option value="0" selected="selected">Alle</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="0">Alle</option>
+                                </f:else>
+                            </f:if>
+                            <f:if condition="{requestTopEventRestriction} == '2'">
+                                <f:then>
+                                    <option value="2" selected="selected">Nur Top-Veranstaltungen</option>
+                                </f:then>
+                                <f:else>
+                                    <option value="2">Nur Top-Veranstaltungen</option>
+                                </f:else>
+                            </f:if>
+                        </select>
+                    </span>
+                </p>
+            </div>
+            <div class="flex-item c-12 event-filter__actions">
+                <f:link.page pageUid="{pageData.uid}" class="btn btn--rounded btn--tertiary">Zurücksetzen</f:link.page>
+                <button class="btn btn--primary btn--rounded" type="submit">Filter anwenden</button>
+            </div>
+        </div>
+    </form>
+</section>

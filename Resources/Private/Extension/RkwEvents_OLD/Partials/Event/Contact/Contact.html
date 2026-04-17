@@ -1,0 +1,36 @@
+<div
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwEvents/ViewHelpers"
+    xmlns:rkwBasics="http://typo3.org/ns/RKW/RkwBasics/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+    <f:variable name="hasInternalContact" value="{event.internalContact -> f:count()}" />
+    <f:variable name="hasExternalContact" value="{event.externalContact -> f:count()}" />
+
+    <f:if condition="{hasInternalContact} || {hasExternalContact}">
+        <f:then>
+
+            <f:if condition="{rkw:extensionIsLoaded(extensionName: 'rkw_authors')}">
+                <f:if condition="{event.internalContact}">
+                    <p>
+                        <f:for each="{rkwBasics:objectStorageSort(objectStorage: event.internalContact, sortBy: 'lastName')}" as="contact" iteration="iterator">
+                            <f:render partial="Event/Contact/ContactSub" section="Internal" arguments="{_all}" />
+                        </f:for>
+                    </p>
+                </f:if>
+            </f:if>
+
+            <f:if condition="{event.externalContact}">
+                <p>
+                    <f:for each="{rkwBasics:objectStorageSort(objectStorage: event.externalContact, sortBy: 'lastName')}" as="contact" iteration="iterator">
+                        <f:render partial="Event/Contact/ContactSub" section="External" arguments="{_all}" />
+                    </f:for>
+                </p>
+            </f:if>
+
+        </f:then>
+        <f:else>
+            <p>Kein Ansprechpartner hinterlegt</p>
+        </f:else>
+    </f:if>
+</div>

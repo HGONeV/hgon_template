@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:hgon="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{event.enablePayment}">
+    <f:then>
+        <f:if condition="{registration.paymentmethod} == 'paypal'">
+            <f:then>
+                <f:if condition="{registration.paid}">
+                    <f:then>
+                        <p><strong>Der Betrag von {registration.price -> f:format.currency(decimalSeparator: ',', thousandsSeparator: '.', decimals: 2, currencySign: event.currency, prependCurrency: false)} wurde per PayPal bezahlt. Die Anmeldung ist vollständig abgeschlossen.</strong></p>
+                    </f:then>
+                    <f:else>
+                        <p><strong>Die PayPal-Zahlung über {registration.price -> f:format.currency(decimalSeparator: ',', thousandsSeparator: '.', decimals: 2, currencySign: event.currency, prependCurrency: false)} steht noch aus. Die Anmeldung ist erst nach erfolgreicher PayPal-Zahlung vollständig abgeschlossen.</strong></p>
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <f:if condition="{registration.paymentmethod} == 'transfer'">
+                    <f:then>
+                        <p><strong>Die Überweisung über {registration.price -> f:format.currency(decimalSeparator: ',', thousandsSeparator: '.', decimals: 2, currencySign: event.currency, prependCurrency: false)} steht noch aus. Bitte die Anmeldung im TYPO3-Backend erst aktivieren, sobald der Betrag eingegangen ist.</strong></p>
+                    </f:then>
+                    <f:else>
+                        <p><strong>Eine Anmeldung wurde bestätigt.</strong></p>
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+    </f:then>
+    <f:else>
+        <p><strong>Eine Anmeldung wurde bestätigt.</strong></p>
+    </f:else>
+</f:if>
+
+<f:render partial="Notification/EventSummary" arguments="{event: event}" />
+<f:render partial="Notification/AdminRegistrationSummary" arguments="{event: event, registration: registration}" />
+</html>

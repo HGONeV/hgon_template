@@ -1,0 +1,10 @@
+@import 'EXT:hgon_template/Themes/_Websites/HeuschreckenHessen/Configuration/TypoScript/Constants/Config/*.typoscript'
+@import 'EXT:hgon_template/Themes/_Websites/HeuschreckenHessen/Configuration/TypoScript/Constants/Extension/*.typoscript'
+
+[applicationContext == "Development*"]
+    @import 'EXT:hgon_template/Themes/_Websites/HeuschreckenHessen/Configuration/TypoScript/__DEV/Constants.typoscript'
+[end]
+
+[applicationContext == "Production/Staging"]
+    @import 'EXT:hgon_template/Themes/_Websites/HeuschreckenHessen/Configuration/TypoScript/__STAGE/Constants.typoscript'
+[end]

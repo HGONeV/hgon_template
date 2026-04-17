@@ -1,0 +1,22 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<p>Hallo {registration.firstname} {registration.lastname},</p>
+<p>wir haben Ihre Anmeldung erhalten. Die Veranstaltung ist aktuell ausgebucht; Ihre Anmeldung wurde deshalb auf die Warteliste gesetzt.</p>
+<p>Bitte bestätigen Sie Ihre Anmeldung für die Warteliste über den folgenden Link:</p>
+<p>
+    <a href="{f:uri.action(action: confirmAction, arguments: {reguid: registration.uid, hmac: hmac}, absolute: true, controller: 'Event', extensionName: 'sfeventmgt', pluginName: 'Pieventregistration')}">Anmeldung zur Warteliste bestätigen</a>
+</p>
+
+<f:render partial="Notification/EventSummary" arguments="{event: event}" />
+<f:render partial="Notification/RegistrationSummary" arguments="{registration: registration}" />
+<f:render partial="Notification/RegistrationAddons" arguments="{registration: registration, event: event}" />
+<f:render partial="Notification/CancellationLink" arguments="{event: event, registration: registration, cancelAction: cancelAction, hmac: hmac}" />
+<f:render partial="Notification/OrganisatorContact" arguments="{event: event}" />
+
+<p>Bitte beachten Sie: Der Bestätigungslink ist bis zum {f:format.date(date: registration.confirmationUntil, format: '%d.%m.%Y - %H:%M')} gültig. Nach Ablauf dieser Frist ist eine Bestätigung über diesen Link nicht mehr möglich.</p>
+
+<p>Freundliche Grüße</p>
+<f:format.html>{settings.notification.senderSignature}</f:format.html>
+
+</html>

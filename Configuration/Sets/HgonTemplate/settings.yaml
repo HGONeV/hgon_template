@@ -1,0 +1,3 @@
+sf_event_mgt.view.templateRootPath: 'EXT:hgon_template/Resources/Private/Extension/SfEventMgt/Templates/'
+sf_event_mgt.view.partialRootPath: 'EXT:hgon_template/Resources/Private/Extension/SfEventMgt/Partials/'
+sf_event_mgt.view.layoutRootPath: 'EXT:hgon_template/Resources/Private/Extension/SfEventMgt/Layouts/'

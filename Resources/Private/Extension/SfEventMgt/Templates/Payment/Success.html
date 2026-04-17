@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+    <f:if condition="{result.renderSuccessCard}">
+        <f:then>
+            <section class="section">
+                <div class="section__content">
+                    <div class="flex-container space-between gutter valign-stretch">
+                        <div class="flex-item c-12">
+                            <article class="card card-plainfull">
+                                <div class="card__inner">
+                                    <div class="flex-container">
+                                        <div class="flex-item c-4">
+                                            <header class="card__header">
+                                                <h1 class="headline">{result.title}</h1>
+                                            </header>
+                                        </div>
+                                        <div class="flex-item c-7">
+                                            <div class="card__content">
+                                                <p>{result.message}</p>
+
+                                                <f:if condition="{settings.detailPid} && {result.event}">
+                                                    <f:link.action action="detail" controller="Event" pageUid="{settings.detailPid}" arguments="{event: result.event}" class="link link--icon">
+                                                        <svg class="icon icon--btn-left" width="18" height="18"><use xlink:href="#ui-arrow-left" /></svg>
+                                                        <f:translate key="event.backDetailsText" />
+                                                    </f:link.action>
+                                                </f:if>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </f:then>
+        <f:else>
+            <f:format.raw>{result.html}</f:format.raw>
+        </f:else>
+    </f:if>
+</f:section>
+
+</html>
