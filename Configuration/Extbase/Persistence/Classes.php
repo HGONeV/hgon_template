@@ -15,6 +15,8 @@ return [
             'tstamp' => ['fieldName' => 'tstamp'],
             'hidden' => ['fieldName' => 'hidden'],
             'deleted' => ['fieldName' => 'deleted'],
+            'txHgontemplateArticleImage' => ['fieldName' => 'tx_hgontemplate_article_image'],
+            'txHgontemplateTeaserText' => ['fieldName' => 'tx_hgontemplate_teaser_text'],
             // 'lastUpdated' => ['fieldName' => 'lastUpdated'], // nur falls das Feld wirklich existiert
         ],
     ],
@@ -26,23 +28,8 @@ return [
     ],
 
     \HGON\HgonTemplate\Domain\Model\Authors::class => [
-        'tableName' => 'tx_rkwauthors_domain_model_authors',
+        'tableName' => 'tx_mdnewsauthor_domain_model_newsauthor',
     ],
-//    \HGON\HgonTemplate\Domain\Model\Event::class => [
-//        'tableName' => 'tx_rkwevents_domain_model_event',
-//    ],
-//
-//    \HGON\HgonTemplate\Domain\Model\EventReservation::class => [
-//        'tableName' => 'tx_rkwevents_domain_model_eventreservation',
-//    ],
-
-//    \HGON\HgonTemplate\Domain\Model\DocumentType::class => [
-//        'tableName' => 'tx_rkwbasics_domain_model_documenttype',
-//    ],
-//
-//    \HGON\HgonTemplate\Domain\Model\Newsletter::class => [
-//        'tableName' => 'tx_rkwnewsletter_domain_model_newsletter',
-//    ],
 
     \HGON\HgonTemplate\Domain\Model\WorkGroup::class => [
         'tableName' => 'tx_hgonworkgroup_domain_model_workgroup',
@@ -68,4 +55,3 @@ return [
         'recordType' => 0,
     ],
 ];
-

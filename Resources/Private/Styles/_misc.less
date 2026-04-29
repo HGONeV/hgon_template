@@ -108,44 +108,53 @@
   }
 }
 
-#zeitspenden {
+#species-tabs {
   .nav--tab {
     border: 0;
     background-color: transparent;
+
     ul {
       margin: 0;
+
       li {
         a {
           border-radius: 3em;
-          border-color: #efefef;
+          border-color: @color-gray-3;
+
           &:hover {
-            background-color: #efefef;
+            background-color: @color-gray-3;
           }
         }
+
         &.active {
           a {
-            background-color: #efefef;
+            background-color: @color-gray-3;
           }
         }
       }
-
     }
   }
+
   .table--support-tasks {
     position: relative;
     min-width: 0;
+
     .btn {
       white-space: nowrap;
     }
+
     p:last-child {
       margin-bottom: 0;
     }
+
     tr:nth-child(odd) {
-      background-color: #fafbf3;
+      background-color: lighten(@color-tertiary, 8%);
     }
+
     td {
       border: 0;
       padding: @gap;
+
       @media only screen and (max-width: 55em) {
         position: relative;
         padding: .25*@gap @gap .25*@gap 1.5*@gap;
@@ -159,7 +168,7 @@
           left: @gap;
           top: 0;
           bottom: 0;
-          background: darken( @color-tertiary, 10% );
+          background: darken(@color-tertiary, 12%);
         }
 
         &:first-child {
@@ -172,22 +181,24 @@
           padding-bottom: @gap;
         }
 
-        &:first-child, &:last-child {
+        &:first-child,
+        &:last-child {
           padding-left: @gap;
+
           &:before {
             display: none;
           }
         }
-
       }
 
       h4 {
         font-weight: 600;
         margin-bottom: 1em;
+
         @media only screen and (max-width: 55em) {
           margin-bottom: .5em;
 
-          & + p {
+          &+p {
             margin-top: 0;
           }
         }
@@ -196,17 +207,20 @@
       .th-mobile {
         font-weight: bold;
         display: none;
+
         @media only screen and (max-width: 55em) {
           display: inline-block;
         }
       }
-      &:first-child .th-mobile {
-        display: none;
+
+      &:first-child {
+        .th-mobile {
+          display: none;
+        }
       }
     }
   }
 }
-
 
 .tmpl-events {
   .form {
@@ -254,52 +268,6 @@
     }
   }
 
-
-  #tx-rkwevents-result-section {
-
-    .mb-1 > h5 {
-      margin: 1.5*@gap 0 .5*@gap;
-    }
-
-    .no-search-results {
-      padding-left: @gap;
-      padding-right: @gap;
-    }
-  }
-}
-
-#tx-rkwevents-grid-section-workgroup, [id^="tx-rkwevents-results"] {
-
-
-  .textbox {
-    padding: 0!important;
-  }
-  .align-item-center {
-    @media @mq-medium {
-      display: none;
-      padding-bottom: 0;
-      text-align: left!important;
-    }
-  }
-}
-
-#tx-rkwevents-grid-section-workgroup {
-  .flex-container {
-    margin-left: -1*@gap;
-    margin-right: -1*@gap;
-    width: auto;
-  }
-
-  .textbox .flex-container {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-
-.article:not(.article--fullwidth) #tx-rkwevents-grid-section-workgroup {
-  .c-6 {
-    width: 100%;
-  }
 }
 
 #workgroup-list-anchor {
@@ -379,30 +347,6 @@
         }
       }
     }
-  }
-}
-
-#donation-more-link-container-time:empty {
-  display: none;
-}
-
-
-.aside-helpactivities {
-
-  .money, .time {
-    &::before {
-      text-transform: uppercase;
-      .font-size(12);
-      letter-spacing: 1px;
-      color: lighten(@color-text, 20%);
-    }
-  }
-  .money::before {
-    content: 'Sachspende';
-  }
-
-  .time::before {
-    content: 'Zeitspende';
   }
 }
 

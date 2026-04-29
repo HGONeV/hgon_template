@@ -1,26 +1,5 @@
 config.base = https://hgon-relaunch.ddev.site:8443
 
-plugin.tx_rkwbasics {
-    settings {
-        pageNotFoundConfig {
-            _DEFAULT {
-                fallbackPid = 68
-                defaultDomain = hgon-relaunch.ddev.site:8443
-            }
-        }
-    }
-}
-
-# Module configuration
-module.tx_rkwmailer {
-
-    settings {
-
-        # URL for hard-links in templates
-        baseUrl = https://hgon-relaunch.ddev.site:8443
-    }
-}
-
 
 plugin.tx_hgonworkgroup_list {
     settings {

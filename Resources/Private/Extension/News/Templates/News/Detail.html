@@ -56,11 +56,25 @@
                                 </span>
                                 </f:if>
 
-                                <f:if condition="{newsItem.author}">
-                                    <!-- author -->
-                                    <span class="news-list-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
-                                    <f:translate key="author_simple" /> <span itemprop="name">{newsItem.author}</span>
-                                </span>
+                                <f:if condition="{newsItem.newsAuthor}">
+                                    <f:then>
+                                        <span class="news-list-author">
+                                            <f:translate key="author_simple" />
+                                            <f:for each="{newsItem.newsAuthor}" as="author" iteration="authorIterator">
+                                                <span itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                                                    <span itemprop="name">{author.firstname} {author.lastname}</span>
+                                                </span><f:if condition="{authorIterator.isLast}"><f:else>, </f:else></f:if>
+                                            </f:for>
+                                        </span>
+                                    </f:then>
+                                    <f:else>
+                                        <f:if condition="{newsItem.author}">
+                                            <!-- author -->
+                                            <span class="news-list-author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                                            <f:translate key="author_simple" /> <span itemprop="name">{newsItem.author}</span>
+                                        </span>
+                                        </f:if>
+                                    </f:else>
                                 </f:if>
                             </f:comment>
                         </p>

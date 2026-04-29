@@ -123,35 +123,6 @@ call_user_func(
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
-        /*
-         * -> Moved to HGON Donation
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            $extKey,
-            'SupportOptions',
-            [
-                \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptions'
-            ],
-            // non-cacheable actions
-            [
-                \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptions'
-            ],
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
-        );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            $extKey,
-            'SupportOptionsLight',
-            [
-                \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptionsLight'
-            ],
-            // non-cacheable actions
-            [
-                \HGON\HgonTemplate\Controller\StandardController::class => 'supportOptionsLight'
-            ],
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
-        );
-        */
-
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             $extKey,
             'SixReasons',
@@ -307,7 +278,7 @@ call_user_func(
 
 
         // set logger
-        $GLOBALS['TYPO3_CONF_VARS']['LOG']['RKW']['RkwBasics']['writerConfiguration'] = array(
+        $GLOBALS['TYPO3_CONF_VARS']['LOG']['HGON']['HgonTemplate']['writerConfiguration'] = array(
 
             // configuration for WARNING severity, including all
             // levels with higher severity (ERROR, CRITICAL, EMERGENCY)
@@ -319,9 +290,6 @@ call_user_func(
                 )
             ),
         );
-
-        // FormFramework Hooks
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterBuildingFinished']['1575298962'] = HGON\HgonTemplate\Hooks\FormFramework\AfterBuildingFinishedHook::class;
 
     },
     'hgon_template'

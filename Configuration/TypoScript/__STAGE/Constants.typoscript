@@ -14,10 +14,3 @@ plugin.tx_hgontemplate {
     }
 }
 
-
-module.tx_rkwmailer {
-    settings {
-        // URL for hard-links in templates
-        baseUrl = http://stage.hgon.de
-    }
-}

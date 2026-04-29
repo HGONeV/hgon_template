@@ -26,7 +26,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright HGON
- * @package RKW_HgonTemplate
+ * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository

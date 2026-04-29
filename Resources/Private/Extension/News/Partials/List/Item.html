@@ -92,10 +92,22 @@
 			</f:if>
 
 			<!-- author -->
-			<f:if condition="{newsItem.author}">
-				<span class="news-list-author">
-					<f:translate key="author" arguments="{0:newsItem.author}"/>
-				</span>
+			<f:if condition="{newsItem.newsAuthor}">
+				<f:then>
+					<span class="news-list-author">
+						<f:translate key="author_simple" />
+						<f:for each="{newsItem.newsAuthor}" as="author" iteration="authorIterator">
+							{author.firstname} {author.lastname}<f:if condition="{authorIterator.isLast}"><f:else>, </f:else></f:if>
+						</f:for>
+					</span>
+				</f:then>
+				<f:else>
+					<f:if condition="{newsItem.author}">
+						<span class="news-list-author">
+							<f:translate key="author" arguments="{0:newsItem.author}"/>
+						</span>
+					</f:if>
+				</f:else>
 			</f:if>
 		</p>
 	</div>

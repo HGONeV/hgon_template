@@ -1,16 +1,5 @@
 config.base = https://hgon-libellen.ddev.site:8443/
 
-plugin.tx_rkwbasics {
-    settings {
-        pageNotFoundConfig {
-            _DEFAULT {
-                fallbackPid = 81
-                defaultDomain = hgon-libellen.ddev.site:8443/
-            }
-        }
-    }
-}
-
 page.10.dataProcessing {
     10.special.value = 78
     #35.special.value = 33

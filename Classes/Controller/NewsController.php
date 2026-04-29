@@ -13,6 +13,7 @@ namespace HGON\HgonTemplate\Controller;
  ***/
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use HGON\HgonTemplate\Utility\AjaxResponseBuilder;
 
 use \HGON\HgonTemplate\Utility\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -37,11 +38,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     protected $sysCategoryRepository;
 
     /**
-     * @var \HGON\HgonDonation\Domain\Repository\DonationRepository
-     */
-    protected $donationRepository;
-
-    /**
      * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
      */
     public function injectPagesRepository(\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository): void {
@@ -60,13 +56,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      */
     public function injectSysCategoryRepository(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository): void {
         $this->sysCategoryRepository = $sysCategoryRepository;
-    }
-
-    /**
-     * @param \HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository
-     */
-    public function injectDonationRepository(\HGON\HgonDonation\Domain\Repository\DonationRepository $donationRepository): void {
-        $this->donationRepository = $donationRepository;
     }
 
     /**
@@ -94,22 +83,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
                 $newsToExclude[] = $news;
             }
         }
-
-        // Else: on donation detail: Use Project category
-        if (!$categories) {
-            $getParams = $qp['tx_hgondonation_detail'] ?? [];
-            $getParams = is_array($getParams) ? $getParams : [];
-
-            $donationUid = (int)preg_replace('/\D+/', '', (string)($getParams['donation'] ?? ''));
-
-            /** @var \HGON\HgonDonation\Domain\Model\Donation|null $donation */
-            $donation = $donationUid > 0 ? $this->donationRepository->findByIdentifier($donationUid) : null;
-
-            if ($donation?->getTxRkwprojectProject()?->getSysCategory()?->count() > 0) {
-                $categories = $donation->getTxRkwprojectProject()->getSysCategory();
-            }
-        }
-
 
         // Else: Get categories of pages
         if (!$categories) {
@@ -189,7 +162,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $pageNumber++;
         $templateDataArray = [];
 
-        /** @var \RKW\RkwRegistration\Domain\Repository\FrontendUserRepository $frontendUserRepository */
      //   $objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
         /** @var \HGON\HgonTemplate\Helper\Journal $journalHelper */
      //   $journalHelper = $objectManager->get('HGON\\HgonTemplate\\Helper\\Journal');
@@ -274,34 +246,35 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         $type = (int)($this->request->getQueryParams()['type'] ?? 0);
         if ($type === $ajaxTypeNum) {
 
-            // get JSON helper
-            /** @var \RKW\RkwBasics\Helper\Json $jsonHelper */
-            $jsonHelper = GeneralUtility::makeInstance(\RKW\RkwBasics\Helper\Json::class);
-
             // ajax context: Set settings manually
             $templateDataArray['settings'] = $this->settings;
 
             // if sysCategory and page 1 - reload whole content. Else: Append
             $kindOfRequest = $pageNumber == 1 ? 'replace' : 'append';
 
-            // Content
-            $jsonHelper->setHtml(
-                'journal-flex-container',
-                $templateDataArray,
-                $kindOfRequest,
-                'Ajax/Journal/' . ucfirst($kindOfRequest) . '.html'
+            $json = GeneralUtility::makeInstance(AjaxResponseBuilder::class)->build(
+                [
+                    [
+                        'id' => 'journal-flex-container',
+                        'variables' => $templateDataArray,
+                        'mode' => $kindOfRequest,
+                        'template' => 'Ajax/Journal/' . ucfirst($kindOfRequest),
+                    ],
+                    [
+                        'id' => 'journal-more-link-container',
+                        'variables' => $templateDataArray,
+                        'mode' => 'replace',
+                        'template' => 'Ajax/Journal/MoreLink',
+                    ],
+                ],
+                $this->request,
+                ['EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Templates/'],
+                ['EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'],
+                ['EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'],
+                $this->settings
             );
 
-            // More link replace
-            $jsonHelper->setHtml(
-                'journal-more-link-container',
-                $templateDataArray,
-                'replace',
-                'Ajax/Journal/MoreLink.html'
-            );
-
-            print (string)$jsonHelper;
-            exit();
+            return $this->htmlResponse($json);
 
         } else {
             $this->view->assignMultiple($templateDataArray);

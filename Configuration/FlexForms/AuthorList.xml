@@ -15,9 +15,9 @@
                                 <minitems>1</minitems>
                                 <maxitems>9999</maxitems>
                                 <type>select</type>
-                                <foreign_table>tx_rkwauthors_domain_model_authors</foreign_table>
+                                <foreign_table>tx_mdnewsauthor_domain_model_newsauthor</foreign_table>
                                 <foreign_table_where>
-                                    AND tx_rkwauthors_domain_model_authors.deleted = 0 AND tx_rkwauthors_domain_model_authors.hidden = 0 ORDER BY tx_rkwauthors_domain_model_authors.last_name
+                                    AND tx_mdnewsauthor_domain_model_newsauthor.deleted = 0 AND tx_mdnewsauthor_domain_model_newsauthor.hidden = 0 ORDER BY tx_mdnewsauthor_domain_model_newsauthor.lastname, tx_mdnewsauthor_domain_model_newsauthor.firstname
                                 </foreign_table_where>
                             </config>
                         </TCEforms>

@@ -13,8 +13,8 @@ $tempPagesColumns = array(
         'config' => [
             'type' => 'select',
             'renderType' => 'selectMultipleSideBySide',
-            'foreign_table' => 'tx_rkwauthors_domain_model_authors',
-            'foreign_table_where' => 'ORDER BY tx_rkwauthors_domain_model_authors.last_name ASC',
+            'foreign_table' => 'tx_mdnewsauthor_domain_model_newsauthor',
+            'foreign_table_where' => 'ORDER BY tx_mdnewsauthor_domain_model_newsauthor.lastname ASC, tx_mdnewsauthor_domain_model_newsauthor.firstname ASC',
             'size' => 10,
             'autoSizeMax' => 30,
             'maxitems' => 1,
@@ -42,10 +42,9 @@ $tempPagesColumns = array(
         ],
     ],
 
-    // re-add after removing in RkwBasics for TYPO3 >= 8
-    'tx_rkwbasics_article_image' => [
+    'tx_hgontemplate_article_image' => [
         'exclude' => 1,
-        'label' => 'LLL:EXT:rkw_basics/Resources/Private/Language/locallang_db.xlf:tx_rkwbasics_domain_model_pages.tx_rkwbasics_article_image',
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tx_hgontemplate_article_image',
         'config' => [
             'type' => 'file',
             'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'] ?? 'jpg,jpeg,png,gif',
@@ -90,9 +89,9 @@ $tempPagesColumns = array(
             ],
         ],
     ],
-    'tx_rkwbasics_teaser_text' => [
+    'tx_hgontemplate_teaser_text' => [
         'exclude' => 0,
-        'label' => 'LLL:EXT:rkw_basics/Resources/Private/Language/locallang_db.xlf:tx_rkwbasics_domain_model_pages.tx_rkwbasics_teaser_text',
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tx_hgontemplate_teaser_text',
         'config' => [
             'type' => 'text',
             'cols' => 40,
@@ -108,13 +107,10 @@ ExtensionManagementUtility::addTCAcolumns(
     $tempPagesColumns
 );
 
-ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_rkwbasics_extended','tx_hgontemplate_contactperson','after:subtitle');
-ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_rkwbasics_extended2','tx_hgontemplate_article','after:tx_hgontemplate_contactperson');
-
-//\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_rkwbasics_extended', 'tx_hgontemplate_contactperson, tx_hgontemplate_article');
+ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_hgontemplate_extended','tx_hgontemplate_contactperson','after:subtitle');
+ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_hgontemplate_extended2','tx_hgontemplate_article','after:tx_hgontemplate_contactperson');
 
 // Add palette to new tab
-// using renamed RKW tab instead
 /*
 $tempConfig = '--div--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tabs.hgon,--palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.palettes.common;tx_hgontemplate_palette,';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
@@ -128,14 +124,14 @@ $tempConfig = '--div--;LLL:EXT:hgon_template/Resources/Private/Language/locallan
 
 ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
-    'tx_rkwbasics_article_image',
+    'tx_hgontemplate_article_image',
     '',
     'before:abstract'
 );
 
 ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
-    'tx_rkwbasics_teaser_text',
+    'tx_hgontemplate_teaser_text',
     '',
     'before:abstract'
 );

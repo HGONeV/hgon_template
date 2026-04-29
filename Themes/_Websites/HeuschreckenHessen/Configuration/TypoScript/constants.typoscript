@@ -1,16 +1,10 @@
 # Extensions
 @import 'EXT:news/Configuration/TypoScript/constants.txt'
+@import 'EXT:md_news_author/Configuration/TypoScript/constants.typoscript'
 @import 'EXT:pb_social/Configuration/TypoScript/constants.txt'
 @import 'EXT:sr_freecap/Configuration/TypoScript/constants.txt'
 
-@import 'EXT:rkw_basics/Configuration/TypoScript/constants.txt'
-@import 'EXT:rkw_authors/Configuration/TypoScript/constants.txt'
 @import 'EXT:sf_event_mgt/Configuration/TypoScript/constants.typoscript'
-@import 'EXT:rkw_geolocation/Configuration/TypoScript/constants.txt'
-@import 'EXT:rkw_mailer/Configuration/TypoScript/constants.txt'
-@import 'EXT:rkw_projects/Configuration/TypoScript/constants.txt'
-@import 'EXT:rkw_registration/Configuration/TypoScript/constants.txt'
-@import 'EXT:rkw_newsletter/Configuration/TypoScript/constants.txt'
 @import 'EXT:hgon_donation/Configuration/TypoScript/constants.typoscript'
 @import 'EXT:hgon_workgroup/Configuration/TypoScript/constants.typoscript'
 @import 'EXT:hgon_payment/Configuration/TypoScript/constants.typoscript'

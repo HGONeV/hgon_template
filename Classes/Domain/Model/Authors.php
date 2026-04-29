@@ -2,6 +2,9 @@
 
 namespace HGON\HgonTemplate\Domain\Model;
 
+use Mediadreams\MdNewsAuthor\Domain\Model\NewsAuthor;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -23,26 +26,68 @@ namespace HGON\HgonTemplate\Domain\Model;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Authors extends NewsAuthor
 {
-    /**
-     * txHgontemplateShortDescription
-     *
-     * @var string
-     */
-    protected $txHgontemplateShortDescription = '';
+    protected string $txHgontemplateShortDescription = '';
 
-    /**
-     * txHgontemplateLongerDescription
-     *
-     * @var string
-     */
-    protected $txHgontemplateLongerDescription = '';
+    protected string $txHgontemplateLongerDescription = '';
+
+    protected string $phone2 = '';
+
+    public function getFirstName(): string
+    {
+        return $this->getFirstname();
+    }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->setFirstname($firstName);
+    }
+
+    public function getLastName(): string
+    {
+        return $this->getLastname();
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->setLastname($lastName);
+    }
+
+    public function getFunctionTitle(): string
+    {
+        return $this->getPosition();
+    }
+
+    public function setFunctionTitle(string $functionTitle): void
+    {
+        $this->setPosition($functionTitle);
+    }
+
+    public function getFunctionDescription(): string
+    {
+        return $this->getBio();
+    }
+
+    public function setFunctionDescription(string $functionDescription): void
+    {
+        $this->setBio($functionDescription);
+    }
+
+    public function getImageBoxes(): ?FileReference
+    {
+        return $this->getImage();
+    }
+
+    public function setImageBoxes(?FileReference $imageBoxes): void
+    {
+        $this->setImage($imageBoxes);
+    }
 
     /**
      * @return string
      */
-    public function getTxHgontemplateShortDescription()
+    public function getTxHgontemplateShortDescription(): string
     {
         return $this->txHgontemplateShortDescription;
     }
@@ -50,7 +95,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $txHgontemplateShortDescription
      */
-    public function setTxHgontemplateShortDescription($txHgontemplateShortDescription)
+    public function setTxHgontemplateShortDescription(string $txHgontemplateShortDescription): void
     {
         $this->txHgontemplateShortDescription = $txHgontemplateShortDescription;
     }
@@ -58,7 +103,7 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getTxHgontemplateLongerDescription()
+    public function getTxHgontemplateLongerDescription(): string
     {
         return $this->txHgontemplateLongerDescription;
     }
@@ -66,8 +111,18 @@ class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @param string $txHgontemplateLongerDescription
      */
-    public function setTxHgontemplateLongerDescription($txHgontemplateLongerDescription)
+    public function setTxHgontemplateLongerDescription(string $txHgontemplateLongerDescription): void
     {
         $this->txHgontemplateLongerDescription = $txHgontemplateLongerDescription;
+    }
+
+    public function getPhone2(): string
+    {
+        return $this->phone2;
+    }
+
+    public function setPhone2(string $phone2): void
+    {
+        $this->phone2 = $phone2;
     }
 }

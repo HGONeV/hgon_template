@@ -1,12 +1,12 @@
 <f:for each="{pagesList}" as="pages" iteration="iter">
 
-    <article class="card card--fullwidth card--border mt-2 {f:if(condition: '{pages.txRkwbasicsArticleImage}', then: 'card--has-image')}">
+    <article class="card card--fullwidth card--border mt-2 {f:if(condition: '{pages.txHgontemplateArticleImage}', then: 'card--has-image')}">
         <div class="flex-container no-padding">
 
-            <f:if condition="{pages.txRkwbasicsArticleImage}">
+            <f:if condition="{pages.txHgontemplateArticleImage}">
                 <f:then>
-                    <div class="flex-item c-4 flex-item--medium-half {f:if(condition: '{pages.txRkwbasicsArticleImage}', then: 'is-image-container')}">
-                        <div class="card__bgimage" style="background-image:url(<f:uri.image image='{pages.txRkwbasicsArticleImage}' absolute='true' cropVariant='16to9'  />)"></div>
+                    <div class="flex-item c-4 flex-item--medium-half {f:if(condition: '{pages.txHgontemplateArticleImage}', then: 'is-image-container')}">
+                        <div class="card__bgimage" style="background-image:url(<f:uri.image image='{pages.txHgontemplateArticleImage}' absolute='true' cropVariant='16to9'  />)"></div>
                     </div>
                 </f:then>
             </f:if>
@@ -18,7 +18,7 @@
                     </header>
                     <div class="card__content">
                         <p>
-                            {pages.txRkwbasicsTeaserText}
+                            {pages.txHgontemplateTeaserText}
                         </p>
                     </div>
                     <footer class="card__footer">

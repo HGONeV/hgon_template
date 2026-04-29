@@ -56,26 +56,6 @@
             <trans-unit id="tx_hgontemplate_domain_model_eventculinary.date">
                 <source>Date</source>
             </trans-unit>
-
-
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventcosts">
-                <source>Events Costs</source>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary">
-                <source>Meals</source>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype">
-                <source>Payment type</source>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.0">
-                <source>Please choose</source>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.1">
-                <source>Locally</source>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
-                <source>PayPal</source>
-            </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type">
                 <source>Type</source>
             </trans-unit>
@@ -127,7 +107,13 @@
                 <source>Contact person (sidarbar)</source>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_article">
-                <source>Shown shop article</source>
+                <source>Shown article</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_article_image">
+                <source>Article image</source>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_teaser_text">
+                <source>Teaser text</source>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_pages.pleaseChoose">
                 <source>--- Please choose ---</source>
@@ -150,9 +136,6 @@
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_news.tx_hgontemplate_header_image">
                 <source>Header image</source>
-            </trans-unit>
-            <trans-unit id="tx_hgontemplate_domain_model_news.tx_rkwproject_project">
-                <source>Project</source>
             </trans-unit>
 
             <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.news">
@@ -268,6 +251,15 @@
                 <source>Short description</source>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_authors.tx_hgontemplate_longer_description">
+                <source>Longer description</source>
+            </trans-unit>
+            <trans-unit id="tx_mdnewsauthor_domain_model_newsauthor.phone2">
+                <source>Second phone</source>
+            </trans-unit>
+            <trans-unit id="tx_mdnewsauthor_domain_model_newsauthor.tx_hgontemplate_short_description">
+                <source>Short description</source>
+            </trans-unit>
+            <trans-unit id="tx_mdnewsauthor_domain_model_newsauthor.tx_hgontemplate_longer_description">
                 <source>Longer description</source>
             </trans-unit>
 

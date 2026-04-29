@@ -2,7 +2,10 @@
 
 namespace HGON\HgonTemplate\Domain\Model;
 
+use Mediadreams\MdNewsAuthor\Domain\Model\NewsAuthor;
 use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
     /*
      * This file is part of the TYPO3 CMS project.
@@ -28,6 +31,18 @@ use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
 class News extends \GeorgRinger\News\Domain\Model\NewsDefault
 {
     /**
+     * @var ObjectStorage<NewsAuthor>
+     */
+    #[Lazy()]
+    protected ObjectStorage $newsAuthor;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->newsAuthor = new ObjectStorage();
+    }
+
+    /**
      * txHgontemplateYoutubeVideoId
      *
      * @var string
@@ -41,6 +56,29 @@ class News extends \GeorgRinger\News\Domain\Model\NewsDefault
      */
     #[Cascade(['value' => 'remove'])]
     protected $txHgontemplateHeaderImage = null;
+
+    public function addNewsAuthor(NewsAuthor $newsAuthor): void
+    {
+        $this->newsAuthor ??= new ObjectStorage();
+        $this->newsAuthor->attach($newsAuthor);
+    }
+
+    public function removeNewsAuthor(NewsAuthor $newsAuthorToRemove): void
+    {
+        $this->newsAuthor ??= new ObjectStorage();
+        $this->newsAuthor->detach($newsAuthorToRemove);
+    }
+
+    public function getNewsAuthor(): ObjectStorage
+    {
+        $this->newsAuthor ??= new ObjectStorage();
+        return $this->newsAuthor;
+    }
+
+    public function setNewsAuthor(ObjectStorage $newsAuthor): void
+    {
+        $this->newsAuthor = $newsAuthor;
+    }
 
     /**
      * @return string

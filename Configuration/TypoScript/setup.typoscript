@@ -1,5 +1,6 @@
 # Extensions
 @import 'EXT:news/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:md_news_author/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:sf_event_mgt/Configuration/TypoScript/setup.typoscript'
 
 @import 'EXT:hgon_donation/Configuration/TypoScript/setup.typoscript'
@@ -27,8 +28,6 @@
 /*
 
 # Extensions
-#<INCLUDE_TYPOSCRIPT: source="FILE:EXT:rkw_template/Configuration/TypoScript/_Core/setup.ts">
-
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:news/Configuration/TypoScript/setup.typoscript">
 
 <INCLUDE_TYPOSCRIPT: source="FILE:EXT:hgon_donation/Configuration/TypoScript/setup.typoscript">

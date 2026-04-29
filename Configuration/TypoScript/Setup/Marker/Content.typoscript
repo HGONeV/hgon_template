@@ -16,7 +16,7 @@ page {
             parentPageSubtitle.data = levelfield: -2, subtitle, slide
 
             parentPageTeaserText = TEXT
-            parentPageTeaserText.data = levelfield: -2, tx_rkwbasics_teaser_text
+            parentPageTeaserText.data = levelfield: -2, tx_hgontemplate_teaser_text
 
             pageTitle = TEXT
             pageTitle.data = levelfield : -1, title, slide
@@ -25,12 +25,12 @@ page {
             pageSubtitle.data = levelfield : -1, subtitle, slide
 
             pageTeaserText = TEXT
-            pageTeaserText.data = levelfield : -1, tx_rkwbasics_teaser_text, slide
+            pageTeaserText.data = levelfield : -1, tx_hgontemplate_teaser_text, slide
 
             pageArticleImage = IMAGE
             pageArticleImage {
                 file {
-                    import.data = levelfield:-1, tx_rkwbasics_article_image, slide
+                    import.data = levelfield:-1, tx_hgontemplate_article_image, slide
                     treatIdAsReference = 1
                     // Either: Use first image
                     import.listNum = 0
@@ -43,7 +43,7 @@ page {
             pageArticleImageResource = IMG_RESOURCE
             pageArticleImageResource {
                 file {
-                    import.data = levelfield:-1, tx_rkwbasics_article_image, slide
+                    import.data = levelfield:-1, tx_hgontemplate_article_image, slide
                     treatIdAsReference = 1
                     // Either: Use first image
                     import.listNum = 0

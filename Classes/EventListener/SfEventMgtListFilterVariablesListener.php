@@ -39,18 +39,6 @@ final class SfEventMgtListFilterVariablesListener
         $variables['requestEventType'] = $requestEventType;
         $variables['requestDisplayMode'] = $requestDisplayMode;
         $variables['requestTopEventRestriction'] = $requestTopEventRestriction;
-        $variables['requestPluginArgumentsDebug'] = $pluginArguments;
-        $variables['overwriteDemandDebug'] = $variables['overwriteDemand'] ?? [];
-        $variables['eventDemandDebug'] = [
-            'displayMode' => method_exists($variables['eventDemand'] ?? null, 'getDisplayMode') ? $variables['eventDemand']->getDisplayMode() : null,
-            'topEventRestriction' => method_exists($variables['eventDemand'] ?? null, 'getTopEventRestriction') ? $variables['eventDemand']->getTopEventRestriction() : null,
-        ];
-        $variables['requestMetaDebug'] = [
-            'renderedAt' => date('c'),
-            'queryString' => (string)($request->getServerParams()['QUERY_STRING'] ?? ''),
-            'requestUri' => (string)$request->getUri(),
-            'queryParams' => $request->getQueryParams(),
-        ];
         $variables['eventTypeOptions'] = [
             'standard' => 'Standard',
             'workgroup' => 'Arbeitskreistreffen',

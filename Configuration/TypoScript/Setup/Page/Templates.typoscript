@@ -227,48 +227,6 @@ page {
             }
 
             //=================================================================
-            // add donation header to donation view
-            //=================================================================
-            donationHeader = EXTBASEPLUGIN
-            donationHeader {
-                extensionName = HgonDonation
-                pluginName = Header
-                vendorName = HGON
-                controller = Donation
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Donation {
-                        1 = header
-                    }
-                }
-
-                view =< plugin.tx_hgondonation.view
-                persistence =< plugin.tx_hgondonation.persistence
-                settings =< plugin.tx_hgondonation.settings
-            }
-
-            //=================================================================
-            // add donation sidebar to donation view
-            //=================================================================
-            donationSidebar = EXTBASEPLUGIN
-            donationSidebar {
-                extensionName = HgonDonation
-                pluginName = Sidebar
-                vendorName = HGON
-                controller = Donation
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Donation {
-                        1 = sidebar
-                    }
-                }
-
-                view =< plugin.tx_hgondonation.view
-                persistence =< plugin.tx_hgondonation.persistence
-                settings =< plugin.tx_hgondonation.settings
-            }
-
-            //=================================================================
             // add event header to sf_event_mgt detail view
             //=================================================================
             eventHeader = EXTBASEPLUGIN

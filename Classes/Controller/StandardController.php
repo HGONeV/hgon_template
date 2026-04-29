@@ -98,7 +98,7 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * action randomAuthor
-     * shows a random author (from RkwAuthors)
+     * shows a random author
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
@@ -244,39 +244,6 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         // @TESTING: Shows a "Fundraising form"
         // do nothing else: Show JS in Template
     }*/
-
-
-
-    /**
-     * action supportOptions
-     * - become a member form
-     * - donate money
-     * - donate time
-     * -> Options are defined via flexForm
-     *
-     * @deprecated Moved to HGON DONATION
-     * @return void
-
-    public function supportOptionsAction()
-    {
-        // do nothing else
-    }*/
-
-
-
-    /**
-     * action supportOptionsLight
-     * -> Gives no real forms. Only anchors for opening forms of "supportOptions" plugin, which is used as standard footer element
-     *
-     * @deprecated Moved to HGON DONATION
-     * @return void
-
-    public function supportOptionsLightAction()
-    {
-        // do nothing else
-    }*/
-
-
 
     /**
      * action sixReasons

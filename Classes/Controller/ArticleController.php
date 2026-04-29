@@ -13,6 +13,7 @@ namespace HGON\HgonTemplate\Controller;
  ***/
 
 use HGON\HgonPayment\Session\BasketSessionService;
+use HGON\HgonTemplate\Utility\AjaxResponseBuilder;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -125,25 +126,27 @@ class ArticleController extends \GeorgRinger\News\Controller\NewsController
         $approvalUrl = $result->links;
         //$this->view->assign('approvalUrl', $approvalUrl[1]->href);
 
-        // get JSON helper
-        /** @var \RKW\RkwBasics\Helper\Json $jsonHelper */
-        $jsonHelper = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\RKW\RkwBasics\Helper\Json::class);
-        // get new list
         $replacements = array (
             'approvalUrl' => $isPayPalPlus ? $approvalUrl[1]->href : $approvalUrl[0]->href,
             'isPayPalPlus' => $isPayPalPlus
         );
 
-        $jsonHelper->setHtml(
-            'payment-container',
-            $replacements,
-            'replace',
-            'Ajax/Article/CreateOrder.html'
+        $json = GeneralUtility::makeInstance(AjaxResponseBuilder::class)->build(
+            [
+                [
+                    'id' => 'payment-container',
+                    'variables' => $replacements,
+                    'mode' => 'replace',
+                    'template' => 'Ajax/Article/CreateOrder',
+                ],
+            ],
+            $this->request,
+            ['EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Templates/'],
+            ['EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'],
+            ['EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'],
+            $this->settings
         );
 
-        print (string) $jsonHelper;
-        exit();
-
-        return $this->htmlResponse();
+        return $this->htmlResponse($json);
     }
 }

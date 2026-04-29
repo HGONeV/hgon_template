@@ -34,6 +34,10 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
 
     public function executeUpdate(): bool
     {
+        if (!$this->tableExists(self::SOURCE_TABLE)) {
+            return true;
+        }
+
         $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
         $sourceConnection = $connectionPool->getConnectionForTable(self::SOURCE_TABLE);
         $targetConnection = $connectionPool->getConnectionForTable(self::TARGET_TABLE);
@@ -75,6 +79,7 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
             $uidMap[(int)$row['uid']] = (int)$targetConnection->lastInsertId(self::TARGET_TABLE);
         }
 
+        $this->migrateCulinaryOptions($connectionPool, $uidMap);
         $this->updateLocalizationParents($targetConnection, $sourceRows, $sourceColumns, $uidMap, $targetColumns);
 
         return true;
@@ -82,13 +87,27 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
 
     public function updateNecessary(): bool
     {
+        if (!$this->tableExists(self::SOURCE_TABLE)) {
+            return false;
+        }
+
         $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
         $sourceConnection = $connectionPool->getConnectionForTable(self::SOURCE_TABLE);
         $targetConnection = $connectionPool->getConnectionForTable(self::TARGET_TABLE);
         $sourceColumns = $this->getColumnNames($sourceConnection, self::SOURCE_TABLE);
+        $targetColumns = $this->getColumnNames($targetConnection, self::TARGET_TABLE);
 
         foreach ($this->fetchSourceRows($sourceConnection) as $row) {
-            if ($this->findExistingTargetUid($targetConnection, $row, $sourceColumns) === null) {
+            $existingUid = $this->findExistingTargetUid($targetConnection, $row, $sourceColumns);
+            if ($existingUid === null) {
+                return true;
+            }
+
+            if ($this->targetNeedsRefresh($targetConnection, $row, $sourceColumns, $targetColumns, $existingUid)) {
+                return true;
+            }
+
+            if ($this->hasUnmigratedCulinaryOptions($connectionPool, (int)$row['uid'], $existingUid)) {
                 return true;
             }
         }
@@ -106,6 +125,10 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
      */
     private function fetchSourceRows(Connection $connection): array
     {
+        if (!$this->tableExists(self::SOURCE_TABLE)) {
+            return [];
+        }
+
         return $connection->createQueryBuilder()
             ->select('*')
             ->from(self::SOURCE_TABLE)
@@ -210,7 +233,211 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
             $data['organisator'] = 0;
         }
 
+        $this->copySourceColumnIfTargetColumnExists(
+            $data,
+            $sourceRow,
+            $sourceColumns,
+            $targetColumns,
+            'tx_hgon_workgroup_wgevent'
+        );
+        $this->copySourceColumnIfTargetColumnExists(
+            $data,
+            $sourceRow,
+            $sourceColumns,
+            $targetColumns,
+            'tx_hgon_workgroup_stdevent'
+        );
+
+        if (isset($targetColumns['tx_hgontemplate_event_type'])) {
+            $data['tx_hgontemplate_event_type'] = $this->resolveEventType($sourceRow, $sourceColumns);
+        }
+
         return $data;
+    }
+
+    /**
+     * @param array<int, int> $uidMap
+     */
+    private function migrateCulinaryOptions(ConnectionPool $connectionPool, array $uidMap): void
+    {
+        if ($uidMap === []) {
+            return;
+        }
+
+        $table = 'tx_hgontemplate_domain_model_eventculinary';
+        $connection = $connectionPool->getConnectionForTable($table);
+        $columns = $this->getColumnNames($connection, $table);
+        if (!isset($columns['event'])) {
+            return;
+        }
+
+        foreach ($uidMap as $sourceEventUid => $targetEventUid) {
+            if ($sourceEventUid <= 0 || $targetEventUid <= 0 || $sourceEventUid === $targetEventUid) {
+                continue;
+            }
+
+            $updateData = ['event' => $targetEventUid];
+            if (isset($columns['pid'])) {
+                $updateData['pid'] = self::TARGET_PID;
+            }
+            if (isset($columns['tstamp'])) {
+                $updateData['tstamp'] = time();
+            }
+
+            $connection->update(
+                $table,
+                $updateData,
+                ['event' => $sourceEventUid],
+                ['event' => ParameterType::INTEGER]
+            );
+        }
+
+        $this->updateCulinaryRelationCounters($connectionPool, $uidMap);
+    }
+
+    /**
+     * @param array<int, int> $uidMap
+     */
+    private function updateCulinaryRelationCounters(ConnectionPool $connectionPool, array $uidMap): void
+    {
+        $targetConnection = $connectionPool->getConnectionForTable(self::TARGET_TABLE);
+        $targetColumns = $this->getColumnNames($targetConnection, self::TARGET_TABLE);
+        if (!isset($targetColumns['tx_hgontemplate_eventculinary'])) {
+            return;
+        }
+
+        $culinaryConnection = $connectionPool->getConnectionForTable('tx_hgontemplate_domain_model_eventculinary');
+        foreach (array_unique(array_values($uidMap)) as $targetEventUid) {
+            $queryBuilder = $culinaryConnection->createQueryBuilder();
+            $count = $queryBuilder
+                ->count('uid')
+                ->from('tx_hgontemplate_domain_model_eventculinary')
+                ->where(
+                    $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                    $queryBuilder->expr()->eq('event', $queryBuilder->createNamedParameter($targetEventUid, ParameterType::INTEGER))
+                )
+                ->executeQuery()
+                ->fetchOne();
+
+            $targetConnection->update(
+                self::TARGET_TABLE,
+                ['tx_hgontemplate_eventculinary' => (int)$count],
+                ['uid' => $targetEventUid],
+                [
+                    'tx_hgontemplate_eventculinary' => ParameterType::INTEGER,
+                    'uid' => ParameterType::INTEGER,
+                ]
+            );
+        }
+    }
+
+    /**
+     * @param array<string, mixed> $sourceRow
+     * @param array<string, bool> $sourceColumns
+     */
+    private function resolveEventType(array $sourceRow, array $sourceColumns): string
+    {
+        if (
+            isset($sourceColumns['tx_hgontemplate_event_type'])
+            && in_array((string)($sourceRow['tx_hgontemplate_event_type'] ?? ''), ['standard', 'workgroup'], true)
+        ) {
+            return (string)$sourceRow['tx_hgontemplate_event_type'];
+        }
+
+        if (
+            isset($sourceColumns['tx_hgon_workgroup_wgevent'])
+            && trim((string)($sourceRow['tx_hgon_workgroup_wgevent'] ?? '')) !== ''
+        ) {
+            return 'workgroup';
+        }
+
+        return 'standard';
+    }
+
+    /**
+     * @param array<string, mixed> $sourceRow
+     * @param array<string, bool> $sourceColumns
+     * @param array<string, bool> $targetColumns
+     */
+    private function targetNeedsRefresh(
+        Connection $targetConnection,
+        array $sourceRow,
+        array $sourceColumns,
+        array $targetColumns,
+        int $targetUid
+    ): bool {
+        $fields = array_values(array_filter(
+            [
+                isset($sourceColumns['tx_hgon_workgroup_wgevent'], $targetColumns['tx_hgon_workgroup_wgevent'])
+                    ? 'tx_hgon_workgroup_wgevent'
+                    : null,
+                isset($sourceColumns['tx_hgon_workgroup_stdevent'], $targetColumns['tx_hgon_workgroup_stdevent'])
+                    ? 'tx_hgon_workgroup_stdevent'
+                    : null,
+                isset($targetColumns['tx_hgontemplate_event_type'])
+                    ? 'tx_hgontemplate_event_type'
+                    : null,
+            ]
+        ));
+
+        if ($fields === []) {
+            return false;
+        }
+
+        $queryBuilder = $targetConnection->createQueryBuilder();
+        $targetRow = $queryBuilder
+            ->select(...$fields)
+            ->from(self::TARGET_TABLE)
+            ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($targetUid, ParameterType::INTEGER)))
+            ->executeQuery()
+            ->fetchAssociative();
+
+        if (!is_array($targetRow)) {
+            return true;
+        }
+
+        foreach (['tx_hgon_workgroup_wgevent', 'tx_hgon_workgroup_stdevent'] as $field) {
+            if (
+                isset($sourceColumns[$field], $targetColumns[$field])
+                && (string)($targetRow[$field] ?? '') !== (string)($sourceRow[$field] ?? '')
+            ) {
+                return true;
+            }
+        }
+
+        return isset($targetColumns['tx_hgontemplate_event_type'])
+            && (string)($targetRow['tx_hgontemplate_event_type'] ?? '') !== $this->resolveEventType($sourceRow, $sourceColumns);
+    }
+
+    private function hasUnmigratedCulinaryOptions(
+        ConnectionPool $connectionPool,
+        int $sourceEventUid,
+        int $targetEventUid
+    ): bool
+    {
+        if ($sourceEventUid <= 0 || $sourceEventUid === $targetEventUid) {
+            return false;
+        }
+
+        $table = 'tx_hgontemplate_domain_model_eventculinary';
+        $connection = $connectionPool->getConnectionForTable($table);
+        $columns = $this->getColumnNames($connection, $table);
+        if (!isset($columns['event'])) {
+            return false;
+        }
+
+        $queryBuilder = $connection->createQueryBuilder();
+        $count = $queryBuilder
+            ->count('uid')
+            ->from($table)
+            ->where(
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('event', $queryBuilder->createNamedParameter($sourceEventUid, ParameterType::INTEGER))
+            )
+            ->executeQuery()
+            ->fetchOne();
+
+        return (int)$count > 0;
     }
 
     private function migrateLocation(
@@ -422,12 +649,24 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
      */
     private function getColumnNames(Connection $connection, string $table): array
     {
+        if (!$this->tableExists($table)) {
+            return [];
+        }
+
         $columns = [];
         foreach ($connection->createSchemaManager()->listTableColumns($table) as $column) {
             $columns[$column->getName()] = true;
         }
 
         return $columns;
+    }
+
+    private function tableExists(string $table): bool
+    {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable($table);
+
+        return in_array($table, $connection->createSchemaManager()->listTableNames(), true);
     }
 
     /**
@@ -453,6 +692,24 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
     {
         if (isset($targetColumns[$column])) {
             $data[$column] = $value;
+        }
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     * @param array<string, mixed> $sourceRow
+     * @param array<string, bool> $sourceColumns
+     * @param array<string, bool> $targetColumns
+     */
+    private function copySourceColumnIfTargetColumnExists(
+        array &$data,
+        array $sourceRow,
+        array $sourceColumns,
+        array $targetColumns,
+        string $column
+    ): void {
+        if (isset($sourceColumns[$column], $targetColumns[$column])) {
+            $data[$column] = (string)($sourceRow[$column] ?? '');
         }
     }
 }

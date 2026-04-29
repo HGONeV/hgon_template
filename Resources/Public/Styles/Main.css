@@ -123,11 +123,6 @@ aside.color-bg-tertiary img {
     color: #869733;
 }
 
-/* Fix for RkwEvents */
-#tx-rkwevents-grid-section a.disabled {
-    display: none;
-}
-
 /* Fix for html limitations of "MenuSitemapPages.html" */
 ul.menu.menu--list header h6 {
     margin-bottom: 1.5em;

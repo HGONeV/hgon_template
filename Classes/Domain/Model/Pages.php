@@ -19,7 +19,7 @@ namespace HGON\HgonTemplate\Domain\Model;
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright HGON
- * @package RKW_HgonTemplate
+ * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
@@ -51,6 +51,20 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \HGON\HgonTemplate\Domain\Model\Article
      */
     protected $txHgontemplateArticle = null;
+
+    /**
+     * txHgontemplateArticleImage
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
+     */
+    protected $txHgontemplateArticleImage = null;
+
+    /**
+     * txHgontemplateTeaserText
+     *
+     * @var string
+     */
+    protected $txHgontemplateTeaserText = '';
 
     /**
      * __construct
@@ -235,6 +249,48 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTxHgontemplateArticle(\HGON\HgonTemplate\Domain\Model\Article $txHgontemplateArticle)
     {
         $this->txHgontemplateArticle = $txHgontemplateArticle;
+    }
+
+    /**
+     * Returns the txHgontemplateArticleImage
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
+     */
+    public function getTxHgontemplateArticleImage()
+    {
+        return $this->txHgontemplateArticleImage;
+    }
+
+    /**
+     * Sets the txHgontemplateArticleImage
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference|null $txHgontemplateArticleImage
+     * @return void
+     */
+    public function setTxHgontemplateArticleImage($txHgontemplateArticleImage)
+    {
+        $this->txHgontemplateArticleImage = $txHgontemplateArticleImage;
+    }
+
+    /**
+     * Returns the txHgontemplateTeaserText
+     *
+     * @return string
+     */
+    public function getTxHgontemplateTeaserText()
+    {
+        return $this->txHgontemplateTeaserText;
+    }
+
+    /**
+     * Sets the txHgontemplateTeaserText
+     *
+     * @param string $txHgontemplateTeaserText
+     * @return void
+     */
+    public function setTxHgontemplateTeaserText($txHgontemplateTeaserText)
+    {
+        $this->txHgontemplateTeaserText = $txHgontemplateTeaserText;
     }
 
 }

@@ -35,7 +35,7 @@ final class HgonTemplateRkwEventsPluginMigration implements UpgradeWizardInterfa
 
     public function getDescription(): string
     {
-        return 'Migriert alte rkwevents_pi1-Inhaltselemente anhand fixer Seiten-IDs auf die passenden sf_event_mgt-CType-Elemente.';
+        return 'Migriert alte rkwevents_pi1-Inhaltselemente anhand fixer Seiten-IDs auf die passenden sf_event_mgt-CType-Elemente und versteckt nicht zuordenbare Alt-Plugins.';
     }
 
     public function executeUpdate(): bool
@@ -83,6 +83,23 @@ final class HgonTemplateRkwEventsPluginMigration implements UpgradeWizardInterfa
             );
         }
 
+        $connection->executeStatement(
+            'UPDATE tt_content
+             SET hidden = :hidden,
+                 tstamp = :tstamp
+             WHERE deleted = 0
+               AND CType = :legacyCType
+               AND list_type = :legacyListType
+               AND hidden = :visible',
+            [
+                'hidden' => 1,
+                'tstamp' => time(),
+                'legacyCType' => 'list',
+                'legacyListType' => self::LEGACY_LIST_TYPE,
+                'visible' => 0,
+            ]
+        );
+
         return true;
     }
 
@@ -98,9 +115,12 @@ final class HgonTemplateRkwEventsPluginMigration implements UpgradeWizardInterfa
                 $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
                 $queryBuilder->expr()->eq('CType', $queryBuilder->createNamedParameter('list')),
                 $queryBuilder->expr()->eq('list_type', $queryBuilder->createNamedParameter(self::LEGACY_LIST_TYPE)),
-                $queryBuilder->expr()->in(
-                    'pid',
-                    $queryBuilder->createNamedParameter(array_keys(self::PID_TO_CTYPE), ArrayParameterType::INTEGER)
+                $queryBuilder->expr()->or(
+                    $queryBuilder->expr()->in(
+                        'pid',
+                        $queryBuilder->createNamedParameter(array_keys(self::PID_TO_CTYPE), ArrayParameterType::INTEGER)
+                    ),
+                    $queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
                 )
             )
             ->executeQuery()

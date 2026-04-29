@@ -1,18 +1,10 @@
 # Extensions
-# @import 'EXT:rkw_template/Configuration/TypoScript/_Core/setup.ts'
-
 @import 'EXT:news/Configuration/TypoScript/setup.txt'
+@import 'EXT:md_news_author/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:pb_social/Configuration/TypoScript/setup.txt'
 @import 'EXT:sr_freecap/Configuration/TypoScript/setup.txt'
 
-@import 'EXT:rkw_basics/Configuration/TypoScript/setup.txt'
-@import 'EXT:rkw_authors/Configuration/TypoScript/setup.txt'
 @import 'EXT:sf_event_mgt/Configuration/TypoScript/setup.typoscript'
-@import 'EXT:rkw_geolocation/Configuration/TypoScript/setup.txt'
-@import 'EXT:rkw_mailer/Configuration/TypoScript/setup.txt'
-@import 'EXT:rkw_projects/Configuration/TypoScript/setup.txt'
-@import 'EXT:rkw_registration/Configuration/TypoScript/setup.txt'
-@import 'EXT:rkw_newsletter/Configuration/TypoScript/setup.txt'
 
 @import 'EXT:hgon_donation/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:hgon_workgroup/Configuration/TypoScript/setup.typoscript'

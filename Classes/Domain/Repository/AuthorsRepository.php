@@ -34,20 +34,17 @@ class AuthorsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function findByUidList($uidList)
     {
+        $uids = array_filter(array_map('intval', GeneralUtility::trimExplode(',', (string)$uidList)));
+        if ($uids === []) {
+            return [];
+        }
+
         $query = $this->createQuery();
         $query->matching(
-            $query->logicalAnd(
-                $query->in('uid', GeneralUtility::trimExplode(',', $uidList)),
-                $query->logicalNot(
-                    $query->equals('functionDescription', '')
-                )
-            )
-
-
+            $query->in('uid', $uids)
         );
 
         return $query->execute()->toArray();
-        //===
     }
 
 }

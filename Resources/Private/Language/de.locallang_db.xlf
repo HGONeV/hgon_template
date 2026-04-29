@@ -72,32 +72,6 @@
                 <source>Date</source>
                 <target>Datum und Uhrzeit</target>
             </trans-unit>
-
-
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventcosts">
-                <source>Events Costs</source>
-                <target>Kosten für die Veranstaltung</target>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_eventculinary">
-                <source>Meals</source>
-                <target>Speisen</target>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype">
-                <source>Payment type</source>
-                <target>Zahlungsart</target>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.0">
-                <source>Please choose</source>
-                <target>Bitte wählen</target>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.1">
-                <source>Locally</source>
-                <target>Vor Ort (Barzahlung)</target>
-            </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgontemplate_paymenttype.2">
-                <source>PayPal</source>
-                <target>PayPal</target>
-            </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type">
                 <source>Type</source>
                 <target>Typ</target>
@@ -165,8 +139,16 @@
                 <target>Kontaktperson (wird auf alle Unterseiten weitervererbt)</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_article">
-                <source>Shown shop article</source>
-                <target>Angezeigter Shop-Artikel (Nur sichtbar, wenn auf der Seite das Plugin "HGON: Generiert Vorschau für Geschwisterseiten" ausgewählt ist)</target>
+                <source>Shown article</source>
+                <target>Angezeigter Artikel</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_article_image">
+                <source>Article image</source>
+                <target>Artikelbild</target>
+            </trans-unit>
+            <trans-unit id="tx_hgontemplate_domain_model_pages.tx_hgontemplate_teaser_text">
+                <source>Teaser text</source>
+                <target>Teasertext</target>
             </trans-unit>
             <trans-unit id="tx_hgontemplate_domain_model_pages.pleaseChoose">
                 <source>--- Please choose ---</source>
@@ -199,10 +181,6 @@
                 <target>Header Image (optional - ersetzt Standardbild)</target>
             </trans-unit>
 
-            <trans-unit id="tx_hgontemplate_domain_model_news.tx_rkwproject_project">
-                <source>Project</source>
-                <target>Projekt</target>
-            </trans-unit>
 
 
             <trans-unit id="tx_hgontemplate_domain_model_newsletter.palettes.news">
@@ -355,6 +333,18 @@
             <trans-unit id="tx_hgontemplate_domain_model_authors.tx_hgontemplate_longer_description">
                 <source>Longer description</source>
                 <target>Beschreibung lang (wird für Team-Mitglieder Plugin verwendet)</target>
+            </trans-unit>
+            <trans-unit id="tx_mdnewsauthor_domain_model_newsauthor.phone2">
+                <source>Second phone</source>
+                <target>Zweite Telefonnummer</target>
+            </trans-unit>
+            <trans-unit id="tx_mdnewsauthor_domain_model_newsauthor.tx_hgontemplate_short_description">
+                <source>Short description</source>
+                <target>Beschreibung kurz</target>
+            </trans-unit>
+            <trans-unit id="tx_mdnewsauthor_domain_model_newsauthor.tx_hgontemplate_longer_description">
+                <source>Longer description</source>
+                <target>Beschreibung lang</target>
             </trans-unit>
 
 
