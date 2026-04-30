@@ -25,6 +25,20 @@ namespace HGON\HgonTemplate\Domain\Model;
 class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
+     * title
+     *
+     * @var string
+     */
+    protected $title = '';
+
+    /**
+     * subtitle
+     *
+     * @var string
+     */
+    protected $subtitle = '';
+
+    /**
      * SysCategory
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\SysCategory>
@@ -132,6 +146,48 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories)
     {
         $this->categories = $categories;
+    }
+
+    /**
+     * Returns the title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Sets the title
+     *
+     * @param string $title
+     * @return void
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Returns the subtitle
+     *
+     * @return string
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * Sets the subtitle
+     *
+     * @param string $subtitle
+     * @return void
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
     }
 
     /**

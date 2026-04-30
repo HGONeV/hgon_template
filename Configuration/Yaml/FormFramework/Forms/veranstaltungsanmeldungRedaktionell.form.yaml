@@ -1,0 +1,238 @@
+renderingOptions:
+  submitButtonLabel: Jetzt anmelden
+type: Form
+identifier: veranstaltungsanmeldungRedaktionell
+label: 'Veranstaltungsanmeldung (redaktionell)'
+prototypeName: standard
+finishers:
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Veranstaltungsanmeldung: {hidden-event-title}'
+      recipientAddress: info@hgon.de
+      recipientName: HGON
+      senderAddress: '{email}'
+      senderName: '{firstname} {lastname}'
+      replyToAddress: '{email}'
+      format: html
+  -
+    identifier: EmailToSender
+    options:
+      subject: 'Ihre Anmeldung: {hidden-event-title}'
+      recipientAddress: '{email}'
+      recipientName: '{firstname} {lastname}'
+      senderAddress: info@hgon.de
+      senderName: HGON
+      replyToAddress: info@hgon.de
+      format: html
+  -
+    identifier: Confirmation
+    options:
+      message: "Vielen Dank für Ihre Anmeldung.\n\nWir haben Ihre Anfrage erhalten und melden uns zeitnah mit weiteren Informationen zur Veranstaltung."
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Neue Seite'
+    type: Page
+    identifier: page-1
+    label: Anmeldung
+    renderables:
+      -
+        type: Hidden
+        identifier: hidden-event-title
+        defaultValue: 'Bitte im Form-Editor anpassen: Veranstaltungstitel'
+      -
+        type: Hidden
+        identifier: hidden-event-date
+        defaultValue: 'Bitte im Form-Editor anpassen: Datum/Uhrzeit'
+      -
+        type: Hidden
+        identifier: hidden-event-location
+        defaultValue: 'Bitte im Form-Editor anpassen: Veranstaltungsort'
+      -
+        type: StaticText
+        identifier: statictext-1
+        label: ''
+        properties:
+          text: '<p><strong>Redaktionelle Vorlage für einfache Veranstaltungsanmeldungen.</strong><br>Diese Variante enthält bewusst keine Zahlungs-, Preisstufen-, Addon- oder Wartelistenlogik.</p>'
+      -
+        type: Fieldset
+        identifier: fieldset-person
+        label: Persönliche Angaben
+        renderables:
+          -
+            type: GridRow
+            identifier: gridrow-name
+            renderables:
+              -
+                type: SingleSelect
+                identifier: salutation
+                label: Anrede
+                properties:
+                  options:
+                    Herr: Herr
+                    Frau: Frau
+                    Divers: Divers
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                type: Text
+                identifier: title
+                label: Titel
+          -
+            type: GridRow
+            identifier: gridrow-firstlast
+            renderables:
+              -
+                type: Text
+                identifier: firstname
+                label: Vorname
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                type: Text
+                identifier: lastname
+                label: Nachname
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+          -
+            type: GridRow
+            identifier: gridrow-contact
+            renderables:
+              -
+                type: Text
+                identifier: email
+                label: E-Mail
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                    type: email
+                validators:
+                  -
+                    identifier: NotEmpty
+                  -
+                    identifier: EmailAddress
+              -
+                type: Text
+                identifier: phone
+                label: Telefon
+          -
+            type: Text
+            identifier: organisation
+            label: Organisation / Institution
+      -
+        type: Fieldset
+        identifier: fieldset-address
+        label: Adresse
+        renderables:
+          -
+            type: Text
+            identifier: street
+            label: Straße / Hausnummer
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            type: GridRow
+            identifier: gridrow-city
+            renderables:
+              -
+                type: Text
+                identifier: zip
+                label: PLZ
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                type: Text
+                identifier: city
+                label: Ort
+                properties:
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+      -
+        type: Fieldset
+        identifier: fieldset-registration
+        label: Anmeldung
+        renderables:
+          -
+            type: GridRow
+            identifier: gridrow-participants
+            renderables:
+              -
+                type: SingleSelect
+                identifier: participants
+                label: Anzahl Teilnehmende
+                defaultValue: '1'
+                properties:
+                  options:
+                    '1': '1'
+                    '2': '2'
+                    '3': '3'
+                    '4': '4'
+                    '5': '5'
+                  fluidAdditionalAttributes:
+                    required: required
+                validators:
+                  -
+                    identifier: NotEmpty
+              -
+                type: SingleSelect
+                identifier: participationType
+                label: Teilnahmeart
+                defaultValue: Standard
+                properties:
+                  options:
+                    Standard: Standard
+                    Ermäßigt: Ermäßigt
+                    Online: Online
+                    Präsenz: Präsenz
+          -
+            type: Textarea
+            identifier: notes
+            label: Hinweise / Fragen
+            properties:
+              elementDescription: 'Hier können Teilnehmende organisatorische Hinweise, Rückfragen oder besondere Bedarfe angeben.'
+      -
+        type: Fieldset
+        identifier: fieldset-consent
+        label: Einwilligungen
+        renderables:
+          -
+            type: Checkbox
+            identifier: privacy
+            label: ''
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+              elementDescription: 'Ich habe die Datenschutzhinweise gelesen und bin mit der Verarbeitung meiner Daten zur Bearbeitung dieser Anmeldung einverstanden.'
+            validators:
+              -
+                identifier: NotEmpty
+          -
+            type: Checkbox
+            identifier: photoConsent
+            label: ''
+            properties:
+              elementDescription: 'Ich habe zur Kenntnis genommen, dass im Rahmen der Veranstaltung ggf. Foto- und Videoaufnahmen für die Öffentlichkeitsarbeit erstellt werden können.'

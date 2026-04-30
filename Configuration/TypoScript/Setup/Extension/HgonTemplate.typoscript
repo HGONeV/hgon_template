@@ -23,6 +23,7 @@ plugin.tx_hgontemplate {
         storagePid = {$plugin.tx_hgontemplate.persistence.storagePid}
     }
     settings {
+        instagram = {$globalWebsiteConfig.website.instagram}
         journal {
             pageUid = {$plugin.tx_hgontemplate.settings.journal.pageUid}
             parentCategoryUid = {$plugin.tx_hgontemplate.settings.journal.parentCategoryUid}

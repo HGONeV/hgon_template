@@ -1,36 +1,103 @@
 
-<f:comment><!-- Filter options --></f:comment>
-<f:if condition="{sysCategoryList}">
-    <nav class="main__nav">
-        <ul class="menu menu-sub menu--filter" id="tag">
-            <f:for each="{sysCategoryList}" as="sysCategory">
-                <li>
-                    <f:comment><!-- compare with uid: because we have different sysCategory models --></f:comment>
-                    <f:if condition="{selectedSysCategory.uid} == {sysCategory.uid}">
-                        <f:then>
-                            <f:if condition="{sysCategory.parentcategory.uid} != {settings.journal.parentCategoryUid}">
-                                <f:then>
-                                    <f:link.action section="tag" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" additionalParams="{tx_hgontemplate_journal: '{sysCategory: sysCategory.parentcategory}'}" >
-                                        {sysCategory.title} <svg class="icon icon--btn-right" width="12" height="12"><use xlink:href="#ui-close"></use></svg>
-                                    </f:link.action>
-                                </f:then>
-                                <f:else>
-                                    <f:link.action section="tag" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" >
-                                        {sysCategory.title} <svg class="icon icon--btn-right" width="12" height="12"><use xlink:href="#ui-close"></use></svg>
-                                    </f:link.action>
-                                </f:else>
-                            </f:if>
-                        </f:then>
-                        <f:else>
-                            <f:link.action section="tag" action="journal" controller="News" extensionName="HgonTemplate" pluginName="Journal" class="{f:if(condition: '{selectedSysCategory.uid} == {sysCategory.uid}', then: 'is-active')}" additionalParams="{tx_hgontemplate_journal: '{sysCategory: sysCategory}'}" >
-                                {sysCategory.title}
-                            </f:link.action>
-                        </f:else>
-                    </f:if>
-                </li>
-            </f:for>
-        </ul>
-    </nav>
+<f:if condition="{isJournalPage}">
+    <section id="news-filter" class="article article--fullwidth / form">
+        <form action="{f:uri.page(pageUid: settings.journal.pageUid, section: 'news-filter')}" method="get" class="form">
+            <div class="flex-container space-between center-cross gutter">
+                <div class="flex-item c-3">
+                    <p class="form__field">
+                        <label for="news-search-term">Suchbegriff</label>
+                        <input
+                            class="input"
+                            id="news-search-term"
+                            type="text"
+                            name="tx_hgontemplate_journal[searchTerm]"
+                            value="{selectedSearchTerm}"
+                            placeholder="Titel oder Teaser durchsuchen"
+                        />
+                    </p>
+                </div>
+                <div class="flex-item c-3">
+                    <p class="form__field">
+                        <label for="news-date-range">Zeitraum</label>
+                        <span class="select-box">
+                            <select id="news-date-range" name="tx_hgontemplate_journal[dateRange]">
+                                <option value="all" {f:if(condition: '{selectedDateRange} == \'all\'', then: 'selected="selected"')}>Alle</option>
+                                <option value="last12" {f:if(condition: '{selectedDateRange} == \'last12\'', then: 'selected="selected"')}>Letzte 12 Monate</option>
+                                <option value="last36" {f:if(condition: '{selectedDateRange} == \'last36\'', then: 'selected="selected"')}>Letzte 3 Jahre</option>
+                                <option value="older36" {f:if(condition: '{selectedDateRange} == \'older36\'', then: 'selected="selected"')}>Älter als 3 Jahre</option>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+                <div class="flex-item c-3">
+                    <p class="form__field">
+                        <label for="news-primary-category">Bereich</label>
+                        <span class="select-box">
+                            <select id="news-primary-category" name="tx_hgontemplate_journal[primaryCategory]">
+                                <option value="0">Alle Bereiche</option>
+                                <f:for each="{primaryCategoryOptions}" as="category">
+                                    <f:if condition="{selectedPrimaryCategory} == {category.uid}">
+                                        <f:then>
+                                            <option value="{category.uid}" selected="selected">{category.title}</option>
+                                        </f:then>
+                                        <f:else>
+                                            <option value="{category.uid}">{category.title}</option>
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+                <div class="flex-item c-3">
+                    <p class="form__field">
+                        <label for="news-secondary-category">Schlagwort</label>
+                        <span class="select-box">
+                            <select id="news-secondary-category" name="tx_hgontemplate_journal[secondaryCategory]">
+                                <option value="0">Alle Schlagworte</option>
+                                <f:if condition="{selectedPrimaryCategory}">
+                                    <f:then>
+                                        <f:for each="{secondaryCategoryOptions}" as="category">
+                                            <f:if condition="{selectedSecondaryCategory} == {category.uid}">
+                                                <f:then>
+                                                    <option value="{category.uid}" selected="selected">{category.title}</option>
+                                                </f:then>
+                                                <f:else>
+                                                    <option value="{category.uid}">{category.title}</option>
+                                                </f:else>
+                                            </f:if>
+                                        </f:for>
+                                    </f:then>
+                                    <f:else>
+                                        <f:for each="{primaryCategoryOptions}" as="parentCategory">
+                                            <f:if condition="{secondaryCategoryGroups.{parentCategory.uid}}">
+                                                <optgroup label="{parentCategory.title}">
+                                                    <f:for each="{secondaryCategoryGroups.{parentCategory.uid}}" as="category">
+                                                        <f:if condition="{selectedSecondaryCategory} == {category.uid}">
+                                                            <f:then>
+                                                                <option value="{category.uid}" selected="selected">{category.title}</option>
+                                                            </f:then>
+                                                            <f:else>
+                                                                <option value="{category.uid}">{category.title}</option>
+                                                            </f:else>
+                                                        </f:if>
+                                                    </f:for>
+                                                </optgroup>
+                                            </f:if>
+                                        </f:for>
+                                    </f:else>
+                                </f:if>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+                <div class="flex-item c-12 event-filter__actions">
+                    <f:link.page pageUid="{settings.journal.pageUid}" section="news-filter" class="btn btn--rounded btn--tertiary">Zurücksetzen</f:link.page>
+                    <button class="btn btn--primary btn--rounded" type="submit">Filter anwenden</button>
+                </div>
+            </div>
+        </form>
+    </section>
 </f:if>
 
 <f:comment><!-- Listing --></f:comment>

@@ -16,7 +16,7 @@ page.10 {
 		20 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
 		20 {
 			special = list
-			special.value = 10,11
+			special.value = 3,10
             includeSpacer = 0
 			levels = 1
 			as = menuMeta

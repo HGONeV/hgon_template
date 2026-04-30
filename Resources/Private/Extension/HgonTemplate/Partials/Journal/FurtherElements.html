@@ -1,5 +1,23 @@
 <div class="flex-item c-4">
     <f:cObject typoscriptObjectPath="page.10.variables.bankAccountSidebar" />
+    <f:if condition="{settings.instagram}">
+        <aside class="aside aside--border color-bg-white / mt-2">
+            <header class="aside__header">
+                <h6>Instagram</h6>
+            </header>
+            <div class="aside__content">
+                <p>
+                    Folgen Sie uns auf Instagram für aktuelle Einblicke, Beobachtungen und Neuigkeiten aus dem Verbandsleben.
+                </p>
+                <p>
+                    <a href="{settings.instagram}" target="_blank" rel="noopener" class="btn btn--primary btn--rounded journal-instagram-btn">
+                        <svg class="icon icon--24" width="18" height="18"><use xlink:href="#ui-instagram"></use></svg>
+                        Jetzt folgen
+                    </a>
+                </p>
+            </div>
+        </aside>
+    </f:if>
 </div>
 
 <f:if condition="{isJournalPage}">

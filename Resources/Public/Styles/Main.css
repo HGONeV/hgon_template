@@ -328,6 +328,29 @@ section.section.helper .section__header {
     margin-bottom: 1.5em;
 }
 
+.journal-instagram-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+}
+
+.nav--primary .menu-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.nav--primary .menu-cta .btn {
+    width: 100%;
+    text-align: center;
+}
+
+.nav--primary .menu-cta .btn.ml-1 {
+    margin-left: 0;
+    margin-top: .5em;
+}
+
 @media only screen and (max-width: 48em) {
     .event-registration-summary__row,
     .event-registration-culinary-option {
@@ -348,5 +371,19 @@ section.section.helper .section__header {
     .form--event-registration,
     .form--event-registration fieldset {
         padding: 1em;
+    }
+}
+
+@media only screen and (max-width: 55em) {
+    .nav--primary .menu-cta {
+        display: block;
+    }
+
+    .nav--primary .menu-cta .btn {
+        width: auto;
+    }
+
+    .nav--primary .menu-cta .btn.ml-1 {
+        margin-top: 0;
     }
 }

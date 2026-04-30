@@ -68,6 +68,18 @@
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_eventculinary">
                 <source>Bookable meals</source>
             </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode">
+                <source>Registration type</source>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.native">
+                <source>Native event registration</source>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.form">
+                <source>Select custom form</source>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form">
+                <source>Registration form</source>
+            </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.image">
                 <source>Title image</source>
             </trans-unit>

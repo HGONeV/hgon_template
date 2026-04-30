@@ -15,7 +15,7 @@
             </f:if>
             {elementContent}
         </f:format.raw>
-        <f:if condition="{element.properties.elementDescription}">
+        <f:if condition="{element.properties.elementDescription} && {doNotShowDescription} != 1">
             <span class="help-block">{formvh:translateElementProperty(element: element, property: 'elementDescription')}</span>
         </f:if>
 	</p>

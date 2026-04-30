@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:e="http://typo3.org/ns/DERHANSEN/SfEventMgt/ViewHelpers"
+      xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
@@ -53,6 +54,13 @@
                         </f:if>
                     </f:if>
 
+                    <f:if condition="{registrationMode} == 'form' && {registrationFormPersistenceIdentifier}">
+                        <f:then>
+                            <div class="event-registration-formframework">
+                                <formvh:render persistenceIdentifier="{registrationFormPersistenceIdentifier}" overrideConfiguration="{registrationFormOverrideConfiguration}" />
+                            </div>
+                        </f:then>
+                        <f:else>
                     <f:form object="{registration}" name="registration" action="saveRegistration" arguments="{event: event}" section="event-registration-errors" id="event-registration-form" class="form form--event-registration registration" enctype="multipart/form-data">
                         <h3><f:translate key="registration.form.heading" extensionName="HgonTemplate" /></h3>
                         <f:form.validationResults>
@@ -280,6 +288,8 @@
                             <f:form.submit value="{f:translate(key: 'event.submit-registration')}" class="btn btn--primary btn--rounded" id="registration-submit" />
                         </div>
                     </f:form>
+                        </f:else>
+                    </f:if>
 
                 </div>
             </section>

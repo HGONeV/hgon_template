@@ -1,7 +1,13 @@
 <section id="event-filter" class="article article--fullwidth / form">
     <form action="{f:uri.page(pageUid: pageData.uid, section: 'event-filter')}" method="get" class="form">
         <div class="flex-container space-between center-cross gutter">
-            <div class="flex-item c-4">
+            <div class="flex-item c-3">
+                <p class="form__field">
+                    <label for="event-search-term">Suchbegriff</label>
+                    <input id="event-search-term" class="input" type="text" name="tx_sfeventmgt_pieventlist[searchTerm]" value="{requestSearchTerm}" />
+                </p>
+            </div>
+            <div class="flex-item c-3">
                 <p class="form__field">
                     <label for="event-type-select">Typ</label>
                     <span class="select-box">
@@ -34,7 +40,7 @@
                     </span>
                 </p>
             </div>
-            <div class="flex-item c-4">
+            <div class="flex-item c-3">
                 <p class="form__field">
                     <label for="display-mode-select">Zeitraum</label>
                     <span class="select-box">
@@ -75,7 +81,7 @@
                     </span>
                 </p>
             </div>
-            <div class="flex-item c-4">
+            <div class="flex-item c-3">
                 <p class="form__field">
                     <label for="top-event-select">Top-Veranstaltungen</label>
                     <span class="select-box">

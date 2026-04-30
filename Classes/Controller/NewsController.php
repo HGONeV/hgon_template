@@ -134,7 +134,14 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      * @param integer $pageNumber
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function journalAction(?\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null, $pageNumber = 0)
+    public function journalAction(
+        ?\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null,
+        $pageNumber = 0,
+        string $searchTerm = '',
+        string $dateRange = 'all',
+        int $primaryCategory = 0,
+        int $secondaryCategory = 0
+    )
     {
         // workaround for easy use on some further pages:
         // If it's not the journal page, try to grab the pages categories und show related news
@@ -157,10 +164,14 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
                 $sysCategory = $pages->getCategories()->current();
             }
         }
-        $templateDataArray['isJournalPage'] = $isJournalPage;
-
         $pageNumber++;
         $templateDataArray = [];
+        $templateDataArray['isJournalPage'] = $isJournalPage;
+        $searchTerm = trim($searchTerm);
+        $allowedDateRanges = ['all', 'last12', 'last36', 'older36'];
+        if (!in_array($dateRange, $allowedDateRanges, true)) {
+            $dateRange = 'all';
+        }
 
      //   $objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
         /** @var \HGON\HgonTemplate\Helper\Journal $journalHelper */
@@ -176,7 +187,50 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
       //  $templateDataArray['journalRowList'] = $helperRequest['journalRowList'];
         // @toDo: If $templateDataArray['journalRowList'] delivers only a few results: Try to fill with news
 
-        $templateDataArray['journalRowList'] = $this->newsRepository->findByFilter($sysCategory, [], [], $pageNumber, intval($this->settings['journal']['itemsPerPage']));
+        $newsList = $this->newsRepository->findAll();
+        $categoryOptions = $this->buildJournalCategoryOptions(
+            $newsList,
+            (int)$this->settings['journal']['parentCategoryUid']
+        );
+
+        if ($sysCategory instanceof \HGON\HgonTemplate\Domain\Model\SysCategory) {
+            $selectedCategoryUid = (int)$sysCategory->getUid();
+            $selectedParentUid = (int)($sysCategory->getParentcategory()?->getUid() ?? 0);
+
+            if ($selectedParentUid === (int)$this->settings['journal']['parentCategoryUid']) {
+                $primaryCategory = $selectedCategoryUid;
+            } elseif ($selectedParentUid > 0) {
+                $secondaryCategory = $selectedCategoryUid;
+                $primaryCategory = $selectedParentUid;
+            }
+        }
+
+        $categoryFilterList = $this->resolveJournalCategoryFilterList(
+            $primaryCategory,
+            $secondaryCategory,
+            $sysCategory,
+            $categoryOptions['secondaryCategoriesByParent'],
+            (int)$this->settings['journal']['parentCategoryUid']
+        );
+
+        $activeSecondaryCategories = $primaryCategory > 0 && isset($categoryOptions['secondaryCategoriesByParent'][$primaryCategory])
+            ? $categoryOptions['secondaryCategoriesByParent'][$primaryCategory]
+            : $categoryOptions['allSecondaryCategories'];
+
+        $filters = [
+            'searchTerm' => $searchTerm,
+            'dateRange' => $dateRange,
+        ];
+
+        $itemsPerPage = intval($this->settings['journal']['itemsPerPage']);
+        $templateDataArray['journalRowList'] = $this->newsRepository->findByFilter(
+            $categoryFilterList,
+            [],
+            [],
+            $pageNumber,
+            $itemsPerPage,
+            $filters
+        );
 
         // sysCategory is set, if user is filtering
         /*
@@ -198,7 +252,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         // get categories of news
         if ($isJournalPage) {
-            $newsList = $this->newsRepository->findAll();
             $categoryList = [];
             /** @var \HGON\HgonTemplate\Domain\Model\News $news */
             foreach ($newsList as $news) {
@@ -228,12 +281,26 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         }
 
         $templateDataArray['selectedSysCategory'] = $sysCategory;
+        $templateDataArray['selectedSearchTerm'] = $searchTerm;
+        $templateDataArray['selectedDateRange'] = $dateRange;
+        $templateDataArray['selectedPrimaryCategory'] = $primaryCategory;
+        $templateDataArray['selectedSecondaryCategory'] = $secondaryCategory;
+        $templateDataArray['primaryCategoryOptions'] = $categoryOptions['topCategories'];
+        $templateDataArray['secondaryCategoryOptions'] = $activeSecondaryCategories;
+        $templateDataArray['secondaryCategoryGroups'] = $categoryOptions['secondaryCategoriesByParent'];
         $templateDataArray['pageTypeAjax'] = $this->settings['journal']['ajaxTypeNum'];
         $templateDataArray['pageNumber'] = $pageNumber;
 
 
         if (count($templateDataArray['journalRowList'])) {
-            $templateDataArray['showMoreLink'] = $this->newsRepository->findByFilter($sysCategory, [], [], 1, 9999)->count() > $pageNumber * intval($this->settings['journal']['itemsPerPage']) ? true : false;
+            $templateDataArray['showMoreLink'] = $this->newsRepository->findByFilter(
+                $categoryFilterList,
+                [],
+                [],
+                1,
+                9999,
+                $filters
+            )->count() > $pageNumber * $itemsPerPage ? true : false;
         } else {
             $templateDataArray['showMoreLink'] = false;
         }
@@ -282,6 +349,102 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         return $this->htmlResponse();
 
+    }
+
+    /**
+     * @param iterable $newsList
+     * @param int $journalParentCategoryUid
+     * @return array<string,array>
+     */
+    protected function buildJournalCategoryOptions(iterable $newsList, int $journalParentCategoryUid): array
+    {
+        $topCategories = [];
+        $secondaryCategoriesByParent = [];
+        $allSecondaryCategories = [];
+
+        foreach ($newsList as $news) {
+            foreach ($news->getCategories() as $category) {
+                $parentCategory = $category->getParentcategory();
+                $parentUid = (int)($parentCategory?->getUid() ?? 0);
+                if ($parentUid <= 0) {
+                    continue;
+                }
+
+                if ($parentUid === $journalParentCategoryUid) {
+                    $topCategories[$category->getUid()] = $category;
+                    continue;
+                }
+
+                $secondaryCategoriesByParent[$parentUid][$category->getUid()] = $category;
+                $allSecondaryCategories[$category->getUid()] = $category;
+            }
+        }
+
+        $sortCategories = static function (array &$categories): void {
+            uasort($categories, static function ($a, $b): int {
+                $titleA = method_exists($a, 'getTitle') ? (string)$a->getTitle() : '';
+                $titleB = method_exists($b, 'getTitle') ? (string)$b->getTitle() : '';
+                return strcasecmp($titleA, $titleB);
+            });
+        };
+
+        $sortCategories($topCategories);
+        $sortCategories($allSecondaryCategories);
+        foreach ($secondaryCategoriesByParent as &$categories) {
+            $sortCategories($categories);
+        }
+        unset($categories);
+
+        return [
+            'topCategories' => $topCategories,
+            'secondaryCategoriesByParent' => $secondaryCategoriesByParent,
+            'allSecondaryCategories' => $allSecondaryCategories,
+        ];
+    }
+
+    /**
+     * @param int $primaryCategory
+     * @param int $secondaryCategory
+     * @param \HGON\HgonTemplate\Domain\Model\SysCategory|null $sysCategory
+     * @param array<int,array> $secondaryCategoriesByParent
+     * @param int $journalParentCategoryUid
+     * @return array<int>
+     */
+    protected function resolveJournalCategoryFilterList(
+        int $primaryCategory,
+        int $secondaryCategory,
+        ?\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory,
+        array $secondaryCategoriesByParent,
+        int $journalParentCategoryUid
+    ): array {
+        if ($secondaryCategory > 0) {
+            return [$secondaryCategory];
+        }
+
+        if ($primaryCategory > 0) {
+            $categoryUids = [$primaryCategory];
+            if (isset($secondaryCategoriesByParent[$primaryCategory])) {
+                $categoryUids = array_merge($categoryUids, array_keys($secondaryCategoriesByParent[$primaryCategory]));
+            }
+            return array_values(array_unique(array_map('intval', $categoryUids)));
+        }
+
+        if ($sysCategory instanceof \HGON\HgonTemplate\Domain\Model\SysCategory) {
+            $selectedCategoryUid = (int)$sysCategory->getUid();
+            $selectedParentUid = (int)($sysCategory->getParentcategory()?->getUid() ?? 0);
+
+            if ($selectedParentUid === $journalParentCategoryUid) {
+                $categoryUids = [$selectedCategoryUid];
+                if (isset($secondaryCategoriesByParent[$selectedCategoryUid])) {
+                    $categoryUids = array_merge($categoryUids, array_keys($secondaryCategoriesByParent[$selectedCategoryUid]));
+                }
+                return array_values(array_unique(array_map('intval', $categoryUids)));
+            }
+
+            return [$selectedCategoryUid];
+        }
+
+        return [];
     }
 
 

@@ -65,6 +65,37 @@ $tempColumns = [
             ],
         ],
     ],
+    'tx_hgontemplate_registration_mode' => [
+        'exclude' => 1,
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode',
+        'onChange' => 'reload',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                [
+                    'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.native',
+                    'value' => 'native',
+                ],
+                [
+                    'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.form',
+                    'value' => 'form',
+                ],
+            ],
+            'default' => 'native',
+        ],
+    ],
+    'tx_hgontemplate_registration_form' => [
+        'exclude' => 1,
+        'displayCond' => 'FIELD:tx_hgontemplate_registration_mode:=:form',
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'itemsProcFunc' => \HGON\HgonTemplate\Tca\ItemsProcFunc\FormDefinitionItems::class . '->addEventRegistrationForms',
+            'default' => '',
+        ],
+    ],
 ];
 
 ExtensionManagementUtility::addTCAcolumns('tx_sfeventmgt_domain_model_event', $tempColumns);
@@ -73,6 +104,18 @@ ExtensionManagementUtility::addFieldsToPalette(
     'titleTopEvent',
     'tx_hgontemplate_event_type',
     'before:title'
+);
+ExtensionManagementUtility::addFieldsToPalette(
+    'tx_sfeventmgt_domain_model_event',
+    'hgonRegistration',
+    'tx_hgontemplate_registration_mode, tx_hgontemplate_registration_form'
+);
+
+ExtensionManagementUtility::addToAllTCAtypes(
+    'tx_sfeventmgt_domain_model_event',
+    '--palette--;;hgonRegistration',
+    '',
+    'before:slug'
 );
 
 ExtensionManagementUtility::addToAllTCAtypes(

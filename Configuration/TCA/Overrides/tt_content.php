@@ -117,7 +117,7 @@ call_user_func(
         $extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($extKey));
         $addFlexForm = static function (string $pluginSignature, string $flexFormFile): void {
             \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-                $pluginSignature,
+                '*',
                 $flexFormFile,
                 $pluginSignature
             );

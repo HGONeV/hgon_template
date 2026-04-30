@@ -5,7 +5,9 @@
 			<h2>{formvh:translateElementProperty(element: element, property: 'label')}</h2>
 		</f:if>
 		<f:if condition="{element.properties.text}">
-			<p{f:if(condition: element.properties.elementClassAttribute, then: ' class="{element.properties.elementClassAttribute}"')}>{formvh:translateElementProperty(element: element, property: 'text') -> f:format.nl2br()}</p>
+			<div{f:if(condition: element.properties.elementClassAttribute, then: ' class="{element.properties.elementClassAttribute}"')}>
+				<f:format.html>{formvh:translateElementProperty(element: element, property: 'text')}</f:format.html>
+			</div>
 		</f:if>
 	</div>
 </formvh:renderRenderable>

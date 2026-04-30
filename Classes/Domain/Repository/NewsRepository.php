@@ -65,7 +65,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
         array $workgroupList = [],
         array $excludedNews = [],
         int $pageNumber = 1,
-        int $limit = 5
+        int $limit = 5,
+        array $filters = []
     ): QueryResultInterface {
         // Single SysCategory -> array
         if ($sysCategoryList instanceof \HGON\HgonTemplate\Domain\Model\SysCategory) {
@@ -132,6 +133,45 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
         if ($constraints !== []) {
             $query->matching(
                 count($constraints) === 1 ? $constraints[0] : $query->logicalAnd(...$constraints)
+            );
+        }
+
+        $filterConstraints = [];
+
+        $searchTerm = trim((string)($filters['searchTerm'] ?? ''));
+        if ($searchTerm !== '') {
+            $escapedSearchTerm = '%' . addcslashes($searchTerm, '%_') . '%';
+            $filterConstraints[] = $query->logicalOr(
+                $query->like('title', $escapedSearchTerm),
+                $query->like('teaser', $escapedSearchTerm),
+                $query->like('bodytext', $escapedSearchTerm)
+            );
+        }
+
+        $dateRange = (string)($filters['dateRange'] ?? 'all');
+        $threeYearsAgo = strtotime('-3 years midnight');
+        $oneYearAgo = strtotime('-1 year midnight');
+
+        switch ($dateRange) {
+            case 'last12':
+                $filterConstraints[] = $query->greaterThanOrEqual('datetime', $oneYearAgo);
+                break;
+            case 'last36':
+                $filterConstraints[] = $query->greaterThanOrEqual('datetime', $threeYearsAgo);
+                break;
+            case 'older36':
+                $filterConstraints[] = $query->lessThan('datetime', $threeYearsAgo);
+                break;
+        }
+
+        if ($filterConstraints !== []) {
+            $existing = $constraints === []
+                ? []
+                : [count($constraints) === 1 ? $constraints[0] : $query->logicalAnd(...$constraints)];
+
+            $allConstraints = array_merge($existing, $filterConstraints);
+            $query->matching(
+                count($allConstraints) === 1 ? $allConstraints[0] : $query->logicalAnd(...$allConstraints)
             );
         }
 

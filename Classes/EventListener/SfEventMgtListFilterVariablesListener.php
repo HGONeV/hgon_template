@@ -27,6 +27,7 @@ final class SfEventMgtListFilterVariablesListener
         if (!in_array($requestEventType, ['', 'standard', 'workgroup'], true)) {
             $requestEventType = '';
         }
+        $requestSearchTerm = trim((string)($pluginArguments['searchTerm'] ?? ''));
         $requestDisplayMode = (string)($pluginArguments['overwriteDemand']['displayMode'] ?? 'all');
         if (!in_array($requestDisplayMode, ['all', 'future', 'current_future', 'past'], true)) {
             $requestDisplayMode = 'all';
@@ -37,6 +38,7 @@ final class SfEventMgtListFilterVariablesListener
         }
 
         $variables['requestEventType'] = $requestEventType;
+        $variables['requestSearchTerm'] = $requestSearchTerm;
         $variables['requestDisplayMode'] = $requestDisplayMode;
         $variables['requestTopEventRestriction'] = $requestTopEventRestriction;
         $variables['eventTypeOptions'] = [
@@ -54,14 +56,19 @@ final class SfEventMgtListFilterVariablesListener
             '2' => 'Nur Top-Veranstaltungen',
         ];
 
-        if ($requestEventType !== '') {
-            $variables = $this->filterVariablesByEventType($variables, $requestEventType, $pluginArguments);
+        if ($requestEventType !== '' || $requestSearchTerm !== '') {
+            $variables = $this->filterVariables($variables, $requestEventType, $requestSearchTerm, $pluginArguments);
         }
 
         $event->setVariables($variables);
     }
 
-    private function filterVariablesByEventType(array $variables, string $selectedEventType, array $pluginArguments): array
+    private function filterVariables(
+        array $variables,
+        string $selectedEventType,
+        string $searchTerm,
+        array $pluginArguments
+    ): array
     {
         $events = $variables['events'] ?? [];
         if (is_array($events)) {
@@ -82,7 +89,7 @@ final class SfEventMgtListFilterVariablesListener
         $typesByUid = $this->fetchEventTypesByUid($eventArray);
         $filteredEvents = array_values(array_filter(
             $eventArray,
-            static fn($event): bool => ($typesByUid[$event->getUid()] ?? 'standard') === $selectedEventType
+            fn($event): bool => $this->matchesEventFilters($event, $typesByUid, $selectedEventType, $searchTerm)
         ));
 
         $variables['events'] = $filteredEvents;
@@ -125,6 +132,46 @@ final class SfEventMgtListFilterVariablesListener
         }
 
         return $typesByUid;
+    }
+
+    private function matchesEventFilters(object $event, array $typesByUid, string $selectedEventType, string $searchTerm): bool
+    {
+        if ($selectedEventType !== '' && ($typesByUid[$event->getUid()] ?? 'standard') !== $selectedEventType) {
+            return false;
+        }
+
+        if ($searchTerm === '') {
+            return true;
+        }
+
+        $needle = mb_strtolower($searchTerm);
+        $haystacks = [
+            (string)($event->getTitle() ?? ''),
+            (string)($event->getTeaser() ?? ''),
+            (string)($event->getDescription() ?? ''),
+        ];
+
+        $location = method_exists($event, 'getLocation') ? $event->getLocation() : null;
+        if (is_object($location) && method_exists($location, 'getTitle')) {
+            $haystacks[] = (string)($location->getTitle() ?? '');
+        }
+
+        if (method_exists($event, 'getCategories')) {
+            foreach ($event->getCategories() ?? [] as $category) {
+                if (is_object($category) && method_exists($category, 'getTitle')) {
+                    $haystacks[] = (string)($category->getTitle() ?? '');
+                }
+            }
+        }
+
+        foreach ($haystacks as $haystack) {
+            $plainHaystack = trim(strip_tags($haystack));
+            if ($plainHaystack !== '' && mb_stripos($plainHaystack, $needle) !== false) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function buildPagination(array $events, array $settings, array $pluginArguments): ?array

@@ -88,6 +88,22 @@
                 <source>Bookable meals</source>
                 <target>Buchbare Speisen</target>
             </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode">
+                <source>Registration type</source>
+                <target>Art der Anmeldung</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.native">
+                <source>Native event registration</source>
+                <target>Normale Veranstaltungsanmeldung</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.form">
+                <source>TYPO3 form</source>
+                <target>Eigenes Formular auswählen</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form">
+                <source>Registration form</source>
+                <target>Anmeldeformular</target>
+            </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.image">
                 <source>Title image</source>
                 <target>Titelbild</target>

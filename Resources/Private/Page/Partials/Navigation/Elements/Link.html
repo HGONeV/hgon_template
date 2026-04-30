@@ -15,15 +15,22 @@
     </a>
 
     <f:section name="meta">
+        <f:variable name="metaTitle" value="{item.title}" />
+        <f:if condition="{item.data.uid} == 10">
+            <f:variable name="metaTitle" value="News &amp; Aktuelles" />
+        </f:if>
+        <f:if condition="{item.data.uid} == 3">
+            <f:variable name="metaTitle" value="Veranstaltungen &amp; Fortbildungen" />
+        </f:if>
         <f:if condition="{isLast}">
             <f:then>
                 <a class="btn btn--cta btn--rounded ml-1" href="{item.link}" title="{item.data.title}">
-                    {item.title}
+                    {metaTitle -> f:format.raw()}
                 </a>
             </f:then>
             <f:else>
                 <a class="btn btn--primary btn--rounded" href="{item.link}" title="{item.data.title}">
-                    {item.title}
+                    {metaTitle -> f:format.raw()}
                 </a>
             </f:else>
         </f:if>

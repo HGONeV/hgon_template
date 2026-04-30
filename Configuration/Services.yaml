@@ -46,6 +46,13 @@ services:
         identifier: 'hgon-template/sfeventmgt-registration-culinary-variables'
         event: DERHANSEN\SfEventMgt\Event\ModifyRegistrationViewVariablesEvent
 
+  HGON\HgonTemplate\EventListener\SfEventMgtRegistrationFormVariablesListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'hgon-template/sfeventmgt-registration-form-variables'
+        event: DERHANSEN\SfEventMgt\Event\ModifyRegistrationViewVariablesEvent
+
   HGON\HgonTemplate\EventListener\SfEventMgtRegistrationCulinaryValidationListener:
     autowire: true
     tags:

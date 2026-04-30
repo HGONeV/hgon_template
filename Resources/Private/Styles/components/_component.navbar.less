@@ -9,6 +9,22 @@
 }
 
 .nav--primary {
+  .menu-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .btn {
+      width: 100%;
+      text-align: center;
+
+      &.ml-1 {
+        margin-left: 0;
+        margin-top: .5em;
+      }
+    }
+  }
+
   @media @mq-1280 {
     .menu.menu-main {
       > li > a {
@@ -19,7 +35,8 @@
       .btn {
         padding: .5em 1.5em;
         &.ml-1 {
-          margin-left: .5em;
+          margin-left: 0;
+          margin-top: .5em;
         }
       }
     }
