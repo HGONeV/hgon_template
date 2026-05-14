@@ -34,11 +34,6 @@ return [
     \HGON\HgonTemplate\Domain\Model\WorkGroup::class => [
         'tableName' => 'tx_hgonworkgroup_domain_model_workgroup',
     ],
-
-    \HGON\HgonTemplate\Domain\Model\Article::class => [
-        'tableName' => 'tx_hgonpayment_domain_model_article',
-    ],
-
 //    \HGON\HgonTemplate\Domain\Model\TtContent::class => [
 //        'tableName' => 'tt_content',
 //    ],

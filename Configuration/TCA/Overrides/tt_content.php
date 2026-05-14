@@ -96,21 +96,6 @@ call_user_func(
             'Sidebar',
             'HGON: News Sidebar'
         );
-
-
-
-        // ***************
-        // Article
-        // ***************
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            $extKey,
-            'ShowArticleFromPages',
-            'HGON: Bestellung (Artikel)'
-        );
-
-
-
         //=================================================================
         // Add Flexform (CType)
         //=================================================================

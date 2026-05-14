@@ -14,4 +14,3 @@ lib.contentElement {
         40 = {$globalWebsiteConfig.templatePaths.gridelements.layouts}
     }
 }
-

@@ -36,52 +36,52 @@ class Authors extends NewsAuthor
 
     public function getFirstName(): string
     {
-        return $this->getFirstname();
+        return parent::getFirstname();
     }
 
     public function setFirstName(string $firstName): void
     {
-        $this->setFirstname($firstName);
+        parent::setFirstname($firstName);
     }
 
     public function getLastName(): string
     {
-        return $this->getLastname();
+        return parent::getLastname();
     }
 
     public function setLastName(string $lastName): void
     {
-        $this->setLastname($lastName);
+        parent::setLastname($lastName);
     }
 
     public function getFunctionTitle(): string
     {
-        return $this->getPosition();
+        return parent::getPosition();
     }
 
     public function setFunctionTitle(string $functionTitle): void
     {
-        $this->setPosition($functionTitle);
+        parent::setPosition($functionTitle);
     }
 
     public function getFunctionDescription(): string
     {
-        return $this->getBio();
+        return parent::getBio();
     }
 
     public function setFunctionDescription(string $functionDescription): void
     {
-        $this->setBio($functionDescription);
+        parent::setBio($functionDescription);
     }
 
     public function getImageBoxes(): ?FileReference
     {
-        return $this->getImage();
+        return parent::getImage();
     }
 
     public function setImageBoxes(?FileReference $imageBoxes): void
     {
-        $this->setImage($imageBoxes);
+        parent::setImage($imageBoxes);
     }
 
     /**

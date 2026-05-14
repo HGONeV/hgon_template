@@ -60,13 +60,6 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $txHgontemplateContactperson = null;
 
     /**
-     * txHgontemplateArticle
-     *
-     * @var \HGON\HgonTemplate\Domain\Model\Article
-     */
-    protected $txHgontemplateArticle = null;
-
-    /**
      * txHgontemplateArticleImage
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
@@ -284,27 +277,6 @@ class Pages extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTxHgontemplateContactperson(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $txHgontemplateContactperson)
     {
         $this->txHgontemplateContactperson = $txHgontemplateContactperson;
-    }
-
-    /**
-     * Returns the txHgontemplateArticle
-     *
-     * @return \HGON\HgonTemplate\Domain\Model\Article $txHgontemplateArticle
-     */
-    public function getTxHgontemplateArticle()
-    {
-        return $this->txHgontemplateArticle;
-    }
-
-    /**
-     * Sets the txHgontemplateArticle
-     *
-     * @param \HGON\HgonTemplate\Domain\Model\Article $txHgontemplateArticle
-     * @return void
-     */
-    public function setTxHgontemplateArticle(\HGON\HgonTemplate\Domain\Model\Article $txHgontemplateArticle)
-    {
-        $this->txHgontemplateArticle = $txHgontemplateArticle;
     }
 
     /**

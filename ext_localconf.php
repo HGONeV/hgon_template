@@ -245,28 +245,6 @@ call_user_func(
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
-
-
-
-        // ***************
-        // Article
-        // ***************
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            $extKey,
-            'ShowArticleFromPages',
-            [
-                \HGON\HgonTemplate\Controller\ArticleController::class => 'showArticleFromPages, newOrder, createOrder'
-            ],
-            // non-cacheable actions
-            [
-                \HGON\HgonTemplate\Controller\ArticleController::class => 'showArticleFromPages, newOrder, createOrder'
-            ],
-            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
-        );
-
-
-
         // caching
         $cacheConfigurations =& $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'];
         if (!isset($cacheConfigurations[$extKey]) || !is_array($cacheConfigurations[$extKey])) {

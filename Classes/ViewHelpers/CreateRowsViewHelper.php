@@ -12,9 +12,6 @@ namespace HGON\HgonTemplate\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use Doctrine\Common\Util\Debug;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * CreateRowsViewHelper
  *
@@ -78,8 +75,8 @@ class CreateRowsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractVie
         // merge possible list-arrays
         $mergedList = [];
         foreach (array_filter($list) as $singleList) {
-            if ($singleList instanceof QueryResult || $singleList instanceof ObjectStorage) {
-                $singleList = $singleList->toArray();
+            if ($singleList instanceof \Traversable) {
+                $singleList = iterator_to_array($singleList, false);
             }
 
             if (!is_array($singleList)) {

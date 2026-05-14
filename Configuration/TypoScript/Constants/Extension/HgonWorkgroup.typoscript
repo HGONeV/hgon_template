@@ -13,7 +13,7 @@ plugin.tx_hgonworkgroup {
         # (showPid is still set for plugin handling, even if listPid and showPid the same at the moment)
         showPid = 265
         event {
-            showPid = 265
+            showPid = 40
         }
         news {
             showPid = 62

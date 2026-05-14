@@ -24,7 +24,7 @@
 
 
 <f:section name="Header">
-    <f:if condition="{data.layout} != 30 && {data.layout} != 40 && {data.layout} != 42 && {data.layout} != 55 && {data.layout} != 70">
+    <f:if condition="{data.layout} != 30 && {data.layout} != 40 && {data.layout} != 42 && {data.layout} != 55 && {data.layout} != 70 && {data.layout} != 90">
         <f:if condition="{gallery.position.noWrap} != 1">
             <f:render partial="Header/All" arguments="{_all}" />
         </f:if>
@@ -135,6 +135,17 @@
                     <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
                 </div>
             </aside>
+        </f:case>
+
+        <f:case value="90">
+            <div class="flex-item c-6 / pt-1 pb-1">
+                <f:if condition="{data.header}">
+                    <h6>{data.header}</h6>
+                </f:if>
+                <f:if condition="{data.bodytext}">
+                    <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
+                </f:if>
+            </div>
         </f:case>
 
         <!-- Slider: Supporters Opinion -->

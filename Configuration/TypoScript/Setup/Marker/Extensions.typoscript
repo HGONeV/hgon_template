@@ -181,30 +181,6 @@ page {
                 persistence =< plugin.tx_hgondonation.persistence
                 settings =< plugin.tx_hgondonation.settings
             }
-
-            //=================================================================
-            // Show Article (tp-info feature)
-            //=================================================================
-            showArticleFromPages = EXTBASEPLUGIN
-            showArticleFromPages {
-                extensionName = HgonTemplate
-                pluginName = ShowArticleFromPages
-                vendorName = HGON
-                controller = Article
-                switchableControllerActions {
-                    // Again: Controller-Name and Action
-                    Article {
-                        1 = showArticleFromPages
-                        2 = newOrder
-                        3 = createOrder
-                    }
-                }
-
-                view =< plugin.tx_hgontemplate.view
-                persistence =< plugin.tx_hgontemplate.persistence
-                settings =< plugin.tx_hgontemplate.settings
-            }
-
         }
     }
 }

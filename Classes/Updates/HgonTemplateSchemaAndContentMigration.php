@@ -149,7 +149,6 @@ final class HgonTemplateSchemaAndContentMigration implements UpgradeWizardInterf
         $requiredColumns = [
             'pages' => [
                 'tx_hgontemplate_contactperson',
-                'tx_hgontemplate_article',
                 self::NEW_PAGE_ARTICLE_IMAGE,
                 self::NEW_PAGE_TEASER_TEXT,
             ],
@@ -324,7 +323,6 @@ final class HgonTemplateSchemaAndContentMigration implements UpgradeWizardInterf
             'Journal',
             'Header',
             'Sidebar',
-            'ShowArticleFromPages',
         ];
 
         return array_map(

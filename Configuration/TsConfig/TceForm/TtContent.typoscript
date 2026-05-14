@@ -52,6 +52,8 @@ TCEFORM {
                 77 = Kacheln groß (1 Bild)
                 80 = Zentrierter Text
                 85 = Teammitglied-Box (Bild + Text)
+                90 = Footer: Textblock
+                95 = Dateilinks: Kacheln mit Cover
 
             }
 

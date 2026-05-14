@@ -16,7 +16,6 @@ plugin.tx_hgontemplate {
         partialRootPaths {
             0 = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/
             1 = {$plugin.tx_hgontemplate.view.partialRootPath}
-            2 = EXT:hgon_payment/Resources/Private/Partials/
         }
     }
     persistence {
@@ -36,9 +35,6 @@ plugin.tx_hgontemplate {
         }
         news {
             detailPid = {$plugin.tx_hgontemplate.settings.news.detailPid}
-        }
-        article {
-            orderFormPid = {$plugin.tx_hgontemplate.settings.article.orderFormPid}
         }
         showMapsPidList = {$plugin.tx_hgontemplate.settings.showMapsPidList}
     }
@@ -66,7 +62,6 @@ tt_content.list.20 {
     hgontemplate_journal < tt_content.hgontemplate_journal
     hgontemplate_header < tt_content.hgontemplate_header
     hgontemplate_sidebar < tt_content.hgontemplate_sidebar
-    hgontemplate_showarticlefrompages < tt_content.hgontemplate_showarticlefrompages
 }
 
 #===============================================================

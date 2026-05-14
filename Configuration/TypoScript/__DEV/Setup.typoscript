@@ -1,15 +1,3 @@
 config.base = https://hgon-relaunch.ddev.site:8443
 
-
-plugin.tx_hgonworkgroup_list {
-    settings {
-        showPid = 43
-    }
-}
-plugin.tx_hgonworkgroup {
-    settings {
-        showPid = 43
-    }
-}
-
 txHgondonationBecomeMember.10.select.uidInList = 191

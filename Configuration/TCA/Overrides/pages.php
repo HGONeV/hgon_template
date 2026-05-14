@@ -21,27 +21,6 @@ $tempPagesColumns = array(
             'minitems' => 0,
         ],
     ],
-
-    'tx_hgontemplate_article' => [
-        'exclude' => 0,
-        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tx_hgontemplate_article',
-        'config' => [
-            'type' => 'select',
-            'renderType' => 'selectSingle',
-            'items' => [
-                [
-                    'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.pleaseChoose',
-                    'value' => 0,
-                ],
-            ],
-            'foreign_table' => 'tx_hgonpayment_domain_model_article',
-            'foreign_table_where' =>
-                'AND tx_hgonpayment_domain_model_article.hidden = 0 ' .
-                'AND tx_hgonpayment_domain_model_article.deleted = 0 ' .
-                'ORDER BY tx_hgonpayment_domain_model_article.name ASC',
-        ],
-    ],
-
     'tx_hgontemplate_article_image' => [
         'exclude' => 1,
         'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tx_hgontemplate_article_image',
@@ -107,33 +86,10 @@ ExtensionManagementUtility::addTCAcolumns(
     $tempPagesColumns
 );
 
-ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_hgontemplate_extended','tx_hgontemplate_contactperson','after:subtitle');
-ExtensionManagementUtility::addFieldsToPalette('pages', 'tx_hgontemplate_extended2','tx_hgontemplate_article','after:tx_hgontemplate_contactperson');
-
-// Add palette to new tab
-/*
-$tempConfig = '--div--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tabs.hgon,--palette--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.palettes.common;tx_hgontemplate_palette,';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-    'pages',
-    $tempConfig
-);
-*/
-
-// Add field to the existing palette
-//\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('pages', 'editorial','--linebreak--,tx_hgontemplate_contactperson','after:lastUpdated');
-
 ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
-    'tx_hgontemplate_article_image',
-    '',
-    'before:abstract'
-);
-
-ExtensionManagementUtility::addToAllTCAtypes(
-    'pages',
-    'tx_hgontemplate_teaser_text',
-    '',
-    'before:abstract'
+    '--div--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tabs.hgon,' .
+    'tx_hgontemplate_contactperson,tx_hgontemplate_article_image,tx_hgontemplate_teaser_text'
 );
 
 

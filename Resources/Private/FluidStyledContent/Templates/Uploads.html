@@ -1,25 +1,68 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hgon="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+    xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
 <f:layout name="Default" />
 <f:section name="Main">
 
     <f:if condition="{files}">
-        <ul class="news-downloads">
-            <f:for each="{files}" as="file">
-                <li>
-                    <i class="fa fa-download"></i>&nbsp;
-                    <span class="news-related-files-link">
-                        <a href="{file.publicUrl}" {f:if(condition:data.target, then: ' target="{data.target}"')}{f:if(condition: file.title, then: ' title="{file.title}"')}>
-                            {f:if(condition: file.properties.title, then: file.properties.title, else: file.name) -> f:format.htmlspecialchars()}
-                        </a>
-                    </span>
-                    <f:if condition="{data.filelink_size}">
-                        <span class="news-related-files-size">
-                            <f:format.bytes value="{file.properties.size}" />
-                        </span>
-                    </f:if>
-                </li>
-            </f:for>
-        </ul>
+        <f:if condition="{data.layout} == 95">
+            <f:then>
+                <div class="flex-container space-between gutter valign-stretch">
+                    <f:for each="{files}" as="file">
+                        <div class="flex-item c-4">
+                            <article class="card card--border">
+                                <f:if condition="{file.extension} == 'pdf'">
+                                    <f:then>
+                                        <picture class="card__image">
+                                            <v:media.pdfThumbnail
+                                                src="fileadmin{file.identifier}"
+                                                alt="{f:if(condition: file.properties.title, then: file.properties.title, else: file.name)}"
+                                            />
+                                        </picture>
+                                    </f:then>
+                                    <f:else>
+                                        <f:if condition="{file.type} == 2">
+                                            <picture class="card__image">
+                                                <f:image image="{file}" alt="{f:if(condition: file.properties.title, then: file.properties.title, else: file.name)}" />
+                                            </picture>
+                                        </f:if>
+                                    </f:else>
+                                </f:if>
+                                <div class="card__inner">
+                                    <div>
+                                        <a href="{file.publicUrl}" class="btn btn--rounded btn--tertiary" {f:if(condition:data.target, then: ' target="{data.target}"')}{f:if(condition: file.properties.title, then: ' title="{file.properties.title}"')}>
+                                            Öffnen
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </f:for>
+                </div>
+            </f:then>
+            <f:else>
+                <ul class="news-downloads">
+                    <f:for each="{files}" as="file">
+                        <li>
+                            <i class="fa fa-download"></i>&nbsp;
+                            <span class="news-related-files-link">
+                                <a href="{file.publicUrl}" {f:if(condition:data.target, then: ' target="{data.target}"')}{f:if(condition: file.title, then: ' title="{file.title}"')}>
+                                    {f:if(condition: file.properties.title, then: file.properties.title, else: file.name) -> f:format.htmlspecialchars()}
+                                </a>
+                            </span>
+                            <f:if condition="{data.filelink_size}">
+                                <span class="news-related-files-size">
+                                    <f:format.bytes value="{file.properties.size}" />
+                                </span>
+                            </f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:else>
+        </f:if>
     </f:if>
 
 </f:section>

@@ -1,9 +1,0 @@
-
-<f:if condition="{isPayPalPlus}">
-    <f:then>
-        <f:render partial="PayPal/PaymentWall" arguments="{_all}" />
-    </f:then>
-    <f:else>
-        <a href="<f:format.raw>{approvalUrl}</f:format.raw>">Jetzt weiter zu PayPal!</a>
-    </f:else>
-</f:if>

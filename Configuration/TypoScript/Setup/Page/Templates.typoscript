@@ -271,3 +271,7 @@ page {
         }
 	}
 }
+
+[page["uid"] == 265]
+    page.10.variables.eventSidebar >
+[end]

@@ -93,17 +93,6 @@ CREATE TABLE tx_hgontemplate_domain_model_registrationaddon (
 
 );
 
-
-#
-# Table structure for table 'tx_hgonpayment_domain_model_article'
-#
-CREATE TABLE tx_hgonpayment_domain_model_article (
-	tx_hgontemplate_subtitle varchar(255) DEFAULT '' NOT NULL,
-	tx_hgontemplate_image int(11) unsigned NOT NULL default '0',
-	tx_hgontemplate_link varchar(255) DEFAULT '' NOT NULL
-);
-
-
 #
 # Table structure for table 'tx_news_domain_model_news'
 #
@@ -120,7 +109,6 @@ CREATE TABLE tx_news_domain_model_news (
 #
 CREATE TABLE pages (
 	tx_hgontemplate_contactperson int(11) unsigned DEFAULT '0' NOT NULL,
-	tx_hgontemplate_article int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_article_image int(11) unsigned DEFAULT '0' NOT NULL,
 	tx_hgontemplate_teaser_text text
 );

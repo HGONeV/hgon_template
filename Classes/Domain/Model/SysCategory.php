@@ -24,6 +24,27 @@ namespace HGON\HgonTemplate\Domain\Model;
  */
 class SysCategory extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+    protected string $title = '';
 
+    protected ?self $parentcategory = null;
 
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getParentcategory(): ?self
+    {
+        return $this->parentcategory;
+    }
+
+    public function setParentcategory(?self $parentcategory): void
+    {
+        $this->parentcategory = $parentcategory;
+    }
 }
