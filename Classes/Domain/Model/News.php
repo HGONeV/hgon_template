@@ -2,6 +2,7 @@
 
 namespace HGON\HgonTemplate\Domain\Model;
 
+use HGON\HgonDonation\Domain\Model\Project;
 use Mediadreams\MdNewsAuthor\Domain\Model\NewsAuthor;
 use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
@@ -56,6 +57,8 @@ class News extends \GeorgRinger\News\Domain\Model\NewsDefault
      */
     #[Cascade(['value' => 'remove'])]
     protected $txHgontemplateHeaderImage = null;
+
+    protected ?Project $txHgondonationProject = null;
 
     public function addNewsAuthor(NewsAuthor $newsAuthor): void
     {
@@ -115,5 +118,15 @@ class News extends \GeorgRinger\News\Domain\Model\NewsDefault
     public function setTxHgontemplateHeaderImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $txHgontemplateHeaderImage)
     {
         $this->txHgontemplateHeaderImage = $txHgontemplateHeaderImage;
+    }
+
+    public function getTxHgondonationProject(): ?Project
+    {
+        return $this->txHgondonationProject;
+    }
+
+    public function setTxHgondonationProject(?Project $txHgondonationProject): void
+    {
+        $this->txHgondonationProject = $txHgondonationProject;
     }
 }

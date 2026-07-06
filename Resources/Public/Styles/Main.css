@@ -336,19 +336,23 @@ section.section.helper .section__header {
 }
 
 .nav--primary .menu-cta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: flex-end;
+    gap: .5em;
+}
+
+.nav--primary .menu-cta li {
+    margin: 0;
+}
+
+.nav--primary .menu-cta li:first-child {
+    grid-column: 1 / -1;
 }
 
 .nav--primary .menu-cta .btn {
     width: 100%;
     text-align: center;
-}
-
-.nav--primary .menu-cta .btn.ml-1 {
-    margin-left: 0;
-    margin-top: .5em;
 }
 
 @media only screen and (max-width: 48em) {
@@ -382,8 +386,16 @@ section.section.helper .section__header {
     .nav--primary .menu-cta .btn {
         width: auto;
     }
+}
 
-    .nav--primary .menu-cta .btn.ml-1 {
-        margin-top: 0;
+
+/* Height fix for homescreen (tmpl-home) main menu, after adding a second element to the side-menu "menu-tca"  */
+.tmpl-home {
+    .header.header--ghost {
+        .header__content {
+            nav > .flex-container {
+                align-items: flex-start;
+            }
+        }
     }
 }

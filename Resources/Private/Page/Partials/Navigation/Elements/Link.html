@@ -16,6 +16,7 @@
 
     <f:section name="meta">
         <f:variable name="metaTitle" value="{item.title}" />
+        <f:variable name="metaButtonClass" value="btn btn--primary btn--rounded" />
         <f:if condition="{item.data.uid} == 10">
             <f:variable name="metaTitle" value="News &amp; Aktuelles" />
         </f:if>
@@ -23,17 +24,14 @@
             <f:variable name="metaTitle" value="Veranstaltungen &amp; Fortbildungen" />
         </f:if>
         <f:if condition="{isLast}">
-            <f:then>
-                <a class="btn btn--cta btn--rounded ml-1" href="{item.link}" title="{item.data.title}">
-                    {metaTitle -> f:format.raw()}
-                </a>
-            </f:then>
-            <f:else>
-                <a class="btn btn--primary btn--rounded" href="{item.link}" title="{item.data.title}">
-                    {metaTitle -> f:format.raw()}
-                </a>
-            </f:else>
+            <f:variable name="metaButtonClass" value="btn btn--cta btn--rounded" />
         </f:if>
+        <f:if condition="{item.data.uid} == 278">
+            <f:variable name="metaButtonClass" value="btn btn--secondary btn--rounded" />
+        </f:if>
+        <a class="{metaButtonClass}" href="{item.link}" title="{item.data.title}">
+            {metaTitle -> f:format.raw()}
+        </a>
     </f:section>
 
     <f:section name="sub">

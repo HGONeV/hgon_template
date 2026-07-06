@@ -227,45 +227,95 @@ page {
             }
 
             //=================================================================
-            // add event header to sf_event_mgt detail view
+            // add donation project header to project detail view
             //=================================================================
-            eventHeader = EXTBASEPLUGIN
-            eventHeader {
-                extensionName = SfEventMgt
-                pluginName = Pieventdetail
-                vendorName = DERHANSEN
-                controller = Event
+            projectHeader = EXTBASEPLUGIN
+            projectHeader {
+                extensionName = HgonDonation
+                pluginName = ProjectHeader
+                vendorName = HGON
+                controller = Project
                 switchableControllerActions {
-                    Event {
-                        1 = detail
+                    Project {
+                        1 = header
                     }
                 }
 
-                view =< plugin.tx_sfeventmgt.view
-                persistence =< plugin.tx_sfeventmgt.persistence
-                settings =< plugin.tx_sfeventmgt.settings
-                settings.renderMode = header
+                view =< plugin.tx_hgondonation.view
+                persistence =< plugin.tx_hgondonation.persistence
+                settings =< plugin.tx_hgondonation.settings
+            }
+
+            //=================================================================
+            // add donation project sidebar to project detail view
+            //=================================================================
+            projectSidebar = EXTBASEPLUGIN
+            projectSidebar {
+                extensionName = HgonDonation
+                pluginName = ProjectSidebar
+                vendorName = HGON
+                controller = Project
+                switchableControllerActions {
+                    Project {
+                        1 = sidebar
+                    }
+                }
+
+                view =< plugin.tx_hgondonation.view
+                persistence =< plugin.tx_hgondonation.persistence
+                settings =< plugin.tx_hgondonation.settings
+            }
+
+            //=================================================================
+            // add event header to sf_event_mgt detail view
+            //=================================================================
+            eventHeader = COA
+            eventHeader {
+                if.isTrue.data = GP:tx_sfeventmgt_pieventdetail|event
+
+                10 = EXTBASEPLUGIN
+                10 {
+                    extensionName = SfEventMgt
+                    pluginName = Pieventdetail
+                    vendorName = DERHANSEN
+                    controller = Event
+                    switchableControllerActions {
+                        Event {
+                            1 = detail
+                        }
+                    }
+
+                    view =< plugin.tx_sfeventmgt.view
+                    persistence =< plugin.tx_sfeventmgt.persistence
+                    settings =< plugin.tx_sfeventmgt.settings
+                    settings.renderMode = header
+                }
             }
 
             //=================================================================
             // add event sidebar to sf_event_mgt detail view
             //=================================================================
-            eventSidebar = EXTBASEPLUGIN
+            eventSidebar = COA
             eventSidebar {
-                extensionName = SfEventMgt
-                pluginName = Pieventdetail
-                vendorName = DERHANSEN
-                controller = Event
-                switchableControllerActions {
-                    Event {
-                        1 = detail
-                    }
-                }
+                if.isTrue.data = GP:tx_sfeventmgt_pieventdetail|event
 
-                view =< plugin.tx_sfeventmgt.view
-                persistence =< plugin.tx_sfeventmgt.persistence
-                settings =< plugin.tx_sfeventmgt.settings
-                settings.renderMode = sidebar
+                10 = EXTBASEPLUGIN
+                10 {
+                    extensionName = SfEventMgt
+                    pluginName = Pieventdetail
+                    vendorName = DERHANSEN
+                    controller = Event
+                    switchableControllerActions {
+                        Event {
+                            1 = detail
+                        }
+                    }
+
+                    view =< plugin.tx_sfeventmgt.view
+                    persistence =< plugin.tx_sfeventmgt.persistence
+                    settings =< plugin.tx_sfeventmgt.settings
+                    settings.renderMode = sidebar
+                }
             }
 
         }

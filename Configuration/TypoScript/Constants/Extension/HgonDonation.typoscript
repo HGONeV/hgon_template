@@ -4,11 +4,11 @@ plugin.tx_hgondonation {
         partialRootPath = EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/
     }
 	persistence {
-		storagePid = 59,274
+		storagePid = 45,59,274
 	}
     settings {
-        listPid = 11
-        showPid = 65
+        listPid = 554
+        showPid = 555
         donationFormPid = 80
         becomeMemberFormPid = 78
         backendUserContactPerson = 8
@@ -16,6 +16,10 @@ plugin.tx_hgondonation {
             iban = DE07 5185 0079 0085 0026 94
             bic = HELADEF1FRI
             bank = Sparkasse Oberhessen
+        }
+        project {
+            listPid = 554
+            detailPid = 555
         }
     }
 }

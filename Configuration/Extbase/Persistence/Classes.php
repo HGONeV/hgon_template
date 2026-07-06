@@ -48,5 +48,10 @@ return [
     \HGON\HgonTemplate\Domain\Model\News::class => [
         'tableName'  => 'tx_news_domain_model_news',
         'recordType' => 0,
+        'properties' => [
+            'txHgondonationProject' => [
+                'fieldName' => 'tx_hgondonation_project',
+            ],
+        ],
     ],
 ];

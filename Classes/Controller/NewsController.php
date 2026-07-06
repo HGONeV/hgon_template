@@ -11,6 +11,8 @@ namespace HGON\HgonTemplate\Controller;
  *  (c) 2018 Maximilian Fäßler <maximilian@faesslerweb.de>, Fäßler Web UG
  *
  ***/
+use HGON\HgonDonation\Domain\Model\Project;
+use HGON\HgonDonation\Service\ProjectLinkService;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use HGON\HgonTemplate\Utility\AjaxResponseBuilder;
@@ -37,6 +39,8 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      */
     protected $sysCategoryRepository;
 
+    protected ?ProjectLinkService $projectLinkService = null;
+
     /**
      * @param \HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository
      */
@@ -56,6 +60,10 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      */
     public function injectSysCategoryRepository(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository): void {
         $this->sysCategoryRepository = $sysCategoryRepository;
+    }
+
+    public function injectProjectLinkService(ProjectLinkService $projectLinkService): void {
+        $this->projectLinkService = $projectLinkService;
     }
 
     /**
@@ -490,6 +498,12 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         if ($news) {
             $this->view->assign('newsItem', $news);
+            $donationProject = $news->getTxHgondonationProject();
+            if ($donationProject instanceof Project && $this->projectLinkService instanceof ProjectLinkService) {
+                $this->view->assign('donationProject', $donationProject);
+                $this->view->assign('donationUrl', $this->projectLinkService->buildPayPalDonateUrl($donationProject));
+                $this->view->assign('donationButtonText', $this->projectLinkService->getButtonText($donationProject));
+            }
             //$this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
         }
 

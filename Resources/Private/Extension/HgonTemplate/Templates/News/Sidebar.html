@@ -9,6 +9,23 @@
         Zurück zur Übersicht
     </f:link.page>
 
+    <f:if condition="{donationProject}">
+        <aside class="aside aside--border color-bg-cta donation-news-project">
+            <header class="aside__header">
+                <h6>Projekt unterstützen</h6>
+            </header>
+            <div class="aside__content">
+                <p>Ihre Spende hilft direkt bei diesem Projekt.</p>
+                <p><strong>{donationProject.title}</strong></p>
+                <p>
+                    <a class="btn btn--primary btn--rounded donation-news-project__button" href="{donationUrl}" target="_blank" rel="noopener">
+                        {donationButtonText}
+                    </a>
+                </p>
+            </div>
+        </aside>
+    </f:if>
+
     <f:if condition="{newsItem.relatedLinks}">
         <aside class="aside aside--border aside-helpactivities color-bg-white">
             <header class="aside__header">

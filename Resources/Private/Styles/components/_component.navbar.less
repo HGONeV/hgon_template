@@ -10,18 +10,22 @@
 
 .nav--primary {
   .menu-cta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: flex-end;
+    gap: .5em;
+
+    li {
+      margin: 0;
+
+      &:first-child {
+        grid-column: 1 / -1;
+      }
+    }
 
     .btn {
       width: 100%;
       text-align: center;
-
-      &.ml-1 {
-        margin-left: 0;
-        margin-top: .5em;
-      }
     }
   }
 
@@ -34,10 +38,6 @@
     .menu-cta {
       .btn {
         padding: .5em 1.5em;
-        &.ml-1 {
-          margin-left: 0;
-          margin-top: .5em;
-        }
       }
     }
   }
