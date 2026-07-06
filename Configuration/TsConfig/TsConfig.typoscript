@@ -4,3 +4,8 @@
 
 
 #TCEFORM.tx_hgonspecies_domain_model_species.family.config.treeConfig.rootUid = 10
+
+# Limit the sf_event_mgt category field in the backend to the same category subtree
+# used by plugin.tx_sfeventmgt.settings.categoryParentUid in the frontend.
+# Set this UID per site/root page, because PageTSconfig cannot read frontend TypoScript settings.
+# TCEFORM.tx_sfeventmgt_domain_model_event.category.config.treeConfig.startingPoints = 123

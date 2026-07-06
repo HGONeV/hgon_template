@@ -37,11 +37,16 @@
                                     </span>
                                 </div>
                             </f:if>
-                            <f:if condition="{event.location}">
-                                <div class="event-registration-summary__row">
-                                    <span class="event-registration-summary__label"><f:translate key="tx_sfeventmgt_domain_model_event.location" /></span>
-                                    <span class="event-registration-summary__value">{event.location.title}</span>
-                                </div>
+                            <f:if condition="{registrationEventIsOnline}">
+                                <f:then></f:then>
+                                <f:else>
+                                    <f:if condition="{event.location}">
+                                        <div class="event-registration-summary__row">
+                                            <span class="event-registration-summary__label"><f:translate key="tx_sfeventmgt_domain_model_event.location" /></span>
+                                            <span class="event-registration-summary__value">{event.location.title}</span>
+                                        </div>
+                                    </f:if>
+                                </f:else>
                             </f:if>
                         </div>
                     </div>

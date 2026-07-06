@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:e="http://typo3.org/ns/DERHANSEN/SfEventMgt/ViewHelpers"
+      xmlns:h="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
@@ -127,28 +128,33 @@
 		                                    </f:if>
 		                                </p>
 
-	                                <f:if condition="{event.location}">
-                                    <p>
-                                        <strong>Ort</strong><br />
-                                        <f:format.raw>{event.location.fullAddress}</f:format.raw>
-                                        <f:if condition="{event.room}">
-                                            <br /><f:translate key="tx_sfeventmgt_domain_model_event.room" />: {event.room}
-                                        </f:if>
-                                    </p>
-                                    <f:if condition="{event.location.latitude} && {event.location.longitude}">
-                                        <p>
-                                            <a
-                                                href="https://www.google.com/maps?q={event.location.latitude},{event.location.longitude}&amp;output=embed"
-                                                data-featherlight="iframe"
-                                                data-featherlight-iframe-width="900"
-                                                data-featherlight-iframe-height="600"
-                                            >
-                                                <i class="fa fa-map-marker"></i>&nbsp;
-                                                <f:translate key="tx_hgontemplate.sfeventmgt.showMap" extensionName="hgon_template" />
-                                            </a>
-                                        </p>
-                                    </f:if>
-                                </f:if>
+	                                <f:if condition="{h:isOnlineEvent(event: event)}">
+	                                    <f:then></f:then>
+	                                    <f:else>
+			                                <f:if condition="{event.location}">
+		                                    <p>
+		                                        <strong>Ort</strong><br />
+		                                        <f:format.raw>{event.location.fullAddress}</f:format.raw>
+		                                        <f:if condition="{event.room}">
+		                                            <br /><f:translate key="tx_sfeventmgt_domain_model_event.room" />: {event.room}
+		                                        </f:if>
+		                                    </p>
+		                                    <f:if condition="{event.location.latitude} && {event.location.longitude}">
+		                                        <p>
+		                                            <a
+		                                                href="https://www.google.com/maps?q={event.location.latitude},{event.location.longitude}&amp;output=embed"
+		                                                data-featherlight="iframe"
+		                                                data-featherlight-iframe-width="900"
+		                                                data-featherlight-iframe-height="600"
+		                                            >
+		                                                <i class="fa fa-map-marker"></i>&nbsp;
+		                                                <f:translate key="tx_hgontemplate.sfeventmgt.showMap" extensionName="hgon_template" />
+		                                            </a>
+		                                        </p>
+		                                    </f:if>
+		                                </f:if>
+	                                    </f:else>
+	                                </f:if>
 
 	                                <f:if condition="{event.link}">
 	                                    <p>&nbsp;</p>

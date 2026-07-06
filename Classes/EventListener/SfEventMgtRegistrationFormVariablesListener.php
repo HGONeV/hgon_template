@@ -26,11 +26,16 @@ final class SfEventMgtRegistrationFormVariablesListener
         $variables['registrationMode'] = 'native';
         $variables['registrationFormPersistenceIdentifier'] = '';
         $variables['registrationFormOverrideConfiguration'] = [];
+        $variables['registrationEventIsOnline'] = false;
 
         if ($eventUid > 0) {
             $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_sfeventmgt_domain_model_event');
             $row = $queryBuilder
-                ->select('tx_hgontemplate_registration_mode', 'tx_hgontemplate_registration_form')
+                ->select(
+                    'tx_hgontemplate_registration_mode',
+                    'tx_hgontemplate_registration_form',
+                    'tx_hgontemplate_online_event'
+                )
                 ->from('tx_sfeventmgt_domain_model_event')
                 ->where(
                     $queryBuilder->expr()->eq(
@@ -44,12 +49,16 @@ final class SfEventMgtRegistrationFormVariablesListener
             if (is_array($row)) {
                 $variables['registrationMode'] = (string)($row['tx_hgontemplate_registration_mode'] ?: 'native');
                 $variables['registrationFormPersistenceIdentifier'] = (string)($row['tx_hgontemplate_registration_form'] ?? '');
+                $variables['registrationEventIsOnline'] = (bool)$row['tx_hgontemplate_online_event'];
                 if (
                     $variables['registrationMode'] === 'form'
                     && $variables['registrationFormPersistenceIdentifier'] === self::EDITORIAL_EVENT_FORM
                     && is_object($eventModel)
                 ) {
-                    $variables['registrationFormOverrideConfiguration'] = $this->buildEditorialEventFormOverrideConfiguration($eventModel);
+                    $variables['registrationFormOverrideConfiguration'] = $this->buildEditorialEventFormOverrideConfiguration(
+                        $eventModel,
+                        $variables['registrationEventIsOnline']
+                    );
                 }
             }
         }
@@ -57,11 +66,11 @@ final class SfEventMgtRegistrationFormVariablesListener
         $event->setVariables($variables);
     }
 
-    private function buildEditorialEventFormOverrideConfiguration(object $eventModel): array
+    private function buildEditorialEventFormOverrideConfiguration(object $eventModel, bool $isOnlineEvent): array
     {
         $eventTitle = method_exists($eventModel, 'getTitle') ? trim((string)$eventModel->getTitle()) : '';
         $eventDate = $this->formatEventDate($eventModel);
-        $eventLocation = $this->formatEventLocation($eventModel);
+        $eventLocation = $isOnlineEvent ? '' : $this->formatEventLocation($eventModel);
 
         return [
             'renderables' => [

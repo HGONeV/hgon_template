@@ -317,13 +317,6 @@ section.section.helper .section__header {
     gap: .75em;
 }
 
-@media only screen and (max-width: 48em) {
-    .event-filter__actions {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
-}
-
 .event-registration-links--top {
     margin-bottom: 1.5em;
 }

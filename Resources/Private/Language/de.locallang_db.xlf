@@ -84,6 +84,10 @@
                 <source>Workgroup meeting</source>
                 <target>Arbeitskreistreffen</target>
             </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_online_event">
+                <source>Online event</source>
+                <target>Online-Termin</target>
+            </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_eventculinary">
                 <source>Bookable meals</source>
                 <target>Buchbare Speisen</target>

@@ -28,6 +28,22 @@ foreach ($GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['types'] as &$typeC
 unset($typeConfig);
 
 $tempColumns = [
+    'tx_hgontemplate_online_event' => [
+        'exclude' => 1,
+        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_online_event',
+        'onChange' => 'reload',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'default' => 0,
+            'items' => [
+                [
+                    'label' => '',
+                    'invertStateDisplay' => false,
+                ],
+            ],
+        ],
+    ],
     'tx_hgontemplate_event_type' => [
         'exclude' => 1,
         'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type',
@@ -99,12 +115,26 @@ $tempColumns = [
 ];
 
 ExtensionManagementUtility::addTCAcolumns('tx_sfeventmgt_domain_model_event', $tempColumns);
+
+$GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['columns']['location']['displayCond'] =
+    'FIELD:tx_hgontemplate_online_event:!=:1';
+$GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['columns']['room']['displayCond'] =
+    'FIELD:tx_hgontemplate_online_event:!=:1';
+
+ExtensionManagementUtility::addFieldsToPalette(
+    'tx_sfeventmgt_domain_model_event',
+    'titleTopEvent',
+    'tx_hgontemplate_online_event',
+    'before:title'
+);
 ExtensionManagementUtility::addFieldsToPalette(
     'tx_sfeventmgt_domain_model_event',
     'titleTopEvent',
     'tx_hgontemplate_event_type',
     'before:title'
 );
+$GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['palettes']['titleTopEvent']['showitem'] =
+    'tx_hgontemplate_online_event, tx_hgontemplate_event_type, title, top_event';
 ExtensionManagementUtility::addFieldsToPalette(
     'tx_sfeventmgt_domain_model_event',
     'hgonRegistration',

@@ -10,6 +10,8 @@ plugin.tx_sfeventmgt {
     settings {
         # cat=plugin.tx_sfeventmgt//a; type=int; label=PID of sf_event_mgt payment plugin page
         paymentPid = 553
+        # cat=plugin.tx_sfeventmgt//a; type=int; label=Parent category UID for event category filter
+        categoryParentUid = 0
         registration {
             linkTermsAndConditions = 35
             captcha {

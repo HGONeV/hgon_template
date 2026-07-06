@@ -266,8 +266,131 @@
         margin-bottom: 0!important;
       }
     }
+
   }
 
+}
+
+#event-filter {
+  .event-filter__fields {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: @gap05 @gap05;
+  }
+
+  .event-filter__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: @gap05 @gap;
+  }
+
+  .event-filter__row--controls,
+  .event-filter__row--checks {
+    margin-bottom: @gap05;
+  }
+
+  .event-filter__control {
+    flex: 1 1 250px;
+    max-width: none;
+  }
+
+  .event-filter__row--actions {
+    justify-content: flex-end;
+  }
+
+  .event-filter__row--checks {
+    align-items: center;
+  }
+
+  .event-filter__checks {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: @gap025 @gap;
+  }
+
+  .checkbox {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 0;
+    text-indent: 0;
+    margin-top: 0;
+  }
+
+  .checkbox__input {
+    flex: 0 0 18px;
+    margin-right: @gap05;
+
+    span {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: @color-white;
+      border: 1px solid @color-gray-4;
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 9px;
+        height: 5px;
+        top: 4px;
+        left: 4px;
+        border: 3px solid @color-primary;
+        border-top: none;
+        border-right: none;
+        background: transparent;
+        transform: rotate(-45deg);
+        opacity: 0;
+      }
+
+      &:hover:after {
+        opacity: 0.3;
+      }
+    }
+
+    input[type="checkbox"]:checked + span {
+      border: 1px solid @color-black;
+
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  .event-filter__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: @gap05;
+
+    .btn {
+      min-width: 180px;
+      text-align: center;
+    }
+  }
+
+  @media @mq-medium {
+    .event-filter__fields {
+      padding: @gap05 0;
+    }
+
+    .event-filter__control {
+      max-width: none;
+    }
+
+    .event-filter__actions {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      .btn {
+        min-width: 0;
+      }
+    }
+  }
 }
 
 #workgroup-list-anchor {

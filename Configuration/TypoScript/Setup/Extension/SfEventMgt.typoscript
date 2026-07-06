@@ -22,6 +22,7 @@ plugin.tx_sfeventmgt {
         detailPid = 40
         registrationPid = 64
         paymentPid = {$plugin.tx_sfeventmgt.settings.paymentPid}
+        categoryParentUid = {$plugin.tx_sfeventmgt.settings.categoryParentUid}
         registration {
             linkTermsAndConditions = {$plugin.tx_sfeventmgt.settings.registration.linkTermsAndConditions}
             requiredFields := addToList(accepttc,captcha)
