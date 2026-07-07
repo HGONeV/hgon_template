@@ -96,17 +96,25 @@
                 <source>Registration type</source>
                 <target>Art der Anmeldung</target>
             </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.description">
+                <source>Use the native event registration for registrations with payment, participant limits, waitlists, price options, registration fields or bookable meals. Custom TYPO3 forms are only used for simple editorial registration requests.</source>
+                <target>Für Anmeldungen mit Zahlung, Teilnehmerlimit, Warteliste, Preisoptionen, zusätzlichen Anmeldefeldern oder buchbaren Speisen die normale Veranstaltungsanmeldung verwenden. Eigene TYPO3-Formulare werden nur für einfache redaktionelle Anmeldeanfragen genutzt.</target>
+            </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.native">
                 <source>Native event registration</source>
                 <target>Normale Veranstaltungsanmeldung</target>
             </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.form">
-                <source>TYPO3 form</source>
-                <target>Eigenes Formular auswählen</target>
+                <source>Custom TYPO3 form</source>
+                <target>Eigenes TYPO3-Formular</target>
             </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form">
                 <source>Registration form</source>
                 <target>Anmeldeformular</target>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form.description">
+                <source>The selected form sends emails only. It does not create sf_event_mgt registrations and does not handle payment, waitlists or participant limits.</source>
+                <target>Das ausgewählte Formular versendet nur E-Mails. Es erzeugt keine sf_event_mgt-Anmeldungen und verarbeitet keine Zahlung, Warteliste oder Teilnehmerbegrenzung.</target>
             </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.image">
                 <source>Title image</source>

@@ -9,21 +9,23 @@ finishers:
     identifier: EmailToReceiver
     options:
       subject: 'Veranstaltungsanmeldung: {hidden-event-title}'
-      recipientAddress: info@hgon.de
-      recipientName: HGON
+      recipients:
+        info@hgon.de: HGON
       senderAddress: '{email}'
       senderName: '{firstname} {lastname}'
-      replyToAddress: '{email}'
+      replyToRecipients:
+        '{email}': ''
       format: html
   -
     identifier: EmailToSender
     options:
       subject: 'Ihre Anmeldung: {hidden-event-title}'
-      recipientAddress: '{email}'
-      recipientName: '{firstname} {lastname}'
+      recipients:
+        '{email}': '{firstname} {lastname}'
       senderAddress: info@hgon.de
       senderName: HGON
-      replyToAddress: info@hgon.de
+      replyToRecipients:
+        info@hgon.de: ''
       format: html
   -
     identifier: Confirmation
@@ -50,12 +52,6 @@ renderables:
         type: Hidden
         identifier: hidden-event-location
         defaultValue: 'Bitte im Form-Editor anpassen: Veranstaltungsort'
-      -
-        type: StaticText
-        identifier: statictext-1
-        label: ''
-        properties:
-          text: '<p><strong>Redaktionelle Vorlage für einfache Veranstaltungsanmeldungen.</strong><br>Diese Variante enthält bewusst keine Zahlungs-, Preisstufen-, Addon- oder Wartelistenlogik.</p>'
       -
         type: Fieldset
         identifier: fieldset-person
@@ -235,4 +231,9 @@ renderables:
             identifier: photoConsent
             label: ''
             properties:
+              fluidAdditionalAttributes:
+                required: required
               elementDescription: 'Ich habe zur Kenntnis genommen, dass im Rahmen der Veranstaltung ggf. Foto- und Videoaufnahmen für die Öffentlichkeitsarbeit erstellt werden können.'
+            validators:
+              -
+                identifier: NotEmpty

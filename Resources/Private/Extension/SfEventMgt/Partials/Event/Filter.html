@@ -31,10 +31,10 @@
                             <select id="event-category-select" name="tx_sfeventmgt_pieventlist[overwriteDemand][category]">
                                 <f:if condition="{requestCategory} == 0">
                                     <f:then>
-                                        <option value="0" selected="selected">--- Auswählen ---</option>
+                                        <option value="" selected="selected">--- Auswählen ---</option>
                                     </f:then>
                                     <f:else>
-                                        <option value="0">--- Auswählen ---</option>
+                                        <option value="">--- Auswählen ---</option>
                                     </f:else>
                                 </f:if>
                                 <f:for each="{categories}" as="category">
@@ -135,7 +135,7 @@
                     </label>
                 </div>
                 <div class="event-filter__actions">
-                    <f:link.page pageUid="{pageData.uid}" class="btn btn--rounded btn--tertiary">Zurücksetzen</f:link.page>
+                    <f:link.page pageUid="{pageData.uid}" section="event-filter" class="btn btn--rounded btn--tertiary">Zurücksetzen</f:link.page>
                     <button class="btn btn--primary btn--rounded" type="submit">Termin suchen</button>
                 </div>
             </div>

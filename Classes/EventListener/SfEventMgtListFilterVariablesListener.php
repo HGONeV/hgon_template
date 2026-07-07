@@ -60,9 +60,9 @@ final class SfEventMgtListFilterVariablesListener
         $variables['requestTopEventRestriction'] = $requestTopEventRestriction;
         $variables['monthOptions'] = $this->buildMonthOptions($requestTimeRestrictionLow);
         $variables['workGroupOptions'] = $this->fetchWorkGroupOptions();
-        if ($categoryParentUid > 0) {
-            $variables['categories'] = $this->fetchCategoryOptions($categoryParentUid);
-        }
+        $variables['categories'] = $categoryParentUid > 0
+            ? $this->fetchCategoryOptions($categoryParentUid)
+            : [];
         $variables['eventTypeOptions'] = [
             'standard' => 'Standard',
             'workgroup' => 'Arbeitskreistreffen',

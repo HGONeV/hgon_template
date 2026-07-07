@@ -45,6 +45,24 @@ TYPO3:
               properties:
                 elementClassAttribute: 'donation-value-container'
           finishersDefinition:
+            EmailToReceiver:
+              options:
+                templateName: 'Default'
+                templateRootPaths:
+                  150: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/Finishers/Email/'
+                partialRootPaths:
+                  150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
+                layoutRootPaths:
+                  150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
+            EmailToSender:
+              options:
+                templateName: 'Default'
+                templateRootPaths:
+                  150: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/Finishers/Email/'
+                partialRootPaths:
+                  150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
+                layoutRootPaths:
+                  150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
             Confirmation:
               options:
                 templateName: 'Confirmation'
@@ -53,4 +71,10 @@ TYPO3:
       mixins:
         finishersEmailMixin:
           options:
-            templatePathAndFilename: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/Finishers/Email/{@format}.html'
+            templateName: 'Default'
+            templateRootPaths:
+              150: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/Finishers/Email/'
+            partialRootPaths:
+              150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
+            layoutRootPaths:
+              150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'

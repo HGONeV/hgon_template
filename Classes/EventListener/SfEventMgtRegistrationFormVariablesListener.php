@@ -57,7 +57,8 @@ final class SfEventMgtRegistrationFormVariablesListener
                 ) {
                     $variables['registrationFormOverrideConfiguration'] = $this->buildEditorialEventFormOverrideConfiguration(
                         $eventModel,
-                        $variables['registrationEventIsOnline']
+                        $variables['registrationEventIsOnline'],
+                        $eventUid
                     );
                 }
             }
@@ -66,13 +67,20 @@ final class SfEventMgtRegistrationFormVariablesListener
         $event->setVariables($variables);
     }
 
-    private function buildEditorialEventFormOverrideConfiguration(object $eventModel, bool $isOnlineEvent): array
+    private function buildEditorialEventFormOverrideConfiguration(object $eventModel, bool $isOnlineEvent, int $eventUid): array
     {
         $eventTitle = method_exists($eventModel, 'getTitle') ? trim((string)$eventModel->getTitle()) : '';
         $eventDate = $this->formatEventDate($eventModel);
         $eventLocation = $isOnlineEvent ? '' : $this->formatEventLocation($eventModel);
 
         return [
+            'renderingOptions' => [
+                'additionalParams' => [
+                    'tx_sfeventmgt_pieventregistration' => [
+                        'event' => $eventUid,
+                    ],
+                ],
+            ],
             'renderables' => [
                 0 => [
                     'renderables' => [
@@ -84,6 +92,26 @@ final class SfEventMgtRegistrationFormVariablesListener
                         ],
                         2 => [
                             'defaultValue' => $eventLocation,
+                        ],
+                    ],
+                ],
+            ],
+            'finishers' => [
+                0 => [
+                    'options' => [
+                        'variables' => [
+                            'eventRegistrationMailRecipient' => 'receiver',
+                            'eventRegistrationEventTitle' => $eventTitle,
+                            'eventRegistrationEventDate' => $eventDate,
+                        ],
+                    ],
+                ],
+                1 => [
+                    'options' => [
+                        'variables' => [
+                            'eventRegistrationMailRecipient' => 'sender',
+                            'eventRegistrationEventTitle' => $eventTitle,
+                            'eventRegistrationEventDate' => $eventDate,
                         ],
                     ],
                 ],

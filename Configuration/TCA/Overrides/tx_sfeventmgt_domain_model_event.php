@@ -84,6 +84,7 @@ $tempColumns = [
     'tx_hgontemplate_registration_mode' => [
         'exclude' => 1,
         'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode',
+        'description' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.description',
         'onChange' => 'reload',
         'config' => [
             'type' => 'select',
@@ -105,6 +106,7 @@ $tempColumns = [
         'exclude' => 1,
         'displayCond' => 'FIELD:tx_hgontemplate_registration_mode:=:form',
         'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form',
+        'description' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form.description',
         'config' => [
             'type' => 'select',
             'renderType' => 'selectSingle',
@@ -134,7 +136,7 @@ ExtensionManagementUtility::addFieldsToPalette(
     'before:title'
 );
 $GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['palettes']['titleTopEvent']['showitem'] =
-    'tx_hgontemplate_online_event, tx_hgontemplate_event_type, title, top_event';
+    'tx_hgontemplate_event_type, tx_hgontemplate_online_event, --linebreak--, title, top_event';
 ExtensionManagementUtility::addFieldsToPalette(
     'tx_sfeventmgt_domain_model_event',
     'hgonRegistration',

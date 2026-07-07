@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:if condition="{eventRegistrationMailRecipient} == 'receiver'">
+    <f:then>Jemand hat sich für die Veranstaltung {eventRegistrationEventTitle}<f:if condition="{eventRegistrationEventDate}"> am {eventRegistrationEventDate}</f:if> angemeldet.
+
+Nachfolgend die übermittelten Informationen:</f:then>
+    <f:else>
+        <f:if condition="{eventRegistrationMailRecipient} == 'sender'">
+            <f:then>Vielen Dank für Ihre Anmeldung zur Veranstaltung {eventRegistrationEventTitle}<f:if condition="{eventRegistrationEventDate}"> am {eventRegistrationEventDate}</f:if>.
+
+Wir haben Ihre Anmeldung erhalten. Nachfolgend finden Sie die übermittelten Informationen zur Bestätigung.</f:then>
+            <f:else>Vielen Dank!
+
+Folgende Informationen wurden ins Formular eingegeben:</f:else>
+        </f:if>
+    </f:else>
+</f:if>
+
+<formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue"><f:spaceless><f:if condition="{formValue.isSection}"><f:else><f:if condition="{0: formValue.element.type} == {0: 'Hidden'}"><f:else>
+<f:if condition="{0: formValue.element.type} == {0: 'Checkbox'}"><f:then>{formValue.element.properties.elementDescription}</f:then><f:else><formvh:translateElementProperty element="{formValue.element}" property="label" /></f:else></f:if>: <f:if condition="{formValue.value}"><f:then><f:if condition="{0: formValue.element.type} == {0: 'Checkbox'}"><f:then>Ja</f:then><f:else><f:if condition="{formValue.isMultiValue}"><f:then><f:for each="{formValue.processedValue}" as="singleValue">- {singleValue} </f:for></f:then><f:else>{formValue.processedValue}</f:else></f:if></f:else></f:if></f:then><f:else><f:if condition="{0: formValue.element.type} == {0: 'Checkbox'}"><f:then>Nein</f:then><f:else>-</f:else></f:if></f:else></f:if>
+</f:else></f:if></f:else></f:if></f:spaceless></formvh:renderAllFormValues>
+</html>

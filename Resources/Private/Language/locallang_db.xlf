@@ -74,14 +74,20 @@
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode">
                 <source>Registration type</source>
             </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.description">
+                <source>Use the native event registration for registrations with payment, participant limits, waitlists, price options, registration fields or bookable meals. Custom TYPO3 forms are only used for simple editorial registration requests.</source>
+            </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.native">
                 <source>Native event registration</source>
             </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_mode.form">
-                <source>Select custom form</source>
+                <source>Custom TYPO3 form</source>
             </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form">
                 <source>Registration form</source>
+            </trans-unit>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgontemplate_registration_form.description">
+                <source>The selected form sends emails only. It does not create sf_event_mgt registrations and does not handle payment, waitlists or participant limits.</source>
             </trans-unit>
             <trans-unit id="tx_sfeventmgt_domain_model_event.image">
                 <source>Title image</source>

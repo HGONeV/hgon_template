@@ -11,8 +11,15 @@
 <f:render partial="Notification/RegistrationSummary" arguments="{registration: registration}" />
 <f:render partial="Notification/RegistrationAddons" arguments="{registration: registration, event: event}" />
 <f:if condition="{event.enablePayment}">
-    <f:if condition="{registration.paymentmethod} == 'paypal'">
-        <p>Wenn Sie PayPal als Zahlungsart gewählt haben, nutzen Sie den Bestätigungslink bitte innerhalb einer Stunde. Nach der Bestätigung werden Sie zu PayPal weitergeleitet. Ihre Anmeldung ist erst vollständig abgeschlossen, wenn die Zahlung dort erfolgreich durchgeführt wurde.</p>
+    <f:if condition="{registration.paymentmethod} == 'transfer'">
+        <f:then>
+            <p>Sie haben Überweisung als Zahlungsart gewählt. Bitte bestätigen Sie zuerst Ihre Anmeldung über den Link oben. Anschließend erhalten Sie eine weitere E-Mail mit Betrag, Bankverbindung und Verwendungszweck für die Überweisung.</p>
+        </f:then>
+        <f:else>
+            <f:if condition="{registration.paymentmethod} == 'paypal'">
+                <p>Wenn Sie PayPal als Zahlungsart gewählt haben, nutzen Sie den Bestätigungslink bitte innerhalb einer Stunde. Nach der Bestätigung werden Sie zu PayPal weitergeleitet. Ihre Anmeldung ist erst vollständig abgeschlossen, wenn die Zahlung dort erfolgreich durchgeführt wurde.</p>
+            </f:if>
+        </f:else>
     </f:if>
 </f:if>
 <f:render partial="Notification/CancellationLink" arguments="{event: event, registration: registration, cancelAction: cancelAction, hmac: hmac}" />
