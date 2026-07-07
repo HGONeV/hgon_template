@@ -499,9 +499,14 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         if ($news) {
             $this->view->assign('newsItem', $news);
             $donationProject = $news->getTxHgondonationProject();
-            if ($donationProject instanceof Project && $this->projectLinkService instanceof ProjectLinkService) {
+            $paymentSettings = self::getSettings('HgonPayment');
+            if (
+                $donationProject instanceof Project
+                && $this->projectLinkService instanceof ProjectLinkService
+                && $this->projectLinkService->hasPayPalDonateUrl($donationProject, $paymentSettings)
+            ) {
                 $this->view->assign('donationProject', $donationProject);
-                $this->view->assign('donationUrl', $this->projectLinkService->buildPayPalDonateUrl($donationProject));
+                $this->view->assign('donationUrl', $this->projectLinkService->buildPayPalDonateUrl($donationProject, $paymentSettings));
                 $this->view->assign('donationButtonText', $this->projectLinkService->getButtonText($donationProject));
             }
             //$this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));

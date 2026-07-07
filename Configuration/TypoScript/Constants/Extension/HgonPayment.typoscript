@@ -6,6 +6,10 @@ plugin.tx_hgonpayment {
     settings {
         api {
             paypal {
+                # cat=plugin.tx_hgonpayment//a; type=string; label=PayPal hosted button ID for donation links
+                hostedButtonId = LKP6CVAGFY2FQ
+                # cat=plugin.tx_hgonpayment//a; type=string; label=PayPal business account or merchant ID for donation links fallback
+                business =
                 # cat=plugin.tx_hgonpayment//a; type=string; label=client id
                 clientId =
                 # cat=plugin.tx_hgonpayment//a; type=string; label=client secret
