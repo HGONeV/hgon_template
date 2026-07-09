@@ -105,8 +105,15 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function randomAuthorAction()
     {
         //$authorsList = $this->authorsRepository->findAll();
-        $authorsList = $this->authorsRepository->findByUidList($this->settings['randomAuthor']['authorUidList']);
-        $this->view->assign('author', $authorsList[rand(0, count($authorsList) - 1)]);
+        $authorsList = array_values(array_filter(
+            $this->authorsRepository->findByUidList($this->settings['randomAuthor']['authorUidList'] ?? ''),
+            static function ($author): bool {
+                $description = trim(strip_tags(html_entity_decode((string)$author->getFunctionDescription(), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+                return $description !== '';
+            }
+        ));
+
+        $this->view->assign('author', $authorsList !== [] ? $authorsList[random_int(0, count($authorsList) - 1)] : null);
 
         return $this->htmlResponse();
     }

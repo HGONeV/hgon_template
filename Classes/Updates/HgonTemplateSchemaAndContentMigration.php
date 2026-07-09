@@ -22,6 +22,10 @@ final class HgonTemplateSchemaAndContentMigration implements UpgradeWizardInterf
     private const EXT_KEY = 'hgon_template';
     private const OLD_PAGE_ARTICLE_IMAGE = 'tx_rkwbasics_article_image';
     private const OLD_PAGE_TEASER_TEXT = 'tx_rkwbasics_teaser_text';
+    private const OLD_PAGE_ARTICLE_IMAGE_REFERENCE_FIELD_NAMES = [
+        self::OLD_PAGE_ARTICLE_IMAGE,
+        'txRkwBasicsArticleImage',
+    ];
     private const NEW_PAGE_ARTICLE_IMAGE = 'tx_hgontemplate_article_image';
     private const NEW_PAGE_TEASER_TEXT = 'tx_hgontemplate_teaser_text';
 
@@ -226,14 +230,17 @@ final class HgonTemplateSchemaAndContentMigration implements UpgradeWizardInterf
         if ($this->tableExists('sys_file_reference')) {
             $fileReferenceConnection = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getConnectionForTable('sys_file_reference');
-            $fileReferenceConnection->update(
-                'sys_file_reference',
-                ['fieldname' => self::NEW_PAGE_ARTICLE_IMAGE],
-                [
-                    'tablenames' => 'pages',
-                    'fieldname' => self::OLD_PAGE_ARTICLE_IMAGE,
-                ]
-            );
+
+            foreach (self::OLD_PAGE_ARTICLE_IMAGE_REFERENCE_FIELD_NAMES as $oldFieldName) {
+                $fileReferenceConnection->update(
+                    'sys_file_reference',
+                    ['fieldname' => self::NEW_PAGE_ARTICLE_IMAGE],
+                    [
+                        'tablenames' => 'pages',
+                        'fieldname' => $oldFieldName,
+                    ]
+                );
+            }
         }
     }
 
@@ -269,7 +276,10 @@ final class HgonTemplateSchemaAndContentMigration implements UpgradeWizardInterf
             ->from('sys_file_reference')
             ->where(
                 $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('pages')),
-                $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter(self::OLD_PAGE_ARTICLE_IMAGE))
+                $queryBuilder->expr()->in(
+                    'fieldname',
+                    $queryBuilder->createNamedParameter(self::OLD_PAGE_ARTICLE_IMAGE_REFERENCE_FIELD_NAMES, ArrayParameterType::STRING)
+                )
             )
             ->executeQuery()
             ->fetchOne();
