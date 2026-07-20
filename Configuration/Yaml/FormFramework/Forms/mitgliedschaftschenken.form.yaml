@@ -1,4 +1,3 @@
-
 renderingOptions:
   submitButtonLabel: Absenden
 identifier: mitgliedschaftschenken
@@ -9,14 +8,8 @@ finishers:
   -
     options:
       subject: 'HGON Mitgliedsantrag für  {singleselect-1} {subject} '
-      recipientAddress: info@hgon.de
-      recipientName: 'HGON Geschäftstelle'
       senderAddress: '{email}'
       senderName: '{name}'
-      replyToAddress: ''
-      carbonCopyAddress: ''
-      blindCarbonCopyAddress: ''
-      format: html
       attachUploads: true
       translation:
         language: ''
@@ -24,23 +17,23 @@ finishers:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
+      recipients:
+        info@hgon.de: 'HGON Geschäftstelle'
+      addHtmlPart: true
     identifier: EmailToReceiver
   -
     options:
       subject: 'HGON Mitgliedsantrag für  {singleselect-1} {subject} '
-      recipientAddress: '{email}'
-      recipientName: '{name} {subject}'
       senderAddress: info@hgon.de
       senderName: 'HGON Geschäftstelle'
-      replyToAddress: ''
-      carbonCopyAddress: ''
-      blindCarbonCopyAddress: ''
-      format: html
       attachUploads: true
       partialRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
+      recipients:
+        '{email}': '{name} {subject}'
+      addHtmlPart: true
     identifier: EmailToSender
   -
     options:

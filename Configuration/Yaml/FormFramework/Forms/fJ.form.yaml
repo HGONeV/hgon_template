@@ -1,4 +1,3 @@
-
 renderingOptions:
   submitButtonLabel: Absenden
 identifier: fJ
@@ -9,14 +8,8 @@ finishers:
   -
     options:
       subject: 'Deine Anfrage zum FÖJ'
-      recipientAddress: andrea.ewerling@hgon.de
-      recipientName: 'Andrea Ewerling'
       senderAddress: '{email}'
       senderName: '{name}'
-      replyToAddress: ''
-      carbonCopyAddress: ''
-      blindCarbonCopyAddress: ''
-      format: html
       attachUploads: true
       translation:
         language: ''
@@ -24,23 +17,23 @@ finishers:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
+      recipients:
+        andrea.ewerling@hgon.de: 'Andrea Ewerling'
+      addHtmlPart: true
     identifier: EmailToReceiver
   -
     options:
       subject: 'Deine Anfrage zum FÖJ'
-      recipientAddress: '{email}'
-      recipientName: '{name} {text-1}'
       senderAddress: andrea.ewerling@hgon.de
       senderName: 'Andrea Ewerling'
-      replyToAddress: ''
-      carbonCopyAddress: ''
-      blindCarbonCopyAddress: ''
-      format: html
       attachUploads: true
       partialRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
+      recipients:
+        '{email}': '{name} {text-1}'
+      addHtmlPart: true
     identifier: EmailToSender
   -
     options:

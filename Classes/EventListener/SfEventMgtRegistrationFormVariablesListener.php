@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 
 final class SfEventMgtRegistrationFormVariablesListener
 {
-    private const EDITORIAL_EVENT_FORM = 'EXT:hgon_template/Configuration/Yaml/FormFramework/Forms/veranstaltungsanmeldungRedaktionell.form.yaml';
+    private const EDITORIAL_EVENT_FORM = '1:/form_definitions/veranstaltungsanmeldungRedaktionell.form.yaml';
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,

@@ -1,4 +1,3 @@
-
 renderingOptions:
   submitButtonLabel: Absenden
 type: Form
@@ -9,31 +8,24 @@ finishers:
   -
     options:
       subject: 'Meldung an Avifaunistische Kommision Hessen  {text-1}'
-      recipientAddress: '{text-24}'
-      recipientName: '{text-16}'
       senderAddress: '{text-24}'
       senderName: '{text-16}'
-      replyToAddress: avikh@hgon.de
-      carbonCopyAddress: ''
-      blindCarbonCopyAddress: ''
-      format: html
       attachUploads: true
       partialRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
+      recipients:
+        '{text-24}': '{text-16}'
+      replyToRecipients:
+        avikh@hgon.de: ''
+      addHtmlPart: true
     identifier: EmailToSender
   -
     options:
       subject: 'Meldung an Avifaunistische Kommision Hessen  {text-1}'
-      recipientAddress: avikh@hgon.de
-      recipientName: 'Avifaunistische Kommission Hessen'
       senderAddress: '{text-24}'
       senderName: '{text-16}'
-      replyToAddress: avikh@hgon.de
-      carbonCopyAddress: ''
-      blindCarbonCopyAddress: ''
-      format: html
       attachUploads: true
       translation:
         language: ''
@@ -41,10 +33,17 @@ finishers:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
       layoutRootPaths:
         150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
+      recipients:
+        avikh@hgon.de: 'Avifaunistische Kommission Hessen'
+      replyToRecipients:
+        avikh@hgon.de: ''
+      addHtmlPart: true
     identifier: EmailToReceiver
   -
     options:
-      message: "Vielen Dank für Ihre Meldung an die Avifaunistische Kommission Hessen. \nWir melden uns nach Prüfung der Beobachtung."
+      message: |-
+        Vielen Dank für Ihre Meldung an die Avifaunistische Kommission Hessen.
+        Wir melden uns nach Prüfung der Beobachtung.
     identifier: Confirmation
 renderables:
   -

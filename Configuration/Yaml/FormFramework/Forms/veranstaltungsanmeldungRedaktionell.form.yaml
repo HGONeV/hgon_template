@@ -1,5 +1,5 @@
 renderingOptions:
-  submitButtonLabel: Jetzt anmelden
+  submitButtonLabel: 'Jetzt anmelden'
 type: Form
 identifier: veranstaltungsanmeldungRedaktionell
 label: 'Veranstaltungsanmeldung (redaktionell)'
@@ -15,7 +15,7 @@ finishers:
       senderName: '{firstname} {lastname}'
       replyToRecipients:
         '{email}': ''
-      format: html
+      addHtmlPart: true
   -
     identifier: EmailToSender
     options:
@@ -26,11 +26,14 @@ finishers:
       senderName: HGON
       replyToRecipients:
         info@hgon.de: ''
-      format: html
+      addHtmlPart: true
   -
     identifier: Confirmation
     options:
-      message: "Vielen Dank für Ihre Anmeldung.\n\nWir haben Ihre Anfrage erhalten und melden uns zeitnah mit weiteren Informationen zur Veranstaltung."
+      message: |-
+        Vielen Dank für Ihre Anmeldung.
+
+        Wir haben Ihre Anfrage erhalten und melden uns zeitnah mit weiteren Informationen zur Veranstaltung.
 renderables:
   -
     renderingOptions:
@@ -55,7 +58,7 @@ renderables:
       -
         type: Fieldset
         identifier: fieldset-person
-        label: Persönliche Angaben
+        label: 'Persönliche Angaben'
         renderables:
           -
             type: GridRow
@@ -127,7 +130,7 @@ renderables:
           -
             type: Text
             identifier: organisation
-            label: Organisation / Institution
+            label: 'Organisation / Institution'
       -
         type: Fieldset
         identifier: fieldset-address
@@ -136,7 +139,7 @@ renderables:
           -
             type: Text
             identifier: street
-            label: Straße / Hausnummer
+            label: 'Straße / Hausnummer'
             properties:
               fluidAdditionalAttributes:
                 required: required
@@ -179,15 +182,15 @@ renderables:
               -
                 type: SingleSelect
                 identifier: participants
-                label: Anzahl Teilnehmende
+                label: 'Anzahl Teilnehmende'
                 defaultValue: '1'
                 properties:
                   options:
-                    '1': '1'
-                    '2': '2'
-                    '3': '3'
-                    '4': '4'
-                    '5': '5'
+                    1: '1'
+                    2: '2'
+                    3: '3'
+                    4: '4'
+                    5: '5'
                   fluidAdditionalAttributes:
                     required: required
                 validators:
@@ -207,7 +210,7 @@ renderables:
           -
             type: Textarea
             identifier: notes
-            label: Hinweise / Fragen
+            label: 'Hinweise / Fragen'
             properties:
               elementDescription: 'Hier können Teilnehmende organisatorische Hinweise, Rückfragen oder besondere Bedarfe angeben.'
       -

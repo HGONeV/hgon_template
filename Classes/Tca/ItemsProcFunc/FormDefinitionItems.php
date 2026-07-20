@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace HGON\HgonTemplate\Tca\ItemsProcFunc;
 
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class FormDefinitionItems
@@ -15,21 +17,23 @@ final class FormDefinitionItems
             'value' => '',
         ];
 
-        $formsPath = GeneralUtility::getFileAbsFileName('EXT:hgon_template/Configuration/Yaml/FormFramework/Forms/');
-        if ($formsPath === '' || !is_dir($formsPath)) {
+        $storage = GeneralUtility::makeInstance(ResourceFactory::class)->getStorageObject(1);
+        if (!$storage->hasFolder('/form_definitions/')) {
             return;
         }
 
-        $files = glob(rtrim($formsPath, '/') . '/*.form.yaml') ?: [];
-        natcasesort($files);
+        $files = $storage->getFolder('/form_definitions/')->getFiles();
+        usort($files, static fn (File $a, File $b): int => strnatcasecmp($a->getName(), $b->getName()));
 
-        foreach ($files as $filePath) {
-            $fileName = basename($filePath);
-            $identifier = 'EXT:hgon_template/Configuration/Yaml/FormFramework/Forms/' . $fileName;
+        foreach ($files as $file) {
+            $fileName = $file->getName();
+            if (!str_ends_with($fileName, '.form.yaml')) {
+                continue;
+            }
 
             $config['items'][] = [
                 'label' => $fileName,
-                'value' => $identifier,
+                'value' => '1:' . $file->getIdentifier(),
             ];
         }
     }

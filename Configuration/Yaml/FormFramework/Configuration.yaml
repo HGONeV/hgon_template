@@ -2,10 +2,8 @@ TYPO3:
   CMS:
     Form:
       persistenceManager:
-        allowedExtensionPaths:
-          10: 'EXT:hgon_template/Configuration/Yaml/FormFramework/Forms/'
-        allowSaveToExtensionPaths: true
-        allowDeleteFromExtensionPaths: true
+        allowSaveToExtensionPaths: false
+        allowDeleteFromExtensionPaths: false
       prototypes:
         ### PROTOTYPE: STANDARD
         standard:
@@ -23,12 +21,9 @@ TYPO3:
                   100: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Layouts/'
                   # currently does not work for emails: https://wiki.sebkln.de/doku.php?id=typo3:form
                   #110: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
-                translation:
-                  translationFile:
-                    # Default translation file for the frontend:
-                    10: 'EXT:form/Resources/Private/Language/locallang.xlf'
-                    # Load your own translation file(s) as desired:
-                    20: 'EXT:hgon_template/Resources/Private/Language/FormGeneral.xlf'
+                translationFiles:
+                  # Default form translations are supplied by EXT:form.
+                  20: 'EXT:hgon_template/Resources/Private/Language/FormGeneral.xlf'
             Text:
               properties:
                 elementClassAttribute: 'input'
@@ -68,13 +63,3 @@ TYPO3:
                 templateName: 'Confirmation'
                 templateRootPaths:
                   10: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/Finishers/Confirmation/'
-      mixins:
-        finishersEmailMixin:
-          options:
-            templateName: 'Default'
-            templateRootPaths:
-              150: 'EXT:hgon_template/Resources/Private/Extension/FormFramework/Frontend/Templates/Finishers/Email/'
-            partialRootPaths:
-              150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Partials/'
-            layoutRootPaths:
-              150: 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/'
