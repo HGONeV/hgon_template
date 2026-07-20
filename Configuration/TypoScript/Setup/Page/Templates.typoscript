@@ -70,6 +70,11 @@ page {
 
 	10 = FLUIDTEMPLATE
 	10 {
+		dataProcessing {
+			10 = HGON\HgonTemplate\DataProcessing\PageHeaderImageProcessor
+			10.as = pageArticleImage
+		}
+
 		# Template paths
 		layoutRootPaths {
 			20 = {$globalWebsiteConfig.templatePaths.default.layouts}

@@ -1,7 +1,7 @@
-<source media="(min-width: 64.063em)" srcset="{pageArticleImageDesktop}">
-<source media="(min-width: 48.063em) and (max-width: 64em)" srcset="{pageArticleImageTablet}">
-<source media="(min-width: 37.563em) and (max-width: 48em)" srcset="{pageArticleImageMobile}">
-<source media="(max-width: 37.5em)" srcset="{pageArticleImageSmall}">
-<f:format.raw>
-    <img src="{pageArticleImageDesktop}" width="1680" >
-</f:format.raw>
+<f:if condition="{pageArticleImage}">
+    <source media="(min-width: 64.063em)" srcset="{f:uri.image(image: pageArticleImage, cropVariant: '14to5', width: '1680c', height: '600c')}">
+    <source media="(min-width: 48.063em) and (max-width: 64em)" srcset="{f:uri.image(image: pageArticleImage, cropVariant: '14to5', width: '1024c', height: '350c')}">
+    <source media="(min-width: 37.563em) and (max-width: 48em)" srcset="{f:uri.image(image: pageArticleImage, cropVariant: '3to4', width: '768c', height: '350c')}">
+    <source media="(max-width: 37.5em)" srcset="{f:uri.image(image: pageArticleImage, cropVariant: '3to4', width: '600c', height: '350c')}">
+    <f:image image="{pageArticleImage}" cropVariant="14to5" width="1680c" height="600c" loading="eager" />
+</f:if>
