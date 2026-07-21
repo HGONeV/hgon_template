@@ -151,6 +151,21 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         int $secondaryCategory = 0
     )
     {
+        $queryParameters = $this->request->getQueryParams();
+        $searchTerm = $this->getJournalScalarQueryParameter($queryParameters, 'suche') ?? $searchTerm;
+        $dateRange = $this->getJournalScalarQueryParameter($queryParameters, 'zeitraum') ?? $dateRange;
+        $primaryCategory = max(0, (int)(
+            $this->getJournalScalarQueryParameter($queryParameters, 'bereich') ?? $primaryCategory
+        ));
+        $secondaryCategory = max(0, (int)(
+            $this->getJournalScalarQueryParameter($queryParameters, 'schlagwort') ?? $secondaryCategory
+        ));
+        $dateRange = [
+            'letzte-12-monate' => 'last12',
+            'letzte-3-jahre' => 'last36',
+            'aelter-als-3-jahre' => 'older36',
+        ][$dateRange] ?? $dateRange;
+
         // workaround for easy use on some further pages:
         // If it's not the journal page, try to grab the pages categories und show related news
         // Except a sysCategory is already set (pagination)
@@ -357,6 +372,13 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         return $this->htmlResponse();
 
+    }
+
+    private function getJournalScalarQueryParameter(array $queryParameters, string $name): ?string
+    {
+        $value = $queryParameters[$name] ?? null;
+
+        return is_scalar($value) ? (string)$value : null;
     }
 
     /**

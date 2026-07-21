@@ -66,6 +66,36 @@ window.addEventListener('submit', function (event) {
     window.location.assign(url.toString());
 }, true);
 
+window.addEventListener('submit', function (event) {
+    if (!event.target.matches('form.js-news-filter-form')) {
+        return;
+    }
+
+    event.preventDefault();
+
+    var url = new URL(event.target.action, window.location.href);
+    var parameters = new URLSearchParams();
+
+    Array.prototype.forEach.call(event.target.elements, function (field) {
+        if (!field.name || field.disabled || ((field.type === 'checkbox' || field.type === 'radio') && !field.checked)) {
+            return;
+        }
+
+        var value = String(field.value).trim();
+        var emptyValue = field.getAttribute('data-empty-value');
+
+        if (emptyValue !== null && value === emptyValue) {
+            return;
+        }
+
+        parameters.append(field.name, value);
+    });
+
+    url.search = parameters.toString();
+    url.hash = 'news-filter';
+    window.location.assign(url.toString());
+}, true);
+
 // we have to call the helllicht functions from /hgon-html/site/snippets/foot.php
 $('.js-navbar').helllnav();
 $('.js-slider').helllslider();

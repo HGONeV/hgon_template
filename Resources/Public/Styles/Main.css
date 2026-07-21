@@ -1,3 +1,15 @@
+/**
+ * IMPORTANT FOR DEVELOPERS AND AI TOOLS
+ *
+ * This is a custom override stylesheet, loaded after the project's regular CSS.
+ * The primary style sources are the LESS files in Resources/Private/Styles/.
+ * Those LESS files are compiled and minified into Resources/Public/Styles/styles.css.
+ *
+ * Add regular component and layout styles to the appropriate LESS file and then
+ * rebuild styles.css. Do not edit styles.css manually. Use this Main.css file only
+ * for intentional exceptional overrides that do not belong in the LESS structure.
+ */
+
 /* removing opacity from header images */
 html {
     scroll-behavior: smooth;
