@@ -3,4 +3,4 @@
 # TYPO3 13 uses treeConfig.startingPoints. Use a concrete UID here because event
 # records are edited on storage pages where site configuration placeholders may
 # not be resolved reliably.
-TCEFORM.tx_sfeventmgt_domain_model_event.category.config.treeConfig.startingPoints = 5
+TCEFORM.tx_sfeventmgt_domain_model_event.category.config.treeConfig.startingPoints = 104

@@ -63,6 +63,7 @@ plugin.tx_sfeventmgt {
             }
         }
         displayMode = current_future
+        categoryConjunction = or
         pagination {
             enablePagination = 1
             itemsPerPage = 9

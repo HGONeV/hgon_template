@@ -13,6 +13,8 @@ use TYPO3\CMS\Core\Pagination\SlidingWindowPagination;
 
 final class SfEventMgtListFilterVariablesListener
 {
+    private const WORKGROUP_CATEGORY_UID = 105;
+
     public function __construct(
         private readonly ConnectionPool $connectionPool,
     ) {
@@ -22,32 +24,47 @@ final class SfEventMgtListFilterVariablesListener
     {
         $variables = $event->getVariables();
         $request = $event->getRequest();
-        $requestArguments = $request->getQueryParams()['tx_sfeventmgt_pieventlist'] ?? [];
+        $queryParameters = $request->getQueryParams();
+        $requestArguments = $queryParameters['tx_sfeventmgt_pieventlist'] ?? [];
         $pluginArguments = is_array($requestArguments) ? $requestArguments : [];
 
-        $requestEventType = (string)($pluginArguments['eventType'] ?? '');
-        if (!in_array($requestEventType, ['', 'standard', 'workgroup'], true)) {
-            $requestEventType = '';
-        }
-        $requestOnlineEvent = $this->normalizeOnlineEventFilter($pluginArguments['onlineEvent'] ?? '');
+        $requestOnlineEvent = $this->normalizeOnlineEventFilter(
+            $this->getScalarQueryParameter($queryParameters, 'online')
+                ?? ($pluginArguments['onlineEvent'] ?? '')
+        );
         if (!in_array($requestOnlineEvent, ['', '0', '1'], true)) {
             $requestOnlineEvent = '';
         }
-        $requestWorkGroup = max(0, (int)($pluginArguments['workGroup'] ?? 0));
-        $requestSearchTerm = trim((string)($pluginArguments['searchTerm'] ?? ''));
+        $requestWorkGroup = max(0, (int)(
+            $this->getScalarQueryParameter($queryParameters, 'kreis')
+                ?? ($pluginArguments['workGroup'] ?? 0)
+        ));
+        $requestSearchTerm = trim(
+            $this->getScalarQueryParameter($queryParameters, 'suche')
+                ?? (string)($pluginArguments['searchTerm'] ?? '')
+        );
         $requestDisplayMode = (string)($pluginArguments['overwriteDemand']['displayMode'] ?? 'all');
         if (!in_array($requestDisplayMode, ['all', 'future', 'current_future', 'past', 'time_restriction'], true)) {
             $requestDisplayMode = 'all';
         }
         $requestTimeRestrictionLow = (string)($pluginArguments['overwriteDemand']['timeRestrictionLow'] ?? '');
-        $requestCategory = max(0, (int)($pluginArguments['overwriteDemand']['category'] ?? 0));
-        $requestTopEventRestriction = (string)($pluginArguments['overwriteDemand']['topEventRestriction'] ?? '0');
+        $requestCategory = max(0, (int)(
+            $this->getScalarQueryParameter($queryParameters, 'kategorie')
+                ?? ($pluginArguments['overwriteDemand']['category'] ?? 0)
+        ));
+        $legacyEventType = $this->getScalarQueryParameter($queryParameters, 'typ')
+            ?? (is_scalar($pluginArguments['eventType'] ?? null) ? (string)$pluginArguments['eventType'] : '');
+        if ($requestCategory === 0 && in_array($legacyEventType, ['arbeitskreis', 'workgroup'], true)) {
+            $requestCategory = self::WORKGROUP_CATEGORY_UID;
+        }
+        $requestTopEventRestriction = $this->getScalarQueryParameter($queryParameters, 'top') === '1'
+            ? '2'
+            : (string)($pluginArguments['overwriteDemand']['topEventRestriction'] ?? '0');
         if (!in_array($requestTopEventRestriction, ['0', '2'], true)) {
             $requestTopEventRestriction = '0';
         }
         $categoryParentUid = max(0, (int)($variables['settings']['categoryParentUid'] ?? 0));
 
-        $variables['requestEventType'] = $requestEventType;
         $variables['requestOnlineEvent'] = $requestOnlineEvent;
         $variables['requestOnlineEventAll'] = $requestOnlineEvent === '';
         $variables['requestOnlineEventOnline'] = $requestOnlineEvent === '1';
@@ -58,15 +75,18 @@ final class SfEventMgtListFilterVariablesListener
         $variables['requestTimeRestrictionLow'] = $requestTimeRestrictionLow;
         $variables['requestCategory'] = $requestCategory;
         $variables['requestTopEventRestriction'] = $requestTopEventRestriction;
+        $variables['filterQueryParameters'] = $this->buildFilterQueryParameters(
+            $requestOnlineEvent,
+            $requestWorkGroup,
+            $requestSearchTerm,
+            $requestCategory,
+            $requestTopEventRestriction
+        );
         $variables['monthOptions'] = $this->buildMonthOptions($requestTimeRestrictionLow);
         $variables['workGroupOptions'] = $this->fetchWorkGroupOptions();
         $variables['categories'] = $categoryParentUid > 0
             ? $this->fetchCategoryOptions($categoryParentUid)
             : [];
-        $variables['eventTypeOptions'] = [
-            'standard' => 'Standard',
-            'workgroup' => 'Arbeitskreistreffen',
-        ];
         $variables['onlineEventOptions'] = [
             '' => 'Alle',
             '1' => 'Online-Termine',
@@ -83,18 +103,48 @@ final class SfEventMgtListFilterVariablesListener
             '2' => 'Nur Top-Veranstaltungen',
         ];
 
-        if ($requestEventType !== '' || $requestOnlineEvent !== '' || $requestWorkGroup > 0 || $requestSearchTerm !== '') {
+        if (
+            $requestOnlineEvent !== ''
+            || $requestWorkGroup > 0
+            || $requestSearchTerm !== ''
+            || $requestCategory > 0
+            || $requestTopEventRestriction === '2'
+        ) {
             $variables = $this->filterVariables(
                 $variables,
-                $requestEventType,
                 $requestOnlineEvent,
                 $requestWorkGroup,
                 $requestSearchTerm,
+                $requestCategory,
+                $requestTopEventRestriction,
                 $pluginArguments
             );
         }
 
         $event->setVariables($variables);
+    }
+
+    private function getScalarQueryParameter(array $queryParameters, string $name): ?string
+    {
+        $value = $queryParameters[$name] ?? null;
+
+        return is_scalar($value) ? (string)$value : null;
+    }
+
+    private function buildFilterQueryParameters(
+        string $onlineEvent,
+        int $workGroup,
+        string $searchTerm,
+        int $category,
+        string $topEventRestriction
+    ): array {
+        return array_filter([
+            'kategorie' => $category > 0 ? $category : null,
+            'kreis' => $workGroup > 0 ? $workGroup : null,
+            'suche' => $searchTerm !== '' ? $searchTerm : null,
+            'top' => $topEventRestriction === '2' ? 1 : null,
+            'online' => $onlineEvent !== '' ? $onlineEvent : null,
+        ], static fn(mixed $value): bool => $value !== null);
     }
 
     private function normalizeOnlineEventFilter(mixed $onlineEventArgument): string
@@ -113,10 +163,11 @@ final class SfEventMgtListFilterVariablesListener
 
     private function filterVariables(
         array $variables,
-        string $selectedEventType,
         string $selectedOnlineEvent,
         int $selectedWorkGroup,
         string $searchTerm,
+        int $selectedCategory,
+        string $selectedTopEventRestriction,
         array $pluginArguments
     ): array
     {
@@ -142,10 +193,11 @@ final class SfEventMgtListFilterVariablesListener
             fn($event): bool => $this->matchesEventFilters(
                 $event,
                 $metadataByUid,
-                $selectedEventType,
                 $selectedOnlineEvent,
                 $selectedWorkGroup,
-                $searchTerm
+                $searchTerm,
+                $selectedCategory,
+                $selectedTopEventRestriction
             )
         ));
 
@@ -174,7 +226,6 @@ final class SfEventMgtListFilterVariablesListener
         $rows = $queryBuilder
             ->select(
                 'uid',
-                'tx_hgontemplate_event_type',
                 'tx_hgontemplate_online_event',
                 'tx_hgon_workgroup_stdevent',
                 'tx_hgon_workgroup_wgevent'
@@ -192,7 +243,6 @@ final class SfEventMgtListFilterVariablesListener
         $metadataByUid = [];
         foreach ($rows as $row) {
             $metadataByUid[(int)$row['uid']] = [
-                'eventType' => (string)($row['tx_hgontemplate_event_type'] ?: 'standard'),
                 'onlineEvent' => (bool)$row['tx_hgontemplate_online_event'],
                 'workGroups' => array_values(array_unique(array_merge(
                     $this->parseUidList((string)($row['tx_hgon_workgroup_stdevent'] ?? '')),
@@ -207,21 +257,17 @@ final class SfEventMgtListFilterVariablesListener
     private function matchesEventFilters(
         object $event,
         array $metadataByUid,
-        string $selectedEventType,
         string $selectedOnlineEvent,
         int $selectedWorkGroup,
-        string $searchTerm
+        string $searchTerm,
+        int $selectedCategory,
+        string $selectedTopEventRestriction
     ): bool
     {
         $metadata = $metadataByUid[$event->getUid()] ?? [
-            'eventType' => 'standard',
             'onlineEvent' => false,
             'workGroups' => [],
         ];
-
-        if ($selectedEventType !== '' && $metadata['eventType'] !== $selectedEventType) {
-            return false;
-        }
 
         if ($selectedOnlineEvent !== '' && (string)(int)$metadata['onlineEvent'] !== $selectedOnlineEvent) {
             return false;
@@ -229,6 +275,23 @@ final class SfEventMgtListFilterVariablesListener
 
         if ($selectedWorkGroup > 0 && !in_array($selectedWorkGroup, $metadata['workGroups'], true)) {
             return false;
+        }
+
+        if ($selectedTopEventRestriction === '2' && !$event->getTopEvent()) {
+            return false;
+        }
+
+        if ($selectedCategory > 0) {
+            $matchesCategory = false;
+            foreach ($event->getCategories() ?? [] as $category) {
+                if ((int)$category->getUid() === $selectedCategory) {
+                    $matchesCategory = true;
+                    break;
+                }
+            }
+            if (!$matchesCategory) {
+                return false;
+            }
         }
 
         if ($searchTerm === '') {

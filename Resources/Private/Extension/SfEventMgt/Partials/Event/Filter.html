@@ -1,8 +1,7 @@
 <section id="event-filter" class="article article--fullwidth / form" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-    <form action="{f:uri.page(pageUid: pageData.uid, section: 'event-filter')}" method="get" class="form">
+    <form action="{f:uri.page(pageUid: pageData.uid, section: 'event-filter')}" method="get" class="form js-event-filter-form">
         <div class="event-filter__fields">
             <input type="hidden" name="tx_sfeventmgt_pieventlist[overwriteDemand][displayMode]" value="time_restriction" />
-            <input type="hidden" name="tx_sfeventmgt_pieventlist[overwriteDemand][categoryConjunction]" value="or" />
 
             <div class="event-filter__row event-filter__row--controls">
                 <div class="event-filter__control event-filter__control--period">
@@ -28,7 +27,7 @@
                     <p class="form__field">
                         <label for="event-category-select">Kategorie</label>
                         <span class="select-box">
-                            <select id="event-category-select" name="tx_sfeventmgt_pieventlist[overwriteDemand][category]">
+                            <select id="event-category-select" name="tx_sfeventmgt_pieventlist[overwriteDemand][category]" data-submit-if-filled>
                                 <f:if condition="{requestCategory} == 0">
                                     <f:then>
                                         <option value="" selected="selected">--- Auswählen ---</option>
@@ -55,7 +54,7 @@
                     <p class="form__field">
                         <label for="event-workgroup-select">Kreis</label>
                         <span class="select-box">
-                            <select id="event-workgroup-select" name="tx_sfeventmgt_pieventlist[workGroup]">
+                            <select id="event-workgroup-select" name="tx_sfeventmgt_pieventlist[workGroup]" data-submit-if-filled data-empty-value="0">
                                 <f:if condition="{requestWorkGroup} == 0">
                                     <f:then>
                                         <option value="0" selected="selected">--- Auswählen ---</option>
@@ -81,7 +80,7 @@
                 <div class="event-filter__control event-filter__control--search">
                     <p class="form__field">
                         <label for="event-search-term">Suchbegriff</label>
-                        <input id="event-search-term" class="input" type="text" name="tx_sfeventmgt_pieventlist[searchTerm]" value="{requestSearchTerm}" />
+                        <input id="event-search-term" class="input" type="text" name="tx_sfeventmgt_pieventlist[searchTerm]" value="{requestSearchTerm}" data-submit-if-filled />
                     </p>
                 </div>
             </div>
@@ -90,7 +89,6 @@
                 <div class="event-filter__checks">
                     <label class="checkbox" for="top-event-only">
                         <span class="checkbox__input">
-                            <input type="hidden" name="tx_sfeventmgt_pieventlist[overwriteDemand][topEventRestriction]" value="0" />
                             <f:if condition="{requestTopEventRestriction} == '2'">
                                 <f:then>
                                     <input id="top-event-only" type="checkbox" name="tx_sfeventmgt_pieventlist[overwriteDemand][topEventRestriction]" value="2" checked="checked" />
@@ -103,24 +101,8 @@
                         </span>
                         <span class="checkbox__label">Nur Top-Veranstaltungen</span>
                     </label>
-                    <label class="checkbox" for="event-type-workgroup">
-                        <span class="checkbox__input">
-                            <input type="hidden" name="tx_sfeventmgt_pieventlist[eventType]" value="" />
-                            <f:if condition="{requestEventType} == 'workgroup'">
-                                <f:then>
-                                    <input id="event-type-workgroup" type="checkbox" name="tx_sfeventmgt_pieventlist[eventType]" value="workgroup" checked="checked" />
-                                </f:then>
-                                <f:else>
-                                    <input id="event-type-workgroup" type="checkbox" name="tx_sfeventmgt_pieventlist[eventType]" value="workgroup" />
-                                </f:else>
-                            </f:if>
-                            <span></span>
-                        </span>
-                        <span class="checkbox__label">Nur Arbeitskreistreffen</span>
-                    </label>
                     <label class="checkbox" for="online-event-only">
                         <span class="checkbox__input">
-                            <input type="hidden" name="tx_sfeventmgt_pieventlist[onlineEvent]" value="" />
                             <f:if condition="{requestOnlineEventOnline}">
                                 <f:then>
                                     <input id="online-event-only" type="checkbox" name="tx_sfeventmgt_pieventlist[onlineEvent]" value="1" checked="checked" />

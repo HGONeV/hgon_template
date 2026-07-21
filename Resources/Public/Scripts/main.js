@@ -1,3 +1,71 @@
+window.addEventListener('submit', function (event) {
+    if (!event.target.matches('form.js-event-filter-form')) {
+        return;
+    }
+
+    event.preventDefault();
+
+    var displayModeField = 'tx_sfeventmgt_pieventlist[overwriteDemand][displayMode]';
+    var monthField = 'tx_sfeventmgt_pieventlist[overwriteDemand][timeRestrictionLow]';
+    var parameters = [];
+
+    Array.prototype.forEach.call(event.target.elements, function (field) {
+        if (!field.name || field.disabled || ((field.type === 'checkbox' || field.type === 'radio') && !field.checked)) {
+            return;
+        }
+
+        var emptyValue = field.getAttribute('data-empty-value') || '';
+
+        if (field.hasAttribute('data-submit-if-filled') && String(field.value).trim() === emptyValue) {
+            return;
+        }
+
+        parameters.push({name: field.name, value: String(field.value)});
+    });
+
+    var displayMode = parameters.find(function (parameter) {
+        return parameter.name === displayModeField;
+    });
+    var month = parameters.find(function (parameter) {
+        return parameter.name === monthField;
+    });
+    var monthMatch = month
+        ? month.value.match(/^((?:19|20|21)[0-9]{2}-(?:0[1-9]|1[0-2]))-01 00:00:00$/)
+        : null;
+    var url = new URL(event.target.action, window.location.href);
+
+    if (displayMode && displayMode.value === 'time_restriction' && monthMatch) {
+        parameters = parameters.filter(function (parameter) {
+            return parameter.name !== displayModeField && parameter.name !== monthField;
+        });
+        url.pathname = url.pathname.replace(/\/$/, '') + '/ab/' + monthMatch[1];
+    }
+
+    parameters = parameters.map(function (parameter) {
+        var aliases = {
+            'tx_sfeventmgt_pieventlist[overwriteDemand][category]': 'kategorie',
+            'tx_sfeventmgt_pieventlist[workGroup]': 'kreis',
+            'tx_sfeventmgt_pieventlist[searchTerm]': 'suche',
+            'tx_sfeventmgt_pieventlist[overwriteDemand][topEventRestriction]': 'top',
+            'tx_sfeventmgt_pieventlist[onlineEvent]': 'online'
+        };
+
+        if (parameter.name === 'tx_sfeventmgt_pieventlist[overwriteDemand][topEventRestriction]') {
+            parameter.value = parameter.value === '2' ? '1' : parameter.value;
+        }
+
+        parameter.name = aliases[parameter.name] || parameter.name;
+
+        return parameter;
+    });
+
+    url.search = parameters.map(function (parameter) {
+        return encodeURIComponent(parameter.name) + '=' + encodeURIComponent(parameter.value);
+    }).join('&');
+    url.hash = 'event-filter';
+    window.location.assign(url.toString());
+}, true);
+
 // we have to call the helllicht functions from /hgon-html/site/snippets/foot.php
 $('.js-navbar').helllnav();
 $('.js-slider').helllslider();

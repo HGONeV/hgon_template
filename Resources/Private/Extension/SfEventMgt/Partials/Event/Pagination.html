@@ -2,7 +2,8 @@
     <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
         <f:link.action
             action="{actionName}"
-            arguments="{currentPage: pagination.nextPageNumber, overwriteDemand: overwriteDemand, eventType: selectedEventType, onlineEvent: selectedOnlineEvent, workGroup: selectedWorkGroup, searchTerm: selectedSearchTerm}"
+            arguments="{currentPage: pagination.nextPageNumber, overwriteDemand: overwriteDemand}"
+            additionalParams="{filterQueryParameters}"
             class="btn btn--rounded btn--loadmore ajax-html-loadmore"
             additionalAttributes="{data-append-target: 'event-container', data-pagination-target: 'event-pagination-container', data-page-root: 'event-pagination-container'}"
         >
