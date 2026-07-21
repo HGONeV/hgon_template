@@ -18,3 +18,40 @@
 .event-registration-formframework {
   margin-bottom: 2*@gap;
 }
+
+.card.card--event.card-plain {
+  align-items: stretch;
+
+  .card__inner {
+    width: 100%;
+    padding-top: @gap;
+  }
+}
+
+.event-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: @gap05;
+  margin-bottom: @gap075;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.event-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 .4em;
+  margin: .35em 0 0;
+  color: @color-text-light;
+  font-size: .9em;
+  line-height: 1.45;
+
+  time {
+    font-weight: @font-weight-bold;
+  }
+}

@@ -1,7 +1,13 @@
-<div class="flex-item c-4" itemscope="itemscope" itemtype="https://schema.org/Event">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:h="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="flex-item c-4"
+     itemscope="itemscope"
+     itemtype="https://schema.org/Event">
     <f:if condition="{event.firstListViewImage}">
         <f:then>
-            <article class="card card--border card--fixed-footer">
+            <article class="card card--event card--border card--fixed-footer">
                 <picture class="card__image">
                     <f:if condition="{settings.detailPid}">
                         <f:then>
@@ -18,25 +24,44 @@
                 </picture>
         </f:then>
         <f:else>
-            <article class="card card-plain card--border">
+            <article class="card card--event card-plain card--border card--fixed-footer">
         </f:else>
     </f:if>
     <div class="card__inner">
         <header class="card__header">
-            <f:if condition="{event.categories}">
-                <f:for each="{event.categories}" as="category">
-                    <span class="badge badge--secondary">{category.title}<span class="is-hidden">: </span></span>
-                </f:for>
-            </f:if>
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;">
-                <time class="tagline" itemprop="startDate" datetime="{f:format.date(date: event.startdate, format: 'Y.m.d')} ">
-                    <f:format.date format="d.m.Y">{event.startdate}</f:format.date>
-                </time>
+            <div class="event-card__badges">
+                <f:if condition="{event.categories}">
+                    <f:for each="{event.categories}" as="category">
+                        <span class="badge badge--secondary">{category.title}<span class="is-hidden">: </span></span>
+                    </f:for>
+                </f:if>
                 <f:if condition="{event.topEvent}">
                     <span class="badge badge--secondary">Top!</span>
                 </f:if>
             </div>
             <h3 class="headline" itemprop="name">{event.title}</h3>
+            <p class="event-card__meta">
+                <time itemprop="startDate" datetime="{f:format.date(date: event.startdate, format: 'Y-m-d\\TH:i:sP')}">
+                    <f:format.date format="d.m.Y H:i">{event.startdate}</f:format.date> Uhr
+                </time>
+                <f:if condition="{event.location}">
+                    <f:then>
+                        <span class="event-card__meta-separator" aria-hidden="true">·</span>
+                        <span itemprop="location">
+                            <f:if condition="{event.location.city}">
+                                <f:then>{event.location.city}</f:then>
+                                <f:else>{event.location.title}</f:else>
+                            </f:if>
+                        </span>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{event.room}">
+                            <span class="event-card__meta-separator" aria-hidden="true">·</span>
+                            <span itemprop="location">{event.room}</span>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </p>
         </header>
         <div class="card__content">
             <f:if condition="{event.teaser}">
@@ -46,8 +71,9 @@
                     </f:format.crop>
                 </f:then>
                 <f:else>
+                    <f:variable name="listDescription" value="{h:trimLegacyEventDescription(value: event.description)}" />
                     <f:format.crop maxCharacters="250">
-                        <f:format.html>{event.description}</f:format.html>
+                        <f:format.html>{listDescription}</f:format.html>
                     </f:format.crop>
                 </f:else>
             </f:if>
@@ -69,3 +95,5 @@
     </div>
     </article>
 </div>
+
+</html>
