@@ -346,7 +346,7 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
 
         if (
             isset($sourceColumns['tx_hgon_workgroup_wgevent'])
-            && trim((string)($sourceRow['tx_hgon_workgroup_wgevent'] ?? '')) !== ''
+            && (int)($sourceRow['tx_hgon_workgroup_wgevent'] ?? 0) > 0
         ) {
             return 'workgroup';
         }

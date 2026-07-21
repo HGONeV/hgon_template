@@ -71,8 +71,8 @@ page {
 	10 = FLUIDTEMPLATE
 	10 {
 		dataProcessing {
-			10 = HGON\HgonTemplate\DataProcessing\PageHeaderImageProcessor
-			10.as = pageArticleImage
+			70 = HGON\HgonTemplate\DataProcessing\PageHeaderImageProcessor
+			70.as = pageArticleImage
 		}
 
 		# Template paths

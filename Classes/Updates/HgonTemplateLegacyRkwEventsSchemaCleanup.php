@@ -58,6 +58,7 @@ final class HgonTemplateLegacyRkwEventsSchemaCleanup implements UpgradeWizardInt
         return [
             HgonTemplateRkwEventsDataMigration::class,
             HgonTemplateRkwEventsPluginMigration::class,
+            HgonTemplateEventSlugMigration::class,
         ];
     }
 
