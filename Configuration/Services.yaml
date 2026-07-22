@@ -39,6 +39,13 @@ services:
         identifier: 'hgon-template/sfeventmgt-list-filter-variables'
         event: DERHANSEN\SfEventMgt\Event\ModifyListViewVariablesEvent
 
+  HGON\HgonTemplate\EventListener\SfEventMgtDetailVariablesListener:
+    autowire: true
+    tags:
+      - name: event.listener
+        identifier: 'hgon-template/sfeventmgt-detail-variables'
+        event: DERHANSEN\SfEventMgt\Event\ModifyDetailViewVariablesEvent
+
   HGON\HgonTemplate\EventListener\SfEventMgtRegistrationCulinaryVariablesListener:
     autowire: true
     tags:
