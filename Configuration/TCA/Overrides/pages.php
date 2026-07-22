@@ -89,7 +89,7 @@ ExtensionManagementUtility::addTCAcolumns(
 ExtensionManagementUtility::addToAllTCAtypes(
     'pages',
     '--div--;LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_pages.tabs.hgon,' .
-    'tx_hgontemplate_contactperson,tx_hgontemplate_article_image,tx_hgontemplate_teaser_text'
+    'tx_hgondonation_project,tx_hgontemplate_contactperson,tx_hgontemplate_article_image,tx_hgontemplate_teaser_text'
 );
 
 

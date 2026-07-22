@@ -137,6 +137,25 @@ page {
                 languageField = sys_language_uid
             }
 
+            // Show a PayPal donation button when the current page is assigned
+            // to a donation project in its page properties.
+            pageProjectButton = EXTBASEPLUGIN
+            pageProjectButton {
+                extensionName = HgonDonation
+                pluginName = ProjectButton
+                vendorName = HGON
+                controller = Project
+                switchableControllerActions {
+                    Project {
+                        1 = button
+                    }
+                }
+
+                view =< plugin.tx_hgondonation.view
+                persistence =< plugin.tx_hgondonation.persistence
+                settings =< plugin.tx_hgondonation.settings
+            }
+
             footer = CONTENT
             footer.table = tt_content
             footer.slide = -1
