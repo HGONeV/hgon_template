@@ -64,3 +64,227 @@
     }
   }
 }
+
+.species-detail--bird {
+  color: @color-text-dark;
+
+  .species-detail__header {
+    margin-bottom: @gap1;
+  }
+
+  .species-detail__back-row {
+    margin-bottom: @gap1;
+  }
+
+  .species-detail__title {
+    margin-bottom: @gap025;
+  }
+
+  .species-detail__scientific-name {
+    font-weight: @font-weight-light;
+  }
+
+  .species-detail__subtitle {
+    margin: 0;
+    color: @color-text;
+    font-size: 1.1em;
+  }
+
+  .species-detail__columns {
+    align-items: flex-start;
+    margin-top: @gap1;
+  }
+
+  .species-detail__columns > .flex-item {
+    padding-top: @gap075;
+  }
+
+  .species-detail__panel {
+    margin-bottom: @gap15;
+    padding: @gap125;
+    border: 1px solid @color-border-primary;
+    border-top: 4px solid @color-primary;
+    background: @color-light;
+
+    > :last-child,
+    > :last-child > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .species-detail__panel--accent {
+    border-top-color: @color-cta;
+    background: lighten(@color-cta, 35%);
+  }
+
+  .species-detail__section-title {
+    margin: 0 0 @gap075;
+    color: @color-text-dark;
+    font-size: 1.2em;
+    line-height: 1.25;
+  }
+
+  .species-detail__fact {
+    padding-bottom: @gap1;
+    margin-bottom: @gap1;
+    border-bottom: 1px solid @color-border-primary;
+
+    &:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  .species-detail__status-comment {
+    margin-bottom: @gap1;
+  }
+
+  .species-status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: @gap075;
+    margin-bottom: @gap1;
+  }
+
+  .species-status-grid__item {
+    padding: @gap075;
+    background: @color-white;
+    border: 1px solid @color-border-primary;
+  }
+
+  .species-status-grid__label {
+    display: block;
+    margin-bottom: @gap025;
+    color: @color-text;
+    font-size: .85em;
+  }
+
+  .species-detail__preservation-state {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: @gap05;
+    padding-top: @gap075;
+    border-top: 1px solid @color-border-primary;
+  }
+
+  .species-state {
+    display: inline-block;
+    padding: .2em .65em;
+    border-radius: 2em;
+    color: @color-text-dark;
+    font-size: .9em;
+    font-weight: @font-weight-medium;
+  }
+
+  .species-state--favorable {
+    background: lighten(@color-success, 35%);
+  }
+
+  .species-state--unfavorable {
+    background: lighten(@color-cta, 20%);
+  }
+
+  .species-state--poor {
+    background: lighten(@color-error, 25%);
+  }
+
+  .species-profile {
+    margin: 0;
+  }
+
+  .species-profile__row {
+    padding: @gap05 0;
+    border-bottom: 1px solid @color-border-primary;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    dt,
+    dd {
+      margin: 0;
+    }
+
+    dt {
+      color: @color-text-dark;
+      font-weight: @font-weight-medium;
+    }
+
+    dd {
+      color: @color-text;
+    }
+  }
+
+  .species-detail__media-column {
+    .species--slider,
+    .grid.no-padding {
+      margin-bottom: @gap15;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .slider-navigation {
+      margin-top: @gap075;
+    }
+  }
+
+  .species-detail__sidebar-image {
+    margin-bottom: @gap15;
+
+    figure {
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  @media @mq-smalldesk {
+    .species-status-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media @mq-medium {
+    .species-detail__columns > .flex-item {
+      padding: @gap075 0;
+    }
+
+    .species-status-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media @mq-narrow {
+    .species-detail__title {
+      font-size: 2em;
+    }
+
+    .species-detail__scientific-name {
+      display: block;
+      margin-top: @gap025;
+    }
+
+    .species-status-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .species-detail__preservation-state {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+}
