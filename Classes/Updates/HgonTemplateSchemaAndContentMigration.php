@@ -162,7 +162,6 @@ final class HgonTemplateSchemaAndContentMigration implements UpgradeWizardInterf
                 'phone2',
             ],
             'tx_sfeventmgt_domain_model_event' => [
-                'tx_hgontemplate_event_type',
                 'tx_hgontemplate_eventculinary',
             ],
         ];

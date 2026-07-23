@@ -44,25 +44,6 @@ $tempColumns = [
             ],
         ],
     ],
-    'tx_hgontemplate_event_type' => [
-        'exclude' => 1,
-        'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type',
-        'config' => [
-            'type' => 'select',
-            'renderType' => 'selectSingle',
-            'items' => [
-                [
-                    'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type.standard',
-                    'value' => 'standard',
-                ],
-                [
-                    'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_event_type.workgroup',
-                    'value' => 'workgroup',
-                ],
-            ],
-            'default' => 'standard',
-        ],
-    ],
     'tx_hgontemplate_eventculinary' => [
         'exclude' => 1,
         'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgontemplate_eventculinary',
@@ -129,14 +110,8 @@ ExtensionManagementUtility::addFieldsToPalette(
     'tx_hgontemplate_online_event',
     'before:title'
 );
-ExtensionManagementUtility::addFieldsToPalette(
-    'tx_sfeventmgt_domain_model_event',
-    'titleTopEvent',
-    'tx_hgontemplate_event_type',
-    'before:title'
-);
 $GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['palettes']['titleTopEvent']['showitem'] =
-    'tx_hgontemplate_event_type, tx_hgontemplate_online_event, --linebreak--, title, top_event';
+    'tx_hgontemplate_online_event, --linebreak--, title, top_event';
 ExtensionManagementUtility::addFieldsToPalette(
     'tx_sfeventmgt_domain_model_event',
     'hgonRegistration',

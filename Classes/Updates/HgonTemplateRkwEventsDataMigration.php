@@ -248,10 +248,6 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
             'tx_hgon_workgroup_stdevent'
         );
 
-        if (isset($targetColumns['tx_hgontemplate_event_type'])) {
-            $data['tx_hgontemplate_event_type'] = $this->resolveEventType($sourceRow, $sourceColumns);
-        }
-
         return $data;
     }
 
@@ -334,29 +330,6 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
     /**
      * @param array<string, mixed> $sourceRow
      * @param array<string, bool> $sourceColumns
-     */
-    private function resolveEventType(array $sourceRow, array $sourceColumns): string
-    {
-        if (
-            isset($sourceColumns['tx_hgontemplate_event_type'])
-            && in_array((string)($sourceRow['tx_hgontemplate_event_type'] ?? ''), ['standard', 'workgroup'], true)
-        ) {
-            return (string)$sourceRow['tx_hgontemplate_event_type'];
-        }
-
-        if (
-            isset($sourceColumns['tx_hgon_workgroup_wgevent'])
-            && (int)($sourceRow['tx_hgon_workgroup_wgevent'] ?? 0) > 0
-        ) {
-            return 'workgroup';
-        }
-
-        return 'standard';
-    }
-
-    /**
-     * @param array<string, mixed> $sourceRow
-     * @param array<string, bool> $sourceColumns
      * @param array<string, bool> $targetColumns
      */
     private function targetNeedsRefresh(
@@ -373,9 +346,6 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
                     : null,
                 isset($sourceColumns['tx_hgon_workgroup_stdevent'], $targetColumns['tx_hgon_workgroup_stdevent'])
                     ? 'tx_hgon_workgroup_stdevent'
-                    : null,
-                isset($targetColumns['tx_hgontemplate_event_type'])
-                    ? 'tx_hgontemplate_event_type'
                     : null,
             ]
         ));
@@ -405,8 +375,7 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
             }
         }
 
-        return isset($targetColumns['tx_hgontemplate_event_type'])
-            && (string)($targetRow['tx_hgontemplate_event_type'] ?? '') !== $this->resolveEventType($sourceRow, $sourceColumns);
+        return false;
     }
 
     private function hasUnmigratedCulinaryOptions(

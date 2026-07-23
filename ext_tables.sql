@@ -119,7 +119,6 @@ CREATE TABLE pages (
 #
 CREATE TABLE tx_sfeventmgt_domain_model_event (
     tx_hgontemplate_online_event tinyint(4) unsigned DEFAULT '0' NOT NULL,
-    tx_hgontemplate_event_type varchar(32) DEFAULT 'standard' NOT NULL,
     tx_hgontemplate_eventculinary int(11) unsigned DEFAULT '0' NOT NULL,
     tx_hgontemplate_registration_mode varchar(32) DEFAULT 'native' NOT NULL,
     tx_hgontemplate_registration_form varchar(255) DEFAULT '' NOT NULL
