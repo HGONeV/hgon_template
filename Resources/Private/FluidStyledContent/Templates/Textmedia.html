@@ -570,57 +570,58 @@
         <f:comment><!-- Teammember box  --></f:comment>
         <f:case value="85">
             <section class="card card-team">
-                <div class="card__image js-lightbox">
-                    <a class="js-open-lightbox" href="#" data-lightbox="lightbox-img" data-index="0">
-                        <figure>
-                            <f:if condition="{gallery.rows}">
-                                <f:for each="{gallery.rows}" as="row">
-                                    <f:for each="{row.columns}" as="column">
-                                        <f:if condition="{column.media}">
-                                            <f:image image="{column.media}" alt="{column.media.name}" width="300" height="451" cropVariant="3to4" />
-                                        </f:if>
+                <f:if condition="{gallery.rows}">
+                    <f:then>
+                        <div class="card__image js-lightbox">
+                            <a class="js-open-lightbox" href="#" data-lightbox="lightbox-img-{data.uid}" data-index="0">
+                                <figure>
+                                    <f:for each="{gallery.rows}" as="row">
+                                        <f:for each="{row.columns}" as="column">
+                                            <f:if condition="{column.media}">
+                                                <f:image image="{column.media}" alt="{column.media.alternative}" title="{column.media.title}" width="300" height="451" cropVariant="3to4" loading="lazy" />
+                                            </f:if>
+                                        </f:for>
                                     </f:for>
-                                </f:for>
-                            </f:if>
-                        </figure>
-                    </a>
-                    <div id="lightbox-img" class="lightbox">
-                        <picture class="picture / lightbox__img">
-                            <f:if condition="{gallery.rows}">
-                                <f:for each="{gallery.rows}" as="row">
-                                    <f:for each="{row.columns}" as="column">
-                                        <f:if condition="{column.media}">
-                                            <f:image image="{column.media}" alt="{column.media.name}" cropVariant="16to9" />
-                                        </f:if>
+                                </figure>
+                            </a>
+                            <div id="lightbox-img-{data.uid}" class="lightbox">
+                                <picture class="picture / lightbox__img">
+                                    <f:for each="{gallery.rows}" as="row">
+                                        <f:for each="{row.columns}" as="column">
+                                            <f:if condition="{column.media}">
+                                                <f:image image="{column.media}" alt="{column.media.alternative}" title="{column.media.title}" />
+                                            </f:if>
+                                        </f:for>
                                     </f:for>
-                                </f:for>
-                            </f:if>
-                        </picture>
-                        <div class="bar bar--bottom bar--fixed">
-                            <div class="bar__icons bar__icons--right">
-                                <a class="bar__icon js-close-lightbox" href="#">
-                                    <svg class="icon">
-                                        <use xlink:href="#ui-close"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="bar__icons bar__icons--left">
-                                <div class="bar__text align-center"></div>
+                                </picture>
+                                <div class="bar bar--bottom bar--fixed">
+                                    <div class="bar__icons bar__icons--right">
+                                        <a class="bar__icon js-close-lightbox" href="#">
+                                            <svg class="icon">
+                                                <use xlink:href="#ui-close"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="bar__icons bar__icons--left">
+                                        <div class="bar__text align-center"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </f:then>
+                    <f:else>
+                        <div class="card__image card__image--placeholder">
+                            <f:image src="EXT:hgon_template/Resources/Public/Logos/logo-hgon.svg" alt="" loading="lazy" />
+                        </div>
+                    </f:else>
+                </f:if>
                 <div class="card__inner">
                     <header class="card__header">
                         <h2 class="headline">{data.header}</h2>
                         <span class="tagline">{data.subheader}</span>
                     </header>
                     <div class="card__text">
-                        <p>
-                            <f:format.raw>
-                                {data.bodytext}
-                            </f:format.raw>
-                        </p>
+                        <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{data.bodytext}</f:format.html>
                     </div>
                 </div>
             </section>
