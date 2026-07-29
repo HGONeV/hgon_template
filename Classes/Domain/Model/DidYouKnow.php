@@ -41,35 +41,6 @@ class DidYouKnow extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $description = '';
 
     /**
-     * sysCategory
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\SysCategory>
-     */
-    protected $sysCategory = null;
-
-    /**
-     * __construct
-     */
-    public function __construct()
-    {
-        //Do not remove the next line: It would break the functionality
-        $this->initStorageObjects();
-    }
-
-    /**
-     * Initializes all ObjectStorage properties
-     * Do not modify this method!
-     * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
-     *
-     * @return void
-     */
-    protected function initStorageObjects()
-    {
-        $this->sysCategory = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-    }
-
-    /**
      * Returns the title
      *
      * @return string $title
@@ -110,49 +81,4 @@ class DidYouKnow extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->description = $description;
     }
-
-
-    /**
-     * Adds a SysCategory
-     *
-     * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\SysCategory> sysCategory
-     */
-    public function addSysCategory(\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory)
-    {
-        $this->sysCategory->attach($sysCategory);
-    }
-
-    /**
-     * Removes a SysCategory
-     *
-     * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\SysCategory> sysCategory
-     */
-    public function removeSysCategory(\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory)
-    {
-        $this->sysCategory->detach($sysCategory);
-    }
-
-    /**
-     * Returns the sysCategory
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\SysCategory> sysCategory
-     */
-    public function getSysCategory()
-    {
-        return $this->sysCategory;
-    }
-
-    /**
-     * Sets the sysCategory
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonTemplate\Domain\Model\SysCategory> $sysCategory
-     */
-    public function setSysCategory(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $sysCategory)
-    {
-        $this->sysCategory = $sysCategory;
-    }
-
-
 }

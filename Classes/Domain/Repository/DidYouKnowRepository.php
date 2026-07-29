@@ -25,20 +25,4 @@ namespace HGON\HgonTemplate\Domain\Repository;
  */
 class DidYouKnowRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-    /**
-     * Find by sysCategory
-     *
-     * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
-     */
-    public function findBySysCategory($sysCategory)
-    {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->contains('sysCategory', [$sysCategory])
-        );
-
-        return $query->execute();
-        //===
-    }
 }

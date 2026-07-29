@@ -1,0 +1,2 @@
+# Limit news records to the project and journal category trees.
+TCEFORM.tx_news_domain_model_news.categories.config.treeConfig.startingPoints = 1,5

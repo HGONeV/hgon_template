@@ -1,6 +1,7 @@
 <?php
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 defined('TYPO3') or die();
 
@@ -50,3 +51,14 @@ ExtensionManagementUtility::addToAllTCAtypes(
     '',
     'after:bio'
 );
+
+$categoryTab = '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories';
+foreach ($GLOBALS['TCA']['tx_mdnewsauthor_domain_model_newsauthor']['types'] as &$typeConfiguration) {
+    $showItems = GeneralUtility::trimExplode(',', $typeConfiguration['showitem'] ?? '', true);
+    $showItems = array_filter(
+        $showItems,
+        static fn(string $showItem): bool => $showItem !== 'categories' && $showItem !== $categoryTab
+    );
+    $typeConfiguration['showitem'] = implode(',', $showItems);
+}
+unset($typeConfiguration);

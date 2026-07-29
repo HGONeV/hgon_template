@@ -1,0 +1,2 @@
+# Limit page records to the project and journal category trees.
+TCEFORM.pages.categories.config.treeConfig.startingPoints = 1,5

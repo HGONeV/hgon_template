@@ -25,21 +25,17 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     protected \HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository;
 
-    protected \HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository;
-
     protected \HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository;
 
     public function __construct(
         ?\HGON\HgonTemplate\Domain\Repository\PagesRepository $pagesRepository = null,
         ?\HGON\HgonTemplate\Domain\Repository\AuthorsRepository $authorsRepository = null,
         ?\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository = null,
-        ?\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository = null,
         ?\HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository = null
     ) {
         $this->pagesRepository = $pagesRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\PagesRepository::class);
         $this->authorsRepository = $authorsRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\AuthorsRepository::class);
         $this->newsRepository = $newsRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\NewsRepository::class);
-        $this->sysCategoryRepository = $sysCategoryRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository::class);
         $this->didYouKnowRepository = $didYouKnowRepository ?? GeneralUtility::makeInstance(\HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository::class);
     }
 
@@ -56,11 +52,6 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     public function injectNewsRepository(\HGON\HgonTemplate\Domain\Repository\NewsRepository $newsRepository): void
     {
         $this->newsRepository = $newsRepository;
-    }
-
-    public function injectSysCategoryRepository(\HGON\HgonTemplate\Domain\Repository\SysCategoryRepository $sysCategoryRepository): void
-    {
-        $this->sysCategoryRepository = $sysCategoryRepository;
     }
 
     public function injectDidYouKnowRepository(\HGON\HgonTemplate\Domain\Repository\DidYouKnowRepository $didYouKnowRepository): void
@@ -269,31 +260,17 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action didYouKnow
      *
-     *
-     * @param \HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function didYouKnowAction(?\HGON\HgonTemplate\Domain\Model\SysCategory $sysCategory = null)
+    public function didYouKnowAction()
     {
-        if (!$sysCategory) {
-            $getParams = $this->request->getQueryParams()['tx_hgontemplate_journal'] ?? [];
-            $sysCategoryParam = (string)($getParams['sysCategory'] ?? '');
-            $sysCategoryUid = (int)preg_replace('/\D+/', '', $sysCategoryParam);
-
-            if ($sysCategoryUid > 0) {
-                $sysCategory = $this->sysCategoryRepository->findByIdentifier($sysCategoryUid);
-            }
+        $didYouKnowList = $this->didYouKnowRepository->findAll();
+        if ($didYouKnowList->count() > 0) {
+            $this->view->assign(
+                'didYouKnow',
+                $didYouKnowList[random_int(0, $didYouKnowList->count() - 1)]
+            );
         }
-
-        // add "didYouKnow" random (check for category-entry. Else take something)
-        $didYouKnowListByCategory = $this->didYouKnowRepository->findBySysCategory($sysCategory);
-        if ($didYouKnowListByCategory->count()) {
-            $didYouKnowList = $didYouKnowListByCategory;
-        } else {
-            // fallback: FindAll (if no category is given)
-            $didYouKnowList = $this->didYouKnowRepository->findAll();
-        }
-        $this->view->assign('didYouKnow', $didYouKnowList[rand(0, count($didYouKnowList) - 1)]);
 
         return $this->htmlResponse();
     }

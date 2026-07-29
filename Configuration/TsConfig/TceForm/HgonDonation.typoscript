@@ -1,0 +1,2 @@
+# Limit donation projects to the project category tree.
+TCEFORM.tx_hgondonation_domain_model_project.categories.config.treeConfig.startingPoints = 1

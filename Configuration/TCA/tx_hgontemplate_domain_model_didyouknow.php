@@ -19,9 +19,9 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_didyouknow'] = [
 		],
 		'searchFields' => 'title,description',
 		'iconfile' => 'EXT:hgon_template/Resources/Public/Icons/tx_hgontemplate_domain_model_didyouknow.gif'
-    ],
+	],
 	'types' => [
-		'1' => ['showitem' => 'sys_language_uid, l10n_diffsource, hidden, --palette--;;1,visibility, title, description,'],
+		'1' => ['showitem' => 'sys_language_uid, l10n_diffsource, hidden, --palette--;;1,visibility, description,'],
 	],
 	'palettes' => [
 		'1' => ['showitem' => ''],
@@ -90,20 +90,6 @@ $GLOBALS['TCA']['tx_hgontemplate_domain_model_didyouknow'] = [
                 'rows' => 15,
                 'eval' => 'trim',
                 'required' => true
-            ],
-        ],
-		'sys_category' => [
-			'exclude' => 0,
-			'label' => 'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_hgontemplate_domain_model_didyouknow.sys_category',
-			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectMultipleSideBySide',
-				'foreign_table' => 'sys_category',
-				'foreign_table_where' => 'AND sys_language_uid = ###REC_FIELD_sys_language_uid### ORDER BY title ASC',
-				'size' => 10,
-				'autoSizeMax' => 30,
-				'maxitems' => 9999,
-				'multiple' => 0,
             ],
         ],
     ],

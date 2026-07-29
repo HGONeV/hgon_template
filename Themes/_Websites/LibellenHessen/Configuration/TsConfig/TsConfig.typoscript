@@ -1,4 +1,5 @@
 @import 'EXT:hgon_template/Configuration/TsConfig/TsConfig.typoscript'
 
-// https://www.derhansen.de/2020/04/limit-typo3-category-tree-to-subset-for-extensions.html
-TCEFORM.tx_hgonspecies_domain_model_species.family.config.treeConfig.rootUid = 10
+# Limit the family selector to the Libellen category tree.
+# TYPO3 13 supports startingPoints as the Page TSconfig override for selectTree.
+TCEFORM.tx_hgonspecies_domain_model_species.family.config.treeConfig.startingPoints = 63

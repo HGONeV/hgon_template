@@ -1,0 +1,5 @@
+# The bird species records are stored below the data folder with UID 433,
+# which is outside a configured TYPO3 site tree.
+[433 in tree.rootLineIds]
+    TCEFORM.tx_hgonspecies_domain_model_species.family.config.treeConfig.startingPoints = 101
+[END]
