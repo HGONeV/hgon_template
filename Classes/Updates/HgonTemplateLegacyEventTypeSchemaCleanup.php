@@ -32,9 +32,11 @@ final class HgonTemplateLegacyEventTypeSchemaCleanup implements UpgradeWizardInt
     public function executeUpdate(): bool
     {
         if ($this->columnExists()) {
-            $this->getConnection()
-                ->createSchemaManager()
-                ->dropColumn(self::TABLE, self::COLUMN);
+            $connection = $this->getConnection();
+            $connection->executeStatement(
+                'ALTER TABLE ' . $connection->quoteIdentifier(self::TABLE)
+                . ' DROP COLUMN ' . $connection->quoteIdentifier(self::COLUMN)
+            );
         }
 
         return true;
