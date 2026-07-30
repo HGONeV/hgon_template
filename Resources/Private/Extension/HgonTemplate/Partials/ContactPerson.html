@@ -1,38 +1,44 @@
 <f:if condition="{author}">
 
-    <aside class="aside color-bg-tertiary">
+    <aside class="aside aside--contact-person color-bg-tertiary">
         <header class="aside__header">
             <h6>
                 Ansprechpartner*In
             </h6>
         </header>
         <div class="aside__content">
-            <p class="cf">
+            <div class="contact-person__profile">
                 <f:if condition="{author.imageBoxes}" >
-                    <f:image class="img-left" image="{author.imageBoxes}" alt="{author.imageBoxes.title}" cropVariant="1to1" width="100" height="100" />
+                    <f:image
+                        class="contact-person__portrait"
+                        image="{author.imageBoxes}"
+                        alt=""
+                        cropVariant="1to1"
+                        width="120"
+                        height="120"
+                    />
                 </f:if>
-            </p>
-            <p>
-                <strong>{author.firstName} {author.lastName}</strong>
-                <br/>
-                {author.functionTitle}
-                <br/>
-            </p>
-            <p>
+                <p class="contact-person__identity">
+                    <strong>{author.firstName} {author.lastName}</strong>
+                    <f:if condition="{author.functionTitle}">
+                        <span>{author.functionTitle}</span>
+                    </f:if>
+                </p>
+            </div>
+            <div class="contact-person__contact">
                 <f:if condition="{author.phone} || {author.phone2}">
                     <a href="tel:<hgon:php.pregReplace pattern='[^+0-9]' replacement='' subject='{author.phone} {author.phone2}' />">
                         <svg class="icon icon--btn-left color-font-primary" width="16" height="16"><use xlink:href="#ui-phone"></use></svg>
-                        <f:format.stripTags>{author.phone} {author.phone2}</f:format.stripTags>
+                        <span><f:format.stripTags>{author.phone} {author.phone2}</f:format.stripTags></span>
                     </a>
-                    <br>
                 </f:if>
                 <f:if condition="{author.email}">
-                    <a href="mailto:<f:format.stripTags><f:format.html>{author.email}</f:format.html></f:format.stripTags>">
+                    <f:link.email email="{author.email}">
                         <svg class="icon icon--btn-left color-font-primary" width="16" height="16"><use xlink:href="#ui-mail"></use></svg>
-                        <f:link.email email="{author.email}" />
-                    </a>
+                        <span>{author.email}</span>
+                    </f:link.email>
                 </f:if>
-            </p>
+            </div>
         </div>
     </aside>
 

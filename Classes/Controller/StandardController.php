@@ -116,39 +116,23 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function sidebarContactPersonAction()
     {
-        // erst ab v10 kompatibel
-        /*
-        // get PageRepository and rootline
-        $context = GeneralUtility::makeInstance(Context::class);
-        $pageId  = (int)$context->getPropertyFromAspect('frontend.page', 'id');
+        $pageInformation = $this->request->getAttribute('frontend.page.information');
+        $rootLine = $pageInformation?->getRootLine() ?? [];
 
-        // RootlineUtility verwenden statt PageRepository::getRootLine()
-        $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $pageId);
-        $rootlinePages   = $rootlineUtility->get();
+        // TYPO3 provides the rootline from the current page towards the site root.
+        // Therefore the first configured contact person is also the nearest one.
+        foreach ($rootLine as $page) {
+            $authorUid = (int)($page['tx_hgontemplate_contactperson'] ?? 0);
+            if ($authorUid <= 0) {
+                continue;
+            }
 
-        // fo through all pages and take the one that has a match in the corresponsing field
-        $pid = intval($GLOBALS['TSFE']->id);
-
-        foreach ($rootlinePages as $page => $values) {
-            if (
-                ($values['tx_hgontemplate_contactperson'] > 0)
-                && ($pid)
-            ) {
-                $pid = intval($values['uid']);
+            $author = $this->authorsRepository->findByUid($authorUid);
+            if ($author instanceof \HGON\HgonTemplate\Domain\Model\Authors) {
+                $this->view->assign('author', $author);
                 break;
             }
         }
-
-        $result = $this->pagesRepository->findByUid($pid);
-
-        if ($result instanceof \HGON\HgonTemplate\Domain\Model\Pages) {
-            if ($result->getTxHgontemplateContactperson()){
-                foreach ($result->getTxHgontemplateContactperson() as $author) {
-                    $this->view->assign('author', $author);
-                }
-            }
-        }
-        */
 
         return $this->htmlResponse();
     }

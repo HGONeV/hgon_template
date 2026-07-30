@@ -72,7 +72,7 @@
                             <f:for each="{row.columns}" as="column">
                                 <f:if condition="{column.media}">
 
-                                    <article class="slider__item slider__bg-image / js-slider-item" style="background-image: url(<f:uri.image image='{column.media}' absolute='true' />);"></article>
+                                    <article class="slider__item slider__bg-image / js-slider-item" style="background-image: url(<f:uri.image image='{column.media}' absolute='true' cropVariant='2to1' />);"></article>
 
                                         <f:if condition="
                                             {column.media.alternative}
@@ -174,7 +174,7 @@
                                                         <div class="card__inner">
                                                             <div class="card__content clearfix">
                                                                 <picture class="card__image-aside">
-                                                                    <f:image image="{column.media}" alt="{column.media.name}" width="70" height="70" />
+                                                                    <f:image image="{column.media}" alt="{column.media.name}" width="70" height="70" cropVariant="1to1" />
                                                                 </picture>
                                                                 <blockquote>
                                                                     <p>
@@ -220,7 +220,7 @@
                                                             <div class="card__content clearfix">
                                                                 <div class="slider-caroussel__image">
                                                                     <picture class="card__image-aside">
-                                                                        <f:image image="{column.media}" alt="{column.media.name}" width="70" height="70" />
+                                                                        <f:image image="{column.media}" alt="{column.media.name}" width="70" height="70" cropVariant="1to1" />
                                                                     </picture>
                                                                 </div>
                                                                 <div class="slider-caroussel__text">
@@ -578,7 +578,7 @@
                                     <f:for each="{gallery.rows}" as="row">
                                         <f:for each="{row.columns}" as="column">
                                             <f:if condition="{column.media}">
-                                                <f:image image="{column.media}" alt="{column.media.alternative}" title="{column.media.title}" width="300" height="451" cropVariant="3to4" loading="lazy" />
+                                                <f:image image="{column.media}" alt="{column.media.alternative}" title="{column.media.title}" width="300" height="300" cropVariant="1to1" loading="lazy" />
                                             </f:if>
                                         </f:for>
                                     </f:for>

@@ -1,8 +1,13 @@
 <?php
 
 use DERHANSEN\SfEventMgt\Controller\EventController;
+use HGON\HgonTemplate\Form\FormDataProvider\CropVariantRestrictions;
 use HGON\HgonTemplate\Routing\Aspect\EventMonthMapper;
 use HGON\HgonTemplate\Routing\Aspect\SpeciesSlugMapper;
+use TYPO3\CMS\Backend\Form\FormDataProvider\InlineOverrideChildTca;
+use TYPO3\CMS\Backend\Form\FormDataProvider\PageTsConfigMerged;
+use TYPO3\CMS\Backend\Form\FormDataProvider\TcaColumnsOverrides;
+use TYPO3\CMS\Backend\Form\FormDataProvider\TcaInline;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
@@ -15,6 +20,16 @@ $GLOBALS['TYPO3_CONF_VARS']['MAIL']['partialRootPaths'][1727540190] = 'EXT:hgon_
 $GLOBALS['TYPO3_CONF_VARS']['MAIL']['layoutRootPaths'][1727540190] = 'EXT:hgon_template/Resources/Private/Extension/HgonTemplate/Layouts/';
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['EventMonth'] = EventMonthMapper::class;
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['aspects']['HgonSpeciesSlug'] = SpeciesSlugMapper::class;
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['formDataGroup']['tcaDatabaseRecord'][CropVariantRestrictions::class] = [
+    'depends' => [
+        InlineOverrideChildTca::class,
+        PageTsConfigMerged::class,
+        TcaColumnsOverrides::class,
+    ],
+    'before' => [
+        TcaInline::class,
+    ],
+];
 
 ExtensionManagementUtility::addPageTSConfig(
     "@import 'EXT:hgon_template/Configuration/TsConfig/TsConfig.typoscript'"
