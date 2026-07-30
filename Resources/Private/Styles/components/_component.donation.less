@@ -1,0 +1,33 @@
+/**! ==================================================
+ * COMPONENTS/Donation
+ * ================================================== */
+.donation-general__intro {
+  max-width: 52rem;
+  margin: 0 auto @gap;
+  padding: 0 @gap;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    color: @color-text-dark;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: @font-weight-regular;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: @gap05 0 0;
+    color: @color-text-light;
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  @media @mq-medium {
+    padding-right: @gap15;
+    padding-left: @gap15;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}

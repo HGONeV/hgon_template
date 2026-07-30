@@ -21,8 +21,8 @@ globalWebsiteConfig {
         name = Libellen in Hessen
         description = Arbeitskreis Libellen in Hessen, Hessische Gesellschaft für Ornithologie und Naturschutz e.V.
 
-        logoFile = {$globalWebsiteConfig.templatePaths.default.logos}/logo-ak-libellen.png
-        logoFileSmall = {$globalWebsiteConfig.templatePaths.default.logos}/logo-ak-libellen.png
+        logoFile = EXT:hgon_template/Resources/Public/Logos/logo-ak-libellen-reworked.png
+        logoFileSmall = EXT:hgon_template/Resources/Public/Logos/logo-ak-libellen-reworked.png
 
         email = info@libellen-hessen.de
 

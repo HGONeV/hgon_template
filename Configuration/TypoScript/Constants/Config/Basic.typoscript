@@ -49,8 +49,8 @@ globalWebsiteConfig {
         name = HGON
         description = Hessische Gesellschaft für Ornithologie und Naturschutz e.V.
 
-        logoFile = {$globalWebsiteConfig.templatePaths.default.logos}/logo-hgon.svg
-        logoFileSmall = {$globalWebsiteConfig.templatePaths.default.logos}/logo-hgon-small.svg
+        logoFile = EXT:hgon_template/Resources/Public/Logos/logo-hgon.svg
+        logoFileSmall = EXT:hgon_template/Resources/Public/Logos/logo-hgon-small.svg
       #  logoFile = EXT:hgon_template/Resources/Public/Logos/logo-hgon.svg
       #  logoFileSmall = EXT:hgon_template/Resources/Public/Logos/logo-hgon-small.svg
         #logoOffcanvasFile = {$globalWebsiteConfig.templatePaths.default.logos}/logo-offcanvas.png

@@ -4,7 +4,7 @@
     <!-- new stuff -->
     <footer class="footer">
 
-        <f:render partial="Layout/FooterContent" />
+        <f:render partial="Layout/FooterContent" arguments="{_all}" />
 
         <div class="footer__bottom">
             <div class="flex-container space-between">
@@ -16,12 +16,12 @@
                 <div class="flex-item flex-basis4 flex-item--smalldesk-full / align-center">
                     <a class="footer__logo" href="/">
                         <f:image
-                            src="EXT:hgon_template/Resources/Public/Logos/logo-hgon.svg"
+                            src="{settings.websiteLogoFile}"
                             alt="{settings.websiteName}"
                             class="content-page__logo"
                             title="{settings.websiteDescription}"
-                            width="60"
-                            height="60"
+                            width="120"
+                            height="120"
                         />
                     </a>
                 </div>

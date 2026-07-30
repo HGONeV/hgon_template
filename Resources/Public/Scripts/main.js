@@ -105,6 +105,21 @@ $('.js-tabs-container').hellltabs({
   tabIndex: 0
 });
 
+function syncSpeciesTabsHeight() {
+    var tabs = document.querySelector('#species-tabs .js-tabs');
+    var activeTab = tabs ? tabs.querySelector('.js-tab-item.active') : null;
+
+    if (activeTab) {
+        tabs.style.height = activeTab.offsetHeight + 'px';
+    }
+}
+
+if (document.readyState === 'complete') {
+    syncSpeciesTabsHeight();
+} else {
+    window.addEventListener('load', syncSpeciesTabsHeight);
+}
+
 /* copy to clipboard function for tp-single share function */
 function copyToClipboard() {
     /* Get the text field */

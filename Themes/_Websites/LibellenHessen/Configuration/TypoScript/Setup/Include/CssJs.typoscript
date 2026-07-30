@@ -6,8 +6,7 @@ page {
 	// CSS
 	//===============================================================
 	includeCSS {
-        file60 = EXT:hgon_template/Themes/_Websites/LibellenHessen/Resources/Public/Css/main.css
+        file60 = EXT:hgon_template/Resources/Public/Styles/libellen.css
         file60.media = screen
 	}
 }
-
