@@ -6,6 +6,20 @@ categories:
     parent: hgonTemplate
 
 settings:
+  plugin.tx_sfeventmgt.settings.registration.captcha.enabled:
+    label: 'Enable captcha'
+    description: 'Enables captcha validation in the event registration form.'
+    default: true
+    type: bool
+    category: hgonTemplate.eventRegistration
+  plugin.tx_sfeventmgt.settings.registration.captcha.type:
+    label: 'Captcha type'
+    description: 'Captcha provider used by the event registration form.'
+    default: 'hCaptcha'
+    type: string
+    enum:
+      hCaptcha: 'hCaptcha'
+    category: hgonTemplate.eventRegistration
   plugin.tx_sfeventmgt.settings.registration.captcha.hCaptcha.publicKey:
     label: 'hCaptcha site key'
     description: 'Public site key used to render hCaptcha in the event registration form.'
