@@ -1,0 +1,20 @@
+categories:
+  hgonTemplate:
+    label: 'HGON Template'
+  hgonTemplate.eventRegistration:
+    label: 'Event registration'
+    parent: hgonTemplate
+
+settings:
+  plugin.tx_sfeventmgt.settings.registration.captcha.hCaptcha.publicKey:
+    label: 'hCaptcha site key'
+    description: 'Public site key used to render hCaptcha in the event registration form.'
+    default: ''
+    type: string
+    category: hgonTemplate.eventRegistration
+  plugin.tx_sfeventmgt.settings.registration.captcha.hCaptcha.privateKey:
+    label: 'hCaptcha secret'
+    description: 'Private secret used to validate hCaptcha responses for event registrations.'
+    default: ''
+    type: string
+    category: hgonTemplate.eventRegistration

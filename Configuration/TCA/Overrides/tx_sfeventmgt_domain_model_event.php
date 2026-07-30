@@ -9,6 +9,7 @@ $GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['columns']['image']['label']
 $GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['columns']['image']['config']['maxitems'] = 1;
 $GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['columns']['custom_text']['label'] =
     'LLL:EXT:hgon_template/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.custom_text';
+$GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['columns']['currency']['config']['default'] = 'EUR';
 unset($GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['ctrl']['descriptionColumn']);
 
 foreach ($GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['types'] as &$typeConfig) {
