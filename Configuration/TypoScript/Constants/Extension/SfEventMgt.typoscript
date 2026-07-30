@@ -17,10 +17,6 @@ plugin.tx_sfeventmgt {
             captcha {
                 enabled = 1
                 type = hCaptcha
-                hCaptcha {
-                    publicKey = {$hgonTemplate.eventRegistration.hCaptcha.publicKey}
-                    privateKey = {$hgonTemplate.eventRegistration.hCaptcha.privateKey}
-                }
             }
         }
         notification {

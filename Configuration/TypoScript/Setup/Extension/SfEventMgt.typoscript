@@ -26,6 +26,12 @@ plugin.tx_sfeventmgt {
         registration {
             linkTermsAndConditions = {$plugin.tx_sfeventmgt.settings.registration.linkTermsAndConditions}
             requiredFields := addToList(accepttc,captcha)
+            captcha {
+                hCaptcha {
+                    publicKey = {$hgonTemplate.eventRegistration.hCaptcha.publicKey}
+                    privateKey = {$hgonTemplate.eventRegistration.hCaptcha.privateKey}
+                }
+            }
         }
         payment {
             bankAccount {
