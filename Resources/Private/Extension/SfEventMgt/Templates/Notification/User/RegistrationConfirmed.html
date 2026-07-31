@@ -19,6 +19,11 @@
                             </f:then>
                             <f:else>
                                 <p>vielen Dank für Ihre Anmeldung. Bitte schließen Sie die Anmeldung noch mit der PayPal-Zahlung ab:</p>
+                                <f:variable name="paymentHmac" value="{hgon:paymentRedirectHmac(registration: registration)}" />
+                                <p>
+                                    <a href="{f:uri.action(action: 'redirect', arguments: {registration: registration, hmac: paymentHmac}, absolute: true, controller: 'Payment', extensionName: 'sfeventmgt', pluginName: 'Pipayment', pageUid: settings.paymentPid)}">Jetzt mit PayPal bezahlen</a>
+                                </p>
+                                <p>Falls die Zahlung abgebrochen wird oder die Weiterleitung nicht funktioniert, können Sie diesen Link erneut aufrufen.</p>
                             </f:else>
                         </f:if>
                     </f:then>

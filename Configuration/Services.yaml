@@ -19,6 +19,10 @@ services:
     autowire: true
     autoconfigure: true
 
+  HGON\HgonTemplate\ViewHelpers\PaymentRedirectHmacViewHelper:
+    autowire: true
+    autoconfigure: true
+
   DERHANSEN\SfEventMgt\Service\NotificationService:
     class: HGON\HgonTemplate\Service\SfEventMgtNotificationService
     autowire: true
