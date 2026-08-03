@@ -227,8 +227,7 @@ final class SfEventMgtListFilterVariablesListener
             ->select(
                 'uid',
                 'tx_hgontemplate_online_event',
-                'tx_hgon_workgroup_stdevent',
-                'tx_hgon_workgroup_wgevent'
+                'tx_hgon_workgroup'
             )
             ->from('tx_sfeventmgt_domain_model_event')
             ->where(
@@ -244,10 +243,7 @@ final class SfEventMgtListFilterVariablesListener
         foreach ($rows as $row) {
             $metadataByUid[(int)$row['uid']] = [
                 'onlineEvent' => (bool)$row['tx_hgontemplate_online_event'],
-                'workGroups' => array_values(array_unique(array_merge(
-                    $this->parseUidList((string)($row['tx_hgon_workgroup_stdevent'] ?? '')),
-                    $this->parseUidList((string)($row['tx_hgon_workgroup_wgevent'] ?? ''))
-                ))),
+                'workGroups' => $this->parseUidList((string)($row['tx_hgon_workgroup'] ?? '')),
             ];
         }
 

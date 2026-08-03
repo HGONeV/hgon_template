@@ -233,20 +233,20 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
             $data['organisator'] = 0;
         }
 
-        $this->copySourceColumnIfTargetColumnExists(
-            $data,
-            $sourceRow,
-            $sourceColumns,
-            $targetColumns,
-            'tx_hgon_workgroup_wgevent'
-        );
-        $this->copySourceColumnIfTargetColumnExists(
-            $data,
-            $sourceRow,
-            $sourceColumns,
-            $targetColumns,
-            'tx_hgon_workgroup_stdevent'
-        );
+        if (isset($targetColumns['tx_hgon_workgroup'])) {
+            $data['tx_hgon_workgroup'] = $this->sourceWorkGroupUids($sourceRow, $sourceColumns);
+        } else {
+            // Compatibility fallback for installations that have not updated the schema yet.
+            foreach (['tx_hgon_workgroup_wgevent', 'tx_hgon_workgroup_stdevent'] as $legacyField) {
+                $this->copySourceColumnIfTargetColumnExists(
+                    $data,
+                    $sourceRow,
+                    $sourceColumns,
+                    $targetColumns,
+                    $legacyField
+                );
+            }
+        }
 
         return $data;
     }
@@ -339,16 +339,22 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
         array $targetColumns,
         int $targetUid
     ): bool {
-        $fields = array_values(array_filter(
-            [
-                isset($sourceColumns['tx_hgon_workgroup_wgevent'], $targetColumns['tx_hgon_workgroup_wgevent'])
-                    ? 'tx_hgon_workgroup_wgevent'
-                    : null,
-                isset($sourceColumns['tx_hgon_workgroup_stdevent'], $targetColumns['tx_hgon_workgroup_stdevent'])
-                    ? 'tx_hgon_workgroup_stdevent'
-                    : null,
-            ]
-        ));
+        $sourceHasWorkGroups = isset($sourceColumns['tx_hgon_workgroup_wgevent'])
+            || isset($sourceColumns['tx_hgon_workgroup_stdevent']);
+        if (isset($targetColumns['tx_hgon_workgroup']) && $sourceHasWorkGroups) {
+            $fields = ['tx_hgon_workgroup'];
+        } else {
+            $fields = array_values(array_filter(
+                [
+                    isset($sourceColumns['tx_hgon_workgroup_wgevent'], $targetColumns['tx_hgon_workgroup_wgevent'])
+                        ? 'tx_hgon_workgroup_wgevent'
+                        : null,
+                    isset($sourceColumns['tx_hgon_workgroup_stdevent'], $targetColumns['tx_hgon_workgroup_stdevent'])
+                        ? 'tx_hgon_workgroup_stdevent'
+                        : null,
+                ]
+            ));
+        }
 
         if ($fields === []) {
             return false;
@@ -366,6 +372,11 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
             return true;
         }
 
+        if (isset($targetColumns['tx_hgon_workgroup']) && $sourceHasWorkGroups) {
+            return $this->mergeUidLists((string)($targetRow['tx_hgon_workgroup'] ?? ''))
+                !== $this->sourceWorkGroupUids($sourceRow, $sourceColumns);
+        }
+
         foreach (['tx_hgon_workgroup_wgevent', 'tx_hgon_workgroup_stdevent'] as $field) {
             if (
                 isset($sourceColumns[$field], $targetColumns[$field])
@@ -376,6 +387,36 @@ final class HgonTemplateRkwEventsDataMigration implements UpgradeWizardInterface
         }
 
         return false;
+    }
+
+    /**
+     * @param array<string, mixed> $sourceRow
+     * @param array<string, bool> $sourceColumns
+     */
+    private function sourceWorkGroupUids(array $sourceRow, array $sourceColumns): string
+    {
+        $values = [];
+        foreach (['tx_hgon_workgroup_stdevent', 'tx_hgon_workgroup_wgevent'] as $field) {
+            if (isset($sourceColumns[$field])) {
+                $values[] = (string)($sourceRow[$field] ?? '');
+            }
+        }
+
+        return $this->mergeUidLists(...$values);
+    }
+
+    private function mergeUidLists(string ...$values): string
+    {
+        $uids = [];
+        foreach ($values as $value) {
+            foreach (GeneralUtility::intExplode(',', $value, true) as $uid) {
+                if ($uid > 0) {
+                    $uids[$uid] = $uid;
+                }
+            }
+        }
+
+        return implode(',', array_values($uids));
     }
 
     private function hasUnmigratedCulinaryOptions(
