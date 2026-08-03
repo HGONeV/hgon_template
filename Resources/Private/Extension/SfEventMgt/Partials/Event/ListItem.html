@@ -5,28 +5,7 @@
 <div class="flex-item c-4"
      itemscope="itemscope"
      itemtype="https://schema.org/Event">
-    <f:if condition="{event.firstListViewImage}">
-        <f:then>
-            <article class="card card--event card--border card--fixed-footer">
-                <picture class="card__image">
-                    <f:if condition="{settings.detailPid}">
-                        <f:then>
-                            <f:link.action action="detail" controller="Event" pageUid="{settings.detailPid}" arguments="{event: event}" title="{event.title}">
-                                <f:image image="{event.firstListViewImage}" alt="{event.title}" cropVariant="4to3" width="400c" height="300c" />
-                            </f:link.action>
-                        </f:then>
-                        <f:else>
-                            <f:link.action action="detail" controller="Event" arguments="{event: event}" title="{event.title}">
-                                <f:image image="{event.firstListViewImage}" alt="{event.title}" cropVariant="4to3" width="400c" height="300c" />
-                            </f:link.action>
-                        </f:else>
-                    </f:if>
-                </picture>
-        </f:then>
-        <f:else>
-            <article class="card card--event card-plain card--border card--fixed-footer">
-        </f:else>
-    </f:if>
+    <article class="card card--event card-plain card--border card--fixed-footer">
     <div class="card__inner">
         <header class="card__header">
             <div class="event-card__badges">

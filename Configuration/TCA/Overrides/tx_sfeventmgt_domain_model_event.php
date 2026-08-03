@@ -112,7 +112,7 @@ ExtensionManagementUtility::addFieldsToPalette(
     'before:title'
 );
 $GLOBALS['TCA']['tx_sfeventmgt_domain_model_event']['palettes']['titleTopEvent']['showitem'] =
-    'tx_hgontemplate_online_event, --linebreak--, title, top_event';
+    'tx_hgontemplate_online_event, --linebreak--, title';
 ExtensionManagementUtility::addFieldsToPalette(
     'tx_sfeventmgt_domain_model_event',
     'hgonRegistration',

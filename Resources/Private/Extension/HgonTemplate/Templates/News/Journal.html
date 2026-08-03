@@ -3,7 +3,7 @@
     <section id="news-filter" class="article article--fullwidth / form">
         <form action="{f:uri.page(pageUid: settings.journal.pageUid, section: 'news-filter')}" method="get" class="form js-news-filter-form">
             <div class="flex-container space-between center-cross gutter">
-                <div class="flex-item c-3">
+                <div class="flex-item c-4">
                     <p class="form__field">
                         <label for="news-search-term">Suchbegriff</label>
                         <input
@@ -17,7 +17,7 @@
                         />
                     </p>
                 </div>
-                <div class="flex-item c-3">
+                <div class="flex-item c-4">
                     <p class="form__field">
                         <label for="news-date-range">Zeitraum</label>
                         <span class="select-box">
@@ -30,27 +30,7 @@
                         </span>
                     </p>
                 </div>
-                <div class="flex-item c-3">
-                    <p class="form__field">
-                        <label for="news-primary-category">Bereich</label>
-                        <span class="select-box">
-                            <select id="news-primary-category" name="bereich" data-empty-value="0">
-                                <option value="0">Alle Bereiche</option>
-                                <f:for each="{primaryCategoryOptions}" as="category">
-                                    <f:if condition="{selectedPrimaryCategory} == {category.uid}">
-                                        <f:then>
-                                            <option value="{category.uid}" selected="selected">{category.title}</option>
-                                        </f:then>
-                                        <f:else>
-                                            <option value="{category.uid}">{category.title}</option>
-                                        </f:else>
-                                    </f:if>
-                                </f:for>
-                            </select>
-                        </span>
-                    </p>
-                </div>
-                <div class="flex-item c-3">
+                <div class="flex-item c-4">
                     <p class="form__field">
                         <label for="news-secondary-category">Schlagwort</label>
                         <span class="select-box">

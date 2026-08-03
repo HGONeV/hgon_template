@@ -209,7 +209,7 @@
                         <f:if condition="{event.files}">
                             <aside class="aside aside--border color-bg-white">
                                 <header class="aside__header">
-                                    <h6>Downloads</h6>
+                                    <h6>Weitere Informationen</h6>
                                 </header>
                                 <div class="aside__content">
                                     <ul class="news-downloads">
@@ -278,21 +278,17 @@
                                 </p>
                             </div>
 
-                            <f:if condition="{event.teaser}">
-                                <p><strong>{event.teaser}</strong></p>
-                            </f:if>
-
                             <f:if condition="{event.description}">
                                 <f:format.html>{event.description}</f:format.html>
                             </f:if>
 
                             <f:if condition="{event.program}">
-                                <h3>Programm</h3>
+                                <h3 class="event-detail__section-title">Programm</h3>
                                 <f:format.html>{event.program}</f:format.html>
                             </f:if>
 
                             <f:if condition="{event.customText}">
-                                <h3>Weitere Informationen</h3>
+                                <h3 class="event-detail__section-title">Weitere Informationen</h3>
                                 <f:format.html>{event.customText}</f:format.html>
                             </f:if>
 

@@ -87,20 +87,6 @@
 
             <div class="event-filter__row event-filter__row--checks">
                 <div class="event-filter__checks">
-                    <label class="checkbox" for="top-event-only">
-                        <span class="checkbox__input">
-                            <f:if condition="{requestTopEventRestriction} == '2'">
-                                <f:then>
-                                    <input id="top-event-only" type="checkbox" name="tx_sfeventmgt_pieventlist[overwriteDemand][topEventRestriction]" value="2" checked="checked" />
-                                </f:then>
-                                <f:else>
-                                    <input id="top-event-only" type="checkbox" name="tx_sfeventmgt_pieventlist[overwriteDemand][topEventRestriction]" value="2" />
-                                </f:else>
-                            </f:if>
-                            <span></span>
-                        </span>
-                        <span class="checkbox__label">Nur Top-Veranstaltungen</span>
-                    </label>
                     <label class="checkbox" for="online-event-only">
                         <span class="checkbox__input">
                             <f:if condition="{requestOnlineEventOnline}">

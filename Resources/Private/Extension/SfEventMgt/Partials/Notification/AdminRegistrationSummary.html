@@ -33,7 +33,9 @@
 
 <f:render partial="Notification/RegistrationAddons" arguments="{registration: registration, event: event}" />
 
-<h3>Anmeldefelder</h3>
-<f:render partial="Notification/RegistrationFields" arguments="{registration: registration}"/>
+<f:if condition="{registration.fieldValues}">
+    <h3>Anmeldefelder</h3>
+    <f:render partial="Notification/RegistrationFields" arguments="{registration: registration}"/>
+</f:if>
 
 </html>
