@@ -66,6 +66,29 @@ class PagesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     }
 
     /**
+     * Find visible sibling pages in their configured page-tree order.
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    public function findDirectSiblings(\HGON\HgonTemplate\Domain\Model\Pages $pages)
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('pid', $pages->getPid()),
+                $query->logicalNot(
+                    $query->equals('uid', $pages->getUid())
+                )
+            )
+        );
+        $query->setOrderings([
+            'sorting' => QueryInterface::ORDER_ASCENDING,
+        ]);
+
+        return $query->execute();
+    }
+
+    /**
      * Get pages with certain categories
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage|array $sysCategoryList

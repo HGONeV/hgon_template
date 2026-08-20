@@ -49,6 +49,7 @@ tt_content.list.20 {
     hgontemplate_randomauthor < tt_content.hgontemplate_randomauthor
     hgontemplate_sidebarcontactperson < tt_content.hgontemplate_sidebarcontactperson
     hgontemplate_siblingpagesoverview < tt_content.hgontemplate_siblingpagesoverview
+    hgontemplate_directsiblingpagesoverview < tt_content.hgontemplate_directsiblingpagesoverview
     hgontemplate_childrenpagesoverview < tt_content.hgontemplate_childrenpagesoverview
     hgontemplate_pageslider < tt_content.hgontemplate_pageslider
     hgontemplate_donationform < tt_content.hgontemplate_donationform

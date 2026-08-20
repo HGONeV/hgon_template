@@ -19,6 +19,12 @@ call_user_func(
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             $extKey,
             'SiblingPagesOverview',
+            'HGON: Generiert Vorschau für Unterseiten von Geschwisterseiten'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            $extKey,
+            'DirectSiblingPagesOverview',
             'HGON: Generiert Vorschau für Geschwisterseiten'
         );
 

@@ -105,6 +105,19 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             $extKey,
+            'DirectSiblingPagesOverview',
+            [
+                \HGON\HgonTemplate\Controller\StandardController::class => 'directSiblingPagesOverview'
+            ],
+            // non-cacheable actions
+            [
+                \HGON\HgonTemplate\Controller\StandardController::class => 'directSiblingPagesOverview'
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            $extKey,
             'ChildrenPagesOverview',
             [
                 \HGON\HgonTemplate\Controller\StandardController::class => 'childrenPagesOverview'

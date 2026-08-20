@@ -173,6 +173,29 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
 
     /**
+     * Shows a direct overview of sibling pages, excluding the current page.
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function directSiblingPagesOverviewAction()
+    {
+        /** @var \HGON\HgonTemplate\Domain\Model\Pages|null $currentPages */
+        $currentPages = $this->pagesRepository->findByIdentifier(
+            (int)($this->request->getAttribute('frontend.page.information')?->getId() ?? 0)
+        );
+
+        $pagesList = $currentPages instanceof \HGON\HgonTemplate\Domain\Model\Pages
+            ? $this->pagesRepository->findDirectSiblings($currentPages)
+            : [];
+
+        $this->view->assign('pagesList', $pagesList);
+
+        return $this->htmlResponse();
+    }
+
+
+
+    /**
      * Shows a project overview of children pages
      *
      * @return \Psr\Http\Message\ResponseInterface

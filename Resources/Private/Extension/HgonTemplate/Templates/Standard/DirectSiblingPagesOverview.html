@@ -1,0 +1,38 @@
+<div class="flex-container space-between gutter valign-stretch">
+    <f:variable name="numberOfPages" value="{pagesList -> f:count()}" />
+    <f:for each="{pagesList}" as="pages">
+        <div class="flex-item {f:if(condition: '{numberOfPages} == 2', then: 'c-6', else: 'c-4')} flex-item--medium-half">
+            <article class="card card--shadow">
+                <f:if condition="{pages.txHgontemplateArticleImage}">
+                    <picture class="card__image">
+                        <source media="(min-width: 64.063em)" srcset="<f:uri.image image='{pages.txHgontemplateArticleImage}' treatIdAsReference='1' absolute='true' cropVariant='4to3' width='300' />">
+                        <f:image
+                            class="image-embed-item"
+                            image="{pages.txHgontemplateArticleImage}"
+                            treatIdAsReference="1"
+                            title="{pages.txHgontemplateArticleImage.title}"
+                            alt="{pages.txHgontemplateArticleImage.alternative}"
+                            cropVariant="4to3"
+                            width="395"
+                            height="300"
+                        />
+                    </picture>
+                </f:if>
+
+                <div class="card__inner">
+                    <header class="card__header">
+                        <h2 class="h3 headline">{pages.title}</h2>
+                    </header>
+                    <div class="card__content">
+                        <p>{pages.txHgontemplateTeaserText}</p>
+                    </div>
+                    <footer class="card__footer">
+                        <f:link.page pageUid="{pages.uid}" class="btn btn--rounded btn--tertiary">
+                            <f:translate key="tx_hgontemplate_templates_standard_projectTeaser.readMore" />
+                        </f:link.page>
+                    </footer>
+                </div>
+            </article>
+        </div>
+    </f:for>
+</div>
