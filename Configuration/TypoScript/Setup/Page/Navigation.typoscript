@@ -7,7 +7,7 @@ page.10 {
 		10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
 		10 {
 			special = directory
-			special.value = 1
+			special.value.data = site:rootPageId
 			levels = 2
 			includeSpacer = 0
 			as = menuMain
