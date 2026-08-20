@@ -5,17 +5,3 @@ plugin.tx_hgonpayment {
         orderPid = 378
     }
 }
-
-plugin.tx_hgonspecies {
-    persistence {
-        storagePid = 375
-    }
-    settings {
-        parentCategoryUid = 80
-        listPid = 376
-        showPid = 377
-    }
-}
-
-plugin.tx_hgonspecies_list < plugin.tx_hgonspecies
-plugin.tx_hgonspecies_show < plugin.tx_hgonspecies

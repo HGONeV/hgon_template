@@ -4,18 +4,3 @@ page.10.dataProcessing {
     10.special.value = 333
     35.special.value = 340
 }
-
-
-plugin.tx_hgonspecies {
-    persistence {
-        storagePid = 371
-    }
-    settings {
-        parentCategoryUid = 72
-        listPid = 356
-        showPid = 369
-    }
-}
-
-plugin.tx_hgonspecies_list < plugin.tx_hgonspecies
-plugin.tx_hgonspecies_show < plugin.tx_hgonspecies
