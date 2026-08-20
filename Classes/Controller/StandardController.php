@@ -188,7 +188,19 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             ? $this->pagesRepository->findDirectSiblings($currentPages)
             : [];
 
-        $this->view->assign('pagesList', $pagesList);
+        $pages = is_array($pagesList) ? $pagesList : iterator_to_array($pagesList, false);
+        $pageCount = count($pages);
+        $twoColumnStartIndex = $pageCount % 3 === 2 ? $pageCount - 2 : $pageCount;
+        $cards = [];
+
+        foreach ($pages as $index => $page) {
+            $cards[] = [
+                'page' => $page,
+                'columnClass' => $index >= $twoColumnStartIndex ? 'c-6' : 'c-4',
+            ];
+        }
+
+        $this->view->assign('cards', $cards);
 
         return $this->htmlResponse();
     }

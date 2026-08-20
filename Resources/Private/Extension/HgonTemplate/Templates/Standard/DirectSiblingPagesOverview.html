@@ -1,7 +1,7 @@
 <div class="flex-container space-between gutter valign-stretch">
-    <f:variable name="numberOfPages" value="{pagesList -> f:count()}" />
-    <f:for each="{pagesList}" as="pages">
-        <div class="flex-item {f:if(condition: '{numberOfPages} == 2', then: 'c-6', else: 'c-4')} flex-item--medium-half">
+    <f:for each="{cards}" as="card">
+        <f:variable name="pages" value="{card.page}" />
+        <div class="flex-item {card.columnClass} flex-item--medium-half">
             <article class="card card--shadow">
                 <f:if condition="{pages.txHgontemplateArticleImage}">
                     <picture class="card__image">
