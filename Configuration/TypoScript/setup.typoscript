@@ -1,5 +1,7 @@
 # Extensions
+@import 'EXT:seo/Configuration/TypoScript/XmlSitemap/setup.typoscript'
 @import 'EXT:news/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:news/Configuration/Sets/Sitemap/setup.typoscript'
 @import 'EXT:md_news_author/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:sf_event_mgt/Configuration/TypoScript/setup.typoscript'
 
