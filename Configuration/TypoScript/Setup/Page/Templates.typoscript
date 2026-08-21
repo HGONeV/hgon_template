@@ -141,6 +141,8 @@ page {
             // to a donation project in its page properties.
             pageProjectButton = EXTBASEPLUGIN
             pageProjectButton {
+                stdWrap.if.isTrue.field = tx_hgondonation_project
+
                 extensionName = HgonDonation
                 pluginName = ProjectButton
                 vendorName = HGON

@@ -1,0 +1,40 @@
+.species-detail__back-row {
+    margin-bottom: 1em;
+}
+
+.species-detail__heading-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5em;
+}
+
+.species-detail__heading-copy {
+    min-width: 0;
+}
+
+.species-detail__donation {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .5em;
+    max-width: 22em;
+    text-align: right;
+}
+
+.species-detail__donation-button {
+    white-space: nowrap;
+}
+
+@media only screen and (max-width: 48em) {
+    .species-detail__heading-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .species-detail__donation {
+        align-items: flex-start;
+        text-align: left;
+    }
+}

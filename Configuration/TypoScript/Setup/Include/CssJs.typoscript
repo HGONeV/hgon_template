@@ -10,6 +10,9 @@ page {
         file10 = {$globalWebsiteConfig.templatePaths.default.styles}/styles.css
 		file10.media = screen,print
 
+        file15 = {$globalWebsiteConfig.templatePaths.default.styles}/Species.css
+        file15.media = screen,print
+
         file20 = {$globalWebsiteConfig.templatePaths.default.styles}/Main.css
         file20.media = screen,print
 
@@ -80,4 +83,3 @@ page {
 	}
 
 }
-

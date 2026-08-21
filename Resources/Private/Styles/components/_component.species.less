@@ -69,6 +69,47 @@
   }
 }
 
+.species-detail__back-row {
+  margin-bottom: @gap1;
+}
+
+.species-detail__heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: @gap15;
+}
+
+.species-detail__heading-copy {
+  min-width: 0;
+}
+
+.species-detail__donation {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: @gap05;
+  max-width: 22em;
+  text-align: right;
+}
+
+.species-detail__donation-button {
+    white-space: nowrap;
+}
+
+@media @mq-medium {
+  .species-detail__heading-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .species-detail__donation {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
 .species-detail--bird {
   color: @color-text-dark;
 
