@@ -228,11 +228,10 @@
                                 <f:if condition="{event.enablePayment}">
                                     <div class="form__field event-registration-row">
                                         <label class="label" for="paymentmethod"><f:translate key="tx_sfeventmgt_domain_model_registration.paymentmethod" /></label>
-                                        <span class="select-box">
-                                            <f:form.select id="paymentmethod" property="paymentmethod" options="{paymentMethods}" />
-                                        </span>
+                                        <f:form.hidden property="paymentmethod" value="transfer" />
+                                        <input id="paymentmethod" class="input" type="text" value="Überweisung" readonly="readonly" />
                                         <p class="event-registration-note">
-                                            Bei Auswahl von Überweisung erhalten Sie die Bankverbindung und den Verwendungszweck nach der Bestätigung Ihrer Anmeldung per E-Mail. Bei PayPal werden Sie nach der Bestätigung zur Zahlung weitergeleitet.
+                                            Die Bankverbindung und den Verwendungszweck erhalten Sie nach der Bestätigung Ihrer Anmeldung per E-Mail.
                                         </p>
                                     </div>
                                 </f:if>
