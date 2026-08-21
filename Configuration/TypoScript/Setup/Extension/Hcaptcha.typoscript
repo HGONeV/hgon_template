@@ -1,0 +1,4 @@
+plugin.tx_hcaptcha.settings {
+    publicKey = {$hgonTemplate.eventRegistration.hCaptcha.publicKey}
+    privateKey = {$hgonTemplate.eventRegistration.hCaptcha.privateKey}
+}

@@ -127,3 +127,10 @@ renderables:
             type: Checkbox
             identifier: checkbox-2
             label: '...als Sponsor die Naturschutzarbeit der HGON unterstützen.'
+      -
+        identifier: hcaptcha
+        label: Sicherheitsprüfung
+        type: Hcaptcha
+        validators:
+          -
+            identifier: Hcaptcha

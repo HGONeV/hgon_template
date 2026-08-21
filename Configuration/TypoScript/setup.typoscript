@@ -4,6 +4,7 @@
 @import 'EXT:news/Configuration/Sets/Sitemap/setup.typoscript'
 @import 'EXT:md_news_author/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:sf_event_mgt/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:hcaptcha/Configuration/TypoScript/setup.typoscript'
 
 @import 'EXT:hgon_donation/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:hgon_workgroup/Configuration/TypoScript/setup.typoscript'

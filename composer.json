@@ -9,10 +9,11 @@
         }
     ],
     "require": {
-        "typo3/cms-core": "^9.5 || ^10.4 || ^11.5 || ^12.4 || ^13.4",
         "derhansen/sf_event_mgt": "^8.1",
+        "dreistromland/typo3-hcaptcha": "^2.3",
         "hgon/hgon-donation": "dev-master",
-        "mediadreams/md_news_author": "^9.0"
+        "mediadreams/md_news_author": "^9.0",
+        "typo3/cms-core": "^9.5 || ^10.4 || ^11.5 || ^12.4 || ^13.4"
     },
     "autoload": {
         "psr-4": {
