@@ -10,6 +10,10 @@ $ll = 'LLL:EXT:news/Resources/Private/Language/locallang_db.xlf:';
 // fix: https://github.com/georgringer/news/issues/1072
 $GLOBALS['TCA']['tx_news_domain_model_news']['columns']['title']['config']['default'] = '';
 
+// The language field is required when non-admin users create records.
+// Keep it available independently of the backend group's exclude-field list.
+$GLOBALS['TCA']['tx_news_domain_model_news']['columns']['sys_language_uid']['exclude'] = false;
+
 // hide tx_news own type
 //$condFce = 'FIELD:type:!=:0';
 $condFce = ['AND' => [
@@ -114,6 +118,8 @@ $GLOBALS['TCA']['tx_news_domain_model_news']['types']['0'] = [
     related_links,
     news_author,
     tx_hgon_workgroup,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+    --palette--;;paletteLanguage,
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
     --palette--;;paletteHidden,
     --palette--;;paletteAccess,
