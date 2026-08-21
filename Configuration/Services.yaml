@@ -91,9 +91,3 @@ services:
       - name: event.listener
         identifier: 'hgon-template/sfeventmgt-registration-culinary-depending-registrations'
         event: DERHANSEN\SfEventMgt\Event\ModifyCreateDependingRegistrationsEvent
-
-  HGON\HgonTemplate\EventListener\ContactFormHcaptchaListener:
-    tags:
-      - name: event.listener
-        identifier: 'hgon-template/contact-form-hcaptcha'
-        event: TYPO3\CMS\Form\Mvc\Persistence\Event\AfterFormDefinitionLoadedEvent
