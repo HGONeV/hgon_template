@@ -6,7 +6,7 @@
 		</f:if>
 		<f:if condition="{element.properties.text}">
 			<div{f:if(condition: element.properties.elementClassAttribute, then: ' class="{element.properties.elementClassAttribute}"')}>
-				<f:format.html>{formvh:translateElementProperty(element: element, property: 'text')}</f:format.html>
+				{formvh:translateElementProperty(element: element, property: 'text') -> f:format.nl2br()}
 			</div>
 		</f:if>
 	</div>
