@@ -19,6 +19,10 @@ services:
     autowire: true
     autoconfigure: true
 
+  HGON\HgonTemplate\Middleware\:
+    resource: '../Classes/Middleware/*'
+    autowire: true
+
   HGON\HgonTemplate\ViewHelpers\PaymentRedirectHmacViewHelper:
     autowire: true
     autoconfigure: true
