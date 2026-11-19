@@ -30,6 +30,17 @@ TYPO3:
             Textarea:
               properties:
                 elementClassAttribute: 'textarea'
+            FileUpload:
+              formEditor:
+                editors:
+                  300:
+                    selectOptions:
+                      80:
+                        value: 'audio/mpeg'
+                        label: 'MP3-Datei (audio/mpeg)'
+                      90:
+                        value: 'audio/mp3'
+                        label: 'MP3-Datei (audio/mp3)'
             ImageUpload:
               properties:
                 elementClassAttribute: 'ext-form-img'

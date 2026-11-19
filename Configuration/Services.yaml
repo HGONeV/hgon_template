@@ -31,6 +31,9 @@ services:
   HGON\HgonTemplate\Updates\:
     resource: '../Classes/Updates/*'
 
+  HGON\HgonTemplate\Updates\HgonTemplateAkhMp3UploadMigration:
+    autowire: true
+
   HGON\HgonTemplate\Updates\HgonTemplateTypoScriptConditionMigration:
     tags:
       - name: 'install.upgradewizard'
